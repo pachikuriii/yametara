@@ -1,21 +1,17 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import Button from '../../components/atoms/button';
+import ButtonsPager from '../../components/molecules/buttons-pager';
+import styles from '../../styles/Question.module.css';
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>
-          yametara | 退職後の手続きシミュレーター | 今回の退職について
-        </title>
+        <title>yametara | 退職後の手続きシミュレーター | 住民税について</title>
       </Head>
-      <main>
+      <main className={styles.main}>
         <div>
           <p>ららら</p>
-          <Link href='/result'>
-            <Button>結果</Button>
-          </Link>
+          <ButtonsPager></ButtonsPager>
         </div>
       </main>
     </>
