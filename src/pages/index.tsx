@@ -1,9 +1,9 @@
-import { Inter } from '@next/font/google';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
+import Button from '../components/atoms/button';
+import Footer from '../components/organisms/footer';
 import styles from '../styles/Home.module.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   return (
@@ -12,8 +12,21 @@ export default function Home() {
         <title>yametara | 退職後の手続きシミュレーター</title>
       </Head>
       <main className={styles.main}>
-        <h1 className='text-3xl font-bold underline'>Hello world!</h1>
+        <div>
+          <Image src='/yametara-logo.svg' alt='logo' width='500' height='100' />
+          <div>
+            <p>
+              いくつかの質問に答えるだけで
+              会社を辞めて、すぐに就職する予定がない場合に必要な
+              社会保険や税金の手続き内容を 簡単にシミュレーションできます。
+            </p>
+          </div>
+          <Link href='/questions/1'>
+            <Button>はじめる</Button>
+          </Link>
+        </div>
       </main>
+      <Footer></Footer>
     </>
   );
 }
