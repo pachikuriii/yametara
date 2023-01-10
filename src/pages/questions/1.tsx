@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Button from '../../components/atoms/button';
-import Footer from '../../components/organisms/footer';
 import Header from '../../components/organisms/header';
+import Footer from '../../components/organisms/question-footer';
 import QuestionTemplate from '../../components/templates/question';
 import styles from '../../styles/Question.module.css';
 

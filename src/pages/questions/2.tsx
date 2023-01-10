@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import ButtonsPager from '../../components/molecules/buttons-pager';
-import Footer from '../../components/organisms/footer';
 import Header from '../../components/organisms/header';
+import Footer from '../../components/organisms/question-footer';
 import QuestionTemplate from '../../components/templates/question';
 import styles from '../../styles/Question.module.css';
 

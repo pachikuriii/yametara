@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from '../components/atoms/button';
+import Footer from '../components/organisms/index-footer';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -24,7 +25,7 @@ export default function Home() {
             <Button>はじめる</Button>
           </Link>
         </div>
-        <footer></footer>
+        <Footer></Footer>
       </main>
     </>
   );
