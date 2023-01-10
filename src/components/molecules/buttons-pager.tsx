@@ -3,14 +3,13 @@ import Button from '../atoms/button';
 
 export default function PagerButtons() {
   const router = useRouter();
-  const currentQuestion = Number(router.asPath.replace('/questions/', ''));
-  const NextPage: number = currentQuestion + 1;
-  const PrevPage: number = currentQuestion - 1;
+  const currentQuestionNum: number = Number(
+    router.asPath.replace('/questions/', ''),
+  );
+  const NextPage: number = currentQuestionNum + 1;
+  const PrevPage: number = currentQuestionNum - 1;
   const NextPath: string = '/questions/' + NextPage;
   const PrevPath: string = '/questions/' + PrevPage;
-
-  // const NextPage = '/questions/' + {currentQuestion + 1}
-  // const nextPage = router.pathname + 1;
 
   return (
     <div>
