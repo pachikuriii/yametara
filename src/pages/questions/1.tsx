@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import ButtonsPager from '../../components/molecules/buttons-pager';
+import Link from 'next/link';
+import Button from '../../components/atoms/button';
 import Footer from '../../components/organisms/footer';
 import Header from '../../components/organisms/header';
 import QuestionTemplate from '../../components/templates/question';
@@ -16,7 +17,9 @@ export default function Home() {
       <main className={styles.main}>
         <Header></Header>
         <QuestionTemplate />
-        <ButtonsPager></ButtonsPager>
+        <Link href='/questions/2'>
+          <Button>次へ</Button>
+        </Link>
         <Footer></Footer>
       </main>
     </>
