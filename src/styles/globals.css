@@ -18,11 +18,15 @@ body {
 }
 
 body {
-  color: #000000;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #5bc58b;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.btn {
+  border-width: 3px;
 }
