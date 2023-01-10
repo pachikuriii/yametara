@@ -1,8 +1,5 @@
-import { Inter } from '@next/font/google';
 import Head from 'next/head';
-import Image from 'next/image';
-
-const inter = Inter({ subsets: ['latin'] });
+import ButtonsPager from '../../components/molecules/buttons-pager';
 
 export default function Home() {
   return (
@@ -15,6 +12,7 @@ export default function Home() {
       <main>
         <div>
           <p>ららら</p>
+          <ButtonsPager></ButtonsPager>
         </div>
       </main>
     </>
