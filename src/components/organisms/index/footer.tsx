@@ -1,8 +1,8 @@
-import styles from './Index-Footer.module.css';
+import styles from './Footer.module.css';
 export default function IndexFooter() {
   return (
     <footer className={styles.box}>
-      <p>©︎ Saya</p>
+      <p>©︎ 2023 Saya</p>
     </footer>
   );
 }

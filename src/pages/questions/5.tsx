@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+import Card from '../../components/atoms/card';
 import ButtonsPager from '../../components/molecules/buttons-pager';
-import Header from '../../components/organisms/header';
-import Footer from '../../components/organisms/question-footer';
-import QuestionTemplate from '../../components/templates/question';
+import Footer from '../../components/organisms/question/footer';
+import Header from '../../components/organisms/question/header';
+import QuestionTemplate from '../../components/templates/questions/question';
 import styles from '../../styles/Question.module.css';
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
         </title>
       </Head>
       <main className={styles.main}>
-        <Header></Header>
+        <Header>Q5.雇用保険について</Header>
         <motion.div
           style={{
             width: '100%',
@@ -24,9 +25,14 @@ export default function Home() {
           exit={{ x: '-100%', opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <QuestionTemplate />
+          <QuestionTemplate>
+            <Card>
+              <p>らら</p>
+            </Card>
+            <ButtonsPager></ButtonsPager>
+          </QuestionTemplate>
         </motion.div>
-        <ButtonsPager></ButtonsPager>
+
         <Footer></Footer>
       </main>
     </>

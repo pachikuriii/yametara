@@ -2,9 +2,10 @@ import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import Button from '../../components/atoms/button';
-import Header from '../../components/organisms/header';
-import Footer from '../../components/organisms/question-footer';
-import QuestionTemplate from '../../components/templates/question';
+import Card from '../../components/atoms/card';
+import Footer from '../../components/organisms/question/footer';
+import Header from '../../components/organisms/question/header';
+import QuestionTemplate from '../../components/templates/questions/question';
 import styles from '../../styles/Question.module.css';
 
 export default function Home() {
@@ -17,7 +18,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Header></Header>
+        <Header>Q1.今回の退職について</Header>
         <motion.div
           style={{
             width: '100%',
@@ -27,11 +28,16 @@ export default function Home() {
           exit={{ x: '-100%', opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <QuestionTemplate />
+          <QuestionTemplate>
+            <Card>
+              <p>らら</p>
+            </Card>
+            <Link href='/questions/2'>
+              <Button>次へ</Button>
+            </Link>
+          </QuestionTemplate>
         </motion.div>
-        <Link href='/questions/2'>
-          <Button>次へ</Button>
-        </Link>
+
         <Footer></Footer>
       </main>
     </>

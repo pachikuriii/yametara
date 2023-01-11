@@ -2,9 +2,10 @@ import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import Button from '../../components/atoms/button';
-import Header from '../../components/organisms/header';
-import Footer from '../../components/organisms/question-footer';
-import QuestionTemplate from '../../components/templates/question';
+import Card from '../../components/atoms/card';
+import Footer from '../../components/organisms/question/footer';
+import Header from '../../components/organisms/question/header';
+import QuestionTemplate from '../../components/templates/questions/question';
 import styles from '../../styles/Question.module.css';
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
         transition={{ duration: 0.3 }}
       >
         <main className={styles.main}>
-          <Header></Header>
+          <Header>Q8.住民税について</Header>
           <motion.div
             style={{
               width: '100%',
@@ -30,11 +31,15 @@ export default function Home() {
             animate={{ x: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <QuestionTemplate />
+            <QuestionTemplate>
+              <Card>
+                <p>らら</p>
+              </Card>
+              <Link href='/result'>
+                <Button>結果</Button>
+              </Link>
+            </QuestionTemplate>
           </motion.div>
-          <Link href='/result'>
-            <Button>結果</Button>
-          </Link>
 
           <Footer></Footer>
         </main>

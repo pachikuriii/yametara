@@ -1,6 +1,7 @@
 .box {
   background-color: #e5f8f4;
-  font-weight: bolder;
-  height: 30vh;
+  height: 20vh;
   min-width: 100vw;
+  color: #27302e;
+  text-align: center;
 }
