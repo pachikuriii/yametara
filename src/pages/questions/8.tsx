@@ -21,7 +21,7 @@ export default function Home() {
         transition={{ duration: 0.3 }}
       >
         <main className={styles.main}>
-          <Header></Header>
+          <Header>Q8.住民税について</Header>
           <motion.div
             style={{
               width: '100%',

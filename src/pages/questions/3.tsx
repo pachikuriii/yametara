@@ -13,7 +13,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Header></Header>
+        <Header>Q3.あなたについて</Header>
         <motion.div
           style={{
             width: '100%',

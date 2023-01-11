@@ -17,7 +17,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Header></Header>
+        <Header>Q1.今回の退職について</Header>
         <motion.div
           style={{
             width: '100%',
