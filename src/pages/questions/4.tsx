@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Card from '../../components/atoms/card';
 import ButtonsPager from '../../components/molecules/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
@@ -24,7 +25,13 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <p>らら</p>
+              <div>
+                <h2 className='card-title'>
+                  生計を共にしている社会保険の被保険者の家族がいますか？
+                </h2>
+                <AnswerSelectButton>いる</AnswerSelectButton>
+                <AnswerSelectButton>いない</AnswerSelectButton>
+              </div>
             </Card>
           </motion.div>
           <ButtonsPager></ButtonsPager>
