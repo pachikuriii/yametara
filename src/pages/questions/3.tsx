@@ -15,23 +15,19 @@ export default function Home() {
 
       <main className={styles.main}>
         <Header>Q3.あなたについて</Header>
-        <motion.div
-          style={{
-            width: '100%',
-          }}
-          initial={{ x: '100%', opacity: 0 }}
-          animate={{ x: 1, opacity: 1 }}
-          exit={{ x: '-100%', opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <QuestionTemplate>
+        <QuestionTemplate>
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ duration: 0.3 }}
+          >
             <Card>
               <p>らら</p>
             </Card>
-            <ButtonsPager></ButtonsPager>
-          </QuestionTemplate>
-        </motion.div>
-
+          </motion.div>
+          <ButtonsPager></ButtonsPager>
+        </QuestionTemplate>
         <Footer></Footer>
       </main>
     </>
