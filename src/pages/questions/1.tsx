@@ -16,30 +16,28 @@ export default function Home() {
           yametara | 退職後の手続きシミュレーター | 今回の退職について
         </title>
       </Head>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <main className={styles.main}>
+          <Header>Q1.今回の退職について</Header>
 
-      <main className={styles.main}>
-        <Header>Q1.今回の退職について</Header>
-        <motion.div
-          style={{
-            width: '100%',
-          }}
-          initial={{ x: '100%', opacity: 0 }}
-          animate={{ x: 1, opacity: 1 }}
-          exit={{ x: '-100%', opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
           <QuestionTemplate>
-            <Card>
-              <p>らら</p>
-            </Card>
+            <motion.div exit={{ x: '-100%' }} transition={{ duration: 0.3 }}>
+              <Card>
+                <p>らら</p>
+              </Card>
+            </motion.div>
             <Link href='/questions/2'>
               <Button>次へ</Button>
             </Link>
           </QuestionTemplate>
-        </motion.div>
 
-        <Footer></Footer>
-      </main>
+          <Footer></Footer>
+        </main>
+      </motion.div>
     </>
   );
 }
