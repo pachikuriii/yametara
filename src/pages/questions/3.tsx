@@ -1,19 +1,30 @@
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import ButtonsPager from '../../components/molecules/buttons-pager';
 import Header from '../../components/organisms/header';
 import Footer from '../../components/organisms/question-footer';
 import QuestionTemplate from '../../components/templates/question';
 import styles from '../../styles/Question.module.css';
-
 export default function Home() {
   return (
     <>
       <Head>
         <title>yametara | 退職後の手続きシミュレーター | あなたについて</title>
       </Head>
+
       <main className={styles.main}>
         <Header></Header>
-        <QuestionTemplate />
+        <motion.div
+          style={{
+            width: '100%',
+          }}
+          initial={{ x: '100%', opacity: 0 }}
+          animate={{ x: 1, opacity: 1 }}
+          exit={{ x: '-100%', opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <QuestionTemplate />
+        </motion.div>
         <ButtonsPager></ButtonsPager>
         <Footer></Footer>
       </main>
