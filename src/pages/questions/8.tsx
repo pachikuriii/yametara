@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import Button from '../../components/atoms/button';
-import Header from '../../components/organisms/header';
-import Footer from '../../components/organisms/question-footer';
+import Footer from '../../components/organisms/question/footer';
+import Header from '../../components/organisms/question/header';
 import QuestionTemplate from '../../components/templates/question';
 import styles from '../../styles/Question.module.css';
 export default function Home() {
