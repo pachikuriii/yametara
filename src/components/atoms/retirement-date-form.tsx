@@ -10,7 +10,7 @@ const RetirementDateForm = (props: Props) => {
     <input
       type='number'
       value={props.value}
-      onChange={(e) => props.onChange(e)}
+      onChange={(event) => props.onChange(event)}
       className='input w-full max-w-xs border-accent'
       placeholder='予定日を入力してください'
     />

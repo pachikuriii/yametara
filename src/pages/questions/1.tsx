@@ -2,27 +2,28 @@ import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
-import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Button from '../../components/atoms/button';
 import Card from '../../components/atoms/card';
 import RetirementDateForm from '../../components/atoms/retirement-date-form';
+import RetirementReasonButtons from '../../components/molecules/buttons-retirement-reason';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import QuestionTemplate from '../../components/templates/questions/question';
 import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 
-// function changeStartedStatus(retirement_date) {
-//   const localStrage = LocalStorage.fetch();
-//   localStrage.started = true;
-//   LocalStorage.save(localStrage);
-// }
-
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
+  const [selectedButton, setSelectedButton] = useState(0);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
+  function reflectDataToLocalStrage() {
+    const localStrage = LocalStorage.fetch();
+    localStrage.postcode = inputValue;
+    localStrage.retirement_reason = selectedButton;
+    LocalStorage.save(localStrage);
+  }
   return (
     <>
       <Head>
@@ -48,20 +49,27 @@ export default function Home() {
                   <p>退職予定日</p>
                   <RetirementDateForm
                     value={inputValue}
-                    onChange={(e) => handleChange(e)}
+                    onChange={(event) => handleChange(event)}
                   ></RetirementDateForm>
                 </div>
                 <div>
                   <p>退職事由</p>
-                  <AnswerSelectButton>自己都合</AnswerSelectButton>
-                  <AnswerSelectButton>会社都合</AnswerSelectButton>
-                  <AnswerSelectButton>その他</AnswerSelectButton>
+                  <RetirementReasonButtons
+                    selectedButton={selectedButton}
+                    setSelectedButton={setSelectedButton}
+                  ></RetirementReasonButtons>
                   <p>退職事由について</p>
                 </div>
               </Card>
             </motion.div>
             <Link href='/questions/2'>
-              <Button>次へ</Button>
+              <Button
+                onClick={() => {
+                  reflectDataToLocalStrage();
+                }}
+              >
+                次へ
+              </Button>
             </Link>
           </QuestionTemplate>
 
