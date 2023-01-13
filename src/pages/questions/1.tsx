@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../../components/atoms/button';
 import Card from '../../components/atoms/card';
 import RetirementDateForm from '../../components/atoms/retirement-date-form';
@@ -24,6 +24,9 @@ export default function Home() {
     localStrage.retirement_reason = selectedButton;
     LocalStorage.save(localStrage);
   }
+  useEffect(() => {
+    reflectDataToLocalStrage();
+  });
   return (
     <>
       <Head>
@@ -63,13 +66,7 @@ export default function Home() {
               </Card>
             </motion.div>
             <Link href='/questions/2'>
-              <Button
-                onClick={() => {
-                  reflectDataToLocalStrage();
-                }}
-              >
-                次へ
-              </Button>
+              <Button>次へ</Button>
             </Link>
           </QuestionTemplate>
 
