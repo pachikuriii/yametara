@@ -9,7 +9,6 @@ interface Props {
 
 const RetirementReasonButton = (props: Props) => {
   const [reasonButton, setSelectedButton] = useState(0);
-
   useEffect(() => {
     props.setSelectedButton(reasonButton);
   });
