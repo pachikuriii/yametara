@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
+import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Button from '../../components/atoms/button';
 import Card from '../../components/atoms/card';
 import Footer from '../../components/organisms/question/footer';
@@ -27,7 +28,24 @@ export default function Home() {
           <QuestionTemplate>
             <motion.div exit={{ x: '-100%' }} transition={{ duration: 0.3 }}>
               <Card>
-                <p>らら</p>
+                <h2 className='card-title'>
+                  退職予定日と退職事由を教えてください
+                </h2>
+                <div>
+                  <p>退職予定日</p>
+                  <input
+                    type='text'
+                    placeholder='予定日を入力してください'
+                    className='input w-full max-w-xs border-accent'
+                  />
+                </div>
+                <div>
+                  <p>退職事由</p>
+                  <AnswerSelectButton>自己都合</AnswerSelectButton>
+                  <AnswerSelectButton>会社都合</AnswerSelectButton>
+                  <AnswerSelectButton>その他</AnswerSelectButton>
+                  <p>退職事由について</p>
+                </div>
               </Card>
             </motion.div>
             <Link href='/questions/2'>

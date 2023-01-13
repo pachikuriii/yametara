@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Card from '../../components/atoms/card';
 import ButtonsPager from '../../components/molecules/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
@@ -24,7 +25,13 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <p>らら</p>
+              <div>
+                <h2 className='card-title'>
+                  退職予定日までの健康保険の被保険者期間が継続して2ヶ月以上あるか教えてください
+                </h2>
+                <AnswerSelectButton>ある</AnswerSelectButton>
+                <AnswerSelectButton>ない</AnswerSelectButton>
+              </div>
             </Card>
           </motion.div>
           <ButtonsPager></ButtonsPager>
