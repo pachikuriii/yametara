@@ -1,22 +1,39 @@
 const STORAGE_KEY = 'yametara';
-const obj = {
+
+interface Strage {
+  started: Boolean;
+  retirement_date: String;
+  retirement_reason: Number;
+  re_employment: Boolean;
+  age: Number;
+  post_code: Number;
+  family: Boolean;
+  emp_ins_last_two_years: Number;
+  emp_ins_total: Number;
+  health_ins_last_two_month: Boolean;
+  health_ins_after_retirement: Number;
+  tax: Number;
+  question: Number;
+}
+
+const initialStrageData: Strage = {
   started: false,
-  retirement_date: 2022 - 12 - 31,
-  retirement_reason: 1,
+  retirement_date: '',
+  retirement_reason: 0,
   re_employment: false,
-  age: 1,
-  post_code: 1234567,
+  age: 0,
+  post_code: 0,
   family: false,
-  emp_ins_last_two_years: 3,
-  emp_ins_total: 2,
-  health_ins_last_two_month: true,
-  health_ins_after_retirement: 2,
-  tax: 2,
-  question: 'q10',
+  emp_ins_last_two_years: 0,
+  emp_ins_total: 0,
+  health_ins_last_two_month: false,
+  health_ins_after_retirement: 0,
+  tax: 0,
+  question: 0,
 };
 
 if (typeof window !== 'undefined') {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(initialStrageData));
 }
 
 const LocalStorage = {
