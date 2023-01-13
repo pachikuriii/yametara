@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'yametara';
 
-interface Strage {
+interface Storage {
   started: Boolean;
   retirement_date: String;
   retirement_reason: Number;
@@ -16,7 +16,7 @@ interface Strage {
   question: Number;
 }
 
-const initialStrageData: Strage = {
+const initialStorageData: Storage = {
   started: false,
   retirement_date: '',
   retirement_reason: 0,
@@ -33,7 +33,7 @@ const initialStrageData: Strage = {
 };
 
 if (typeof window !== 'undefined') {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(initialStrageData));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(initialStorageData));
 }
 
 const LocalStorage = {
