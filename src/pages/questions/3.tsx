@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+import { useState, useEffect } from 'react';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import AnswerSelectButton from '../../components/atoms/answer-select-button';
@@ -8,10 +9,21 @@ import ButtonsPager from '../../components/molecules/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import QuestionTemplate from '../../components/templates/questions/question';
+import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
+
 export default function Home() {
+  const [age, setAge] = useState(0);
+  function reflectDataToLocalStrage() {
+    const localStrage = LocalStorage.fetch();
+    localStrage.age = age;
+    LocalStorage.save(localStrage);
+  }
+  useEffect(() => {
+    reflectDataToLocalStrage();
+  });
   return (
     <>
       <Head>
@@ -40,21 +52,52 @@ export default function Home() {
                     className='mySwiper'
                     navigation={true}
                     modules={[Navigation]}
+                    centeredSlides={true}
                   >
                     <SwiperSlide>
-                      <AnswerSelectButton>20歳</AnswerSelectButton>
+                      <AnswerSelectButton
+                        onClick={() => {
+                          setAge(1);
+                        }}
+                      >
+                        30歳未満
+                      </AnswerSelectButton>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <AnswerSelectButton>30歳</AnswerSelectButton>
+                      <AnswerSelectButton
+                        onClick={() => {
+                          setAge(2);
+                        }}
+                      >
+                        30歳以上35歳未満
+                      </AnswerSelectButton>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <AnswerSelectButton>40歳</AnswerSelectButton>
+                      <AnswerSelectButton
+                        onClick={() => {
+                          setAge(3);
+                        }}
+                      >
+                        35歳以上45歳未満
+                      </AnswerSelectButton>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <AnswerSelectButton>50歳</AnswerSelectButton>
+                      <AnswerSelectButton
+                        onClick={() => {
+                          setAge(4);
+                        }}
+                      >
+                        45歳以上60歳未満
+                      </AnswerSelectButton>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <AnswerSelectButton>60歳</AnswerSelectButton>
+                      <AnswerSelectButton
+                        onClick={() => {
+                          setAge(5);
+                        }}
+                      >
+                        60歳以上65歳未満
+                      </AnswerSelectButton>
                     </SwiperSlide>
                   </Swiper>
                 </div>
@@ -62,8 +105,8 @@ export default function Home() {
               <div>
                 <p>郵便番号</p>
                 <input
-                  type='text'
-                  placeholder='予定日を入力してください'
+                  type='number'
+                  placeholder='郵便番号を入力してください'
                   className='input w-full max-w-xs border-accent'
                 />
               </div>
