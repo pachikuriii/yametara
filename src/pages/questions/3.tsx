@@ -5,6 +5,7 @@ import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Card from '../../components/atoms/card';
+import FormPostCode from '../../components/atoms/form-postcode';
 import ButtonsPager from '../../components/molecules/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
@@ -16,9 +17,14 @@ import 'swiper/css/navigation';
 
 export default function Home() {
   const [age, setAge] = useState(0);
+  const [postCode, setPostCode] = useState('');
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPostCode(event.target.value);
+  };
   function reflectDataToLocalStrage() {
     const localStrage = LocalStorage.fetch();
     localStrage.age = age;
+    localStrage.post_code = postCode;
     LocalStorage.save(localStrage);
   }
   useEffect(() => {
@@ -104,11 +110,10 @@ export default function Home() {
               </div>
               <div>
                 <p>郵便番号</p>
-                <input
-                  type='number'
-                  placeholder='郵便番号を入力してください'
-                  className='input w-full max-w-xs border-accent'
-                />
+                <FormPostCode
+                  value={postCode}
+                  onChange={(event) => handleChange(event)}
+                ></FormPostCode>
               </div>
             </Card>
           </motion.div>
