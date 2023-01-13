@@ -20,7 +20,7 @@ export default function Home() {
   };
   function reflectDataToLocalStrage() {
     const localStrage = LocalStorage.fetch();
-    localStrage.post_code = inputValue;
+    localStrage.retirement_date = inputValue;
     localStrage.retirement_reason = selectedButton;
     LocalStorage.save(localStrage);
   }
