@@ -4,6 +4,12 @@ import LocalStorage from '../../../local-stroage';
 import Button from '../../atoms/button';
 import styles from './Main.module.css';
 
+function changeStartedStatus() {
+  const localStrage = LocalStorage.fetch();
+  localStrage.started = true;
+  LocalStorage.save(localStrage);
+}
+
 export default function IndexMain() {
   return (
     <div className={styles.box}>
@@ -16,7 +22,11 @@ export default function IndexMain() {
         </p>
       </div>
       <Link href='/questions/1'>
-        <Button onClick={() => console.log(LocalStorage.fetch())}>
+        <Button
+          onClick={() => {
+            changeStartedStatus();
+          }}
+        >
           はじめる
         </Button>
       </Link>

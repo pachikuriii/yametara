@@ -40,9 +40,9 @@ const LocalStorage = {
   fetch: function (): any {
     return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   },
-  //   save: function (state) {
-  //     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  //   },
+  save: function (storage: Storage) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
+  },
 };
 
 export default LocalStorage;
