@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import LocalStrage from '../../../local-strage';
+import LocalStorage from '../../../local-stroage';
 import Button from '../../atoms/button';
 import styles from './Main.module.css';
 
@@ -16,7 +16,7 @@ export default function IndexMain() {
         </p>
       </div>
       <Link href='/questions/1'>
-        <Button onClick={() => console.log(LocalStrage.fetch())}>
+        <Button onClick={() => console.log(LocalStorage.fetch())}>
           はじめる
         </Button>
       </Link>
