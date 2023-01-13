@@ -30,7 +30,7 @@ export default function Home() {
           >
             <Card>
               <h2 className='card-title'>
-                雇用保険の被保険者期間を教えてください
+                雇用保険のこれまでの被保険者期間を教えてください
               </h2>
               <p>雇用保険の被保険者期間の数え方について</p>
               <div>
