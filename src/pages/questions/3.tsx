@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Card from '../../components/atoms/card';
 import FormPostCode from '../../components/atoms/form-postcode';
-import ButtonsPager from '../../components/molecules/buttons-pager';
+import ButtonsPager from '../../components/molecules/question/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import QuestionTemplate from '../../components/templates/questions/question';

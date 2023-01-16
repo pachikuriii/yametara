@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Button from '../../components/atoms/button';
 import Card from '../../components/atoms/card';
 import RetirementDateForm from '../../components/atoms/retirement-date-form';
-import RetirementReasonButtons from '../../components/molecules/buttons-retirement-reason';
+import RetirementReasonButtons from '../../components/molecules/question/q1/buttons-retirement-reason';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import QuestionTemplate from '../../components/templates/questions/question';

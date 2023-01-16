@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AnswerSelectButton from '../atoms/answer-select-button';
+import AnswerSelectButton from '../../../atoms/answer-select-button';
 
 interface Props {
   selectedButton: number;
