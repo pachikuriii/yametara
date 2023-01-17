@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import LocalStorage from '../../../local-stroage';
 
 interface Props {
   onClick?: () => void;
@@ -43,7 +44,11 @@ const Tabs = (props: Props) => {
         雇用保険
       </a>
       <a
-        className={'tab ' + (tab === 4 ? 'tab-active' : '')}
+        className={
+          'tab ' +
+          (tab === 4 ? 'tab-active' : '') +
+          (LocalStorage.fetch().tax === 1 ? 'hidden' : '')
+        }
         onClick={(event) => {
           event.preventDefault();
           setTab(4);

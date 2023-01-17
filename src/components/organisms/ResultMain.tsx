@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import LocalStorage from '../../local-stroage';
 import Button from '../atoms/button';
 import Tabs from '../molecules/result/tabs';
 interface Props {
@@ -28,6 +29,7 @@ const ResultMain = (props: Props) => {
                 <div className={openTab === 3 ? 'block' : 'hidden'}>
                   <p className='text-black'>雇用保険</p>
                 </div>
+
                 <div className={openTab === 4 ? 'block' : 'hidden'}>
                   <p className='text-black'>税金</p>
                 </div>
