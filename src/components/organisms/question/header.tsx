@@ -10,7 +10,7 @@ const Header = ({ children }: Props) => {
   return (
     <header className={styles.box}>
       <Image src='/yametara-logo.svg' alt='logo' width='150' height='100' />
-      <p>{children}</p>
+      <h2>{children}</h2>
     </header>
   );
 };
