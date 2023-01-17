@@ -14,7 +14,7 @@ const ResultMain = (props: Props) => {
   return (
     <>
       <div className='flex flex-wrap'>
-        <div className='w-full tabs tabs-boxed'>
+        <div className=' tabs tabs-boxed bg-primary shadow-md'>
           <Tabs openTab={openTab} setOpenTab={setOpenTab}></Tabs>
 
           <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded'>
