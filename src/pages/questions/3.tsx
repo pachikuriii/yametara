@@ -17,9 +17,9 @@ import 'swiper/css/navigation';
 
 export default function Home() {
   const [age, setAge] = useState(0);
-  const [postCode, setPostCode] = useState('');
+  const [postCode, setPostCode] = useState(0);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPostCode(event.target.value);
+    setPostCode(Number(event.target.value));
   };
   function reflectDataToLocalStrage() {
     const localStrage = LocalStorage.fetch();

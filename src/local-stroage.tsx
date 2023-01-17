@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
 }
 
 const LocalStorage = {
-  fetch: function (): any {
+  fetch: function (): Storage {
     return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   },
   save: function (storage: Storage) {

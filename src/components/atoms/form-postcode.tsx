@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 interface Props {
-  value: string;
+  value: number;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
