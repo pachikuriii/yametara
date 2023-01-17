@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Button from '../components/atoms/button';
+import CheckedCard from '../components/atoms/checked-card';
 import ResultMain from '../components/organisms/ResultMain';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
@@ -34,41 +35,13 @@ export default function Home() {
           <p>あなたが会社を辞めたら以下についての手続きが必要です。</p>
           <br></br>
           <div className='flex flex-col w-1/3 '>
-            <div className='indicator w-full'>
-              <span className='bg-secondary text-accent indicator-item indicator-start badge badge-secondary rounded-full h-7 w-7 border-4 border-secondary'>
-                ✔︎
-              </span>
-              <div className='text-black grid w-full h-10 rounded-box  bg-primary place-items-center border-secondary border-4'>
-                健康保険
-              </div>
-            </div>
+            <CheckedCard>健康保険</CheckedCard>
             <div className='divider'></div>
-            <div className='indicator w-full'>
-              <span className='bg-secondary text-accent indicator-item indicator-start badge badge-secondary rounded-full h-7 w-7 border-4 border-secondary'>
-                ✔︎
-              </span>
-              <div className='text-black grid w-full h-10 rounded-box  bg-primary place-items-center border-secondary border-4'>
-                年金
-              </div>
-            </div>
+            <CheckedCard>年金</CheckedCard>
             <div className='divider'></div>
-            <div className='indicator w-full'>
-              <span className='bg-secondary text-accent indicator-item indicator-start badge badge-secondary rounded-full h-7 w-7 border-4 border-secondary'>
-                ✔︎
-              </span>
-              <div className='text-black grid w-full h-10 rounded-box  bg-primary place-items-center border-secondary border-4'>
-                雇用保険
-              </div>
-            </div>
+            <CheckedCard>雇用保険</CheckedCard>
             <div className='divider'></div>
-            <div className='indicator w-full'>
-              <span className='bg-secondary text-accent indicator-item indicator-start badge badge-secondary rounded-full h-7 w-7 border-4 border-secondary'>
-                ✔︎
-              </span>
-              <div className='text-black grid w-full h-10 rounded-box  bg-primary place-items-center border-secondary border-4'>
-                税金
-              </div>
-            </div>
+            <CheckedCard>税金</CheckedCard>
           </div>
 
           <ResultDetailTemplate>
