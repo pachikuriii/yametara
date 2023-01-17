@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import Button from '../atoms/button';
+import Button from '../../atoms/button';
 
 export default function PagerButtons() {
   const router = useRouter();
