@@ -1,15 +1,32 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
-import AnswerSelectButton from '../../components/atoms/answer-select-button';
+import { useState, useEffect } from 'react';
 import Button from '../../components/atoms/button';
 import Card from '../../components/atoms/card';
+import RetirementDateForm from '../../components/atoms/retirement-date-form';
+import RetirementReasonButtons from '../../components/molecules/question/q1/buttons-retirement-reason';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import QuestionTemplate from '../../components/templates/questions/question';
+import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 
 export default function Home() {
+  const [inputValue, setInputValue] = useState('');
+  const [selectedButton, setSelectedButton] = useState(0);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+  function reflectDataToLocalStrage() {
+    const localStrage = LocalStorage.fetch();
+    localStrage.retirement_date = inputValue;
+    localStrage.retirement_reason = selectedButton;
+    LocalStorage.save(localStrage);
+  }
+  useEffect(() => {
+    reflectDataToLocalStrage();
+  });
   return (
     <>
       <Head>
@@ -33,17 +50,17 @@ export default function Home() {
                 </h2>
                 <div>
                   <p>退職予定日</p>
-                  <input
-                    type='text'
-                    placeholder='予定日を入力してください'
-                    className='input w-full max-w-xs border-accent'
-                  />
+                  <RetirementDateForm
+                    value={inputValue}
+                    onChange={(event) => handleChange(event)}
+                  ></RetirementDateForm>
                 </div>
                 <div>
                   <p>退職事由</p>
-                  <AnswerSelectButton>自己都合</AnswerSelectButton>
-                  <AnswerSelectButton>会社都合</AnswerSelectButton>
-                  <AnswerSelectButton>その他</AnswerSelectButton>
+                  <RetirementReasonButtons
+                    selectedButton={selectedButton}
+                    setSelectedButton={setSelectedButton}
+                  ></RetirementReasonButtons>
                   <p>退職事由について</p>
                 </div>
               </Card>
