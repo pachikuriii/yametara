@@ -29,7 +29,7 @@ const Tabs = (props: Props) => {
 
       <a
         className={
-          'tab' +
+          'tab ' +
           (tab === 2 ? 'tab-active bg-accent rounded-full text-primary' : '')
         }
         onClick={(event) => {
@@ -42,7 +42,7 @@ const Tabs = (props: Props) => {
 
       <a
         className={
-          'tab' +
+          'tab ' +
           (tab === 3 ? 'tab-active bg-accent rounded-full text-primary' : '')
         }
         onClick={(event) => {
@@ -56,7 +56,7 @@ const Tabs = (props: Props) => {
         className={
           'tab' +
           (tab === 4 ? 'tab-active bg-accent rounded-full text-primary' : '') +
-          (LocalStorage.fetch().tax === 1 ? 'hidden' : '')
+          (LocalStorage.fetch().tax === 1 ? ' hidden' : '')
         }
         onClick={(event) => {
           event.preventDefault();

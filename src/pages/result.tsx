@@ -8,6 +8,7 @@ import ResultMain from '../components/organisms/ResultMain';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
 import ResultDetailTemplate from '../components/templates/result/ResultDetail';
+import LocalStorage from '../local-stroage';
 import styles from '../styles/Home.module.css';
 export default function Home() {
   const [healthInsuranceAfterRetirement, sethealthInsuranceAfterRetirement] =
@@ -35,13 +36,29 @@ export default function Home() {
           <p>あなたが会社を辞めたら以下についての手続きが必要です。</p>
           <br></br>
           <div className='flex flex-col w-1/3 '>
-            <CheckedCard>健康保険</CheckedCard>
+            <CheckedCard
+              className={LocalStorage.fetch().tax === 4 ? 'hidden' : ''}
+            >
+              健康保険
+            </CheckedCard>
             <div className='divider'></div>
-            <CheckedCard>年金</CheckedCard>
+            <CheckedCard
+              className={LocalStorage.fetch().tax === 3 ? 'hidden' : ''}
+            >
+              年金
+            </CheckedCard>
             <div className='divider'></div>
-            <CheckedCard>雇用保険</CheckedCard>
+            <CheckedCard
+              className={LocalStorage.fetch().tax === 2 ? ' hidden' : ''}
+            >
+              雇用保険
+            </CheckedCard>
             <div className='divider'></div>
-            <CheckedCard>税金</CheckedCard>
+            <CheckedCard
+              className={LocalStorage.fetch().tax === 1 ? ' hidden' : ''}
+            >
+              税金
+            </CheckedCard>
           </div>
 
           <ResultDetailTemplate>
