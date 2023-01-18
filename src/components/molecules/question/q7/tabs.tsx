@@ -14,7 +14,9 @@ const Tabs = (props: Props) => {
   return (
     <>
       <a
-        className={'tab ' + (tab === 1 ? 'tab-active' : '')}
+        className={
+          'tab ' + (tab === 1 ? 'bg-accent rounded-full text-primary' : '')
+        }
         onClick={(event) => {
           event.preventDefault();
           setTab(1);
@@ -24,7 +26,9 @@ const Tabs = (props: Props) => {
       </a>
 
       <a
-        className={'tab ' + (tab === 2 ? 'tab-active' : '')}
+        className={
+          'tab ' + (tab === 2 ? 'bg-accent rounded-full text-primary' : '')
+        }
         onClick={(event) => {
           event.preventDefault();
           setTab(2);
@@ -34,7 +38,9 @@ const Tabs = (props: Props) => {
       </a>
 
       <a
-        className={'tab ' + (tab === 3 ? 'tab-active' : '')}
+        className={
+          'tab ' + (tab === 3 ? 'bg-accent rounded-full text-primary' : '')
+        }
         onClick={(event) => {
           event.preventDefault();
           setTab(3);

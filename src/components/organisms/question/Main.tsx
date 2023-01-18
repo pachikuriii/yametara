@@ -13,35 +13,41 @@ const Main = (props: Props) => {
   return (
     <>
       <div className='flex flex-wrap'>
-        <div className='w-full tabs tabs-boxed'>
+        <div className=' tabs tabs-boxed bg-primary'>
           <Tabs openTab={openTab} setOpenTab={setOpenTab}></Tabs>
 
           <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded'>
             <div className='px-4 py-5 flex-auto'>
               <div className='tab-content tab-space'>
                 <div className={openTab === 1 ? 'block' : 'hidden'}>
-                  <p>任意継続保険ららららららら</p>
+                  <div>
+                    <p className='border-b-4 border-dotted w-fit'>
+                      国民健康保険への加入
+                    </p>
+                  </div>
+
+                  <p>
+                    国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
+                  </p>
                   <Button onClick={() => setSelectedTab(1)}>
                     この保険への加入を検討する
                   </Button>
                 </div>
                 <div className={openTab === 2 ? 'block' : 'hidden'}>
-                  <p>
-                    他のどの健康保険にも加入していないすべての住民を対象とした健康保険
-                    保険料の特徴
-                    前年の所得や保険へ加入する世帯人員数などに応じて保険料が決まる
-                    保険料の減免制度が受けられる場合がある
-                    居住している市区町村により保険料額が異なる
-                  </p>
+                  <p className='text-black'>年金</p>
                   <Button onClick={() => setSelectedTab(2)}>
                     この保険への加入を検討する
                   </Button>
                 </div>
                 <div className={openTab === 3 ? 'block' : 'hidden'}>
-                  <p>家族の健康保険</p>
+                  <p className='text-black'>雇用保険</p>
                   <Button onClick={() => setSelectedTab(3)}>
                     この保険への加入を検討する
                   </Button>
+                </div>
+
+                <div className={openTab === 4 ? 'block' : 'hidden'}>
+                  <p className='text-black'>税金</p>
                 </div>
               </div>
             </div>
