@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { Storage } from '../../local-stroage';
 import Check from '../atoms/check';
 import Tabs from '../molecules/result/tabs';
 interface Props {
   sethealthInsuranceAfterRetirement: (number: number) => void;
+  storage: Storage;
 }
 const ResultMain = (props: Props) => {
   const [openTab, setOpenTab] = useState(1);
@@ -14,7 +16,11 @@ const ResultMain = (props: Props) => {
     <>
       <div className='flex flex-wrap'>
         <div className=' tabs tabs-boxed bg-primary shadow-md'>
-          <Tabs openTab={openTab} setOpenTab={setOpenTab}></Tabs>
+          <Tabs
+            openTab={openTab}
+            setOpenTab={setOpenTab}
+            storage={props.storage}
+          ></Tabs>
 
           <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded'>
             <div className='px-4 py-5 flex-auto'>
