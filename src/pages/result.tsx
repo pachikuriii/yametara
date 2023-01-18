@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Button from '../components/atoms/button';
-import CheckedCard from '../components/atoms/checked-card';
+import CheckedTodoPlate from '../components/molecules/result/checked-todo-plate';
 import ResultMain from '../components/organisms/ResultMain';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
@@ -36,26 +36,26 @@ export default function Home() {
           <p>あなたが会社を辞めたら以下についての手続きが必要です。</p>
           <br></br>
           <div className='flex flex-col w-1/3 '>
-            <CheckedCard
+            <CheckedTodoPlate
               className={LocalStorage.fetch().tax === 4 ? 'hidden' : ''}
             >
               健康保険
-            </CheckedCard>
-            <CheckedCard
+            </CheckedTodoPlate>
+            <CheckedTodoPlate
               className={LocalStorage.fetch().tax === 3 ? 'hidden' : ''}
             >
               年金
-            </CheckedCard>
-            <CheckedCard
+            </CheckedTodoPlate>
+            <CheckedTodoPlate
               className={LocalStorage.fetch().tax === 2 ? ' hidden' : ''}
             >
               雇用保険
-            </CheckedCard>
-            <CheckedCard
+            </CheckedTodoPlate>
+            <CheckedTodoPlate
               className={LocalStorage.fetch().tax === 1 ? ' hidden' : ''}
             >
               税金
-            </CheckedCard>
+            </CheckedTodoPlate>
           </div>
 
           <ResultDetailTemplate>
