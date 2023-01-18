@@ -2,9 +2,11 @@ import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+
 import Button from '../../components/atoms/button';
 import Card from '../../components/atoms/card';
 import RetirementDateForm from '../../components/atoms/retirement-date-form';
+import Modal from '../../components/molecules/modal';
 import RetirementReasonButtons from '../../components/molecules/question/q1/buttons-retirement-reason';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
@@ -61,7 +63,9 @@ export default function Home() {
                     selectedButton={selectedButton}
                     setSelectedButton={setSelectedButton}
                   ></RetirementReasonButtons>
-                  <p>退職事由について</p>
+                  <Modal label='退職事由について' id='retirement-reason'>
+                    モーダルの内容
+                  </Modal>
                 </div>
               </Card>
             </motion.div>

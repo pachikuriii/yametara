@@ -5,6 +5,7 @@ import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Card from '../../components/atoms/card';
+import Modal from '../../components/molecules/modal';
 import ButtonsPager from '../../components/molecules/question/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
@@ -49,7 +50,13 @@ export default function Home() {
               <h2 className='card-title'>
                 雇用保険のこれまでの被保険者期間を教えてください
               </h2>
-              <p>雇用保険の被保険者期間の数え方について</p>
+
+              <Modal
+                label='雇用保険の被保険者期間の数え方について'
+                id='how-to-count-emp-period'
+              >
+                雇用保険の被保険者期間の数え方についてのモーダルの内容
+              </Modal>
               <div>
                 <p>退職予定日までの2年間では…</p>
                 <AnswerSelectButton
