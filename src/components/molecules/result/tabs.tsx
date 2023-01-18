@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import LocalStorage from '../../../local-stroage';
 
 interface Props {
   onClick?: () => void;
@@ -22,7 +23,7 @@ const Tabs = (props: Props) => {
           setTab(1);
         }}
       >
-        任意継続健康保険
+        健康保険
       </a>
 
       <a
@@ -34,7 +35,7 @@ const Tabs = (props: Props) => {
           setTab(2);
         }}
       >
-        国民健康保険
+        年金
       </a>
 
       <a
@@ -46,7 +47,20 @@ const Tabs = (props: Props) => {
           setTab(3);
         }}
       >
-        家族の健康保険（被扶養者）
+        雇用保険
+      </a>
+      <a
+        className={
+          'tab ' +
+          (tab === 4 ? 'bg-accent rounded-full text-primary' : '') +
+          (LocalStorage.fetch().tax === 1 ? ' hidden' : '')
+        }
+        onClick={(event) => {
+          event.preventDefault();
+          setTab(4);
+        }}
+      >
+        税金
       </a>
     </>
   );

@@ -48,12 +48,7 @@ export default function Home() {
                     setTax(1);
                   }}
                 >
-                  <input
-                    type='radio'
-                    name='radio-1'
-                    className='radio'
-                    checked
-                  />
+                  <input type='radio' name='radio-1' className='radio' />
                   <p>
                     退職時に給与/退職金から会社に翌年5月分まで天引きしてもらう（一括徴収）
                   </p>
