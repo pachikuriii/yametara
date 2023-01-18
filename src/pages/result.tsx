@@ -41,19 +41,16 @@ export default function Home() {
             >
               健康保険
             </CheckedCard>
-            <div className='divider'></div>
             <CheckedCard
               className={LocalStorage.fetch().tax === 3 ? 'hidden' : ''}
             >
               年金
             </CheckedCard>
-            <div className='divider'></div>
             <CheckedCard
               className={LocalStorage.fetch().tax === 2 ? ' hidden' : ''}
             >
               雇用保険
             </CheckedCard>
-            <div className='divider'></div>
             <CheckedCard
               className={LocalStorage.fetch().tax === 1 ? ' hidden' : ''}
             >
