@@ -15,13 +15,29 @@ export default function Home() {
   const [healthInsuranceAfterRetirement, sethealthInsuranceAfterRetirement] =
     useState(0);
 
-  const [storage, setStorage] = useState<Storage>(initialStorageData);
+  const [storage, setStorage] = useState<Storage>({
+    started: false,
+    retirement_date: '',
+    retirement_reason: 0,
+    re_employment: false,
+    age: 0,
+    post_code: 0,
+    family: false,
+    emp_ins_last_two_years: 0,
+    emp_ins_total: 0,
+    health_ins_last_two_month: false,
+    health_ins_after_retirement: 0,
+    tax: 0,
+    question: 0,
+  });
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const fetchStorage = localStorage.getItem('yametara');
       const storageContent: Storage = fetchStorage
         ? JSON.parse(fetchStorage)
         : [];
+      localStorage.setItem('yametara', JSON.stringify(storageContent));
       setStorage(storageContent);
     }
   }, []);
