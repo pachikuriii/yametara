@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'yametara';
 
-interface Storage {
+export interface Storage {
   started: Boolean;
   retirement_date: String;
   retirement_reason: Number;
@@ -16,7 +16,7 @@ interface Storage {
   question: Number;
 }
 
-const initialStorageData: Storage = {
+export const initialStorageData: Storage = {
   started: false,
   retirement_date: '',
   retirement_reason: 0,

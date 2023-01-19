@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
-import LocalStorage from '../../../local-stroage';
-
+import { Storage } from '../../../local-stroage';
 interface Props {
   onClick?: () => void;
   openTab: number;
   setOpenTab: (tab: number) => void;
+  storage: Storage;
 }
 
 const Tabs = (props: Props) => {
   const [tab, setTab] = useState(1);
+
   useEffect(() => {
     props.setOpenTab(tab);
   });
+
   return (
     <>
       <a
@@ -53,7 +55,7 @@ const Tabs = (props: Props) => {
         className={
           'tab ' +
           (tab === 4 ? 'bg-accent rounded-full text-primary' : '') +
-          (LocalStorage.fetch().tax === 1 ? ' hidden' : '')
+          (props.storage.tax === 1 ? ' hidden' : '')
         }
         onClick={(event) => {
           event.preventDefault();
