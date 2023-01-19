@@ -75,7 +75,9 @@ export default function Home() {
                 </div>
               </Card>
             </motion.div>
-
+            <Link href='/questions/7'>
+              <Button>戻る</Button>
+            </Link>
             <Link href='/result'>
               <Button>結果</Button>
             </Link>
