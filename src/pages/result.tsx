@@ -62,7 +62,7 @@ export default function Home() {
         <main className={styles.main}>
           <Header>シミュレーション結果</Header>
           <p>あなたが会社を辞めたら以下についての手続きが必要です。</p>
-          <br></br>
+
           <div className='flex flex-col w-1/3 '>
             <CheckedTodoPlate className={storage.tax === 4 ? 'hidden' : ''}>
               健康保険

@@ -3,7 +3,7 @@ import Check from '../../atoms/check';
 import TodoPlate from '../../atoms/todo-plate';
 interface Props {
   children: ReactNode;
-  className: String;
+  className?: String;
 }
 
 const CheckedTodoPlate = ({ children, className }: Props) => {
