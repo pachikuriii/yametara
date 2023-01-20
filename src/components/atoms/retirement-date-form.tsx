@@ -7,24 +7,31 @@ import Button from './button';
 
 interface formInput {
   retirementDate: string;
+  retirementReason: number;
 }
 
 export default function RetirementDateForm(props: any) {
   const {
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
+    register,
   } = useForm<formInput>({});
 
   const [retirementDate, setRetirementDate] = useState('');
+  const [retirementReason, setRetirementReason] = useState(0);
+
   function reflectDataToLocalStrage() {
     const localStrage = LocalStorage.fetch();
     localStrage.retirement_date = retirementDate;
+    localStrage.retirement_reason = retirementReason;
     LocalStorage.save(localStrage);
   }
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setRetirementDate(data.retirementDate);
+    setRetirementReason(data.retirementReason);
     router.push('/questions/2');
   };
 
@@ -68,8 +75,8 @@ export default function RetirementDateForm(props: any) {
 
   return (
     <div>
-      <label htmlFor='retirementDate'>退職予定日</label>
       <form>
+        <label htmlFor='retirementDate'>退職予定日</label>
         <Controller
           control={control}
           rules={{
@@ -92,6 +99,32 @@ export default function RetirementDateForm(props: any) {
           )}
         />
         {errors.retirementDate && <p>{errors.retirementDate.message}</p>}
+
+        <label htmlFor='retirementReason'>退職事由</label>
+
+        <input
+          {...register('retirementReason', { required: '選択してください' })}
+          type='hidden'
+        />
+
+        <div>
+          {['自己都合', '会社都合', 'その他'].map((value, index) => {
+            return (
+              <button
+                type='button'
+                key={index}
+                onClick={() => setValue('retirementReason', index)}
+                className={
+                  'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
+                }
+              >
+                {value}
+              </button>
+            );
+          })}
+        </div>
+        {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
+
         <Button onClick={handleSubmit(submitForm)}>次へ</Button>
       </form>
     </div>

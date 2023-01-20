@@ -48,7 +48,7 @@ export default function Home() {
                 <div>
                   <RetirementDateForm></RetirementDateForm>
                 </div>
-                <div>
+                {/* <div>
                   <p>退職事由</p>
                   <RetirementReasonButtons
                     selectedButton={selectedButton}
@@ -57,7 +57,7 @@ export default function Home() {
                   <Modal label='退職事由について' id='retirement-reason'>
                     モーダルの内容
                   </Modal>
-                </div>
+                </div> */}
               </Card>
             </motion.div>
             <Link href='/questions/2'>
