@@ -39,9 +39,9 @@ export default function RetirementDateForm(props: any) {
   });
 
   const _format = (value: string) => {
-    let year = value.substring(0, 4);
+    const year = value.substring(0, 4);
     let month = value.substring(4, 6);
-    const day = value.substring(6, 8);
+    let day = value.substring(6, 8);
 
     if (month.length === 1 && Number(month[0]) > 1) {
       month = `0${month[0]}`;
@@ -50,6 +50,16 @@ export default function RetirementDateForm(props: any) {
         month = `01`;
       } else if (Number(month) > 12) {
         month = '12';
+      }
+    }
+
+    if (day.length === 1 && Number(day[0]) > 3) {
+      day = `0${day[0]}`;
+    } else if (day.length === 2) {
+      if (Number(day) === 0) {
+        day = `01`;
+      } else if (Number(day) > 31) {
+        day = '31';
       }
     }
 
@@ -67,7 +77,7 @@ export default function RetirementDateForm(props: any) {
             pattern: {
               value:
                 /^(20[0-9]{2})\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])+$/,
-              message: '有効な値を入力してください',
+              message: '有効な日付を入力してください',
             },
           }}
           name='retirementDate'
