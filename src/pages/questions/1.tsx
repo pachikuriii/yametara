@@ -14,14 +14,10 @@ import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState('');
   const [selectedButton, setSelectedButton] = useState(0);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
+
   function reflectDataToLocalStrage() {
     const localStrage = LocalStorage.fetch();
-    localStrage.retirement_date = inputValue;
     localStrage.retirement_reason = selectedButton;
     LocalStorage.save(localStrage);
   }

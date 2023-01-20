@@ -1,5 +1,9 @@
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { usePatternFormat, NumberFormatBase } from 'react-number-format';
+import LocalStorage from '../../local-stroage';
+import Button from './button';
 
 interface formInput {
   retirementDate: string;
@@ -12,7 +16,21 @@ export default function RetirementDateForm(props: any) {
     formState: { errors },
   } = useForm<formInput>({});
 
-  const submitForm: SubmitHandler<formInput> = (data) => console.log(data);
+  const [retirementDate, setRetirementDate] = useState('');
+  function reflectDataToLocalStrage() {
+    const localStrage = LocalStorage.fetch();
+    localStrage.retirement_date = retirementDate;
+    LocalStorage.save(localStrage);
+  }
+
+  const submitForm: SubmitHandler<formInput> = (data) => {
+    setRetirementDate(data.retirementDate);
+  };
+
+  useEffect(() => {
+    reflectDataToLocalStrage();
+  });
+  const router = useRouter();
 
   const { format } = usePatternFormat({
     ...props,
@@ -40,19 +58,21 @@ export default function RetirementDateForm(props: any) {
   return (
     <div>
       <label htmlFor='retirementDate'>退職予定日</label>
-      <form onSubmit={handleSubmit(submitForm)}>
+      <form>
         <Controller
           control={control}
           rules={{
             required: '退職予定日を入力してください',
             pattern: {
-              value: /^[0-9]{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])+$/,
+              value:
+                /^(20[0-9]{2})\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])+$/,
               message: '有効な値を入力してください',
             },
           }}
           name='retirementDate'
-          render={({ field: { ref, ...rest } }) => (
+          render={({ field: { onChange, ref, ...rest } }) => (
             <NumberFormatBase
+              onChange={onChange}
               placeholder='2022-02-22'
               format={_format}
               {...rest}
@@ -61,8 +81,7 @@ export default function RetirementDateForm(props: any) {
           )}
         />
         {errors.retirementDate && <p>{errors.retirementDate.message}</p>}
-
-        <input type='submit' />
+        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
       </form>
     </div>
   );
