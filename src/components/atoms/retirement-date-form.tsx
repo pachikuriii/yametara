@@ -25,6 +25,7 @@ export default function RetirementDateForm(props: any) {
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setRetirementDate(data.retirementDate);
+    router.push('/questions/2');
   };
 
   useEffect(() => {
