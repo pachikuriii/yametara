@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-
 import Button from '../../components/atoms/button';
 import Card from '../../components/atoms/card';
 import RetirementDateForm from '../../components/atoms/retirement-date-form';
@@ -51,11 +50,7 @@ export default function Home() {
                   退職予定日と退職事由を教えてください
                 </h2>
                 <div>
-                  <p>退職予定日</p>
-                  <RetirementDateForm
-                    value={inputValue}
-                    onChange={(event) => handleChange(event)}
-                  ></RetirementDateForm>
+                  <RetirementDateForm></RetirementDateForm>
                 </div>
                 <div>
                   <p>退職事由</p>
