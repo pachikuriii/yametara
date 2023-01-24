@@ -1,29 +1,13 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import Button from '../../components/atoms/button';
 import Card from '../../components/atoms/card';
-import RetirementDateForm from '../../components/atoms/retirement-date-form';
-import Modal from '../../components/molecules/modal';
-import RetirementReasonButtons from '../../components/molecules/question/q1/buttons-retirement-reason';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
+import Q1 from '../../components/organisms/question/q1';
 import QuestionTemplate from '../../components/templates/questions/question';
-import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 
 export default function Home() {
-  const [selectedButton, setSelectedButton] = useState(0);
-
-  function reflectDataToLocalStrage() {
-    const localStrage = LocalStorage.fetch();
-    localStrage.retirement_reason = selectedButton;
-    LocalStorage.save(localStrage);
-  }
-  useEffect(() => {
-    reflectDataToLocalStrage();
-  });
   return (
     <>
       <Head>
@@ -46,25 +30,11 @@ export default function Home() {
                   退職予定日と退職事由を教えてください
                 </h2>
                 <div>
-                  <RetirementDateForm></RetirementDateForm>
+                  <Q1></Q1>
                 </div>
-                {/* <div>
-                  <p>退職事由</p>
-                  <RetirementReasonButtons
-                    selectedButton={selectedButton}
-                    setSelectedButton={setSelectedButton}
-                  ></RetirementReasonButtons>
-                  <Modal label='退職事由について' id='retirement-reason'>
-                    モーダルの内容
-                  </Modal>
-                </div> */}
               </Card>
             </motion.div>
-            <Link href='/questions/2'>
-              <Button>次へ</Button>
-            </Link>
           </QuestionTemplate>
-
           <Footer></Footer>
         </main>
       </motion.div>

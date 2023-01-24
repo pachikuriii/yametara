@@ -2,15 +2,16 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { usePatternFormat, NumberFormatBase } from 'react-number-format';
-import LocalStorage from '../../local-stroage';
-import Button from './button';
+import LocalStorage from '../../../local-stroage';
+import Button from '../../atoms/button';
+import Modal from '../../molecules/modal';
 
 interface formInput {
   retirementDate: string;
   retirementReason: number;
 }
 
-export default function RetirementDateForm(props: any) {
+export default function Q1(props: any) {
   const {
     handleSubmit,
     control,
@@ -124,7 +125,11 @@ export default function RetirementDateForm(props: any) {
           })}
         </div>
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
-
+        <div>
+          <Modal label='退職事由について' id='retirement-reason'>
+            モーダルの内容
+          </Modal>
+        </div>
         <Button onClick={handleSubmit(submitForm)}>次へ</Button>
       </form>
     </div>
