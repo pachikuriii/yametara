@@ -21,7 +21,7 @@ export default function Home() {
     re_employment: 0,
     age: 0,
     post_code: 0,
-    family: false,
+    family: 0,
     emp_ins_last_two_years: 0,
     emp_ins_total: 0,
     health_ins_last_two_month: false,

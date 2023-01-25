@@ -1,19 +1,19 @@
 const STORAGE_KEY = 'yametara';
 
 export interface Storage {
-  started: Boolean;
-  retirement_date: String;
-  retirement_reason: Number;
+  started: boolean;
+  retirement_date: string;
+  retirement_reason: number;
   re_employment: number;
-  age: Number;
-  post_code: Number;
-  family: Boolean;
-  emp_ins_last_two_years: Number;
-  emp_ins_total: Number;
-  health_ins_last_two_month: Boolean;
-  health_ins_after_retirement: Number;
-  tax: Number;
-  question: Number;
+  age: number;
+  post_code: number;
+  family: number;
+  emp_ins_last_two_years: number;
+  emp_ins_total: number;
+  health_ins_last_two_month: boolean;
+  health_ins_after_retirement: number;
+  tax: number;
+  question: number;
 }
 
 export const initialStorageData: Storage = {
@@ -23,7 +23,7 @@ export const initialStorageData: Storage = {
   re_employment: 0,
   age: 0,
   post_code: 0,
-  family: false,
+  family: 0,
   emp_ins_last_two_years: 0,
   emp_ins_total: 0,
   health_ins_last_two_month: false,
