@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Card from '../../components/atoms/card';
-import ButtonsPager from '../../components/molecules/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q7 from '../../components/organisms/question/q7';
@@ -32,9 +31,7 @@ export default function Home() {
               <Q7></Q7>
             </Card>
           </motion.div>
-          <ButtonsPager></ButtonsPager>
         </div>
-
         <Footer></Footer>
       </main>
     </>
