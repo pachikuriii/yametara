@@ -18,7 +18,7 @@ export default function Home() {
     started: false,
     retirement_date: '',
     retirement_reason: 0,
-    re_employment: false,
+    re_employment: 0,
     age: 0,
     post_code: 0,
     family: false,

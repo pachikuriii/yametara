@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
-import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Card from '../../components/atoms/card';
 import ButtonsPager from '../../components/molecules/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
+import Q2 from '../../components/organisms/question/q2';
 import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState(false);
+  const [inputValue, setInputValue] = useState(0);
 
   function reflectDataToLocalStrage() {
     const localStrage = LocalStorage.fetch();
@@ -42,23 +42,9 @@ export default function Home() {
           >
             <Card>
               <h2 className='card-title'>年内に働き始める予定はありますか？</h2>
-              <AnswerSelectButton
-                onClick={() => {
-                  setInputValue(true);
-                }}
-              >
-                ある
-              </AnswerSelectButton>
-              <AnswerSelectButton
-                onClick={() => {
-                  setInputValue(false);
-                }}
-              >
-                ない
-              </AnswerSelectButton>
+              <Q2></Q2>
             </Card>
           </motion.div>
-          <ButtonsPager></ButtonsPager>
         </div>
 
         <Footer></Footer>
