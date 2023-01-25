@@ -10,7 +10,7 @@ export interface Storage {
   family: number;
   emp_ins_last_two_years: number;
   emp_ins_total: number;
-  health_ins_last_two_month: boolean;
+  health_ins_last_two_month: number;
   health_ins_after_retirement: number;
   tax: number;
   question: number;
@@ -26,7 +26,7 @@ export const initialStorageData: Storage = {
   family: 0,
   emp_ins_last_two_years: 0,
   emp_ins_total: 0,
-  health_ins_last_two_month: false,
+  health_ins_last_two_month: 0,
   health_ins_after_retirement: 0,
   tax: 0,
   question: 0,

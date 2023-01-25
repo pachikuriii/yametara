@@ -24,7 +24,7 @@ export default function Home() {
     family: 0,
     emp_ins_last_two_years: 0,
     emp_ins_total: 0,
-    health_ins_last_two_month: false,
+    health_ins_last_two_month: 0,
     health_ins_after_retirement: 0,
     tax: 0,
     question: 0,
