@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { PatternFormat } from 'react-number-format';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import LocalStorage from '../../../local-stroage';
@@ -11,27 +12,32 @@ import 'swiper/css/navigation';
 
 interface formInput {
   age: number;
+  postcode: number;
 }
 
-export default function Q3() {
+export default function Q3(props: any) {
   const {
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
     register,
   } = useForm<formInput>({});
 
   const [age, setAge] = useState(0);
+  const [post_code, setPostcode] = useState(0);
 
   function reflectDataToLocalStrage() {
     const localStrage = LocalStorage.fetch();
     localStrage.age = age;
+    localStrage.post_code = post_code;
     LocalStorage.save(localStrage);
   }
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setAge(data.age);
-    router.push('/questions/4');
+    setPostcode(data.postcode);
+    router.push('/questions/5');
   };
 
   useEffect(() => {
@@ -77,9 +83,33 @@ export default function Q3() {
             );
           })}
         </Swiper>
+        {errors.age && <p>{errors.age.message}</p>}
       </div>
-      {errors.age && <p>{errors.age.message}</p>}
-      <Link href='/questions/2'>
+
+      <label htmlFor='postcode'>郵便番号</label>
+      <Controller
+        control={control}
+        rules={{
+          required: '郵便番号を入力してください',
+          pattern: {
+            value: /^[0-9]{3}-[0-9]{4}$/,
+            message: '有効な郵便番号を入力してください',
+          },
+        }}
+        name='postcode'
+        render={({ field: { onChange, ref, ...rest } }) => (
+          <PatternFormat
+            format='###-####'
+            placeholder='123-4567'
+            onChange={onChange}
+            {...rest}
+            {...props}
+          />
+        )}
+      />
+      {errors.postcode && <p>{errors.postcode.message}</p>}
+
+      <Link href='/questions/4'>
         <Button>戻る</Button>
       </Link>
       <Button onClick={handleSubmit(submitForm)}>次へ</Button>
