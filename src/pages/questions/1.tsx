@@ -4,7 +4,6 @@ import Card from '../../components/atoms/card';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q1 from '../../components/organisms/question/q1';
-import QuestionTemplate from '../../components/templates/questions/question';
 import styles from '../../styles/Question.module.css';
 
 export default function Home() {
@@ -23,7 +22,7 @@ export default function Home() {
         <main className={styles.main}>
           <Header>Q1.今回の退職について</Header>
 
-          <QuestionTemplate>
+          <div className={styles.wrapper}>
             <motion.div exit={{ x: '-100%' }} transition={{ duration: 0.3 }}>
               <Card>
                 <h2 className='card-title'>
@@ -34,7 +33,8 @@ export default function Home() {
                 </div>
               </Card>
             </motion.div>
-          </QuestionTemplate>
+          </div>
+
           <Footer></Footer>
         </main>
       </motion.div>

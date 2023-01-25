@@ -6,7 +6,6 @@ import ButtonsPager from '../../components/molecules/question/buttons-pager';
 import Main from '../../components/organisms/question/Main';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
-import QuestionTemplate from '../../components/templates/questions/question';
 import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 
@@ -32,7 +31,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Header>Q7.健康保険について</Header>
-        <QuestionTemplate>
+        <div className={styles.wrapper}>
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
@@ -52,7 +51,7 @@ export default function Home() {
             </Card>
           </motion.div>
           <ButtonsPager></ButtonsPager>
-        </QuestionTemplate>
+        </div>
 
         <Footer></Footer>
       </main>

@@ -6,7 +6,6 @@ import Button from '../../components/atoms/button';
 import Card from '../../components/atoms/card';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
-import QuestionTemplate from '../../components/templates/questions/question';
 import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 export default function Home() {
@@ -29,7 +28,7 @@ export default function Home() {
       <motion.div exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
         <main className={styles.main}>
           <Header>Q8.住民税について</Header>
-          <QuestionTemplate>
+          <div className={styles.wrapper}>
             <motion.div
               style={{
                 width: '100%',
@@ -81,8 +80,7 @@ export default function Home() {
             <Link href='/result'>
               <Button>結果</Button>
             </Link>
-          </QuestionTemplate>
-
+          </div>
           <Footer></Footer>
         </main>
       </motion.div>

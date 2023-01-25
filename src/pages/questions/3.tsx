@@ -9,7 +9,6 @@ import FormPostCode from '../../components/atoms/form-postcode';
 import ButtonsPager from '../../components/molecules/question/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
-import QuestionTemplate from '../../components/templates/questions/question';
 import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 import 'swiper/css';
@@ -38,7 +37,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <Header>Q3.あなたについて</Header>
-        <QuestionTemplate>
+        <div className={styles.wrapper}>
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
@@ -118,7 +117,7 @@ export default function Home() {
             </Card>
           </motion.div>
           <ButtonsPager></ButtonsPager>
-        </QuestionTemplate>
+        </div>
         <Footer></Footer>
       </main>
     </>
