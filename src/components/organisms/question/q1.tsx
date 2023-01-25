@@ -110,6 +110,7 @@ export default function Q1(props: any) {
 
         <div>
           {['自己都合', '会社都合', 'その他'].map((value, index) => {
+            index += 1;
             return (
               <button
                 type='button'
