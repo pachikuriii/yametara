@@ -14,7 +14,7 @@ const ResultMain = (props: Props) => {
   });
   return (
     <>
-      <div className='bg-primary'>
+      <div>
         <div className={openTab === 1 ? 'block' : 'hidden'}>
           <div>
             <CheckedTodoPlate>健康保険</CheckedTodoPlate>

@@ -7,9 +7,8 @@ import CheckedTodoPlate from '../components/molecules/result/checked-todo-plate'
 import ResultMain from '../components/organisms/ResultMain';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
-import ResultDetailTemplate from '../components/templates/result/ResultDetail';
 import { Storage, initialStorageData } from '../local-stroage';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Result.module.css';
 
 export default function Home() {
   const [healthInsuranceAfterRetirement, sethealthInsuranceAfterRetirement] =
@@ -78,7 +77,7 @@ export default function Home() {
             </CheckedTodoPlate>
           </div>
 
-          <ResultDetailTemplate>
+          <div className={styles.box}>
             <h2>手続き内容の詳細</h2>
             <ResultMain
               sethealthInsuranceAfterRetirement={
@@ -92,7 +91,7 @@ export default function Home() {
             <Link href='questions/1'>
               <Button>もう1度シミュレーションする</Button>
             </Link>
-          </ResultDetailTemplate>
+          </div>
 
           <Footer></Footer>
         </main>

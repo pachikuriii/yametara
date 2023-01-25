@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.box {
+  background-color: #e5f8f4;
+  color: #000000;
+  width: 100vw;
+  margin: auto;
+}
