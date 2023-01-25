@@ -9,6 +9,7 @@ import FormPostCode from '../../components/atoms/form-postcode';
 import ButtonsPager from '../../components/molecules/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
+import Q3 from '../../components/organisms/question/q3';
 import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 import 'swiper/css';
@@ -48,72 +49,7 @@ export default function Home() {
               <h2 className='card-title'>
                 退職予定日におけるあなたの年齢とお住まいの住所の郵便番号を教えてください
               </h2>
-              <div>
-                <p>年齢</p>
-                <div>
-                  <Swiper
-                    slidesPerView={3}
-                    spaceBetween={100}
-                    className='mySwiper'
-                    navigation={true}
-                    modules={[Navigation]}
-                    centeredSlides={true}
-                  >
-                    <SwiperSlide>
-                      <AnswerSelectButton
-                        onClick={() => {
-                          setAge(1);
-                        }}
-                      >
-                        30歳未満
-                      </AnswerSelectButton>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <AnswerSelectButton
-                        onClick={() => {
-                          setAge(2);
-                        }}
-                      >
-                        30歳以上35歳未満
-                      </AnswerSelectButton>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <AnswerSelectButton
-                        onClick={() => {
-                          setAge(3);
-                        }}
-                      >
-                        35歳以上45歳未満
-                      </AnswerSelectButton>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <AnswerSelectButton
-                        onClick={() => {
-                          setAge(4);
-                        }}
-                      >
-                        45歳以上60歳未満
-                      </AnswerSelectButton>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <AnswerSelectButton
-                        onClick={() => {
-                          setAge(5);
-                        }}
-                      >
-                        60歳以上65歳未満
-                      </AnswerSelectButton>
-                    </SwiperSlide>
-                  </Swiper>
-                </div>
-              </div>
-              <div>
-                <p>郵便番号</p>
-                <FormPostCode
-                  value={postCode}
-                  onChange={(event) => handleChange(event)}
-                ></FormPostCode>
-              </div>
+              <Q3></Q3>
             </Card>
           </motion.div>
           <ButtonsPager></ButtonsPager>
