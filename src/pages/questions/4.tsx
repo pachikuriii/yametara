@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Card from '../../components/atoms/card';
-import ButtonsPager from '../../components/molecules/question/buttons-pager';
+import ButtonsPager from '../../components/molecules/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import LocalStorage from '../../local-stroage';
