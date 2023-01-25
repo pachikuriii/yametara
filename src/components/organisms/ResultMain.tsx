@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Storage } from '../../local-stroage';
-import CheckedTodoPlate from '../molecules/result/checked-todo-plate';
+import CheckedTodoPlate from '../molecules/checked-todo-plate';
 
 interface Props {
   sethealthInsuranceAfterRetirement: (number: number) => void;

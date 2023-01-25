@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Button from '../components/atoms/button';
-import CheckedTodoPlate from '../components/molecules/result/checked-todo-plate';
+import CheckedTodoPlate from '../components/molecules/checked-todo-plate';
 import ResultMain from '../components/organisms/ResultMain';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
