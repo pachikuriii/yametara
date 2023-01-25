@@ -4,7 +4,7 @@ import Tabs from '../../molecules/question/q7/tabs';
 interface Props {
   sethealthInsuranceAfterRetirement: (number: number) => void;
 }
-const Main = (props: Props) => {
+const Q7 = (props: Props) => {
   const [openTab, setOpenTab] = useState(1);
   const [selectedTab, setSelectedTab] = useState(1);
   useEffect(() => {
@@ -58,4 +58,4 @@ const Main = (props: Props) => {
   );
 };
 
-export default Main;
+export default Q7;
