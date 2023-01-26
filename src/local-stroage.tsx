@@ -1,48 +1,78 @@
-const STORAGE_KEY = 'yametara';
+import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+const { persistAtom } = recoilPersist({
+  key: 'yametara',
+  storage: typeof window === 'undefined' ? undefined : window.localStorage,
+});
 
-export interface Storage {
-  started: Boolean;
-  retirement_date: String;
-  retirement_reason: Number;
-  re_employment: Boolean;
-  age: Number;
-  post_code: Number;
-  family: Boolean;
-  emp_ins_last_two_years: Number;
-  emp_ins_total: Number;
-  health_ins_last_two_month: Boolean;
-  health_ins_after_retirement: Number;
-  tax: Number;
-  question: Number;
-}
+export const startedState = atom({
+  key: 'started',
+  default: false,
+  effects_UNSTABLE: [persistAtom],
+});
 
-export const initialStorageData: Storage = {
-  started: false,
-  retirement_date: '',
-  retirement_reason: 0,
-  re_employment: false,
-  age: 0,
-  post_code: 0,
-  family: false,
-  emp_ins_last_two_years: 0,
-  emp_ins_total: 0,
-  health_ins_last_two_month: false,
-  health_ins_after_retirement: 0,
-  tax: 0,
-  question: 0,
-};
+export const retirementDateState = atom({
+  key: 'retirement_date',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
+});
 
-if (typeof window !== 'undefined') {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(initialStorageData));
-}
+export const retirementReasonState = atom({
+  key: 'retirement_reason',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
 
-const LocalStorage = {
-  fetch: function (): Storage {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  },
-  save: function (storage: Storage) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
-  },
-};
+export const reEmploymentState = atom({
+  key: 're_employment',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
 
-export default LocalStorage;
+export const ageState = atom({
+  key: 'age',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const postcodeState = atom({
+  key: 'post_code',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const familyState = atom({
+  key: 'family',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const empInsLastTwoYearsState = atom({
+  key: 'emp_ins_last_two_years',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const empInsTotalState = atom({
+  key: 'emp_ins_total',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const healthInsLastTwoMonthState = atom({
+  key: 'health_ins_last_two_month',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const healthInsAfterRetirementState = atom({
+  key: 'health_ins_after_retirement',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const taxState = atom({
+  key: 'tax',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});

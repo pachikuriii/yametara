@@ -1,16 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import LocalStorage from '../../../local-stroage';
+import { useRecoilState } from 'recoil';
+import { startedState } from '../../../local-stroage';
 import Button from '../../atoms/button';
 import styles from './Main.module.css';
 
-function changeStartedStatus() {
-  const localStrage = LocalStorage.fetch();
-  localStrage.started = true;
-  LocalStorage.save(localStrage);
-}
-
 export default function IndexMain() {
+  const [started, setStarted] = useRecoilState(startedState);
+
   return (
     <div className={styles.box}>
       <Image src='/yametara-logo.svg' alt='logo' width='500' height='100' />
@@ -21,10 +18,11 @@ export default function IndexMain() {
           社会保険や税金の手続き内容を 簡単にシミュレーションできます。
         </p>
       </div>
+
       <Link href='/questions/1'>
         <Button
           onClick={() => {
-            changeStartedStatus();
+            setStarted(true);
           }}
         >
           はじめる

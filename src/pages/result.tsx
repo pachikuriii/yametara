@@ -1,46 +1,17 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import Button from '../components/atoms/button';
-import CheckedTodoPlate from '../components/molecules/result/checked-todo-plate';
+import CheckedTodoPlate from '../components/molecules/checked-todo-plate';
 import ResultMain from '../components/organisms/ResultMain';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
-import ResultDetailTemplate from '../components/templates/result/ResultDetail';
-import { Storage, initialStorageData } from '../local-stroage';
-import styles from '../styles/Home.module.css';
+import { taxState } from '../local-stroage';
+import styles from '../styles/Result.module.css';
 
 export default function Home() {
-  const [healthInsuranceAfterRetirement, sethealthInsuranceAfterRetirement] =
-    useState(0);
-
-  const [storage, setStorage] = useState<Storage>({
-    started: false,
-    retirement_date: '',
-    retirement_reason: 0,
-    re_employment: false,
-    age: 0,
-    post_code: 0,
-    family: false,
-    emp_ins_last_two_years: 0,
-    emp_ins_total: 0,
-    health_ins_last_two_month: false,
-    health_ins_after_retirement: 0,
-    tax: 0,
-    question: 0,
-  });
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const fetchStorage = localStorage.getItem('yametara');
-      const storageContent: Storage = fetchStorage
-        ? JSON.parse(fetchStorage)
-        : [];
-      localStorage.setItem('yametara', JSON.stringify(storageContent));
-      setStorage(storageContent);
-    }
-  }, []);
+  const [tax] = useRecoilState(taxState);
 
   return (
     <>
@@ -62,37 +33,32 @@ export default function Home() {
         <main className={styles.main}>
           <Header>シミュレーション結果</Header>
           <p>あなたが会社を辞めたら以下についての手続きが必要です。</p>
-          <br></br>
+
           <div className='flex flex-col w-1/3 '>
-            <CheckedTodoPlate className={storage.tax === 4 ? 'hidden' : ''}>
+            <CheckedTodoPlate className={tax === 4 ? 'hidden' : ''}>
               健康保険
             </CheckedTodoPlate>
-            <CheckedTodoPlate className={storage.tax === 3 ? 'hidden' : ''}>
+            <CheckedTodoPlate className={tax === 3 ? 'hidden' : ''}>
               年金
             </CheckedTodoPlate>
-            <CheckedTodoPlate className={storage.tax === 2 ? ' hidden' : ''}>
+            <CheckedTodoPlate className={tax === 2 ? ' hidden' : ''}>
               雇用保険
             </CheckedTodoPlate>
-            <CheckedTodoPlate className={storage.tax === 1 ? ' hidden' : ''}>
+            <CheckedTodoPlate className={tax === 3 ? ' hidden' : ''}>
               税金
             </CheckedTodoPlate>
           </div>
 
-          <ResultDetailTemplate>
+          <div className={styles.box}>
             <h2>手続き内容の詳細</h2>
-            <ResultMain
-              sethealthInsuranceAfterRetirement={
-                sethealthInsuranceAfterRetirement
-              }
-              storage={storage}
-            ></ResultMain>
+            <ResultMain></ResultMain>
             <Link href='questions/8'>
               <Button>もどる</Button>
             </Link>
             <Link href='questions/1'>
               <Button>もう1度シミュレーションする</Button>
             </Link>
-          </ResultDetailTemplate>
+          </div>
 
           <Footer></Footer>
         </main>

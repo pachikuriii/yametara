@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import Button from '../../atoms/button';
+import Button from '../atoms/button';
 
 export default function PagerButtons() {
   const router = useRouter();
@@ -23,6 +23,8 @@ export default function PagerButtons() {
         <Button onClick={() => router.push(PrevPath)}>戻る</Button>
         <Button onClick={() => router.push(NextPath)}>次へ</Button>
       </div>
+
+      
     </motion.div>
   );
 }
