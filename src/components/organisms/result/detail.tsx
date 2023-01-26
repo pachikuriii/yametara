@@ -1,10 +1,6 @@
-import CheckedTodoPlate from '../molecules/checked-todo-plate';
+import CheckedTodoPlate from '../../molecules/checked-todo-plate';
 
-interface Props {
-  sethealthInsuranceAfterRetirement: (number: number) => void;
-  storage: Storage;
-}
-const ResultMain = () => {
+const Detail = () => {
   return (
     <>
       <div>
@@ -62,5 +58,4 @@ const ResultMain = () => {
     </>
   );
 };
-
-export default ResultMain;
+export default Detail;
