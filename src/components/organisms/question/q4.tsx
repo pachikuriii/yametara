@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import LocalStorage from '../../../local-stroage';
+import { useRecoilState } from 'recoil';
+import { familyState } from '../../../local-stroage';
 import Button from '../../atoms/button';
 
 interface formInput {
@@ -17,22 +17,13 @@ export default function Q4() {
     register,
   } = useForm<formInput>({});
 
-  const [family, setFamily] = useState(0);
-
-  function reflectDataToLocalStrage() {
-    const localStrage = LocalStorage.fetch();
-    localStrage.family = family;
-    LocalStorage.save(localStrage);
-  }
+  const [family, setFamily] = useRecoilState(familyState);
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setFamily(data.family);
     router.push('/questions/5');
   };
 
-  useEffect(() => {
-    reflectDataToLocalStrage();
-  });
   const router = useRouter();
 
   return (

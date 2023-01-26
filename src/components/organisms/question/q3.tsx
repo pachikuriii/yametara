@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
+import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import LocalStorage from '../../../local-stroage';
+import { postcodeState, ageState } from '../../../local-stroage';
 import Button from '../../atoms/button';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -24,15 +24,8 @@ export default function Q3(props: any) {
     register,
   } = useForm<formInput>({});
 
-  const [age, setAge] = useState(0);
-  const [post_code, setPostcode] = useState(0);
-
-  function reflectDataToLocalStrage() {
-    const localStrage = LocalStorage.fetch();
-    localStrage.age = age;
-    localStrage.post_code = post_code;
-    LocalStorage.save(localStrage);
-  }
+  const [age, setAge] = useRecoilState(ageState);
+  const [post_code, setPostcode] = useRecoilState(postcodeState);
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setAge(data.age);
@@ -40,9 +33,6 @@ export default function Q3(props: any) {
     router.push('/questions/5');
   };
 
-  useEffect(() => {
-    reflectDataToLocalStrage();
-  });
   const router = useRouter();
 
   return (

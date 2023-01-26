@@ -1,8 +1,11 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { usePatternFormat, NumberFormatBase } from 'react-number-format';
-import LocalStorage from '../../../local-stroage';
+import { useRecoilState } from 'recoil';
+import {
+  retirementDateState,
+  retirementReasonState,
+} from '../../../local-stroage';
 import Button from '../../atoms/button';
 import Modal from '../../molecules/modal';
 
@@ -20,15 +23,11 @@ export default function Q1(props: any) {
     register,
   } = useForm<formInput>({});
 
-  const [retirementDate, setRetirementDate] = useState('');
-  const [retirementReason, setRetirementReason] = useState(0);
-
-  function reflectDataToLocalStrage() {
-    const localStrage = LocalStorage.fetch();
-    localStrage.retirement_date = retirementDate;
-    localStrage.retirement_reason = retirementReason;
-    LocalStorage.save(localStrage);
-  }
+  const [retirementDate, setRetirementDate] =
+    useRecoilState(retirementDateState);
+  const [retirementReason, setRetirementReason] = useRecoilState(
+    retirementReasonState,
+  );
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setRetirementDate(data.retirementDate);
@@ -36,9 +35,6 @@ export default function Q1(props: any) {
     router.push('/questions/2');
   };
 
-  useEffect(() => {
-    reflectDataToLocalStrage();
-  });
   const router = useRouter();
 
   const { format } = usePatternFormat({

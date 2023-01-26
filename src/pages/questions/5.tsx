@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
 import Card from '../../components/atoms/card';
 import Modal from '../../components/molecules/modal';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q5 from '../../components/organisms/question/q5';
-
 import styles from '../../styles/Question.module.css';
 import 'swiper/css';
 import 'swiper/css/navigation';

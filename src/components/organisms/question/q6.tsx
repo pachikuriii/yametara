@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import LocalStorage from '../../../local-stroage';
+import { useRecoilState } from 'recoil';
+import { healthInsLastTwoMonthState } from '../../../local-stroage';
 import Button from '../../atoms/button';
-
 interface formInput {
   health_ins_last_two_month: number;
 }
@@ -17,22 +16,15 @@ export default function Q6() {
     register,
   } = useForm<formInput>({});
 
-  const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useState(0);
-
-  function reflectDataToLocalStrage() {
-    const localStrage = LocalStorage.fetch();
-    localStrage.health_ins_last_two_month = healthInsLastTwoMonth;
-    LocalStorage.save(localStrage);
-  }
+  const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useRecoilState(
+    healthInsLastTwoMonthState,
+  );
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setHealthInsLastTwoMonth(data.health_ins_last_two_month);
     router.push('/questions/7');
   };
 
-  useEffect(() => {
-    reflectDataToLocalStrage();
-  });
   const router = useRouter();
 
   return (

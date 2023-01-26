@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import LocalStorage from '../../../local-stroage';
+import { useRecoilState } from 'recoil';
+import { taxState } from '../../../local-stroage';
+
 import Button from '../../atoms/button';
 
 interface formInput {
@@ -17,22 +18,13 @@ export default function Q8() {
     register,
   } = useForm<formInput>({});
 
-  const [tax, setTax] = useState(0);
-
-  function reflectDataToLocalStrage() {
-    const localStrage = LocalStorage.fetch();
-    localStrage.tax = tax;
-    LocalStorage.save(localStrage);
-  }
+  const [tax, setTax] = useRecoilState(taxState);
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setTax(data.tax);
     router.push('/result');
   };
 
-  useEffect(() => {
-    reflectDataToLocalStrage();
-  });
   const router = useRouter();
 
   return (

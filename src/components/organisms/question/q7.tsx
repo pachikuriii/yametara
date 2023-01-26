@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import LocalStorage from '../../../local-stroage';
+import { useRecoilState } from 'recoil';
+import { healthInsAfterRetirementState } from '../../../local-stroage';
 import Button from '../../atoms/button';
 
 interface formInput {
@@ -11,7 +12,8 @@ interface formInput {
 
 const Q7 = () => {
   const [tab, setTab] = useState(1);
-  const [healthInsAfterRetirement, setHealthInsAfterRetirement] = useState(0);
+  const [healthInsAfterRetirement, setHealthInsAfterRetirement] =
+    useRecoilState(healthInsAfterRetirementState);
   const {
     handleSubmit,
     setValue,
@@ -19,20 +21,11 @@ const Q7 = () => {
     register,
   } = useForm<formInput>({});
 
-  function reflectDataToLocalStrage() {
-    const localStrage = LocalStorage.fetch();
-    localStrage.health_ins_after_retirement = healthInsAfterRetirement;
-    LocalStorage.save(localStrage);
-  }
-
   const submitForm: SubmitHandler<formInput> = (data) => {
     setHealthInsAfterRetirement(data.health_ins_after_retirement);
     router.push('/questions/8');
   };
 
-  useEffect(() => {
-    reflectDataToLocalStrage();
-  });
   const router = useRouter();
   return (
     <>

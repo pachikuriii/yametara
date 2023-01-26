@@ -1,21 +1,14 @@
-import { useState, useEffect } from 'react';
-import { Storage } from '../../local-stroage';
 import CheckedTodoPlate from '../molecules/checked-todo-plate';
 
 interface Props {
   sethealthInsuranceAfterRetirement: (number: number) => void;
   storage: Storage;
 }
-const ResultMain = (props: Props) => {
-  const [openTab, setOpenTab] = useState(1);
-  const [selectedTab, setSelectedTab] = useState(1);
-  useEffect(() => {
-    props.sethealthInsuranceAfterRetirement(selectedTab);
-  });
+const ResultMain = () => {
   return (
     <>
       <div>
-        <div className={openTab === 1 ? 'block' : 'hidden'}>
+        <div>
           <div>
             <CheckedTodoPlate>健康保険</CheckedTodoPlate>
 
@@ -65,10 +58,6 @@ const ResultMain = (props: Props) => {
             </p>
           </div>
         </div>
-
-        {/* <div className={openTab === 4 ? 'block' : 'hidden'}>
-                  <p className='text-black'>税金</p>
-                </div> */}
       </div>
     </>
   );

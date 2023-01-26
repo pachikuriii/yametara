@@ -1,10 +1,13 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import LocalStorage from '../../../local-stroage';
+import {
+  empInsTotalState,
+  empInsLastTwoYearsState,
+} from '../../../local-stroage';
 import Button from '../../atoms/button';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -22,15 +25,10 @@ export default function Q5() {
     register,
   } = useForm<formInput>({});
 
-  const [empInsTotal, setEmpInsTotal] = useState(0);
-  const [empInsLastTwoYears, setEmpInsLastTwoYears] = useState(0);
-
-  function reflectDataToLocalStrage() {
-    const localStrage = LocalStorage.fetch();
-    localStrage.emp_ins_total = empInsTotal;
-    localStrage.emp_ins_last_two_years = empInsLastTwoYears;
-    LocalStorage.save(localStrage);
-  }
+  const [empInsTotal, setEmpInsTotal] = useRecoilState(empInsTotalState);
+  const [empInsLastTwoYears, setEmpInsLastTwoYears] = useRecoilState(
+    empInsLastTwoYearsState,
+  );
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setEmpInsTotal(data.emp_ins_total);
@@ -38,9 +36,6 @@ export default function Q5() {
     router.push('/questions/6');
   };
 
-  useEffect(() => {
-    reflectDataToLocalStrage();
-  });
   const router = useRouter();
 
   return (
@@ -56,6 +51,7 @@ export default function Q5() {
           type='hidden'
         />
         {['6ヶ月未満', '6ヶ月以上1年未満', '1年以上'].map((value, index) => {
+          index += 1;
           return (
             <button
               type='button'

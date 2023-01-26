@@ -1,35 +1,14 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import AnswerSelectButton from '../../components/atoms/answer-select-button';
 import Card from '../../components/atoms/card';
-import FormPostCode from '../../components/atoms/form-postcode';
-import ButtonsPager from '../../components/molecules/buttons-pager';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q3 from '../../components/organisms/question/q3';
-import LocalStorage from '../../local-stroage';
 import styles from '../../styles/Question.module.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 export default function Home() {
-  const [age, setAge] = useState(0);
-  const [postCode, setPostCode] = useState(0);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPostCode(Number(event.target.value));
-  };
-  function reflectDataToLocalStrage() {
-    const localStrage = LocalStorage.fetch();
-    localStrage.age = age;
-    localStrage.post_code = postCode;
-    LocalStorage.save(localStrage);
-  }
-  useEffect(() => {
-    reflectDataToLocalStrage();
-  });
   return (
     <>
       <Head>
@@ -52,7 +31,6 @@ export default function Home() {
               <Q3></Q3>
             </Card>
           </motion.div>
-          <ButtonsPager></ButtonsPager>
         </div>
         <Footer></Footer>
       </main>
