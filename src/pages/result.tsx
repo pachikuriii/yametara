@@ -3,10 +3,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 import Button from '../components/atoms/button';
-import CheckedTodoPlate from '../components/molecules/checked-todo-plate';
-import ResultMain from '../components/organisms/ResultMain';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
+import Detail from '../components/organisms/result/detail';
+import Main from '../components/organisms/result/main';
 import { taxState } from '../local-stroage';
 import styles from '../styles/Result.module.css';
 
@@ -33,25 +33,10 @@ export default function Home() {
         <main className={styles.main}>
           <Header>シミュレーション結果</Header>
           <p>あなたが会社を辞めたら以下についての手続きが必要です。</p>
-
-          <div className='flex flex-col w-1/3 '>
-            <CheckedTodoPlate className={tax === 4 ? 'hidden' : ''}>
-              健康保険
-            </CheckedTodoPlate>
-            <CheckedTodoPlate className={tax === 3 ? 'hidden' : ''}>
-              年金
-            </CheckedTodoPlate>
-            <CheckedTodoPlate className={tax === 2 ? ' hidden' : ''}>
-              雇用保険
-            </CheckedTodoPlate>
-            <CheckedTodoPlate className={tax === 3 ? ' hidden' : ''}>
-              税金
-            </CheckedTodoPlate>
-          </div>
-
+          <Main tax={tax}></Main>
           <div className={styles.box}>
             <h2>手続き内容の詳細</h2>
-            <ResultMain></ResultMain>
+            <Detail></Detail>
             <Link href='questions/8'>
               <Button>もどる</Button>
             </Link>
@@ -59,7 +44,6 @@ export default function Home() {
               <Button>もう1度シミュレーションする</Button>
             </Link>
           </div>
-
           <Footer></Footer>
         </main>
       </motion.div>
