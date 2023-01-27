@@ -9,11 +9,10 @@ import Header from '../components/organisms/question/header';
 import Detail from '../components/organisms/result/detail';
 import Main from '../components/organisms/result/main';
 import dayjs from '../day-js';
-import { taxState, retirementDateState } from '../local-stroage';
+import { retirementDateState } from '../local-stroage';
 import styles from '../styles/Result.module.css';
 
 export default function Home() {
-  const [tax] = useRecoilState(taxState);
   const [retirementDate] = useRecoilState(retirementDateState);
   const [retirementDateToDisplay, setRetirementDateToDisplay] = useState('');
 
@@ -44,10 +43,10 @@ export default function Home() {
             あなたが{retirementDateToDisplay}
             に会社を辞めたら以下についての手続きが必要です。
           </p>
-          {/* <Main tax={tax}></Main> */}
+          <Main></Main>
           <div className={styles.box}>
             <h3>手続き内容の詳細</h3>
-            {/* <Detail></Detail> */}
+            <Detail></Detail>
             <Link href='questions/8'>
               <Button>もどる</Button>
             </Link>
