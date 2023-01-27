@@ -7,7 +7,7 @@ import Button from '../components/atoms/button';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
 import Detail from '../components/organisms/result/detail';
-import Main from '../components/organisms/result/main';
+import Todo from '../components/organisms/result/todo';
 import dayjs from '../day-js';
 import { retirementDateState } from '../local-stroage';
 import styles from '../styles/Result.module.css';
@@ -43,7 +43,7 @@ export default function Home() {
             あなたが{retirementDateToDisplay}
             に会社を辞めたら以下についての手続きが必要です。
           </p>
-          <Main></Main>
+          <Todo></Todo>
           <div className={styles.box}>
             <h3>手続き内容の詳細</h3>
             <Detail></Detail>
