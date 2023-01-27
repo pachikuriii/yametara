@@ -1,23 +1,52 @@
+import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import {
+  taxState,
+  empInsLastTwoYearsState,
+  retirementReasonState,
+} from '../../../local-stroage';
 import CheckedTodoPlate from '../../molecules/checked-todo-plate';
 
-interface Props {
-  tax: number;
-}
+const Main = () => {
+  const [storedTax] = useRecoilState(taxState);
+  const [storedEmpInsLastTwoYears] = useRecoilState(empInsLastTwoYearsState);
+  const [storedRetirementReason] = useRecoilState(retirementReasonState);
+  const [tax, setTax] = useState(0);
+  const [empInsLastTwoYears, setEmpInsLastTwoYears] = useState(0);
+  const [retirementReason, setRetirementReason] = useState(0);
 
-const Main = (props: Props) => {
+  useEffect(() => {
+    setTax(storedTax);
+    setEmpInsLastTwoYears(storedEmpInsLastTwoYears);
+    setRetirementReason(storedRetirementReason);
+  }, [storedTax, storedEmpInsLastTwoYears, storedRetirementReason]);
+
+  const RETIRED_WITH_UNINTENTIONAL_REASON_AND_INSURANCE =
+    retirementReason === 3 && empInsLastTwoYears !== 1;
+
+  const RETIRED_WITH_CONPANY_REASON_AND_INSURANCE =
+    retirementReason === 2 && empInsLastTwoYears !== 1;
+
+  const RETIRED_WITH_OWN_REASON_AND_INSURANCE =
+    retirementReason === 1 && empInsLastTwoYears === 3;
+
   return (
     <>
       <div className='flex flex-col w-1/3 '>
-        <CheckedTodoPlate className={props.tax === 4 ? 'hidden' : ''}>
-          健康保険
-        </CheckedTodoPlate>
-        <CheckedTodoPlate className={props.tax === 3 ? 'hidden' : ''}>
-          年金
-        </CheckedTodoPlate>
-        <CheckedTodoPlate className={props.tax === 2 ? ' hidden' : ''}>
+        <CheckedTodoPlate>健康保険</CheckedTodoPlate>
+        <CheckedTodoPlate>年金</CheckedTodoPlate>
+        <CheckedTodoPlate
+          className={
+            RETIRED_WITH_UNINTENTIONAL_REASON_AND_INSURANCE ||
+            RETIRED_WITH_CONPANY_REASON_AND_INSURANCE ||
+            RETIRED_WITH_OWN_REASON_AND_INSURANCE
+              ? ''
+              : ' hidden'
+          }
+        >
           雇用保険
         </CheckedTodoPlate>
-        <CheckedTodoPlate className={props.tax === 3 ? ' hidden' : ''}>
+        <CheckedTodoPlate className={tax === 2 ? '' : ' hidden'}>
           税金
         </CheckedTodoPlate>
       </div>
