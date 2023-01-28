@@ -1,6 +1,7 @@
 import EmploymentInsurance from './employment-insurance';
 import HealthlInsurance from './health-insurance';
 import Pension from './pension';
+import Tax from './tax';
 export default function Detail() {
   return (
     <>
@@ -9,6 +10,7 @@ export default function Detail() {
           <HealthlInsurance></HealthlInsurance>
           <Pension></Pension>
           <EmploymentInsurance></EmploymentInsurance>
+          <Tax></Tax>
         </div>
       }
     </>
