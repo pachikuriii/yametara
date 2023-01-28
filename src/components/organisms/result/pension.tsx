@@ -37,15 +37,6 @@ export default function Pension() {
   );
 }
 
-//           <CheckedTodoPlate>雇用保険</CheckedTodoPlate>
-//           <p className='text-lg border-b-4 border-dotted w-fit'>
-//             雇用保険の失業給付の受給手続き
-//           </p>
-//           <p>
-//             あなたは●日分のの失業給付（基本手当）の受給資格があります。基本手当の受給のためにハローワーク●●で手続きが必要です。
-//           </p>
-//         </div>
-
 //         <div>
 //           <CheckedTodoPlate>税金</CheckedTodoPlate>
 //           <div>
