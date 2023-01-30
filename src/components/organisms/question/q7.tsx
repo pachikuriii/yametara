@@ -33,8 +33,8 @@ const Q7 = () => {
         <div className='tabs tabs-boxed bg-primary'>
           <div>
             {[
-              '任意継続健康保険',
               '国民健康保険',
+              '任意継続健康保険',
               '家族の健康保険（被扶養者）',
             ].map((value, index) => {
               index += 1;
