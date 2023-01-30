@@ -21,6 +21,7 @@ const Todo = () => {
     setRetirementReason(storedRetirementReason);
   }, [storedTax, storedEmpInsLastTwoYears, storedRetirementReason]);
 
+  // 雇用保険
   const RETIRED_WITH_UNINTENTIONAL_REASON_AND_INSURANCE =
     retirementReason === 3 && empInsLastTwoYears !== 1;
 
