@@ -6,7 +6,7 @@ interface Props {
   id: string;
 }
 
-const Modal = ({ label, children, id }: Props) => {
+const ModalRemarks = ({ label, children, id }: Props) => {
   return (
     <div>
       <label htmlFor={id}>
@@ -28,4 +28,4 @@ const Modal = ({ label, children, id }: Props) => {
   );
 };
 
-export default Modal;
+export default ModalRemarks;
