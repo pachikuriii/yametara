@@ -8,6 +8,7 @@ import {
   empInsTotalState,
   empInsLastTwoYearsState,
 } from '../../../local-stroage';
+import Alert from '../../atoms/alert';
 import Button from '../../atoms/button';
 import 'swiper/css';
 import 'swiper/css/navigation';

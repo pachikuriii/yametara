@@ -6,9 +6,9 @@ import {
   retirementDateState,
   retirementReasonState,
 } from '../../../local-stroage';
+import Alert from '../../atoms/alert';
 import Button from '../../atoms/button';
-import Modal from '../../molecules/modal';
-
+import Modal from '../../atoms/modal';
 interface formInput {
   retirementDate: string;
   retirementReason: number;
@@ -39,7 +39,7 @@ export default function Q1(props: any) {
 
   const { format } = usePatternFormat({
     ...props,
-    format: '####/##/##',
+    format: '####-##-##',
   });
 
   const _format = (value: string) => {
@@ -79,8 +79,7 @@ export default function Q1(props: any) {
           rules={{
             required: '退職予定日を入力してください',
             pattern: {
-              value:
-                /^(20[0-9]{2})\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])+$/,
+              value: /^(20[0-9]{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])+$/,
               message: '有効な日付を入力してください',
             },
           }}
@@ -123,7 +122,7 @@ export default function Q1(props: any) {
         </div>
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
         <div>
-          <Modal label='退職事由について' id='retirement-reason'>
+          <Modal label={<Alert>退職事由について</Alert>} id='retirement-reason'>
             モーダルの内容
           </Modal>
         </div>
