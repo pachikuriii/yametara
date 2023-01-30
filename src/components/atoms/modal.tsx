@@ -1,17 +1,14 @@
 import { ReactNode } from 'react';
-import Alert from './alert';
 interface Props {
   children: ReactNode;
-  label: string;
+  label: ReactNode;
   id: string;
 }
 
 const Modal = ({ label, children, id }: Props) => {
   return (
     <div>
-      <label htmlFor={id}>
-        <Alert>{label}</Alert>
-      </label>
+      <label htmlFor={id}>{label}</label>
       <input type='checkbox' id={id} className='modal-toggle' />
       <div className='modal'>
         <div className='modal-box relative'>
