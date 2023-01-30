@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+import Alert from '../../components/atoms/alert';
 import Card from '../../components/atoms/card';
-import ModalRemarks from '../../components/molecules/modal-remarks';
+import Modal from '../../components/atoms/modal';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q5 from '../../components/organisms/question/q5';
@@ -30,12 +31,12 @@ export default function Home() {
               <h2 className='card-title'>
                 雇用保険のこれまでの被保険者期間を教えてください
               </h2>
-              <ModalRemarks
-                label='雇用保険の被保険者期間の数え方について'
+              <Modal
+                label={<Alert>雇用保険の被保険者期間の数え方について</Alert>}
                 id='how-to-count-emp-period'
               >
                 雇用保険の被保険者期間の数え方についてのモーダルの内容
-              </ModalRemarks>
+              </Modal>
               <Q5></Q5>
             </Card>
           </motion.div>

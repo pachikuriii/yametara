@@ -6,9 +6,9 @@ import {
   retirementDateState,
   retirementReasonState,
 } from '../../../local-stroage';
+import Alert from '../../atoms/alert';
 import Button from '../../atoms/button';
-import ModalRemarks from '../../molecules/modal-remarks';
-
+import Modal from '../../atoms/modal';
 interface formInput {
   retirementDate: string;
   retirementReason: number;
@@ -122,9 +122,9 @@ export default function Q1(props: any) {
         </div>
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
         <div>
-          <ModalRemarks label='退職事由について' id='retirement-reason'>
+          <Modal label={<Alert>退職事由について</Alert>} id='retirement-reason'>
             モーダルの内容
-          </ModalRemarks>
+          </Modal>
         </div>
         <Button onClick={handleSubmit(submitForm)}>次へ</Button>
       </form>
