@@ -1,12 +1,18 @@
+import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { postcodeState } from '../../../local-stroage';
+import { retirementDateState } from '../../../local-stroage';
 import CheckedTodoPlate from '../../molecules/checked-todo-plate';
 
 export default function Tax() {
-  const [storedPostcode] = useRecoilState(postcodeState);
+  const [storedRetirementDate] = useRecoilState(retirementDateState);
+  const [taxReturnYear, setTaxReturnYear] = useState('');
 
-  useEffect(() => {}, [storedPostcode]);
+  useEffect(() => {
+    setTaxReturnYear(
+      dayjs(storedRetirementDate).add(1, 'year').format('YYYY年'),
+    );
+  }, [storedRetirementDate]);
 
   return (
     <div>
@@ -23,7 +29,8 @@ export default function Tax() {
           <p className='text-lg border-b-4 border-dotted w-fit'>所得税</p>
           <p>
             年の途中で退職し、年内に再就職しない場合は年末調整を受けられません。そのため所得税を納め過ぎになる場合があります。この納め過ぎの所得税は、翌年になってから確定申告をすることで還付を受けられます。
-            確定申告するには●月●日〜●月●日までの間に管轄の税務署で手続きが必要です。
+            確定申告するには{taxReturnYear}
+            2月16日から3月15日までに住所地を管轄する税務署で手続きが必要です。
           </p>
         </div>
       </div>
