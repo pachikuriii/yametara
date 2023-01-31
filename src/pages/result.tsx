@@ -7,6 +7,7 @@ import Button from '../components/atoms/button';
 import Modal from '../components/atoms/modal';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
+import DataInput from '../components/organisms/result/data-input';
 import EmploymentInsurance from '../components/organisms/result/employment-insurance';
 import HealthlInsurance from '../components/organisms/result/health-insurance';
 import Pension from '../components/organisms/result/pension';
@@ -46,7 +47,7 @@ export default function Home() {
             label={<p className='text-black'>入力内容を見る</p>}
             id='given_choices'
           >
-            <p className='text-black'>入力内容</p>
+            <DataInput />
           </Modal>
           <Header>シミュレーション結果</Header>
           <p>
