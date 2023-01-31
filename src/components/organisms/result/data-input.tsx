@@ -1,24 +1,23 @@
-import { HelloWork } from 'jp-hello-work';
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import {
-  postcodeState,
-  ageState,
-  empInsTotalState,
-  retirementReasonState,
-} from '../../../local-stroage';
-import CheckedTodoPlate from '../../molecules/checked-todo-plate';
-
-type helloWorkName = string[];
+import { useFormattedFullRetirementDate } from '../../../hooks/useLocalStorageData';
 
 export default function DataInput() {
-  useEffect(() => {}, []);
+  const [formattedRetirementDate] = useFormattedFullRetirementDate();
+
+  // const [storedRetirementReasonState] = useRecoilState(retirementReasonState);
+  // const [storedAgeState] = useRecoilState(ageState);
+  // const [storedPostcodeState] = useRecoilState(postcodeState);
+  // const [storedFamilyState] = useRecoilState(familyState);
+  // const [storedEmpInsTotalState] = useRecoilState(empInsTotalState);
+  // const [storedHealthInsLastTwoMonthState] = useRecoilState(
+  //   healthInsLastTwoMonthState,
+  // );
 
   return (
     <div className='text-black'>
       <p>あなたの入力内容</p>
       <p>Q1</p>
-      <p>退職予定日:</p>
+      <p>退職予定日:{formattedRetirementDate}</p>
       <p>退職事由:</p>
 
       <p>Q2</p>
