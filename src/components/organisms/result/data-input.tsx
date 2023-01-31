@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useFormattedFullRetirementDate } from '../../../hooks/useLocalStorageData';
+import {
+  useFormattedFullRetirementDate,
+  useDisplayRetirementReason,
+} from '../../../hooks/useLocalStorageData';
 
 export default function DataInput() {
   const [formattedRetirementDate] = useFormattedFullRetirementDate();
-
+  const [displayedRetirementReason] = useDisplayRetirementReason();
   // const [storedRetirementReasonState] = useRecoilState(retirementReasonState);
   // const [storedAgeState] = useRecoilState(ageState);
   // const [storedPostcodeState] = useRecoilState(postcodeState);
@@ -18,7 +21,7 @@ export default function DataInput() {
       <p>あなたの入力内容</p>
       <p>Q1</p>
       <p>退職予定日:{formattedRetirementDate}</p>
-      <p>退職事由:</p>
+      <p>退職事由:{displayedRetirementReason}</p>
 
       <p>Q2</p>
       <p>再就職の予定:</p>
