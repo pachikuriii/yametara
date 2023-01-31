@@ -7,7 +7,10 @@ import Button from '../components/atoms/button';
 import Modal from '../components/atoms/modal';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
-import Detail from '../components/organisms/result/detail';
+import EmploymentInsurance from '../components/organisms/result/employment-insurance';
+import HealthlInsurance from '../components/organisms/result/health-insurance';
+import Pension from '../components/organisms/result/pension';
+import Tax from '../components/organisms/result/tax';
 import Todo from '../components/organisms/result/todo';
 import dayjs from '../day-js';
 import { retirementDateState } from '../local-stroage';
@@ -53,7 +56,10 @@ export default function Home() {
           <Todo></Todo>
           <div className={styles.box}>
             <h3>手続き内容の詳細</h3>
-            <Detail></Detail>
+            <HealthlInsurance></HealthlInsurance>
+            <Pension></Pension>
+            <EmploymentInsurance></EmploymentInsurance>
+            <Tax></Tax>
             <Link href='questions/8'>
               <Button>もどる</Button>
             </Link>
