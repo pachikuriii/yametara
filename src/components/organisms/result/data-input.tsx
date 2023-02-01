@@ -1,16 +1,16 @@
+import { useFetchPostcode } from '../../../hooks/use-fetch-localstorage';
 import {
   useFormattedFullRetirementDate,
   useDisplayRetirementReason,
   useDisplayReEmployment,
   useDisplayAge,
-  useFetchPostcode,
   useDisplayFamily,
   useDisplayEmpInsLastTwoYears,
   useDisplayEmpInsTotal,
   useDisplayHealthInsLastTwoMonth,
   useDisplayHealthAfterRetirement,
   useDisplayTax,
-} from '../../../hooks/useLocalStorageData';
+} from '../../../hooks/use-input-confirmation';
 
 export default function DataInput() {
   const [formattedRetirementDate] = useFormattedFullRetirementDate();
