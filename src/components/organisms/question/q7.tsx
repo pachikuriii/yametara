@@ -1,9 +1,13 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { healthInsAfterRetirementState } from '../../../local-stroage';
+import {
+  healthInsAfterRetirementState,
+  familyState,
+  healthInsLastTwoMonthState,
+} from '../../../local-stroage';
 import Button from '../../atoms/button';
 
 interface formInput {
@@ -14,6 +18,27 @@ const Q7 = () => {
   const [tab, setTab] = useState(1);
   const [healthInsAfterRetirement, setHealthInsAfterRetirement] =
     useRecoilState(healthInsAfterRetirementState);
+  const [storedFamilyState] = useRecoilState(familyState);
+  const [storedHealthInsLastTwoMonthState] = useRecoilState(
+    healthInsLastTwoMonthState,
+  );
+  const [insuranceTypes, setInsuranceTypes] = useState(['']);
+
+  useEffect(() => {
+    const newInsuranceTypes = ['国民健康保険'];
+    if (storedFamilyState === 1) {
+      newInsuranceTypes.push('家族の健康保険');
+    }
+    if (storedHealthInsLastTwoMonthState == 1) {
+      newInsuranceTypes.push('任意継続保険');
+    }
+    setInsuranceTypes(newInsuranceTypes);
+  }, [
+    storedFamilyState,
+    setHealthInsAfterRetirement,
+    storedHealthInsLastTwoMonthState,
+  ]);
+
   const {
     handleSubmit,
     setValue,
@@ -27,16 +52,13 @@ const Q7 = () => {
   };
 
   const router = useRouter();
+
   return (
     <>
       <div className='flex flex-wrap'>
         <div className='tabs tabs-boxed bg-primary'>
           <div>
-            {[
-              '任意継続健康保険',
-              '国民健康保険',
-              '家族の健康保険（被扶養者）',
-            ].map((value, index) => {
+            {insuranceTypes.map((value, index) => {
               index += 1;
               return (
                 <a

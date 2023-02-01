@@ -35,14 +35,13 @@ export default function Q2() {
         />
 
         <div>
-          {['はい', 'いいえ'].map((value, index) => {
+          {['はい', 'いいえ', '未定'].map((value, index) => {
+            index += 1;
             return (
               <button
                 type='button'
                 key={index}
-                onClick={() =>
-                  setValue('re_employment', value === 'はい' ? 1 : 2)
-                }
+                onClick={() => setValue('re_employment', index)}
                 className={
                   'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
                 }

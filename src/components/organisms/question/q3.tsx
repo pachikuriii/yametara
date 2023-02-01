@@ -30,7 +30,7 @@ export default function Q3(props: any) {
   const submitForm: SubmitHandler<formInput> = (data) => {
     setAge(data.age);
     setPostcode(data.postcode);
-    router.push('/questions/5');
+    router.push('/questions/4');
   };
 
   const router = useRouter();
