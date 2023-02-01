@@ -5,6 +5,7 @@ import {
   retirementDateState,
   retirementReasonState,
   reEmploymentState,
+  ageState,
 } from '../local-stroage';
 
 export const useFetchRetirementDate = () => {
@@ -53,10 +54,20 @@ export const useFetchReEmployment = () => {
   return [reEmployment];
 };
 
+export const useFetchAge = () => {
+  const [storedAge] = useRecoilState(ageState);
+  const [age, setAge] = useState(0);
+
+  useEffect(() => {
+    setAge(storedAge);
+  }, [storedAge]);
+
+  return [age];
+};
+
 export const useDisplayRetirementReason = () => {
   const [storedRetirementReason] = useRecoilState(retirementReasonState);
-  const [displayRetirementReason, setDisplayRetirementReason] =
-    useState('');
+  const [displayRetirementReason, setDisplayRetirementReason] = useState('');
 
   useEffect(() => {
     const reason = [
@@ -92,4 +103,26 @@ export const useDisplayReEmployment = () => {
   }, [storedReEmployment]);
 
   return [displayreEmployment];
+};
+
+export const useDisplayAge = () => {
+  const [storedAge] = useRecoilState(ageState);
+  const [displayAge, setDisplayAge] = useState('');
+
+  useEffect(() => {
+    const givenChoice = [
+      { age: 1, display: '30歳未満' },
+      { age: 2, display: '30歳以上35歳未満' },
+      { age: 3, display: '35歳以上45歳未満' },
+      { age: 4, display: '45歳以上60歳未満' },
+      { age: 5, display: '60歳以上65歳未満' },
+    ].find((choice) => choice.age === storedAge);
+
+    if (givenChoice === undefined) {
+      throw Error;
+    }
+    setDisplayAge(givenChoice.display);
+  }, [storedAge]);
+
+  return [displayAge];
 };
