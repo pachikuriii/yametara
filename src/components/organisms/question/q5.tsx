@@ -8,15 +8,10 @@ import {
   empInsTotalState,
   empInsLastTwoYearsState,
 } from '../../../local-stroage';
-import Alert from '../../atoms/alert';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
 import 'swiper/css';
 import 'swiper/css/navigation';
-
-interface formInput {
-  emp_ins_total: number;
-  emp_ins_last_two_years: number;
-}
 
 export default function Q5() {
   const {

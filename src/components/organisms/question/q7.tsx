@@ -8,11 +8,8 @@ import {
   familyState,
   healthInsLastTwoMonthState,
 } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
-
-interface formInput {
-  health_ins_after_retirement: number;
-}
 
 const Q7 = () => {
   const [tab, setTab] = useState(1);

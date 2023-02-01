@@ -6,14 +6,10 @@ import { useSetRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { postcodeState, ageState } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
 import 'swiper/css';
 import 'swiper/css/navigation';
-
-interface formInput {
-  age: number;
-  postcode: number;
-}
 
 export default function Q3(props: any) {
   const {

@@ -3,11 +3,8 @@ import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSetRecoilState } from 'recoil';
 import { familyState } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
-
-interface formInput {
-  family: number;
-}
 
 export default function Q4() {
   const {

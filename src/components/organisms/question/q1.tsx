@@ -6,13 +6,10 @@ import {
   retirementDateState,
   retirementReasonState,
 } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
 import Button from '../../atoms/button';
 import Modal from '../../atoms/modal';
-interface formInput {
-  retirementDate: string;
-  retirementReason: number;
-}
 
 export default function Q1(props: any) {
   const {

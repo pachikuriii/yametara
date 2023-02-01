@@ -5,12 +5,9 @@ import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { taxState, retirementDateState } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
 import Button from '../../atoms/button';
-
-interface formInput {
-  tax: number;
-}
 
 export default function Q8() {
   const [storedRetirementDate] = useRecoilValue(retirementDateState);

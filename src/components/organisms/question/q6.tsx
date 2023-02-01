@@ -3,10 +3,8 @@ import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSetRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
-interface formInput {
-  health_ins_last_two_month: number;
-}
 
 export default function Q6() {
   const {
