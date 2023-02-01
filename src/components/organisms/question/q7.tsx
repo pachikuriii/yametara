@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import {
   healthInsAfterRetirementState,
   familyState,
@@ -15,15 +15,15 @@ interface formInput {
 }
 
 const Q7 = () => {
+  const [tab, setTab] = useState(1);
   const setHealthInsAfterRetirement = useSetRecoilState(
     healthInsAfterRetirementState,
   );
-  const [storedFamilyState] = useRecoilValue(familyState);
-  const [storedHealthInsLastTwoMonthState] = useRecoilValue(
+  const storedFamilyState = useRecoilValue(familyState);
+  const storedHealthInsLastTwoMonthState = useRecoilValue(
     healthInsLastTwoMonthState,
   );
   const [insuranceTypes, setInsuranceTypes] = useState(['']);
-  const [tab, setTab] = useState(1);
 
   useEffect(() => {
     const newInsuranceTypes = ['国民健康保険'];
