@@ -6,6 +6,7 @@ import {
   retirementReasonState,
   reEmploymentState,
   ageState,
+  postcodeState,
   familyState,
   empInsLastTwoYearsState,
   empInsTotalState,
@@ -87,6 +88,17 @@ export const useDisplayAge = () => {
   }, [storedAge]);
 
   return [displayAge];
+};
+
+export const useDisplayPostcode = () => {
+  const [storedPostcode] = useRecoilState(postcodeState);
+  const [postcode, setPostcode] = useState('');
+
+  useEffect(() => {
+    setPostcode(storedPostcode);
+  }, [storedPostcode]);
+
+  return [postcode];
 };
 
 export const useDisplayFamily = () => {
