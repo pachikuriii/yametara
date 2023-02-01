@@ -114,6 +114,19 @@ export const useFetchEmpInsTotal = () => {
   return [empInsTotal];
 };
 
+export const useFetchHealthInsLastTwoMonth = () => {
+  const [storedHealthInsLastTwoMonth] = useRecoilState(
+    healthInsLastTwoMonthState,
+  );
+  const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useState(0);
+
+  useEffect(() => {
+    setHealthInsLastTwoMonth(storedHealthInsLastTwoMonth);
+  }, [storedHealthInsLastTwoMonth]);
+
+  return [healthInsLastTwoMonth];
+};
+
 export const useDisplayRetirementReason = () => {
   const [storedRetirementReason] = useRecoilState(retirementReasonState);
   const [displayRetirementReason, setDisplayRetirementReason] = useState('');
@@ -262,4 +275,31 @@ export const useDisplayEmpInsTotal = () => {
   }, [storedEmpInsTotal]);
 
   return [displayEmpInsTotal];
+};
+
+export const useDisplayHealthInsLastTwoMonth = () => {
+  const [storedHealthInsLastTwoMonth] = useRecoilState(
+    healthInsLastTwoMonthState,
+  );
+  const [displayHealthInsLastTwoMonth, setDisplayHealthInsLastTwoMonth] =
+    useState('');
+
+  useEffect(() => {
+    const givenChoice = [
+      { healthInsLastTwoMonth: 1, display: '2ヶ月未満の加入実績あり' },
+      {
+        healthInsLastTwoMonth: 2,
+        display: '2ヶ月以上の加入実績あり',
+      },
+    ].find(
+      (choice) => choice.healthInsLastTwoMonth === storedHealthInsLastTwoMonth,
+    );
+
+    if (givenChoice === undefined) {
+      throw Error;
+    }
+    setDisplayHealthInsLastTwoMonth(givenChoice.display);
+  }, [storedHealthInsLastTwoMonth]);
+
+  return [displayHealthInsLastTwoMonth];
 };

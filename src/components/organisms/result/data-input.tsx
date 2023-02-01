@@ -8,6 +8,7 @@ import {
   useDisplayFamily,
   useDisplayEmpInsLastTwoYears,
   useDisplayEmpInsTotal,
+  useDisplayHealthInsLastTwoMonth,
 } from '../../../hooks/useLocalStorageData';
 
 export default function DataInput() {
@@ -19,11 +20,7 @@ export default function DataInput() {
   const [family] = useDisplayFamily();
   const [displayEmpInsLastTwoYears] = useDisplayEmpInsLastTwoYears();
   const [displayEmpInsTotal] = useDisplayEmpInsTotal();
-
-  // const [storedEmpInsTotalState] = useRecoilState(empInsTotalState);
-  // const [storedHealthInsLastTwoMonthState] = useRecoilState(
-  //   healthInsLastTwoMonthState,
-  // );
+  const [displayHealthInsLastTwoMonth] = useDisplayHealthInsLastTwoMonth();
 
   return (
     <div className='text-black'>
@@ -48,7 +45,7 @@ export default function DataInput() {
       <p>これまで:{displayEmpInsTotal}</p>
 
       <p>Q6</p>
-      <p>健康保険:</p>
+      <p>健康保険:{displayHealthInsLastTwoMonth}</p>
 
       <p>Q7</p>
       <p>退職後に加入を検討したい健康保険:</p>
