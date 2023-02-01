@@ -9,6 +9,8 @@ import {
   useDisplayEmpInsLastTwoYears,
   useDisplayEmpInsTotal,
   useDisplayHealthInsLastTwoMonth,
+  useDisplayHealthAfterRetirement,
+  useDisplayTax,
 } from '../../../hooks/useLocalStorageData';
 
 export default function DataInput() {
@@ -21,6 +23,8 @@ export default function DataInput() {
   const [displayEmpInsLastTwoYears] = useDisplayEmpInsLastTwoYears();
   const [displayEmpInsTotal] = useDisplayEmpInsTotal();
   const [displayHealthInsLastTwoMonth] = useDisplayHealthInsLastTwoMonth();
+  const [displayHealthInsAfterRetirement] = useDisplayHealthAfterRetirement();
+  const [displayTax] = useDisplayTax();
 
   return (
     <div className='text-black'>
@@ -48,10 +52,10 @@ export default function DataInput() {
       <p>健康保険:{displayHealthInsLastTwoMonth}</p>
 
       <p>Q7</p>
-      <p>退職後に加入を検討したい健康保険:</p>
+      <p>退職後に加入を検討したい健康保険:{displayHealthInsAfterRetirement}</p>
 
       <p>Q8</p>
-      <p>退職後の住民税の支払い方</p>
+      <p>退職後の住民税の支払い方:{displayTax}</p>
     </div>
   );
 }

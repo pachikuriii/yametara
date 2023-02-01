@@ -11,6 +11,8 @@ import {
   empInsLastTwoYearsState,
   empInsTotalState,
   healthInsLastTwoMonthState,
+  healthInsAfterRetirementState,
+  taxState,
 } from '../local-stroage';
 
 export const useFetchRetirementDate = () => {
@@ -127,6 +129,30 @@ export const useFetchHealthInsLastTwoMonth = () => {
   return [healthInsLastTwoMonth];
 };
 
+export const useFetchHealthAfterRetirement = () => {
+  const [storedHealthInsAfterRetirement] = useRecoilState(
+    healthInsAfterRetirementState,
+  );
+  const [healthInsAfterRetirement, setHealthInsAfterRetirement] = useState(0);
+
+  useEffect(() => {
+    setHealthInsAfterRetirement(storedHealthInsAfterRetirement);
+  }, [storedHealthInsAfterRetirement]);
+
+  return [healthInsAfterRetirement];
+};
+
+export const useFetchTax = () => {
+  const [storedTax] = useRecoilState(taxState);
+  const [tax, setTax] = useState(0);
+
+  useEffect(() => {
+    setTax(storedTax);
+  }, [storedTax]);
+
+  return [tax];
+};
+
 export const useDisplayRetirementReason = () => {
   const [storedRetirementReason] = useRecoilState(retirementReasonState);
   const [displayRetirementReason, setDisplayRetirementReason] = useState('');
@@ -220,18 +246,17 @@ export const useDisplayEmpInsLastTwoYears = () => {
 
   useEffect(() => {
     const givenChoice = [
-      { empInsLastTwoYearsState: 1, display: '6ヶ月未満の加入実績あり' },
+      { empInsLastTwoYears: 1, display: '6ヶ月未満の加入実績あり' },
       {
-        empInsLastTwoYearsState: 2,
+        empInsLastTwoYears: 2,
         display: '6ヶ月以上1年未満の加入実績あり',
       },
       {
-        empInsLastTwoYearsState: 3,
+        empInsLastTwoYears: 3,
         display: '1年以上の加入実績あり',
       },
     ].find(
-      (choice) =>
-        choice.empInsLastTwoYearsState === storedEmpInsLastTwoYearsState,
+      (choice) => choice.empInsLastTwoYears === storedEmpInsLastTwoYearsState,
     );
 
     if (givenChoice === undefined) {
@@ -249,24 +274,24 @@ export const useDisplayEmpInsTotal = () => {
 
   useEffect(() => {
     const givenChoice = [
-      { empInsLastTotal: 1, display: '1年未満の加入実績あり' },
+      { empInsTotal: 1, display: '1年未満の加入実績あり' },
       {
-        empInsLastTotal: 2,
+        empInsTotal: 2,
         display: '1年以上5年未満の加入実績あり',
       },
       {
-        empInsLastTotal: 3,
+        empInsTotal: 3,
         display: '5年以上10年未満の加入実績あり',
       },
       {
-        empInsLastTotal: 3,
+        empInsTotal: 3,
         display: '10年以上20年未満の加入実績あり',
       },
       {
-        empInsLastTotal: 3,
+        empInsTotal: 3,
         display: '20年以上の加入実績あり',
       },
-    ].find((choice) => choice.empInsLastTotal === storedEmpInsTotal);
+    ].find((choice) => choice.empInsTotal === storedEmpInsTotal);
 
     if (givenChoice === undefined) {
       throw Error;
@@ -302,4 +327,62 @@ export const useDisplayHealthInsLastTwoMonth = () => {
   }, [storedHealthInsLastTwoMonth]);
 
   return [displayHealthInsLastTwoMonth];
+};
+
+export const useDisplayHealthAfterRetirement = () => {
+  const [storedHealthInsAfterRetirement] = useRecoilState(
+    healthInsAfterRetirementState,
+  );
+  const [displayHealthInsAfterRetirement, setDisplayHealthInsAfterRetirement] =
+    useState('');
+
+  useEffect(() => {
+    const givenChoice = [
+      { healthInsAfterRetirement: 1, display: '国民健康保険' },
+      {
+        healthInsAfterRetirement: 2,
+        display: '任意継続被保険者になる',
+      },
+      {
+        healthInsAfterRetirement: 3,
+        display: '家族の扶養に入る',
+      },
+    ].find(
+      (choice) =>
+        choice.healthInsAfterRetirement === storedHealthInsAfterRetirement,
+    );
+
+    if (givenChoice === undefined) {
+      throw Error;
+    }
+    setDisplayHealthInsAfterRetirement(givenChoice.display);
+  }, [storedHealthInsAfterRetirement]);
+
+  return [displayHealthInsAfterRetirement];
+};
+
+export const useDisplayTax = () => {
+  const [storedTax] = useRecoilState(taxState);
+  const [displayTax, setDisplayTax] = useState('');
+
+  useEffect(() => {
+    const givenChoice = [
+      { tax: 1, display: '一括徴収' },
+      {
+        tax: 2,
+        display: '普通徴収',
+      },
+      {
+        tax: 3,
+        display: '今年度の住民税の支払いはなし',
+      },
+    ].find((choice) => choice.tax === storedTax);
+
+    if (givenChoice === undefined) {
+      throw Error;
+    }
+    setDisplayTax(givenChoice.display);
+  }, [storedTax]);
+
+  return [displayTax];
 };
