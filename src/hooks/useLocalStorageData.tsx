@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import dayjs from '../day-js';
-import { retirementDateState, retirementReasonState } from '../local-stroage';
+import {
+  retirementDateState,
+  retirementReasonState,
+  reEmploymentState,
+} from '../local-stroage';
 
 export const useFetchRetirementDate = () => {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -38,6 +42,17 @@ export const useFetchRetirementReason = () => {
   return [retirementReason];
 };
 
+export const useFetchReEmployment = () => {
+  const [storedReEmployment] = useRecoilState(reEmploymentState);
+  const [reEmployment, setReEmployment] = useState('');
+
+  useEffect(() => {
+    setReEmployment(storedReEmployment);
+  }, [storedReEmployment]);
+
+  return [reEmployment];
+};
+
 export const useDisplayRetirementReason = () => {
   const [storedRetirementReason] = useRecoilState(retirementReasonState);
   const [displayedRetirementReason, setDisplayedRetirementReason] =
@@ -57,4 +72,24 @@ export const useDisplayRetirementReason = () => {
   }, [storedRetirementReason]);
 
   return [displayedRetirementReason];
+};
+
+export const useDisplayReEmployment = () => {
+  const [storedReEmployment] = useRecoilState(reEmploymentState);
+  const [displayreEmployment, setDisplayReEmployment] = useState('');
+
+  useEffect(() => {
+    const plan = [
+      { reEmployment: 1, display: '年内の再就職の予定あり' },
+      { reEmployment: 2, display: '年内の再就職の予定なし' },
+      { reEmployment: 3, display: '年内の再就職の予定は未定' },
+    ].find((plan) => plan.reEmployment === storedReEmployment);
+
+    if (plan === undefined) {
+      throw Error;
+    }
+    setDisplayReEmployment(plan.display);
+  }, [storedReEmployment]);
+
+  return [displayreEmployment];
 };
