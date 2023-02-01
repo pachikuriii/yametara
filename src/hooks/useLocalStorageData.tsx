@@ -7,6 +7,7 @@ import {
   reEmploymentState,
   ageState,
   postcodeState,
+  familyState,
 } from '../local-stroage';
 
 export const useFetchRetirementDate = () => {
@@ -77,6 +78,17 @@ export const useFetchPostcode = () => {
   return [postcode];
 };
 
+export const useFetchFamily = () => {
+  const [storedFamily] = useRecoilState(familyState);
+  const [family, setFamily] = useState(0);
+
+  useEffect(() => {
+    setFamily(storedFamily);
+  }, [storedFamily]);
+
+  return [family];
+};
+
 export const useDisplayRetirementReason = () => {
   const [storedRetirementReason] = useRecoilState(retirementReasonState);
   const [displayRetirementReason, setDisplayRetirementReason] = useState('');
@@ -137,4 +149,26 @@ export const useDisplayAge = () => {
   }, [storedAge]);
 
   return [displayAge];
+};
+
+export const useDisplayFamily = () => {
+  const [storedFamily] = useRecoilState(familyState);
+  const [displayFamily, setDisplayFamily] = useState('');
+
+  useEffect(() => {
+    const givenChoice = [
+      { age: 1, display: '社会保険の被保険者の家族がいる' },
+      {
+        age: 2,
+        display: '社会保険の被保険者の家族はいない',
+      },
+    ].find((choice) => choice.age === storedFamily);
+
+    if (givenChoice === undefined) {
+      throw Error;
+    }
+    setDisplayFamily(givenChoice.display);
+  }, [storedFamily]);
+
+  return [displayFamily];
 };
