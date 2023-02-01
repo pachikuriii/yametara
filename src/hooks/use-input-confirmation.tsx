@@ -14,7 +14,7 @@ import {
   taxState,
 } from '../local-stroage';
 
-export const useFormattedFullRetirementDate = () => {
+export const useDisplayRetirementDate = () => {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
   const [formattedRetirementDate, setFormattedRetirementDate] = useState('');
 
