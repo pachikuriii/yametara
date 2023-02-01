@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { reEmploymentState } from '../../../local-stroage';
 import Button from '../../atoms/button';
 
@@ -17,7 +17,7 @@ export default function Q2() {
     register,
   } = useForm<formInput>({});
 
-  const [reEmployment, setReEmployment] = useRecoilState(reEmploymentState);
+  const setReEmployment = useSetRecoilState(reEmploymentState);
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setReEmployment(data.re_employment);

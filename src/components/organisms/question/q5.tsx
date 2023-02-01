@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
@@ -26,10 +26,8 @@ export default function Q5() {
     register,
   } = useForm<formInput>({});
 
-  const [empInsTotal, setEmpInsTotal] = useRecoilState(empInsTotalState);
-  const [empInsLastTwoYears, setEmpInsLastTwoYears] = useRecoilState(
-    empInsLastTwoYearsState,
-  );
+  const setEmpInsTotal = useSetRecoilState(empInsTotalState);
+  const setEmpInsLastTwoYears = useSetRecoilState(empInsLastTwoYearsState);
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setEmpInsTotal(data.emp_ins_total);
