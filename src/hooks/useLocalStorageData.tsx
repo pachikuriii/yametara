@@ -55,7 +55,7 @@ export const useFetchReEmployment = () => {
 
 export const useDisplayRetirementReason = () => {
   const [storedRetirementReason] = useRecoilState(retirementReasonState);
-  const [displayedRetirementReason, setDisplayedRetirementReason] =
+  const [displayRetirementReason, setDisplayRetirementReason] =
     useState('');
 
   useEffect(() => {
@@ -68,10 +68,10 @@ export const useDisplayRetirementReason = () => {
     if (reason === undefined) {
       throw Error;
     }
-    setDisplayedRetirementReason(reason.display);
+    setDisplayRetirementReason(reason.display);
   }, [storedRetirementReason]);
 
-  return [displayedRetirementReason];
+  return [displayRetirementReason];
 };
 
 export const useDisplayReEmployment = () => {
