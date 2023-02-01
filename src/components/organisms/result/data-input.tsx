@@ -9,7 +9,7 @@ import {
 export default function DataInput() {
   const [formattedRetirementDate] = useFormattedFullRetirementDate();
   const [displayRetirementReason] = useDisplayRetirementReason();
-  const [displayreEmployment] = useDisplayReEmployment();
+  const [displayReEmployment] = useDisplayReEmployment();
   const [displayAge] = useDisplayAge();
 
   // const [storedAgeState] = useRecoilState(ageState);
@@ -28,7 +28,7 @@ export default function DataInput() {
       <p>退職事由:{displayRetirementReason}</p>
 
       <p>Q2</p>
-      <p>再就職の予定:{displayreEmployment}</p>
+      <p>再就職の予定:{displayReEmployment}</p>
 
       <p>Q3</p>
       <p>年齢:{displayAge}</p>

@@ -87,7 +87,7 @@ export const useDisplayRetirementReason = () => {
 
 export const useDisplayReEmployment = () => {
   const [storedReEmployment] = useRecoilState(reEmploymentState);
-  const [displayreEmployment, setDisplayReEmployment] = useState('');
+  const [displayReEmployment, setDisplayReEmployment] = useState('');
 
   useEffect(() => {
     const plan = [
@@ -102,7 +102,7 @@ export const useDisplayReEmployment = () => {
     setDisplayReEmployment(plan.display);
   }, [storedReEmployment]);
 
-  return [displayreEmployment];
+  return [displayReEmployment];
 };
 
 export const useDisplayAge = () => {
