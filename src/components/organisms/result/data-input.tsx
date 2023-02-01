@@ -6,6 +6,7 @@ import {
   useDisplayAge,
   useFetchPostcode,
   useDisplayFamily,
+  useDisplayEmpInsLastTwoYears,
 } from '../../../hooks/useLocalStorageData';
 
 export default function DataInput() {
@@ -15,6 +16,7 @@ export default function DataInput() {
   const [displayAge] = useDisplayAge();
   const [postcode] = useFetchPostcode();
   const [family] = useDisplayFamily();
+  const [displayEmpInsLastTwoYears] = useDisplayEmpInsLastTwoYears();
 
   // const [storedFamilyState] = useRecoilState(familyState);
   // const [storedEmpInsTotalState] = useRecoilState(empInsTotalState);
@@ -41,7 +43,7 @@ export default function DataInput() {
 
       <p>Q5</p>
       <p>雇用保険</p>
-      <p>過去2年:</p>
+      <p>過去2年:{displayEmpInsLastTwoYears}</p>
       <p>これまで:</p>
 
       <p>Q6</p>

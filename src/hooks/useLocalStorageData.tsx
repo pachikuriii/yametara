@@ -8,6 +8,7 @@ import {
   ageState,
   postcodeState,
   familyState,
+  empInsLastTwoYearsState,
 } from '../local-stroage';
 
 export const useFetchRetirementDate = () => {
@@ -87,6 +88,17 @@ export const useFetchFamily = () => {
   }, [storedFamily]);
 
   return [family];
+};
+
+export const useFetchEmpInsLastTwoYears = () => {
+  const [storedEmpInsLastTwoYears] = useRecoilState(empInsLastTwoYearsState);
+  const [empInsLastTwoYears, setEmpInsLastTwoYears] = useState(0);
+
+  useEffect(() => {
+    setEmpInsLastTwoYears(storedEmpInsLastTwoYears);
+  }, [storedEmpInsLastTwoYears]);
+
+  return [empInsLastTwoYears];
 };
 
 export const useDisplayRetirementReason = () => {
@@ -171,4 +183,36 @@ export const useDisplayFamily = () => {
   }, [storedFamily]);
 
   return [displayFamily];
+};
+
+export const useDisplayEmpInsLastTwoYears = () => {
+  const [storedEmpInsLastTwoYearsState] = useRecoilState(
+    empInsLastTwoYearsState,
+  );
+  const [displayEmpInsLastTwoYears, setDisplayEmpInsLastTwoYears] =
+    useState('');
+
+  useEffect(() => {
+    const givenChoice = [
+      { empInsLastTwoYearsState: 1, display: '6ヶ月未満の加入実績あり' },
+      {
+        empInsLastTwoYearsState: 2,
+        display: '6ヶ月以上1年未満の加入実績あり',
+      },
+      {
+        empInsLastTwoYearsState: 3,
+        display: '1年以上の加入実績あり',
+      },
+    ].find(
+      (choice) =>
+        choice.empInsLastTwoYearsState === storedEmpInsLastTwoYearsState,
+    );
+
+    if (givenChoice === undefined) {
+      throw Error;
+    }
+    setDisplayEmpInsLastTwoYears(givenChoice.display);
+  }, [storedEmpInsLastTwoYearsState]);
+
+  return [displayEmpInsLastTwoYears];
 };
