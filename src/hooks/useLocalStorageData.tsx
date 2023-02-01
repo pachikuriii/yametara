@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
 import dayjs from '../day-js';
 import {
@@ -6,6 +6,7 @@ import {
   retirementReasonState,
   reEmploymentState,
   ageState,
+  postcodeState,
 } from '../local-stroage';
 
 export const useFetchRetirementDate = () => {
@@ -63,6 +64,17 @@ export const useFetchAge = () => {
   }, [storedAge]);
 
   return [age];
+};
+
+export const useFetchPostcode = () => {
+  const [storedPostcode] = useRecoilState(postcodeState);
+  const [postcode, setPostcode] = useState('');
+
+  useEffect(() => {
+    setPostcode(storedPostcode);
+  }, [storedPostcode]);
+
+  return [postcode];
 };
 
 export const useDisplayRetirementReason = () => {
