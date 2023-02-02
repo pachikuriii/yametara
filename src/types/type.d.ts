@@ -3,7 +3,7 @@ export interface formInput {
     retirementReason: number;
     re_employment: number;
     age: number;
-    postcode: number;
+    postcode: string;
     family: number;
     emp_ins_total: number;
     emp_ins_last_two_years: number;
