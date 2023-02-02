@@ -5,74 +5,74 @@ const { persistAtom } = recoilPersist({
   storage: typeof window === 'undefined' ? undefined : window.localStorage,
 });
 
-export const startedState = atom<boolean>({
+export const startedState = atom({
   key: 'started',
   default: false,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const retirementDateState = atom<string>({
+export const retirementDateState = atom({
   key: 'retirement_date',
-  default: '',
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const retirementReasonState = atom<number>({
+export const retirementReasonState = atom({
   key: 'retirement_reason',
-  default: 0,
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const reEmploymentState = atom<number>({
+export const reEmploymentState = atom({
   key: 're_employment',
-  default: 0,
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const ageState = atom<number>({
+export const ageState = atom({
   key: 'age',
-  default: 0,
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const postcodeState = atom<string>({
+export const postcodeState = atom({
   key: 'post_code',
-  default: '',
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const familyState = atom<number>({
+export const familyState = atom({
   key: 'family',
-  default: 0,
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const empInsLastTwoYearsState = atom<number>({
+export const empInsLastTwoYearsState = atom({
   key: 'emp_ins_last_two_years',
-  default: 0,
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const empInsTotalState = atom<number>({
+export const empInsTotalState = atom({
   key: 'emp_ins_total',
-  default: 0,
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const healthInsLastTwoMonthState = atom<number>({
+export const healthInsLastTwoMonthState = atom({
   key: 'health_ins_last_two_month',
-  default: 0,
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const healthInsAfterRetirementState = atom<number>({
+export const healthInsAfterRetirementState = atom({
   key: 'health_ins_after_retirement',
-  default: 0,
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
 
-export const taxState = atom<number>({
+export const taxState = atom({
   key: 'tax',
-  default: 0,
+  default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
