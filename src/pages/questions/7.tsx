@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Card from '../../components/atoms/card';
+import AnswerProgressBar from '../../components/atoms/progress-bar';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q7 from '../../components/organisms/question/q7';
@@ -16,7 +17,9 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Header>Q7.健康保険について</Header>
+
         <div className={styles.wrapper}>
+          <AnswerProgressBar></AnswerProgressBar>
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}

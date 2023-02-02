@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Alert from '../../components/atoms/alert';
 import Card from '../../components/atoms/card';
 import Modal from '../../components/atoms/modal';
+import AnswerProgressBar from '../../components/atoms/progress-bar';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q5 from '../../components/organisms/question/q5';
@@ -20,7 +21,9 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Header>Q5.雇用保険について</Header>
+
         <div className={styles.wrapper}>
+          <AnswerProgressBar></AnswerProgressBar>
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Card from '../../components/atoms/card';
+import AnswerProgressBar from '../../components/atoms/progress-bar';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q2 from '../../components/organisms/question/q2';
@@ -19,6 +20,7 @@ export default function Home() {
         <Header>Q2.退職後の予定について</Header>
 
         <div className={styles.wrapper}>
+          <AnswerProgressBar></AnswerProgressBar>
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
