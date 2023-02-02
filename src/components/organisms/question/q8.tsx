@@ -10,7 +10,7 @@ import Alert from '../../atoms/alert';
 import Button from '../../atoms/button';
 
 export default function Q8() {
-  const [storedRetirementDate] = useRecoilValue(retirementDateState);
+  const storedRetirementDate = useRecoilValue(retirementDateState);
   const setTax = useSetRecoilState(taxState);
   const [retiredOnBetweenJanAndJun, setretiredOnBetweenJanAndJun] =
     useState(false);
