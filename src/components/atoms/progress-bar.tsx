@@ -1,14 +1,16 @@
 import ProgressBar from '@ramonak/react-progress-bar';
 import { useRouter } from 'next/router';
-import { useState, useLayoutEffect } from 'react';
+import { useState, useMemo } from 'react';
 
 const AnswerProgressBar = () => {
   const router = useRouter();
   const [state, setState] = useState(0);
 
-  useLayoutEffect(() => {
-    setState(Number(router.pathname.replace(/^\/questions\//, '')));
-  }, [router.pathname]);
+  useMemo(() => {
+    if (state < 8) {
+      setState(Number(router.pathname.replace(/^\/questions\//, '')));
+    }
+  }, [router.pathname, state]);
 
   return (
     <ProgressBar
