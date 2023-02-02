@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { usePatternFormat, NumberFormatBase } from 'react-number-format';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import {
   retirementDateState,
   retirementReasonState,
@@ -23,11 +23,8 @@ export default function Q1(props: any) {
     register,
   } = useForm<formInput>({});
 
-  const [retirementDate, setRetirementDate] =
-    useRecoilState(retirementDateState);
-  const [retirementReason, setRetirementReason] = useRecoilState(
-    retirementReasonState,
-  );
+  const setRetirementDate = useSetRecoilState(retirementDateState);
+  const setRetirementReason = useSetRecoilState(retirementReasonState);
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setRetirementDate(data.retirementDate);

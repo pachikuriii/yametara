@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../local-stroage';
 import Button from '../../atoms/button';
 interface formInput {
@@ -16,7 +16,7 @@ export default function Q6() {
     register,
   } = useForm<formInput>({});
 
-  const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useRecoilState(
+  const setHealthInsLastTwoMonth = useSetRecoilState(
     healthInsLastTwoMonthState,
   );
 

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { familyState } from '../../../local-stroage';
 import Button from '../../atoms/button';
 
@@ -17,7 +17,7 @@ export default function Q4() {
     register,
   } = useForm<formInput>({});
 
-  const [family, setFamily] = useRecoilState(familyState);
+  const setFamily = useSetRecoilState(familyState);
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setFamily(data.family);

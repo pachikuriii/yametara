@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { postcodeState, ageState } from '../../../local-stroage';
@@ -24,8 +24,8 @@ export default function Q3(props: any) {
     register,
   } = useForm<formInput>({});
 
-  const [age, setAge] = useRecoilState(ageState);
-  const [post_code, setPostcode] = useRecoilState(postcodeState);
+  const setAge = useSetRecoilState(ageState);
+  const setPostcode = useSetRecoilState(postcodeState);
 
   const submitForm: SubmitHandler<formInput> = (data) => {
     setAge(data.age);

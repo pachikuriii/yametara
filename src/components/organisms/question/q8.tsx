@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { taxState, retirementDateState } from '../../../local-stroage';
 import Alert from '../../atoms/alert';
 import Button from '../../atoms/button';
@@ -13,12 +13,12 @@ interface formInput {
 }
 
 export default function Q8() {
-  const [storedRetirementDate] = useRecoilState(retirementDateState);
-  const [retirementMonth, setRetirementMonth] = useState(0);
-  const [tax, setTax] = useRecoilState(taxState);
+  const [storedRetirementDate] = useRecoilValue(retirementDateState);
+  const setTax = useSetRecoilState(taxState);
   const [retiredOnBetweenJanAndJun, setretiredOnBetweenJanAndJun] =
     useState(false);
   const [taxPaymentTypes, settaxPaymentTypes] = useState(['']);
+  const [retirementMonth, setRetirementMonth] = useState(0);
 
   useEffect(() => {
     setRetirementMonth(dayjs(storedRetirementDate).month() + 1);
