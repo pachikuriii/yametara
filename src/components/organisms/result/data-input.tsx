@@ -1,9 +1,9 @@
-import { useFetchPostcode } from '../../../hooks/use-fetch-localstorage';
 import {
   useDisplayRetirementDate,
   useDisplayRetirementReason,
   useDisplayReEmployment,
   useDisplayAge,
+  useDisplayPostcode,
   useDisplayFamily,
   useDisplayEmpInsLastTwoYears,
   useDisplayEmpInsTotal,
@@ -17,7 +17,7 @@ export default function DataInput() {
   const [retirementReason] = useDisplayRetirementReason();
   const [reEmployment] = useDisplayReEmployment();
   const [age] = useDisplayAge();
-  const [postcode] = useFetchPostcode();
+  const [postcode] = useDisplayPostcode();
   const [family] = useDisplayFamily();
   const [empInsLastTwoYears] = useDisplayEmpInsLastTwoYears();
   const [empInsTotal] = useDisplayEmpInsTotal();
