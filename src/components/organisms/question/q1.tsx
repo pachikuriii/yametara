@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { usePatternFormat, NumberFormatBase } from 'react-number-format';
+import { NumberFormatBase } from 'react-number-format';
 import { useSetRecoilState } from 'recoil';
+import { useRetirementDateInputHelper } from '../../../hooks/use-retirement-date-input-helper';
 import {
   retirementDateState,
   retirementReasonState,
@@ -19,50 +20,15 @@ export default function Q1(props: any) {
     formState: { errors },
     register,
   } = useForm<formInput>({});
-
   const setRetirementDate = useSetRecoilState(retirementDateState);
   const setRetirementReason = useSetRecoilState(retirementReasonState);
-
   const submitForm: SubmitHandler<formInput> = (data) => {
     setRetirementDate(data.retirementDate);
     setRetirementReason(data.retirementReason);
     router.push('/questions/2');
   };
-
+  const formattedValue = useRetirementDateInputHelper(props);
   const router = useRouter();
-
-  const { format } = usePatternFormat({
-    ...props,
-    format: '####-##-##',
-  });
-
-  const _format = (value: string) => {
-    const year = value.substring(0, 4);
-    let month = value.substring(4, 6);
-    let day = value.substring(6, 8);
-
-    if (month.length === 1 && Number(month[0]) > 1) {
-      month = `0${month[0]}`;
-    } else if (month.length === 2) {
-      if (Number(month) === 0) {
-        month = `01`;
-      } else if (Number(month) > 12) {
-        month = '12';
-      }
-    }
-
-    if (day.length === 1 && Number(day[0]) > 3) {
-      day = `0${day[0]}`;
-    } else if (day.length === 2) {
-      if (Number(day) === 0) {
-        day = `01`;
-      } else if (Number(day) > 31) {
-        day = '31';
-      }
-    }
-
-    return format(`${year}${month}${day}`);
-  };
 
   return (
     <div>
@@ -82,7 +48,7 @@ export default function Q1(props: any) {
             <NumberFormatBase
               onChange={onChange}
               placeholder='2022-02-22'
-              format={_format}
+              format={formattedValue}
               {...rest}
               {...props}
             />
