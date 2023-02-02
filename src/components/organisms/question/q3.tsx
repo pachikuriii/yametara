@@ -5,7 +5,7 @@ import { PatternFormat } from 'react-number-format';
 import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { postcodeState, ageState } from '../../../local-stroage';
+import { postcodeState, ageState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
 import 'swiper/css';

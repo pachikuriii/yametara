@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 const { persistAtom } = recoilPersist({
   key: 'yametara',
-  storage: typeof window === 'undefined' ? undefined : window.localStorage,
+  storage: typeof window === 'undefined' ? undefined : window.sessionStorage,
 });
 
 export const startedState = atom({

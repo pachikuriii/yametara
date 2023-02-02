@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { reEmploymentState } from '../../../local-stroage';
+import { reEmploymentState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
 export default function Q2() {

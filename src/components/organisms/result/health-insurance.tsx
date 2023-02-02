@@ -4,7 +4,7 @@ import dayjs from '../../../day-js';
 import {
   retirementDateState,
   healthInsAfterRetirementState,
-} from '../../../local-stroage';
+} from '../../../session-stroage';
 import CheckedTodoPlate from '../../molecules/checked-todo-plate';
 
 export default function HealthlInsurance() {

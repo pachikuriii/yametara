@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { familyState } from '../../../local-stroage';
+import { familyState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
 

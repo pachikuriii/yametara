@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   empInsTotalState,
   empInsLastTwoYearsState,
-} from '../../../local-stroage';
+} from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
 import 'swiper/css';

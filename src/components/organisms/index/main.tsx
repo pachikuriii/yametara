@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
-import { startedState } from '../../../local-stroage';
+import { startedState } from '../../../session-stroage';
 import Button from '../../atoms/button';
 import styles from './Main.module.css';
 

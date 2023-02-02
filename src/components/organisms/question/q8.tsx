@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { taxState, retirementDateState } from '../../../local-stroage';
+import { taxState, retirementDateState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
 import Button from '../../atoms/button';
