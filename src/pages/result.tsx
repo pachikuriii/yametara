@@ -33,13 +33,8 @@ export default function Home() {
         </title>
       </Head>
       <motion.div
-        style={{
-          width: '100%',
-          height: '100vh',
-        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
         <main className={styles.main}>
