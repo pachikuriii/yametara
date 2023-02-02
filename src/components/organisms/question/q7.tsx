@@ -7,7 +7,7 @@ import {
   healthInsAfterRetirementState,
   familyState,
   healthInsLastTwoMonthState,
-} from '../../../local-stroage';
+} from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
 

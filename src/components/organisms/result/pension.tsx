@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import dayjs from '../../../day-js';
-import { retirementDateState } from '../../../local-stroage';
+import { retirementDateState } from '../../../session-stroage';
 import CheckedTodoPlate from '../../molecules/checked-todo-plate';
 
 export default function Pension() {

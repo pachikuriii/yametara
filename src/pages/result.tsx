@@ -14,7 +14,7 @@ import Pension from '../components/organisms/result/pension';
 import Tax from '../components/organisms/result/tax';
 import Todo from '../components/organisms/result/todo';
 import dayjs from '../day-js';
-import { retirementDateState } from '../local-stroage';
+import { retirementDateState } from '../session-stroage';
 import styles from '../styles/Result.module.css';
 
 export default function Home() {
