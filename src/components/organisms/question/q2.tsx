@@ -1,26 +1,27 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { reEmploymentState } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
-
-interface formInput {
-  re_employment: number;
-}
-
 export default function Q2() {
+  const [storedReEmployment, setStoredReEmployment] =
+    useRecoilState(reEmploymentState);
+
   const {
     handleSubmit,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const setReEmployment = useSetRecoilState(reEmploymentState);
+  } = useForm<formInput>({
+    defaultValues: {
+      re_employment: storedReEmployment,
+    },
+  });
 
   const submitForm: SubmitHandler<formInput> = (data) => {
-    setReEmployment(data.re_employment);
+    setStoredReEmployment(data.re_employment);
     router.push('/questions/3');
   };
 

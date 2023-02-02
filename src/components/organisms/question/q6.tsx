@@ -1,27 +1,28 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
-interface formInput {
-  health_ins_last_two_month: number;
-}
 
 export default function Q6() {
+  const [storedHealthInsLastTwoMonth, setStoredHealthInsLastTwoMonth] =
+    useRecoilState(healthInsLastTwoMonthState);
+
   const {
     handleSubmit,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const setHealthInsLastTwoMonth = useSetRecoilState(
-    healthInsLastTwoMonthState,
-  );
+  } = useForm<formInput>({
+    defaultValues: {
+      health_ins_last_two_month: storedHealthInsLastTwoMonth,
+    },
+  });
 
   const submitForm: SubmitHandler<formInput> = (data) => {
-    setHealthInsLastTwoMonth(data.health_ins_last_two_month);
+    setStoredHealthInsLastTwoMonth(data.health_ins_last_two_month);
     router.push('/questions/7');
   };
 

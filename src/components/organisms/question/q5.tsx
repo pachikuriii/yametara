@@ -1,37 +1,39 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   empInsTotalState,
   empInsLastTwoYearsState,
 } from '../../../local-stroage';
-import Alert from '../../atoms/alert';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-interface formInput {
-  emp_ins_total: number;
-  emp_ins_last_two_years: number;
-}
-
 export default function Q5() {
+  const [storedEmpInsTotal, setStoredEmpInsTotal] =
+    useRecoilState(empInsTotalState);
+  const [storedEmpInsLastTwoYears, setStoredEmpInsLastTwoYears] =
+    useRecoilState(empInsLastTwoYearsState);
+
   const {
     handleSubmit,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const setEmpInsTotal = useSetRecoilState(empInsTotalState);
-  const setEmpInsLastTwoYears = useSetRecoilState(empInsLastTwoYearsState);
+  } = useForm<formInput>({
+    defaultValues: {
+      emp_ins_total: storedEmpInsTotal,
+      emp_ins_last_two_years: storedEmpInsLastTwoYears,
+    },
+  });
 
   const submitForm: SubmitHandler<formInput> = (data) => {
-    setEmpInsTotal(data.emp_ins_total);
-    setEmpInsLastTwoYears(data.emp_ins_last_two_years);
+    setStoredEmpInsTotal(data.emp_ins_total);
+    setStoredEmpInsLastTwoYears(data.emp_ins_last_two_years);
     router.push('/questions/6');
   };
 

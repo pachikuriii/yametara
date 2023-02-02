@@ -3,18 +3,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { taxState, retirementDateState } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
 import Button from '../../atoms/button';
 
-interface formInput {
-  tax: number;
-}
-
 export default function Q8() {
-  const [storedRetirementDate] = useRecoilValue(retirementDateState);
-  const setTax = useSetRecoilState(taxState);
+  const storedRetirementDate = useRecoilValue(retirementDateState);
+  const [storedTax, setStoredTax] = useRecoilState(taxState);
   const [retiredOnBetweenJanAndJun, setretiredOnBetweenJanAndJun] =
     useState(false);
   const [taxPaymentTypes, settaxPaymentTypes] = useState(['']);
@@ -48,10 +45,14 @@ export default function Q8() {
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
+  } = useForm<formInput>({
+    defaultValues: {
+      tax: storedTax,
+    },
+  });
 
   const submitForm: SubmitHandler<formInput> = (data) => {
-    setTax(data.tax);
+    setStoredTax(data.tax);
     router.push('/result');
   };
 

@@ -2,23 +2,19 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   healthInsAfterRetirementState,
   familyState,
   healthInsLastTwoMonthState,
 } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
-
-interface formInput {
-  health_ins_after_retirement: number;
-}
 
 const Q7 = () => {
   const [tab, setTab] = useState(1);
-  const setHealthInsAfterRetirement = useSetRecoilState(
-    healthInsAfterRetirementState,
-  );
+  const [storedHealthInsAfterRetirement, setStoredHealthInsAfterRetirement] =
+    useRecoilState(healthInsAfterRetirementState);
   const storedFamilyState = useRecoilValue(familyState);
   const storedHealthInsLastTwoMonthState = useRecoilValue(
     healthInsLastTwoMonthState,
@@ -36,7 +32,7 @@ const Q7 = () => {
     setInsuranceTypes(newInsuranceTypes);
   }, [
     storedFamilyState,
-    setHealthInsAfterRetirement,
+    setStoredHealthInsAfterRetirement,
     storedHealthInsLastTwoMonthState,
   ]);
 
@@ -45,10 +41,14 @@ const Q7 = () => {
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
+  } = useForm<formInput>({
+    defaultValues: {
+      health_ins_after_retirement: storedHealthInsAfterRetirement,
+    },
+  });
 
   const submitForm: SubmitHandler<formInput> = (data) => {
-    setHealthInsAfterRetirement(data.health_ins_after_retirement);
+    setStoredHealthInsAfterRetirement(data.health_ins_after_retirement);
     router.push('/questions/8');
   };
 

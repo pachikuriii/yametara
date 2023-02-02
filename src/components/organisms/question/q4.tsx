@@ -1,26 +1,27 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { familyState } from '../../../local-stroage';
+import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
 
-interface formInput {
-  family: number;
-}
-
 export default function Q4() {
+  const [storedFamily, setStoredFamily] = useRecoilState(familyState);
+
   const {
     handleSubmit,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const setFamily = useSetRecoilState(familyState);
+  } = useForm<formInput>({
+    defaultValues: {
+      family: storedFamily,
+    },
+  });
 
   const submitForm: SubmitHandler<formInput> = (data) => {
-    setFamily(data.family);
+    setStoredFamily(data.family);
     router.push('/questions/5');
   };
 
