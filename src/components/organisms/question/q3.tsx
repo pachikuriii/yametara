@@ -100,7 +100,7 @@ export default function Q3(props: any) {
       />
       {errors.postcode && <p>{errors.postcode.message}</p>}
 
-      <Link href='/questions/4'>
+      <Link href='/questions/2'>
         <Button>戻る</Button>
       </Link>
       <Button onClick={handleSubmit(submitForm)}>次へ</Button>
