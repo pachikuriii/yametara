@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { postcodeState, ageState } from '../../../local-stroage';
@@ -12,20 +12,25 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 export default function Q3(props: any) {
+  const [storedAge, setStoredAge] = useRecoilState(ageState);
+  const [storedPostcode, setStoredPostcode] = useRecoilState(postcodeState);
+
   const {
     handleSubmit,
     setValue,
     control,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const setAge = useSetRecoilState(ageState);
-  const setPostcode = useSetRecoilState(postcodeState);
+  } = useForm<formInput>({
+    defaultValues: {
+      age: storedAge,
+      postcode: storedPostcode,
+    },
+  });
 
   const submitForm: SubmitHandler<formInput> = (data) => {
-    setAge(data.age);
-    setPostcode(data.postcode);
+    setStoredAge(data.age);
+    setStoredPostcode(data.postcode);
     router.push('/questions/4');
   };
 

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { NumberFormatBase } from 'react-number-format';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useRetirementDateInputHelper } from '../../../hooks/use-retirement-date-input-helper';
 import {
   retirementDateState,
@@ -13,20 +13,31 @@ import Button from '../../atoms/button';
 import Modal from '../../atoms/modal';
 
 export default function Q1(props: any) {
+  const [storedRetirementDate, setStoredRetirementDate] =
+    useRecoilState(retirementDateState);
+  const [storedRetirementReason, setStoredRetirementReason] = useRecoilState(
+    retirementReasonState,
+  );
+
   const {
     handleSubmit,
     control,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-  const setRetirementDate = useSetRecoilState(retirementDateState);
-  const setRetirementReason = useSetRecoilState(retirementReasonState);
+  } = useForm<formInput>({
+    defaultValues: {
+      retirementDate: storedRetirementDate,
+      retirementReason: storedRetirementReason,
+    },
+  });
+
   const submitForm: SubmitHandler<formInput> = (data) => {
-    setRetirementDate(data.retirementDate);
-    setRetirementReason(data.retirementReason);
+    setStoredRetirementDate(data.retirementDate);
+    setStoredRetirementReason(data.retirementReason);
     router.push('/questions/2');
   };
+
   const formattedValue = useRetirementDateInputHelper(props);
   const router = useRouter();
 
