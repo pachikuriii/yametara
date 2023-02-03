@@ -12,6 +12,7 @@ export default function Document() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       <body>
+        <script> </script>
         <Main />
         <NextScript />
       </body>
