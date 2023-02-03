@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLayoutEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { startedState } from '../../../session-stroage';
 import Button from '../../atoms/button';
@@ -7,6 +8,7 @@ import styles from './Main.module.css';
 
 export default function IndexMain() {
   const [started, setStarted] = useRecoilState(startedState);
+  useLayoutEffect(() => {}, []);
 
   return (
     <div className={styles.box}>
