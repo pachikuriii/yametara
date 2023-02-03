@@ -15,7 +15,6 @@ import Tax from '../components/organisms/result/tax';
 import Todo from '../components/organisms/result/todo';
 import dayjs from '../day-js';
 import { retirementDateState } from '../session-stroage';
-import styles from '../styles/Result.module.css';
 
 export default function Home() {
   const [retirementDate] = useRecoilState(retirementDateState);
@@ -37,7 +36,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <main className={styles.main}>
+        <main>
           <Modal
             label={<p className='text-black'>入力内容を見る</p>}
             id='given_choices'
@@ -50,7 +49,7 @@ export default function Home() {
             に会社を辞めたら以下についての手続きが必要です。
           </p>
           <Todo></Todo>
-          <div className={styles.box}>
+          <div>
             <h3>手続き内容の詳細</h3>
             <HealthlInsurance></HealthlInsurance>
             <Pension></Pension>

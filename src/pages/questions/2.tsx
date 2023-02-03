@@ -5,7 +5,6 @@ import AnswerProgressBar from '../../components/atoms/progress-bar';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q2 from '../../components/organisms/question/q2';
-import styles from '../../styles/Question.module.css';
 
 export default function Home() {
   return (
@@ -16,10 +15,10 @@ export default function Home() {
         </title>
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <Header>Q2.退職後の予定について</Header>
 
-        <div className={styles.wrapper}>
+        <div>
           <AnswerProgressBar></AnswerProgressBar>
           <motion.div
             initial={{ x: '100%' }}

@@ -5,7 +5,7 @@ import AnswerProgressBar from '../../components/atoms/progress-bar';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q4 from '../../components/organisms/question/q4';
-import styles from '../../styles/Question.module.css';
+
 export default function Home() {
   return (
     <>
@@ -14,9 +14,9 @@ export default function Home() {
           yametara | 退職後の手続きシミュレーター | あなたの家族について
         </title>
       </Head>
-      <main className={styles.main}>
+      <main>
         <Header>Q4.あなたの家族について</Header>
-        <div className={styles.wrapper}>
+        <div>
           <AnswerProgressBar></AnswerProgressBar>
           <motion.div
             initial={{ x: '100%' }}

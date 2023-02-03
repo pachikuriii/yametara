@@ -5,7 +5,7 @@ import AnswerProgressBar from '../../components/atoms/progress-bar';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q8 from '../../components/organisms/question/q8';
-import styles from '../../styles/Question.module.css';
+
 export default function Home() {
   return (
     <>
@@ -13,10 +13,10 @@ export default function Home() {
         <title>yametara | 退職後の手続きシミュレーター | 住民税について</title>
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <Header>Q8.住民税について</Header>
 
-        <div className={styles.wrapper}>
+        <div>
           <AnswerProgressBar></AnswerProgressBar>
           <motion.div
             style={{

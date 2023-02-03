@@ -5,7 +5,6 @@ import AnswerProgressBar from '../../components/atoms/progress-bar';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q1 from '../../components/organisms/question/q1';
-import styles from '../../styles/Question.module.css';
 
 export default function Home() {
   return (
@@ -20,10 +19,10 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <main className={styles.main}>
+        <main>
           <Header>Q1.今回の退職について</Header>
 
-          <div className={styles.wrapper}>
+          <div>
             <AnswerProgressBar></AnswerProgressBar>
 
             <motion.div exit={{ x: '-100%' }} transition={{ duration: 0.3 }}>
