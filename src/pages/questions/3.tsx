@@ -5,7 +5,7 @@ import AnswerProgressBar from '../../components/atoms/progress-bar';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q3 from '../../components/organisms/question/q3';
-import styles from '../../styles/Question.module.css';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -16,9 +16,9 @@ export default function Home() {
         <title>yametara | 退職後の手続きシミュレーター | あなたについて</title>
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <Header>Q3.あなたについて</Header>
-        <div className={styles.wrapper}>
+        <div>
           <AnswerProgressBar></AnswerProgressBar>
           <motion.div
             initial={{ x: '100%' }}
