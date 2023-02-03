@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
+import StyledComponentsRegistry from '../css-in-js-settings';
 
 export default function Document() {
   return (
@@ -12,9 +13,10 @@ export default function Document() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       <body>
-        <script> </script>
-        <Main />
-        <NextScript />
+        <StyledComponentsRegistry>
+          <Main />
+          <NextScript />
+        </StyledComponentsRegistry>
       </body>
     </Html>
   );
