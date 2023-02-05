@@ -23,8 +23,6 @@ export default function PagerButtons() {
         <Button onClick={() => router.push(PrevPath)}>戻る</Button>
         <Button onClick={() => router.push(NextPath)}>次へ</Button>
       </div>
-
-      
     </motion.div>
   );
 }
