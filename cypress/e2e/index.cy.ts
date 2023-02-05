@@ -1,6 +1,6 @@
 describe('template spec', () => {
   it('passes', () => {
-    cy.visit('/')
-  })
-})
-export { }
+    cy.visit('/');
+  });
+});
+export {};
