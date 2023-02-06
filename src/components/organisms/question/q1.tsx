@@ -83,7 +83,7 @@ export default function Q1(props: any) {
           type='hidden'
         />
 
-        <div>
+        <div className='space-x-4'>
           {['自己都合', '会社都合', 'その他'].map((value, index) => {
             index += 1;
             return (
@@ -98,7 +98,7 @@ export default function Q1(props: any) {
           })}
         </div>
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
-        <div>
+        <div className='py-2'>
           <Modal label={<Alert>退職事由について</Alert>} id='retirement-reason'>
             モーダルの内容
           </Modal>
