@@ -10,7 +10,7 @@ export default function IndexMain() {
   useLayoutEffect(() => {}, []);
 
   return (
-    <div className='pt-20 md:text-xl w-11/12 mx-auto text-center leading-relax tracking-wide'>
+    <div className='pt-20 w-11/12 mx-auto'>
       <Image
         src='/yametara-logo.svg'
         alt='logo'
@@ -18,7 +18,8 @@ export default function IndexMain() {
         height='100'
         className='mx-auto'
       />
-
+      <p>会社を辞めた後の手続き…</p>
+      <p>どこで、なにを、いつまでに？</p>
       <div className='py-8'>
         <p>いくつかの質問に答えるだけで</p>
         <p>会社を辞めたら必要な</p>
