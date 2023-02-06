@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import Button from '../components/atoms/button';
+
 import Modal from '../components/atoms/modal';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
@@ -56,10 +56,10 @@ export default function Home() {
             <EmploymentInsurance></EmploymentInsurance>
             <Tax></Tax>
             <Link href='questions/8'>
-              <Button>もどる</Button>
+              <p>もどる</p>
             </Link>
             <Link href='questions/1'>
-              <Button>もう1度シミュレーションする</Button>
+              <p>もう1度シミュレーションする</p>
             </Link>
           </div>
           <Footer></Footer>
