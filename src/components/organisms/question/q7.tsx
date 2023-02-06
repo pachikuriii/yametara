@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -9,7 +8,8 @@ import {
   healthInsLastTwoMonthState,
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import Button from '../../atoms/button';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
 const Q7 = () => {
   const [tab, setTab] = useState(1);
@@ -47,12 +47,18 @@ const Q7 = () => {
     },
   });
 
-  const submitForm: SubmitHandler<formInput> = (data) => {
+  const nextPage = useNextPage();
+  const prevPage = usePrevPage();
+  const router = useRouter();
+
+  const goNextPage: SubmitHandler<formInput> = (data) => {
     setStoredHealthInsAfterRetirement(data.health_ins_after_retirement);
-    router.push('/questions/8');
+    router.push(nextPage);
   };
 
-  const router = useRouter();
+  const goPrevPage = () => {
+    router.push(prevPage);
+  };
 
   return (
     <>
@@ -139,10 +145,10 @@ const Q7 = () => {
                   {errors.health_ins_after_retirement && (
                     <p>{errors.health_ins_after_retirement.message}</p>
                   )}
-                  <Link href='/questions/6'>
-                    <Button>戻る</Button>
-                  </Link>
-                  <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+                  <PagerButtons
+                    handleSubmit={handleSubmit(goNextPage)}
+                    goBackPage={goPrevPage}
+                  ></PagerButtons>
                 </form>
               </div>
             </div>

@@ -1,10 +1,10 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { reEmploymentState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import Button from '../../atoms/button';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 export default function Q2() {
   const [storedReEmployment, setStoredReEmployment] =
     useRecoilState(reEmploymentState);
@@ -20,12 +20,18 @@ export default function Q2() {
     },
   });
 
-  const submitForm: SubmitHandler<formInput> = (data) => {
+  const nextPage = useNextPage();
+  const prevPage = usePrevPage();
+  const router = useRouter();
+
+  const goNextPage: SubmitHandler<formInput> = (data) => {
     setStoredReEmployment(data.re_employment);
-    router.push('/questions/3');
+    router.push(nextPage);
   };
 
-  const router = useRouter();
+  const goPrevPage = () => {
+    router.push(prevPage);
+  };
 
   return (
     <div>
@@ -54,10 +60,10 @@ export default function Q2() {
           })}
         </div>
         {errors.re_employment && <p>{errors.re_employment.message}</p>}
-        <Link href='/questions/1'>
-          <Button>戻る</Button>
-        </Link>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+        <PagerButtons
+          handleSubmit={handleSubmit(goNextPage)}
+          goBackPage={goPrevPage}
+        ></PagerButtons>
       </form>
     </div>
   );

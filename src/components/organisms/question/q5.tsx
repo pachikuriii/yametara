@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
@@ -9,9 +8,10 @@ import {
   empInsLastTwoYearsState,
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import Button from '../../atoms/button';
 import Alert from 'src/components/atoms/alert';
 import Modal from 'src/components/atoms/modal';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -33,13 +33,19 @@ export default function Q5() {
     },
   });
 
-  const submitForm: SubmitHandler<formInput> = (data) => {
+  const nextPage = useNextPage();
+  const prevPage = usePrevPage();
+  const router = useRouter();
+
+  const goNextPage: SubmitHandler<formInput> = (data) => {
     setStoredEmpInsTotal(data.emp_ins_total);
     setStoredEmpInsLastTwoYears(data.emp_ins_last_two_years);
-    router.push('/questions/6');
+    router.push(nextPage);
   };
 
-  const router = useRouter();
+  const goPrevPage = () => {
+    router.push(prevPage);
+  };
 
   return (
     <form>
@@ -121,10 +127,10 @@ export default function Q5() {
         {errors.emp_ins_total && <p>{errors.emp_ins_total.message}</p>}
       </div>
 
-      <Link href='/questions/4'>
-        <Button>戻る</Button>
-      </Link>
-      <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+      <PagerButtons
+        handleSubmit={handleSubmit(goNextPage)}
+        goBackPage={goPrevPage}
+      ></PagerButtons>
     </form>
   );
 }

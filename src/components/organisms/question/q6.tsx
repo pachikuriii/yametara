@@ -1,10 +1,10 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import Button from '../../atoms/button';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
 export default function Q6() {
   const [storedHealthInsLastTwoMonth, setStoredHealthInsLastTwoMonth] =
@@ -21,12 +21,18 @@ export default function Q6() {
     },
   });
 
-  const submitForm: SubmitHandler<formInput> = (data) => {
+  const nextPage = useNextPage();
+  const prevPage = usePrevPage();
+  const router = useRouter();
+
+  const goNextPage: SubmitHandler<formInput> = (data) => {
     setStoredHealthInsLastTwoMonth(data.health_ins_last_two_month);
-    router.push('/questions/7');
+    router.push(nextPage);
   };
 
-  const router = useRouter();
+  const goPrevPage = () => {
+    router.push(prevPage);
+  };
 
   return (
     <div>
@@ -66,10 +72,10 @@ export default function Q6() {
         {errors.health_ins_last_two_month && (
           <p>{errors.health_ins_last_two_month.message}</p>
         )}
-        <Link href='/questions/5'>
-          <Button>戻る</Button>
-        </Link>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+        <PagerButtons
+          handleSubmit={handleSubmit(goNextPage)}
+          goBackPage={goPrevPage}
+        ></PagerButtons>
       </form>
     </div>
   );
