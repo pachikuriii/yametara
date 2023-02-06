@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>yametara | 退職後の手続きシミュレーター</title>
       </Head>
-      <main>
+      <main className='text-center leading-relax tracking-wide'>
         <Main></Main>
         <Footer></Footer>
       </main>
