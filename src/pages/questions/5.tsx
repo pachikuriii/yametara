@@ -20,8 +20,10 @@ export default function Home() {
         </title>
       </Head>
       <main>
-        <Header>Q5.雇用保険について</Header>
-
+        <Header>
+          <p>Q5.雇用保険について</p>
+          <p className='text-sm'>【選択してください】</p>
+        </Header>
         <div>
           <AnswerProgressBar></AnswerProgressBar>
           <motion.div

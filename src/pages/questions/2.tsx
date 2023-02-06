@@ -16,7 +16,10 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header>Q2.退職後の予定について</Header>
+        <Header>
+          <p> Q2.退職後の予定について</p>
+          <p className='text-sm'>【選択してください】</p>
+        </Header>
 
         <div>
           <AnswerProgressBar></AnswerProgressBar>

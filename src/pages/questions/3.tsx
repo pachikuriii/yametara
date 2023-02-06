@@ -17,7 +17,10 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header>Q3.あなたについて</Header>
+        <Header>
+          <p>Q3.あなたについて</p>
+          <p className='text-sm'>【記入/選択してください】</p>
+        </Header>
         <div>
           <AnswerProgressBar></AnswerProgressBar>
           <motion.div

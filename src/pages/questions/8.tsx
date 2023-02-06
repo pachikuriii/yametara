@@ -14,8 +14,10 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header>Q8.住民税について</Header>
-
+        <Header>
+          <p>Q8.住民税について</p>
+          <p className='text-sm'>【選択してください】</p>
+        </Header>
         <div>
           <AnswerProgressBar></AnswerProgressBar>
           <motion.div
