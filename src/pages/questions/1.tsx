@@ -27,12 +27,7 @@ export default function Home() {
 
             <motion.div exit={{ x: '-100%' }} transition={{ duration: 0.3 }}>
               <Card>
-                <h2 className='card-title'>
-                  退職予定日と退職事由を教えてください
-                </h2>
-                <div>
-                  <Q1></Q1>
-                </div>
+                <Q1></Q1>
               </Card>
             </motion.div>
           </div>

@@ -27,9 +27,6 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <h2 className='card-title'>
-                退職予定日におけるあなたの年齢とお住まいの住所の郵便番号を教えてください
-              </h2>
               <Q3></Q3>
             </Card>
           </motion.div>

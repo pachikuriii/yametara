@@ -25,12 +25,7 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <div>
-                <h2 className='card-title'>
-                  生計を共にしている社会保険の被保険者の家族がいますか？
-                </h2>
-                <Q4></Q4>
-              </div>
+              <Q4></Q4>
             </Card>
           </motion.div>
         </div>

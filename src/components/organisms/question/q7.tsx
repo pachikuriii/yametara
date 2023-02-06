@@ -57,6 +57,8 @@ const Q7 = () => {
   return (
     <>
       <div className='flex flex-wrap'>
+        <h2 className='card-title'>加入を検討したい退職後の健康保険</h2>
+        <p>国民皆保険制度により退職後も健康保険への加入が必須です。</p>
         <div className='tabs tabs-boxed bg-primary'>
           <div>
             {insuranceTypes.map((value, index) => {

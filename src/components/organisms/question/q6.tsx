@@ -31,6 +31,10 @@ export default function Q6() {
   return (
     <div>
       <form>
+        <label htmlFor='health_ins_last_two_mont'>
+          退職予定日までの健康保険の被保険者期間
+        </label>
+
         <input
           {...register('health_ins_last_two_month', {
             required: '選択してください',
@@ -39,7 +43,7 @@ export default function Q6() {
         />
 
         <div>
-          {['はい', 'いいえ'].map((value, index) => {
+          {['継続して2ヵ月以上', '継続して2ヵ月以下'].map((value, index) => {
             return (
               <button
                 type='button'

@@ -27,9 +27,6 @@ export default function Home() {
           >
             <Card>
               <div>
-                <h2 className='card-title'>
-                  退職予定日までの健康保険の被保険者期間が継続して2ヶ月以上あるか教えてください
-                </h2>
                 <Q6></Q6>
               </div>
             </Card>

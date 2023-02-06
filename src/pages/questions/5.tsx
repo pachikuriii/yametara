@@ -31,15 +31,6 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <h2 className='card-title'>
-                雇用保険のこれまでの被保険者期間を教えてください
-              </h2>
-              <Modal
-                label={<Alert>雇用保険の被保険者期間の数え方について</Alert>}
-                id='how-to-count-emp-period'
-              >
-                雇用保険の被保険者期間の数え方についてのモーダルの内容
-              </Modal>
               <Q5></Q5>
             </Card>
           </motion.div>

@@ -10,6 +10,8 @@ import {
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Button from '../../atoms/button';
+import Alert from 'src/components/atoms/alert';
+import Modal from 'src/components/atoms/modal';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -42,9 +44,17 @@ export default function Q5() {
   return (
     <form>
       <div>
+        <h2 className='card-title'>雇用保険のこれまでの被保険者期間</h2>
+        <Modal
+          label={<Alert>期間の数え方の参考</Alert>}
+          id='how-to-count-emp-period'
+        >
+          雇用保険の被保険者期間の数え方の参考
+        </Modal>
         <label htmlFor='emp_ins_last_two_years'>
           退職予定日までの2年間では…
         </label>
+
         <input
           {...register('emp_ins_last_two_years', {
             required: '選択してください',

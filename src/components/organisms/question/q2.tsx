@@ -30,13 +30,14 @@ export default function Q2() {
   return (
     <div>
       <form>
+        <label htmlFor='re_employment'>年内の再就職の予定</label>
         <input
           {...register('re_employment', { required: '選択してください' })}
           type='hidden'
         />
 
         <div>
-          {['はい', 'いいえ', '未定'].map((value, index) => {
+          {['あり', 'なし', '未定'].map((value, index) => {
             index += 1;
             return (
               <button

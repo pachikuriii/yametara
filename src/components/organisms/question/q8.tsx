@@ -68,6 +68,7 @@ export default function Q8() {
       </div>
 
       <form>
+        <label htmlFor='tax'>今年度の残りの住民税の支払い方法</label>
         <input
           {...register('tax', { required: '選択してください' })}
           type='hidden'

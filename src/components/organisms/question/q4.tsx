@@ -30,18 +30,22 @@ export default function Q4() {
   return (
     <div>
       <form>
+        <label htmlFor='family'>
+          家計を共にしている社会保険の被保険者の家族
+        </label>
+
         <input
           {...register('family', { required: '選択してください' })}
           type='hidden'
         />
 
         <div>
-          {['はい', 'いいえ'].map((value, index) => {
+          {['いる', 'いない'].map((value, index) => {
             return (
               <button
                 type='button'
                 key={index}
-                onClick={() => setValue('family', value === 'はい' ? 1 : 2)}
+                onClick={() => setValue('family', value === 'いる' ? 1 : 2)}
                 className={
                   'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
                 }

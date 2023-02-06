@@ -38,6 +38,8 @@ export default function Q3(props: any) {
 
   return (
     <form>
+      <label htmlFor='age'>退職予定日における年齢</label>
+
       <div>
         <input
           {...register('age', { required: '選択してください' })}
@@ -77,7 +79,7 @@ export default function Q3(props: any) {
         {errors.age && <p>{errors.age.message}</p>}
       </div>
 
-      <label htmlFor='postcode'>郵便番号</label>
+      <label htmlFor='postcode'>お住まいの住所の郵便番号</label>
       <Controller
         control={control}
         rules={{

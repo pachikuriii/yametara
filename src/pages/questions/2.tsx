@@ -27,7 +27,6 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <h2 className='card-title'>年内に働き始める予定はありますか？</h2>
               <Q2></Q2>
             </Card>
           </motion.div>

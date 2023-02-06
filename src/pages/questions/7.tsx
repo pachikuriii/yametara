@@ -26,10 +26,6 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <h2 className='card-title'>
-                退職後、どの健康保険への加入を検討したいか教えてください
-              </h2>
-              <p>国民皆保険制度により退職後も健康保険への加入が必須です。</p>
               <Q7></Q7>
             </Card>
           </motion.div>

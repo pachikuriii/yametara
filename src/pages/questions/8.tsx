@@ -27,9 +27,6 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <h2 className='card-title'>
-                今年度の住民税について、残りの支払いはどうしますか？
-              </h2>
               <Q8></Q8>
             </Card>
           </motion.div>
