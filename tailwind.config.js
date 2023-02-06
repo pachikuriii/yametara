@@ -6,6 +6,7 @@ module.exports = {
   ],
   theme: {
     boxShadow: {
+      select: '0 9px 0px #34D399',
       basic: '0 9px 0px #A7F3D0',
       none: 'none',
     },
