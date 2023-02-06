@@ -66,6 +66,7 @@ export default function Q1(props: any) {
           name='retirementDate'
           render={({ field: { onChange, ref, ...rest } }) => (
             <NumberFormatBase
+              className='border-2  border-primary input input-bordered input-lg w-full '
               onChange={onChange}
               placeholder={dayjs().format('YYYY-MM-DD')}
               format={formattedValue}
@@ -77,7 +78,6 @@ export default function Q1(props: any) {
         {errors.retirementDate && <p>{errors.retirementDate.message}</p>}
 
         <label htmlFor='retirementReason'>退職事由</label>
-
         <input
           {...register('retirementReason', { required: '選択してください' })}
           type='hidden'
