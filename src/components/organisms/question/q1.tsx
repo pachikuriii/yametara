@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { NumberFormatBase } from 'react-number-format';
 import { useRecoilState } from 'recoil';
+import dayjs from '../../../day-js';
 import { useRetirementDateInputHelper } from '../../../hooks/use-retirement-date-input-helper';
 import {
   retirementDateState,
@@ -66,7 +67,7 @@ export default function Q1(props: any) {
           render={({ field: { onChange, ref, ...rest } }) => (
             <NumberFormatBase
               onChange={onChange}
-              placeholder='2022-02-22'
+              placeholder={dayjs().format('YYYY-MM-DD')}
               format={formattedValue}
               {...rest}
               {...props}
