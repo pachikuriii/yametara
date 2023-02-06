@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useLayoutEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { startedState } from '../../../session-stroage';
-import Button from '../../atoms/button';
 
 export default function IndexMain() {
   const [started, setStarted] = useRecoilState(startedState);
