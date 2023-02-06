@@ -1,28 +1,19 @@
-import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
-import Button from '../atoms/button';
+import GuideButton from '../atoms/guide-button';
 
-export default function PagerButtons() {
-  const router = useRouter();
-  const currentQuestionNum: number = Number(
-    router.asPath.replace('/questions/', ''),
-  );
-  const NextPage: number = currentQuestionNum + 1;
-  const PrevPage: number = currentQuestionNum - 1;
-  const NextPath: string = '/questions/' + NextPage;
-  const PrevPath: string = '/questions/' + PrevPage;
+type Props = {
+  handleSubmit: () => void;
+  goBackPage: () => void;
+};
 
+const PagerButtons = ({ handleSubmit, goBackPage }: Props) => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <div>
-        <Button onClick={() => router.push(PrevPath)}>戻る</Button>
-        <Button onClick={() => router.push(NextPath)}>次へ</Button>
-      </div>
-    </motion.div>
+    <div>
+      <GuideButton type='button' onClick={goBackPage}>
+        戻る
+      </GuideButton>
+      <GuideButton onClick={handleSubmit}>次へ</GuideButton>
+    </div>
   );
-}
+};
+
+export default PagerButtons;

@@ -1,10 +1,10 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { familyState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import Button from '../../atoms/button';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
 export default function Q4() {
   const [storedFamily, setStoredFamily] = useRecoilState(familyState);
@@ -20,28 +20,38 @@ export default function Q4() {
     },
   });
 
-  const submitForm: SubmitHandler<formInput> = (data) => {
+  const nextPage = useNextPage();
+  const prevPage = usePrevPage();
+  const router = useRouter();
+
+  const goNextPage: SubmitHandler<formInput> = (data) => {
     setStoredFamily(data.family);
-    router.push('/questions/5');
+    router.push(nextPage);
   };
 
-  const router = useRouter();
+  const goPrevPage = () => {
+    router.push(prevPage);
+  };
 
   return (
     <div>
       <form>
+        <label htmlFor='family'>
+          家計を共にしている社会保険の被保険者の家族
+        </label>
+
         <input
           {...register('family', { required: '選択してください' })}
           type='hidden'
         />
 
         <div>
-          {['はい', 'いいえ'].map((value, index) => {
+          {['いる', 'いない'].map((value, index) => {
             return (
               <button
                 type='button'
                 key={index}
-                onClick={() => setValue('family', value === 'はい' ? 1 : 2)}
+                onClick={() => setValue('family', value === 'いる' ? 1 : 2)}
                 className={
                   'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
                 }
@@ -52,10 +62,10 @@ export default function Q4() {
           })}
         </div>
         {errors.family && <p>{errors.family.message}</p>}
-        <Link href='/questions/3'>
-          <Button>戻る</Button>
-        </Link>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+        <PagerButtons
+          handleSubmit={handleSubmit(goNextPage)}
+          goBackPage={goPrevPage}
+        ></PagerButtons>
       </form>
     </div>
   );

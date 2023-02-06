@@ -20,8 +20,10 @@ export default function Home() {
         </title>
       </Head>
       <main>
-        <Header>Q5.雇用保険について</Header>
-
+        <Header>
+          <p>Q5.雇用保険について</p>
+          <p className='text-sm'>【選択してください】</p>
+        </Header>
         <div>
           <AnswerProgressBar></AnswerProgressBar>
           <motion.div
@@ -31,15 +33,6 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <h2 className='card-title'>
-                雇用保険のこれまでの被保険者期間を教えてください
-              </h2>
-              <Modal
-                label={<Alert>雇用保険の被保険者期間の数え方について</Alert>}
-                id='how-to-count-emp-period'
-              >
-                雇用保険の被保険者期間の数え方についてのモーダルの内容
-              </Modal>
               <Q5></Q5>
             </Card>
           </motion.div>

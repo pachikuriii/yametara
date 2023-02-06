@@ -11,7 +11,7 @@ export default function Document() {
         />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
-      <body className='bg-emerald-400 text-white'>
+      <body className='text-gray-800 bg-emerald-50'>
         <Main />
         <NextScript />
       </body>

@@ -9,8 +9,10 @@ import {
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
-import Button from '../../atoms/button';
 import Modal from '../../atoms/modal';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
 export default function Q1(props: any) {
   const [storedRetirementDate, setStoredRetirementDate] =
@@ -18,6 +20,9 @@ export default function Q1(props: any) {
   const [storedRetirementReason, setStoredRetirementReason] = useRecoilState(
     retirementReasonState,
   );
+  const nextPage = useNextPage();
+  const prevPage = usePrevPage();
+  const router = useRouter();
 
   const {
     handleSubmit,
@@ -32,14 +37,17 @@ export default function Q1(props: any) {
     },
   });
 
-  const submitForm: SubmitHandler<formInput> = (data) => {
+  const goNextPage: SubmitHandler<formInput> = (data) => {
     setStoredRetirementDate(data.retirementDate);
     setStoredRetirementReason(data.retirementReason);
-    router.push('/questions/2');
+    router.push(nextPage);
+  };
+
+  const goPrevPage = () => {
+    router.push(prevPage);
   };
 
   const formattedValue = useRetirementDateInputHelper(props);
-  const router = useRouter();
 
   return (
     <div>
@@ -78,16 +86,13 @@ export default function Q1(props: any) {
           {['自己都合', '会社都合', 'その他'].map((value, index) => {
             index += 1;
             return (
-              <button
+              <AnswerSelectButton
                 type='button'
                 key={index}
                 onClick={() => setValue('retirementReason', index)}
-                className={
-                  'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                }
               >
                 {value}
-              </button>
+              </AnswerSelectButton>
             );
           })}
         </div>
@@ -97,7 +102,11 @@ export default function Q1(props: any) {
             モーダルの内容
           </Modal>
         </div>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+
+        <PagerButtons
+          handleSubmit={handleSubmit(goNextPage)}
+          goBackPage={goPrevPage}
+        ></PagerButtons>
       </form>
     </div>
   );

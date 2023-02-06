@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
@@ -7,7 +6,8 @@ import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { postcodeState, ageState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import Button from '../../atoms/button';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -28,16 +28,24 @@ export default function Q3(props: any) {
     },
   });
 
-  const submitForm: SubmitHandler<formInput> = (data) => {
+  const nextPage = useNextPage();
+  const prevPage = usePrevPage();
+  const router = useRouter();
+
+  const goNextPage: SubmitHandler<formInput> = (data) => {
     setStoredAge(data.age);
     setStoredPostcode(data.postcode);
-    router.push('/questions/4');
+    router.push(nextPage);
   };
 
-  const router = useRouter();
+  const goPrevPage = () => {
+    router.push(prevPage);
+  };
 
   return (
     <form>
+      <label htmlFor='age'>退職予定日における年齢</label>
+
       <div>
         <input
           {...register('age', { required: '選択してください' })}
@@ -77,7 +85,7 @@ export default function Q3(props: any) {
         {errors.age && <p>{errors.age.message}</p>}
       </div>
 
-      <label htmlFor='postcode'>郵便番号</label>
+      <label htmlFor='postcode'>お住まいの住所の郵便番号</label>
       <Controller
         control={control}
         rules={{
@@ -100,10 +108,10 @@ export default function Q3(props: any) {
       />
       {errors.postcode && <p>{errors.postcode.message}</p>}
 
-      <Link href='/questions/2'>
-        <Button>戻る</Button>
-      </Link>
-      <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+      <PagerButtons
+        handleSubmit={handleSubmit(goNextPage)}
+        goBackPage={goPrevPage}
+      ></PagerButtons>
     </form>
   );
 }

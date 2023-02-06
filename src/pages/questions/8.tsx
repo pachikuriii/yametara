@@ -14,8 +14,10 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header>Q8.住民税について</Header>
-
+        <Header>
+          <p>Q8.住民税について</p>
+          <p className='text-sm'>【選択してください】</p>
+        </Header>
         <div>
           <AnswerProgressBar></AnswerProgressBar>
           <motion.div
@@ -27,9 +29,6 @@ export default function Home() {
             transition={{ duration: 0.3 }}
           >
             <Card>
-              <h2 className='card-title'>
-                今年度の住民税について、残りの支払いはどうしますか？
-              </h2>
               <Q8></Q8>
             </Card>
           </motion.div>
