@@ -1,10 +1,10 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import Button from '../../atoms/button';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
 export default function Q6() {
   const [storedHealthInsLastTwoMonth, setStoredHealthInsLastTwoMonth] =
@@ -21,16 +21,26 @@ export default function Q6() {
     },
   });
 
-  const submitForm: SubmitHandler<formInput> = (data) => {
+  const nextPage = useNextPage();
+  const prevPage = usePrevPage();
+  const router = useRouter();
+
+  const goNextPage: SubmitHandler<formInput> = (data) => {
     setStoredHealthInsLastTwoMonth(data.health_ins_last_two_month);
-    router.push('/questions/7');
+    router.push(nextPage);
   };
 
-  const router = useRouter();
+  const goPrevPage = () => {
+    router.push(prevPage);
+  };
 
   return (
     <div>
       <form>
+        <label htmlFor='health_ins_last_two_mont'>
+          退職予定日までの健康保険の被保険者期間
+        </label>
+
         <input
           {...register('health_ins_last_two_month', {
             required: '選択してください',
@@ -39,7 +49,7 @@ export default function Q6() {
         />
 
         <div>
-          {['はい', 'いいえ'].map((value, index) => {
+          {['継続して2ヵ月以上', '継続して2ヵ月以下'].map((value, index) => {
             return (
               <button
                 type='button'
@@ -62,10 +72,10 @@ export default function Q6() {
         {errors.health_ins_last_two_month && (
           <p>{errors.health_ins_last_two_month.message}</p>
         )}
-        <Link href='/questions/5'>
-          <Button>戻る</Button>
-        </Link>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+        <PagerButtons
+          handleSubmit={handleSubmit(goNextPage)}
+          goBackPage={goPrevPage}
+        ></PagerButtons>
       </form>
     </div>
   );

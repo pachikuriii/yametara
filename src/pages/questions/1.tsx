@@ -20,19 +20,17 @@ export default function Home() {
         transition={{ duration: 0.3 }}
       >
         <main>
-          <Header>Q1.今回の退職について</Header>
+          <Header>
+            <p>Q1.今回の退職について</p>
+            <p className='text-sm'>【記入/選択してください】</p>
+          </Header>
 
           <div>
             <AnswerProgressBar></AnswerProgressBar>
 
             <motion.div exit={{ x: '-100%' }} transition={{ duration: 0.3 }}>
               <Card>
-                <h2 className='card-title'>
-                  退職予定日と退職事由を教えてください
-                </h2>
-                <div>
-                  <Q1></Q1>
-                </div>
+                <Q1></Q1>
               </Card>
             </motion.div>
           </div>

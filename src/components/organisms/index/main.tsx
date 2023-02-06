@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useLayoutEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { startedState } from '../../../session-stroage';
-import Button from '../../atoms/button';
 
 export default function IndexMain() {
   const [started, setStarted] = useRecoilState(startedState);
@@ -30,7 +29,7 @@ export default function IndexMain() {
       <div>
         <Link href='/questions/1'>
           <button
-            className='max-sm:w-full md:btn-wide btn btn-outline text-accent md:text-xl bg-primary rounded-full border-secondary hover:bg-secondary-focus hover:border-secondary-focus shadow-md'
+            className='max-sm:w-full md:btn-wide btn btn-outline text-accent md:text-xl bg-white rounded-full border-secondary hover:bg-secondary-focus hover:border-secondary-focus shadow-basic'
             onClick={() => {
               setStarted(true);
             }}

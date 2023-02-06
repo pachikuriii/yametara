@@ -15,7 +15,10 @@ export default function Home() {
         </title>
       </Head>
       <main>
-        <Header>Q6.健康保険について</Header>
+        <Header>
+          <p>Q6.健康保険について</p>
+          <p className='text-sm'>【選択してください】</p>
+        </Header>
 
         <div>
           <AnswerProgressBar></AnswerProgressBar>
@@ -27,9 +30,6 @@ export default function Home() {
           >
             <Card>
               <div>
-                <h2 className='card-title'>
-                  退職予定日までの健康保険の被保険者期間が継続して2ヶ月以上あるか教えてください
-                </h2>
                 <Q6></Q6>
               </div>
             </Card>

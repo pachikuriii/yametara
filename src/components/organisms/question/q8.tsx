@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -7,7 +6,9 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { taxState, retirementDateState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
-import Button from '../../atoms/button';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
 export default function Q8() {
   const storedRetirementDate = useRecoilValue(retirementDateState);
@@ -51,12 +52,18 @@ export default function Q8() {
     },
   });
 
-  const submitForm: SubmitHandler<formInput> = (data) => {
+  const nextPage = useNextPage();
+  const prevPage = usePrevPage();
+  const router = useRouter();
+
+  const goNextPage: SubmitHandler<formInput> = (data) => {
     setStoredTax(data.tax);
-    router.push('/result');
+    router.push(nextPage);
   };
 
-  const router = useRouter();
+  const goPrevPage = () => {
+    router.push(prevPage);
+  };
 
   return (
     <div>
@@ -68,6 +75,7 @@ export default function Q8() {
       </div>
 
       <form>
+        <label htmlFor='tax'>今年度の残りの住民税の支払い方法</label>
         <input
           {...register('tax', { required: '選択してください' })}
           type='hidden'
@@ -91,10 +99,10 @@ export default function Q8() {
           })}
         </div>
         {errors.tax && <p>{errors.tax.message}</p>}
-        <Link href='/questions/7'>
-          <Button>戻る</Button>
-        </Link>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+        <PagerButtons
+          handleSubmit={handleSubmit(goNextPage)}
+          goBackPage={goPrevPage}
+        ></PagerButtons>
       </form>
     </div>
   );
