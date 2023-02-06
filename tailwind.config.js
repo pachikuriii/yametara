@@ -6,7 +6,7 @@ module.exports = {
   ],
   theme: {
     boxShadow: {
-      md: '0 9px 0px rgba(184,232,220,1)',
+      basic: '0 9px 0px #A7F3D0',
       none: 'none',
     },
     extend: {},
@@ -16,8 +16,8 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          primary: '#ffffff',
-          secondary: '#b8e8dc',
+          primary: '#34D399',
+          secondary: '#A7F3D0',
           accent: '#FF354B',
         },
       },
