@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { reEmploymentState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 export default function Q2() {
@@ -42,20 +43,17 @@ export default function Q2() {
           type='hidden'
         />
 
-        <div>
+        <div className='space-x-4'>
           {['あり', 'なし', '未定'].map((value, index) => {
             index += 1;
             return (
-              <button
+              <AnswerSelectButton
                 type='button'
                 key={index}
                 onClick={() => setValue('re_employment', index)}
-                className={
-                  'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                }
               >
                 {value}
-              </button>
+              </AnswerSelectButton>
             );
           })}
         </div>

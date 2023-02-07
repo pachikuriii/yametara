@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { NumberFormatBase } from 'react-number-format';
 import { useRecoilState } from 'recoil';
+import dayjs from '../../../day-js';
 import { useRetirementDateInputHelper } from '../../../hooks/use-retirement-date-input-helper';
 import {
   retirementDateState,
@@ -65,8 +66,9 @@ export default function Q1(props: any) {
           name='retirementDate'
           render={({ field: { onChange, ref, ...rest } }) => (
             <NumberFormatBase
+              className='border-2  border-primary input input-bordered input-lg w-full '
               onChange={onChange}
-              placeholder='2022-02-22'
+              placeholder={dayjs().format('YYYY-MM-DD')}
               format={formattedValue}
               {...rest}
               {...props}
@@ -76,13 +78,12 @@ export default function Q1(props: any) {
         {errors.retirementDate && <p>{errors.retirementDate.message}</p>}
 
         <label htmlFor='retirementReason'>退職事由</label>
-
         <input
           {...register('retirementReason', { required: '選択してください' })}
           type='hidden'
         />
 
-        <div>
+        <div className='space-x-4'>
           {['自己都合', '会社都合', 'その他'].map((value, index) => {
             index += 1;
             return (
@@ -97,7 +98,7 @@ export default function Q1(props: any) {
           })}
         </div>
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
-        <div>
+        <div className='py-2'>
           <Modal label={<Alert>退職事由について</Alert>} id='retirement-reason'>
             モーダルの内容
           </Modal>

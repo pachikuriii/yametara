@@ -6,6 +6,7 @@ import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { postcodeState, ageState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 import 'swiper/css';
@@ -53,7 +54,7 @@ export default function Q3(props: any) {
         />
         <Swiper
           slidesPerView={3}
-          spaceBetween={100}
+          spaceBetween={40}
           className='mySwiper'
           navigation={true}
           modules={[Navigation]}
@@ -69,15 +70,12 @@ export default function Q3(props: any) {
             index += 1;
             return (
               <SwiperSlide key={index}>
-                <button
+                <AnswerSelectButton
                   type='button'
                   onClick={() => setValue('age', index)}
-                  className={
-                    'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                  }
                 >
                   {value}
-                </button>
+                </AnswerSelectButton>
               </SwiperSlide>
             );
           })}
@@ -101,6 +99,7 @@ export default function Q3(props: any) {
             format='###-####'
             placeholder='123-4567'
             onChange={onChange}
+            className='border-2  border-primary input input-bordered input-lg w-full '
             {...rest}
             {...props}
           />

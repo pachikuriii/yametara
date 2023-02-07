@@ -8,6 +8,7 @@ import {
   healthInsLastTwoMonthState,
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
@@ -23,11 +24,11 @@ const Q7 = () => {
 
   useEffect(() => {
     const newInsuranceTypes = ['国民健康保険'];
-    if (storedFamilyState === 1) {
-      newInsuranceTypes.push('家族の健康保険');
-    }
     if (storedHealthInsLastTwoMonthState == 1) {
       newInsuranceTypes.push('任意継続保険');
+    }
+    if (storedFamilyState === 1) {
+      newInsuranceTypes.push('家族の健康保険');
     }
     setInsuranceTypes(newInsuranceTypes);
   }, [
@@ -65,24 +66,21 @@ const Q7 = () => {
       <div className='flex flex-wrap'>
         <h2 className='card-title'>加入を検討したい退職後の健康保険</h2>
         <p>国民皆保険制度により退職後も健康保険への加入が必須です。</p>
-        <div className='tabs tabs-boxed bg-primary'>
-          <div>
+        <div className=' bg-white'>
+          <div className='flex justify-center space-x-4'>
             {insuranceTypes.map((value, index) => {
               index += 1;
               return (
-                <a
+                <AnswerSelectButton
+                  type='button'
                   key={index}
-                  className={
-                    'tab ' +
-                    (tab === index ? 'bg-accent rounded-full text-primary' : '')
-                  }
-                  onClick={(event) => {
-                    event.preventDefault();
+                  onClick={() => {
                     setTab(index);
+                    setValue('health_ins_after_retirement', index);
                   }}
                 >
                   {value}
-                </a>
+                </AnswerSelectButton>
               );
             })}
           </div>
@@ -107,39 +105,12 @@ const Q7 = () => {
                     <p>
                       国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
                     </p>
-                    <button
-                      type='button'
-                      onClick={() => setValue('health_ins_after_retirement', 1)}
-                      className={
-                        'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                      }
-                    >
-                      この保険への加入を検討する
-                    </button>
                   </div>
                   <div className={tab === 2 ? 'block' : 'hidden'}>
                     <p>年金</p>
-                    <button
-                      type='button'
-                      onClick={() => setValue('health_ins_after_retirement', 2)}
-                      className={
-                        'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                      }
-                    >
-                      この保険への加入を検討する
-                    </button>
                   </div>
                   <div className={tab === 3 ? 'block' : 'hidden'}>
                     <p>雇用保険</p>
-                    <button
-                      type='button'
-                      onClick={() => setValue('health_ins_after_retirement', 3)}
-                      className={
-                        'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                      }
-                    >
-                      この保険への加入を検討する
-                    </button>
                   </div>
 
                   {errors.health_ins_after_retirement && (

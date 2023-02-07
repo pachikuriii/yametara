@@ -7,7 +7,7 @@ type Props = {
 
 const PagerButtons = ({ handleSubmit, goBackPage }: Props) => {
   return (
-    <div>
+    <div className='flex w-full justify-center space-x-56'>
       <GuideButton type='button' onClick={goBackPage}>
         戻る
       </GuideButton>

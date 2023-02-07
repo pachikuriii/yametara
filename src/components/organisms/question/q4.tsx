@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { familyState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
@@ -45,19 +46,17 @@ export default function Q4() {
           type='hidden'
         />
 
-        <div>
+        <div className='flex justify-center space-x-4'>
           {['いる', 'いない'].map((value, index) => {
+            index += 1;
             return (
-              <button
+              <AnswerSelectButton
                 type='button'
                 key={index}
-                onClick={() => setValue('family', value === 'いる' ? 1 : 2)}
-                className={
-                  'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                }
+                onClick={() => setValue('family', index)}
               >
                 {value}
-              </button>
+              </AnswerSelectButton>
             );
           })}
         </div>
