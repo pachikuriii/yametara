@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import AnswerSelectButton from 'src/components/atoms/answer-button';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 export default function Q6() {
@@ -48,20 +48,12 @@ export default function Q6() {
           type='hidden'
         />
 
-        <div className='flex justify-center space-x-4'>
-          {['2ヵ月以上', '2ヵ月以下'].map((value, index) => {
-            index += 1;
-            return (
-              <AnswerSelectButton
-                type='button'
-                key={index}
-                onClick={() => setValue('health_ins_last_two_month', index)}
-              >
-                {value}
-              </AnswerSelectButton>
-            );
-          })}
-        </div>
+        <AnswerSelectButtons
+          labels={['2ヵ月以上', '2ヵ月以下']}
+          setValue={setValue}
+          property='health_ins_last_two_month'
+        ></AnswerSelectButtons>
+
         {errors.health_ins_last_two_month && (
           <p>{errors.health_ins_last_two_month.message}</p>
         )}

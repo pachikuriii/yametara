@@ -11,7 +11,7 @@ import {
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
 import Modal from '../../atoms/modal';
-import AnswerSelectButton from 'src/components/atoms/answer-button';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
@@ -83,20 +83,12 @@ export default function Q1(props: any) {
           type='hidden'
         />
 
-        <div className='space-x-4'>
-          {['自己都合', '会社都合', 'その他'].map((value, index) => {
-            index += 1;
-            return (
-              <AnswerSelectButton
-                type='button'
-                key={index}
-                onClick={() => setValue('retirementReason', index)}
-              >
-                {value}
-              </AnswerSelectButton>
-            );
-          })}
-        </div>
+        <AnswerSelectButtons
+          labels={['自己都合', '会社都合', 'その他']}
+          setValue={setValue}
+          property='retirementReason'
+        ></AnswerSelectButtons>
+
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
         <div className='py-2'>
           <Modal label={<Alert>退職事由について</Alert>} id='retirement-reason'>

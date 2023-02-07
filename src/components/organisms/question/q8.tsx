@@ -6,6 +6,7 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { taxState, retirementDateState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
@@ -80,23 +81,15 @@ export default function Q8() {
           type='hidden'
         />
 
-        <div className='justify-center space-y-6'>
-          {taxPaymentTypes.map((value, index) => {
-            index += 1;
-            return (
-              <button
-                type='button'
-                key={index}
-                onClick={() => setValue('tax', index)}
-                className={
-                  'btn btn-outline w-full text-accent bg-white rounded-2xl border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select'
-                }
-              >
-                {value}
-              </button>
-            );
-          })}
-        </div>
+        <AnswerSelectButtons
+          labels={taxPaymentTypes}
+          setValue={setValue}
+          property='tax'
+          originalStyling={
+            'btn btn-outline w-full text-accent bg-white rounded-2xl border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select'
+          }
+        ></AnswerSelectButtons>
+
         {errors.tax && <p>{errors.tax.message}</p>}
         <PagerButtons
           handleSubmit={handleSubmit(goNextPage)}

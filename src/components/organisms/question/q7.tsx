@@ -8,7 +8,7 @@ import {
   healthInsLastTwoMonthState,
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import AnswerSelectButton from 'src/components/atoms/answer-button';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
@@ -67,23 +67,11 @@ const Q7 = () => {
         <h2 className='card-title'>加入を検討したい退職後の健康保険</h2>
         <p>国民皆保険制度により退職後も健康保険への加入が必須です。</p>
         <div className=' bg-white'>
-          <div className='flex justify-center space-x-4'>
-            {insuranceTypes.map((value, index) => {
-              index += 1;
-              return (
-                <AnswerSelectButton
-                  type='button'
-                  key={index}
-                  onClick={() => {
-                    setTab(index);
-                    setValue('health_ins_after_retirement', index);
-                  }}
-                >
-                  {value}
-                </AnswerSelectButton>
-              );
-            })}
-          </div>
+          <AnswerSelectButtons
+            labels={insuranceTypes}
+            setValue={setValue}
+            property='health_ins_after_retirement'
+          ></AnswerSelectButtons>
 
           <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded'>
             <div className='px-4 py-5 flex-auto'>
