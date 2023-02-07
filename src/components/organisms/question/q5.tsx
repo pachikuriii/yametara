@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
@@ -13,7 +12,7 @@ import AnswerSelectButton from 'src/components/atoms/answer-button';
 import Modal from 'src/components/atoms/modal';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -35,18 +34,9 @@ export default function Q5() {
     },
   });
 
-  const nextPage = useNextPage();
-  const prevPage = usePrevPage();
-  const router = useRouter();
-
-  const goNextPage: SubmitHandler<formInput> = (data) => {
+  const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredEmpInsTotal(data.emp_ins_total);
     setStoredEmpInsLastTwoYears(data.emp_ins_last_two_years);
-    router.push(nextPage);
-  };
-
-  const goPrevPage = () => {
-    router.push(prevPage);
   };
 
   return (
@@ -117,10 +107,7 @@ export default function Q5() {
         {errors.emp_ins_total && <p>{errors.emp_ins_total.message}</p>}
       </div>
 
-      <PagerButtons
-        handleSubmit={handleSubmit(goNextPage)}
-        goBackPage={goPrevPage}
-      ></PagerButtons>
+      <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
     </form>
   );
 }
