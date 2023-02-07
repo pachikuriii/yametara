@@ -11,6 +11,7 @@ import { formInput } from '../../../types/type';
 import Alert from 'src/components/atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
 import Modal from 'src/components/atoms/modal';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 import 'swiper/css';
@@ -68,20 +69,12 @@ export default function Q5() {
           })}
           type='hidden'
         />
-        <div className='flex justify-center space-x-4'>
-          {['半年未満', '半年以上1年未満', '1年以上'].map((value, index) => {
-            index += 1;
-            return (
-              <AnswerSelectButton
-                type='button'
-                key={index}
-                onClick={() => setValue('emp_ins_last_two_years', index)}
-              >
-                {value}
-              </AnswerSelectButton>
-            );
-          })}
-        </div>
+
+        <AnswerSelectButtons
+          labels={['半年未満', '半年以上1年未満', '1年以上']}
+          setValue={setValue}
+          property='emp_ins_last_two_years'
+        ></AnswerSelectButtons>
       </div>
       {errors.emp_ins_last_two_years && (
         <p>{errors.emp_ins_last_two_years.message}</p>

@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { reEmploymentState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import AnswerSelectButton from 'src/components/atoms/answer-button';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 export default function Q2() {
@@ -42,21 +42,12 @@ export default function Q2() {
           {...register('re_employment', { required: '選択してください' })}
           type='hidden'
         />
+        <AnswerSelectButtons
+          labels={['あり', 'なし', '未定']}
+          setValue={setValue}
+          property='re_employment'
+        ></AnswerSelectButtons>
 
-        <div className='space-x-4'>
-          {['あり', 'なし', '未定'].map((value, index) => {
-            index += 1;
-            return (
-              <AnswerSelectButton
-                type='button'
-                key={index}
-                onClick={() => setValue('re_employment', index)}
-              >
-                {value}
-              </AnswerSelectButton>
-            );
-          })}
-        </div>
         {errors.re_employment && <p>{errors.re_employment.message}</p>}
         <PagerButtons
           handleSubmit={handleSubmit(goNextPage)}
