@@ -20,7 +20,7 @@ type Props = {
 
 const AnswerSelectButtons = ({ labels, setValue, property }: Props) => {
   return (
-    <div className='space-x-4'>
+    <div className=' flex justify-center space-x-4'>
       {labels.map((value, index) => {
         index += 1;
         return (
