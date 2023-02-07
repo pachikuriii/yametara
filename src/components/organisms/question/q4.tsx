@@ -48,11 +48,12 @@ export default function Q4() {
 
         <div className='flex justify-center space-x-4'>
           {['いる', 'いない'].map((value, index) => {
+            index += 1;
             return (
               <AnswerSelectButton
                 type='button'
                 key={index}
-                onClick={() => setValue('family', value === 'いる' ? 1 : 2)}
+                onClick={() => setValue('family', index)}
               >
                 {value}
               </AnswerSelectButton>

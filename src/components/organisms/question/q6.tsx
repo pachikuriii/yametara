@@ -50,16 +50,12 @@ export default function Q6() {
 
         <div className='flex justify-center space-x-4'>
           {['2ヵ月以上', '2ヵ月以下'].map((value, index) => {
+            index += 1;
             return (
               <AnswerSelectButton
                 type='button'
                 key={index}
-                onClick={() =>
-                  setValue(
-                    'health_ins_last_two_month',
-                    value === 'はい' ? 1 : 2,
-                  )
-                }
+                onClick={() => setValue('health_ins_last_two_month', index)}
               >
                 {value}
               </AnswerSelectButton>
