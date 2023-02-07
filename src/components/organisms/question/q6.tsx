@@ -3,9 +3,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
-
 export default function Q6() {
   const [storedHealthInsLastTwoMonth, setStoredHealthInsLastTwoMonth] =
     useRecoilState(healthInsLastTwoMonthState);
@@ -38,7 +38,7 @@ export default function Q6() {
     <div>
       <form>
         <label htmlFor='health_ins_last_two_mont'>
-          退職予定日までの健康保険の被保険者期間
+          退職予定日までの健康保険の被保険者期間 継続して…
         </label>
 
         <input
@@ -48,10 +48,10 @@ export default function Q6() {
           type='hidden'
         />
 
-        <div>
-          {['継続して2ヵ月以上', '継続して2ヵ月以下'].map((value, index) => {
+        <div className='flex justify-center space-x-4'>
+          {['2ヵ月以上', '2ヵ月以下'].map((value, index) => {
             return (
-              <button
+              <AnswerSelectButton
                 type='button'
                 key={index}
                 onClick={() =>
@@ -60,12 +60,9 @@ export default function Q6() {
                     value === 'はい' ? 1 : 2,
                   )
                 }
-                className={
-                  'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                }
               >
                 {value}
-              </button>
+              </AnswerSelectButton>
             );
           })}
         </div>
