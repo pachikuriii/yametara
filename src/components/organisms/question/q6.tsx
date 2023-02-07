@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 export default function Q6() {
   const [storedHealthInsLastTwoMonth, setStoredHealthInsLastTwoMonth] =
@@ -20,8 +22,11 @@ export default function Q6() {
     },
   });
 
+  const router = useRouter();
+  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredHealthInsLastTwoMonth(data.health_ins_last_two_month);
+    router.push(nextPage);
   };
 
   return (

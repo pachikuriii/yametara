@@ -11,26 +11,17 @@ type Props = {
 
 const PagerButtons = ({ handleSubmit }: Props) => {
   const prevPage = usePrevPage();
-  const nextPage = useNextPage();
   const router = useRouter();
-
-  const goPrevPage = () => {
-    router.push(prevPage);
-  };
-  const goNextPage = () => {
-    router.push(nextPage);
-  };
 
   return (
     <div className='flex w-full justify-center space-x-56'>
-      <GuideButton type='button' onClick={goPrevPage}>
+      <GuideButton type='button' onClick={() => router.push(prevPage)}>
         戻る
       </GuideButton>
       <GuideButton
         type='button'
         onClick={() => {
           handleSubmit();
-          goNextPage();
         }}
       >
         次へ

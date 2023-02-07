@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -9,6 +10,7 @@ import {
 import { formInput } from '../../../types/type';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 const Q7 = () => {
   const [tab, setTab] = useState(1);
@@ -46,8 +48,11 @@ const Q7 = () => {
     },
   });
 
+  const router = useRouter();
+  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredHealthInsAfterRetirement(data.health_ins_after_retirement);
+    router.push(nextPage);
   };
 
   return (

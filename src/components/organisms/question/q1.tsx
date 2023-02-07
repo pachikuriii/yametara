@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { NumberFormatBase } from 'react-number-format';
 import { useRecoilState } from 'recoil';
@@ -12,6 +13,7 @@ import Alert from '../../atoms/alert';
 import Modal from '../../atoms/modal';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 export default function Q1(props: any) {
   const [storedRetirementDate, setStoredRetirementDate] =
@@ -32,9 +34,13 @@ export default function Q1(props: any) {
     },
   });
 
+  const router = useRouter();
+  const nextPage = useNextPage();
+
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredRetirementDate(data.retirementDate);
     setStoredRetirementReason(data.retirementReason);
+    router.push(nextPage);
   };
 
   const formattedValue = useRetirementDateInputHelper(props);

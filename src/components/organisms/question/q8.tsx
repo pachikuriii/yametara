@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilValue, useRecoilState } from 'recoil';
@@ -7,6 +8,7 @@ import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 export default function Q8() {
   const storedRetirementDate = useRecoilValue(retirementDateState);
@@ -50,8 +52,11 @@ export default function Q8() {
     },
   });
 
+  const router = useRouter();
+  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredTax(data.tax);
+    router.push(nextPage);
   };
 
   return (

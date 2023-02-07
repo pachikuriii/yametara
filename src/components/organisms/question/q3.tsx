@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 import { useRecoilState } from 'recoil';
@@ -7,6 +8,7 @@ import { postcodeState, ageState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -28,9 +30,12 @@ export default function Q3(props: any) {
     },
   });
 
+  const router = useRouter();
+  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredAge(data.age);
     setStoredPostcode(data.postcode);
+    router.push(nextPage);
   };
 
   return (

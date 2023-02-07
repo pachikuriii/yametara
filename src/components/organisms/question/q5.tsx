@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
@@ -12,6 +13,7 @@ import AnswerSelectButton from 'src/components/atoms/answer-button';
 import Modal from 'src/components/atoms/modal';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -34,9 +36,12 @@ export default function Q5() {
     },
   });
 
+  const router = useRouter();
+  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredEmpInsTotal(data.emp_ins_total);
     setStoredEmpInsLastTwoYears(data.emp_ins_last_two_years);
+    router.push(nextPage);
   };
 
   return (
