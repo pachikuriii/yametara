@@ -4,6 +4,7 @@ import { formInput } from 'src/types/type';
 type Props = {
   labels: Array<string>;
   setValue: UseFormSetValue<formInput>;
+  originalStyling?: string;
   property:
     | 'retirementDate'
     | 'retirementReason'
@@ -18,9 +19,14 @@ type Props = {
     | 'tax';
 };
 
-const AnswerSelectButtons = ({ labels, setValue, property }: Props) => {
+const AnswerSelectButtons = ({
+  labels,
+  setValue,
+  property,
+  originalStyling,
+}: Props) => {
   return (
-    <div className=' flex justify-center space-x-4'>
+    <div>
       {labels.map((value, index) => {
         index += 1;
         return (
@@ -28,6 +34,7 @@ const AnswerSelectButtons = ({ labels, setValue, property }: Props) => {
             type='button'
             key={index}
             onClick={() => setValue(property, index)}
+            originalStyling={originalStyling}
           >
             {value}
           </AnswerSelectButton>
