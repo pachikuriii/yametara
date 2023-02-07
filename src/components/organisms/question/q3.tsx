@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 import { useRecoilState } from 'recoil';
@@ -8,7 +7,7 @@ import { postcodeState, ageState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -29,18 +28,9 @@ export default function Q3(props: any) {
     },
   });
 
-  const nextPage = useNextPage();
-  const prevPage = usePrevPage();
-  const router = useRouter();
-
-  const goNextPage: SubmitHandler<formInput> = (data) => {
+  const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredAge(data.age);
     setStoredPostcode(data.postcode);
-    router.push(nextPage);
-  };
-
-  const goPrevPage = () => {
-    router.push(prevPage);
   };
 
   return (
@@ -107,10 +97,7 @@ export default function Q3(props: any) {
       />
       {errors.postcode && <p>{errors.postcode.message}</p>}
 
-      <PagerButtons
-        handleSubmit={handleSubmit(goNextPage)}
-        goBackPage={goPrevPage}
-      ></PagerButtons>
+      <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
     </form>
   );
 }

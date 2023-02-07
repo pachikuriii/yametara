@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { NumberFormatBase } from 'react-number-format';
 import { useRecoilState } from 'recoil';
@@ -13,7 +12,6 @@ import Alert from '../../atoms/alert';
 import Modal from '../../atoms/modal';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
 export default function Q1(props: any) {
   const [storedRetirementDate, setStoredRetirementDate] =
@@ -21,10 +19,6 @@ export default function Q1(props: any) {
   const [storedRetirementReason, setStoredRetirementReason] = useRecoilState(
     retirementReasonState,
   );
-  const nextPage = useNextPage();
-  const prevPage = usePrevPage();
-  const router = useRouter();
-
   const {
     handleSubmit,
     control,
@@ -38,14 +32,9 @@ export default function Q1(props: any) {
     },
   });
 
-  const goNextPage: SubmitHandler<formInput> = (data) => {
+  const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredRetirementDate(data.retirementDate);
     setStoredRetirementReason(data.retirementReason);
-    router.push(nextPage);
-  };
-
-  const goPrevPage = () => {
-    router.push(prevPage);
   };
 
   const formattedValue = useRetirementDateInputHelper(props);
@@ -96,10 +85,7 @@ export default function Q1(props: any) {
           </Modal>
         </div>
 
-        <PagerButtons
-          handleSubmit={handleSubmit(goNextPage)}
-          goBackPage={goPrevPage}
-        ></PagerButtons>
+        <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
       </form>
     </div>
   );

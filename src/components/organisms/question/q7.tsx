@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -10,7 +9,6 @@ import {
 import { formInput } from '../../../types/type';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 
 const Q7 = () => {
   const [tab, setTab] = useState(1);
@@ -48,17 +46,8 @@ const Q7 = () => {
     },
   });
 
-  const nextPage = useNextPage();
-  const prevPage = usePrevPage();
-  const router = useRouter();
-
-  const goNextPage: SubmitHandler<formInput> = (data) => {
+  const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredHealthInsAfterRetirement(data.health_ins_after_retirement);
-    router.push(nextPage);
-  };
-
-  const goPrevPage = () => {
-    router.push(prevPage);
   };
 
   return (
@@ -105,8 +94,7 @@ const Q7 = () => {
                     <p>{errors.health_ins_after_retirement.message}</p>
                   )}
                   <PagerButtons
-                    handleSubmit={handleSubmit(goNextPage)}
-                    goBackPage={goPrevPage}
+                    handleSubmit={handleSubmit(submitContent)}
                   ></PagerButtons>
                 </form>
               </div>
