@@ -9,6 +9,7 @@ import {
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from 'src/components/atoms/alert';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
 import Modal from 'src/components/atoms/modal';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
@@ -52,7 +53,7 @@ export default function Q5() {
       <div>
         <h2 className='card-title'>雇用保険のこれまでの被保険者期間</h2>
         <Modal
-          label={<Alert>期間の数え方の参考</Alert>}
+          label={<Alert>期間の数え方について</Alert>}
           id='how-to-count-emp-period'
         >
           雇用保険の被保険者期間の数え方の参考
@@ -67,21 +68,20 @@ export default function Q5() {
           })}
           type='hidden'
         />
-        {['6ヶ月未満', '6ヶ月以上1年未満', '1年以上'].map((value, index) => {
-          index += 1;
-          return (
-            <button
-              type='button'
-              key={index}
-              onClick={() => setValue('emp_ins_last_two_years', index)}
-              className={
-                'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-              }
-            >
-              {value}
-            </button>
-          );
-        })}
+        <div className='flex justify-center space-x-4'>
+          {['半年未満', '半年以上1年未満', '1年以上'].map((value, index) => {
+            index += 1;
+            return (
+              <AnswerSelectButton
+                type='button'
+                key={index}
+                onClick={() => setValue('emp_ins_last_two_years', index)}
+              >
+                {value}
+              </AnswerSelectButton>
+            );
+          })}
+        </div>
       </div>
       {errors.emp_ins_last_two_years && (
         <p>{errors.emp_ins_last_two_years.message}</p>
@@ -95,7 +95,7 @@ export default function Q5() {
         />
         <Swiper
           slidesPerView={3}
-          spaceBetween={100}
+          spaceBetween={40}
           className='mySwiper'
           navigation={true}
           modules={[Navigation]}
@@ -111,15 +111,12 @@ export default function Q5() {
             index += 1;
             return (
               <SwiperSlide key={index}>
-                <button
+                <AnswerSelectButton
                   type='button'
                   onClick={() => setValue('emp_ins_total', index)}
-                  className={
-                    'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                  }
                 >
                   {value}
-                </button>
+                </AnswerSelectButton>
               </SwiperSlide>
             );
           })}
