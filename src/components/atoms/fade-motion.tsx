@@ -5,18 +5,20 @@ interface Props {
   children: ReactNode;
 }
 
-const Motion = ({ children }: Props) => {
+const FadeMotion = ({ children }: Props) => {
   return (
     <motion.div
-      initial={{ x: '100%' }}
-      animate={{ x: 0 }}
-      exit={{ x: '-100%' }}
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className='flex justify-center mt-10 w-11/12 mx-auto'
     >
       {children}
     </motion.div>
   );
 };
 
-export default Motion;
+export default FadeMotion;

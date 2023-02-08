@@ -5,12 +5,12 @@ interface Props {
   children: ReactNode;
 }
 
-const Motion = ({ children }: Props) => {
+const BackMotion = ({ children }: Props) => {
   return (
     <motion.div
-      initial={{ x: '100%' }}
+      initial={{ x: '-100%' }}
       animate={{ x: 0 }}
-      exit={{ x: '-100%' }}
+      exit={{ x: '100%' }}
       transition={{ duration: 0.3 }}
       className='flex justify-center mt-10 w-11/12 mx-auto'
     >
@@ -19,4 +19,4 @@ const Motion = ({ children }: Props) => {
   );
 };
 
-export default Motion;
+export default BackMotion;
