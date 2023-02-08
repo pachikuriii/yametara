@@ -7,7 +7,7 @@ interface Props {
 
 const Modal = ({ label, children, id }: Props) => {
   return (
-    <div>
+    <div className='flex justify-center'>
       <label htmlFor={id}>{label}</label>
       <input type='checkbox' id={id} className='modal-toggle' />
       <div className='modal'>
