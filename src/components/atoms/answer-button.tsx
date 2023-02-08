@@ -14,7 +14,9 @@ const AnswerSelectButton = ({
 }: Props) => {
   return (
     <button
-      className={originalStyling ? originalStyling : 'h-24 w-24 btn btn-outline text-accent bg-white rounded-2xl border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select'}
+      className={
+        'h-24 w-24 btn btn-outline text-accent bg-white rounded-2xl border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select'
+      }
       onClick={onClick}
       {...props}
     >
