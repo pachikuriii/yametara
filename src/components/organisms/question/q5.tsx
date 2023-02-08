@@ -10,7 +10,6 @@ import {
 import { formInput } from '../../../types/type';
 import Alert from 'src/components/atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import Modal from 'src/components/atoms/modal';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage } from 'src/hooks/use-get-page';
@@ -48,12 +47,11 @@ export default function Q5() {
     <form>
       <div>
         <h2 className='card-title'>雇用保険のこれまでの被保険者期間</h2>
-        <Modal
-          label={<Alert>期間の数え方について</Alert>}
-          id='how-to-count-emp-period'
-        >
-          雇用保険の被保険者期間の数え方の参考
-        </Modal>
+
+        <label htmlFor='how-to-count-emp-period'>
+          <Alert>期間の数え方について</Alert>
+        </label>
+
         <label htmlFor='emp_ins_last_two_years'>
           退職予定日までの2年間では…
         </label>

@@ -10,7 +10,6 @@ import {
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
-import Modal from '../../atoms/modal';
 import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage } from 'src/hooks/use-get-page';
@@ -85,11 +84,10 @@ export default function Q1(props: any) {
         ></AnswerSelectButtons>
 
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
-        <div className='py-2'>
-          <Modal label={<Alert>退職事由について</Alert>} id='retirement-reason'>
-            モーダルの内容
-          </Modal>
-        </div>
+
+        <label htmlFor='retirement-reason'>
+          <Alert>退職事由について</Alert>
+        </label>
 
         <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
       </form>

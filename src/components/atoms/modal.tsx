@@ -1,27 +1,25 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 interface Props {
   children: ReactNode;
-  label: ReactNode;
   id: string;
 }
 
-const Modal = ({ label, children, id }: Props) => {
+const Modal = ({ children, id }: Props) => {
+  const [idState, setIdState] = useState('');
+  const [childrenState, setChildrenState] = useState<ReactNode>();
+  useEffect(() => {
+    setIdState(id);
+    setChildrenState(children);
+  }, [id, children]);
   return (
-    <div>
-      <label htmlFor={id}>{label}</label>
-      <input type='checkbox' id={id} className='modal-toggle' />
-      <div className='modal'>
-        <div className='modal-box relative'>
-          <label
-            htmlFor={id}
-            className='btn btn-sm btn-circle absolute right-2 top-2'
-          >
-            ✕
-          </label>
-          {children}
-        </div>
-      </div>
-    </div>
+    <>
+      <input type='checkbox' id={idState} className='modal-toggle' />
+      <label htmlFor={idState} className='modal cursor-pointer'>
+        <label className='modal-box relative' htmlFor=''>
+          <p className='py-4'>{childrenState}</p>
+        </label>
+      </label>
+    </>
   );
 };
 

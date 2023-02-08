@@ -1,10 +1,8 @@
-import { motion } from 'framer-motion';
 import Head from 'next/head';
-import Card from '../../components/atoms/card';
-import AnswerProgressBar from '../../components/atoms/progress-bar';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q4 from '../../components/organisms/question/q4';
+import Question from 'src/components/template/question';
 
 export default function Home() {
   return (
@@ -14,25 +12,14 @@ export default function Home() {
           yametara | 退職後の手続きシミュレーター | あなたの家族について
         </title>
       </Head>
-      <main>
+      <main className='flex flex-col min-h-screen'>
         <Header>
           <p>Q4.あなたの家族について</p>
           <p className='text-sm'>【選択してください】</p>
         </Header>
-
-        <div>
-          <AnswerProgressBar></AnswerProgressBar>
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ duration: 0.3 }}
-          >
-            <Card>
-              <Q4></Q4>
-            </Card>
-          </motion.div>
-        </div>
+        <Question>
+          <Q4></Q4>
+        </Question>
         <Footer></Footer>
       </main>
     </>

@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-
 import Modal from '../components/atoms/modal';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
@@ -37,12 +36,14 @@ export default function Home() {
         transition={{ duration: 0.3 }}
       >
         <main>
-          <Modal
-            label={<p className='text-black'>入力内容を見る</p>}
-            id='given_choices'
-          >
+          <label htmlFor='given_choices'>
+            <p className='text-black'>入力内容を見る</p>
+          </label>
+
+          <Modal id='given_choices'>
             <DataInput />
           </Modal>
+
           <Header>シミュレーション結果</Header>
           <p>
             あなたが{retirementDateToDisplay}
