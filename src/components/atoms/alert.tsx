@@ -5,7 +5,7 @@ interface Props {
 
 const Alert = ({ children }: Props) => {
   return (
-    <div className='alert bg-white'>
+    <div className='flex justify-center alert bg-white'>
       <div>
         <svg
           xmlns='http://www.w3.org/2000/svg'
