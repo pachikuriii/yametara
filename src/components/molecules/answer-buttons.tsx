@@ -26,7 +26,7 @@ const AnswerSelectButtons = ({
   originalStyling,
 }: Props) => {
   return (
-    <div>
+    <div className='flex space-x-4 justify-center'>
       {labels.map((value, index) => {
         index += 1;
         return (
