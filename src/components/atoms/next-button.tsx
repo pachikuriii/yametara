@@ -5,10 +5,10 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
 };
 
-const GuideButton = ({ children, onClick, ...props }: Props) => {
+const NextButton = ({ children, onClick, ...props }: Props) => {
   return (
     <button
-      className='btn btn-outline text-accent bg-white rounded-full border-primary  hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select'
+      className='btn text-white bg-primary rounded-full  border-none hover:bg-primary-focus  font-extrabold'
       onClick={onClick}
       {...props}
     >
@@ -17,4 +17,4 @@ const GuideButton = ({ children, onClick, ...props }: Props) => {
   );
 };
 
-export default GuideButton;
+export default NextButton;
