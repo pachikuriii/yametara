@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import { BaseSyntheticEvent } from 'react';
-import GuideButton from '../atoms/guide-button';
-import { usePrevPage, useNextPage } from 'src/hooks/use-get-page';
+import BackButton from '../atoms/back-button';
+import NextButton from '../atoms/next-button';
+import { usePrevPage } from 'src/hooks/use-get-page';
 
 type Props = {
   handleSubmit(
@@ -16,20 +17,20 @@ const PagerButtons = ({ handleSubmit }: Props) => {
   return (
     <div className='flex w-full justify-center'>
       <div className='mr-auto'>
-        <GuideButton type='button' onClick={() => router.push(prevPage)}>
+        <BackButton type='button' onClick={() => router.push(prevPage)}>
           戻る
-        </GuideButton>
+        </BackButton>
       </div>
 
       <div className='ml-auto'>
-        <GuideButton
+        <NextButton
           type='button'
           onClick={() => {
             handleSubmit();
           }}
         >
           次へ
-        </GuideButton>
+        </NextButton>
       </div>
     </div>
   );
