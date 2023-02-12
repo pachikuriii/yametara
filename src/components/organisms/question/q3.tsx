@@ -10,9 +10,6 @@ import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage } from 'src/hooks/use-get-page';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-
 export default function Q3(props: any) {
   const [storedAge, setStoredAge] = useRecoilState(ageState);
   const [storedPostcode, setStoredPostcode] = useRecoilState(postcodeState);
