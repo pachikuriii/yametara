@@ -14,9 +14,6 @@ import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage } from 'src/hooks/use-get-page';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-
 export default function Q5() {
   const [storedEmpInsTotal, setStoredEmpInsTotal] =
     useRecoilState(empInsTotalState);
