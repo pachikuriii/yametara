@@ -3,12 +3,12 @@ import Check from '../atoms/check';
 import TodoPlate from '../atoms/todo-plate';
 interface Props {
   children: ReactNode;
-  className?: String;
+  additionalClassName?: String;
 }
 
-const CheckedTodoPlate = ({ children, className }: Props) => {
+const CheckedTodoPlate = ({ children, additionalClassName }: Props) => {
   return (
-    <div className={'indicator w-full' + className}>
+    <div className={'indicator w-full my-4 ' + additionalClassName}>
       <Check></Check>
       <TodoPlate>{children}</TodoPlate>
     </div>
