@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
 import Modal from '../components/atoms/modal';
 import Footer from '../components/organisms/question/footer';
 import Header from '../components/organisms/question/header';
@@ -12,17 +10,8 @@ import HealthlInsurance from '../components/organisms/result/health-insurance';
 import Pension from '../components/organisms/result/pension';
 import Tax from '../components/organisms/result/tax';
 import Todo from '../components/organisms/result/todo';
-import dayjs from '../day-js';
-import { retirementDateState } from '../session-stroage';
 
 export default function Home() {
-  const [retirementDate] = useRecoilState(retirementDateState);
-  const [retirementDateToDisplay, setRetirementDateToDisplay] = useState('');
-
-  useEffect(() => {
-    setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年MM月DD日'));
-  }, [retirementDate]);
-
   return (
     <>
       <Head>
@@ -45,10 +34,6 @@ export default function Home() {
           </Modal>
 
           <Header>シミュレーション結果</Header>
-          <p>
-            あなたが{retirementDateToDisplay}
-            に会社を辞めたら以下についての手続きが必要です。
-          </p>
           <Todo></Todo>
           <div>
             <h3>手続き内容の詳細</h3>
