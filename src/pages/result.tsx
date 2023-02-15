@@ -25,8 +25,13 @@ export default function Home() {
         transition={{ duration: 0.3 }}
       >
         <main>
-          <label htmlFor='given_choices'>
-            <p className='text-black'>入力内容を見る</p>
+          <label
+            htmlFor='given_choices'
+            className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4  border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50'
+          >
+            <p className='m-4'>
+              <span className='max-sm:block'>あなたの</span>入力内容
+            </p>
           </label>
 
           <Modal id='given_choices'>
