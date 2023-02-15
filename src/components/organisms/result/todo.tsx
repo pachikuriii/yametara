@@ -43,7 +43,7 @@ const Todo = () => {
 
   return (
     <>
-      <p>
+      <p className='text-center'>
         あなたが{retirementDateToDisplay}
         に会社を辞めたら以下についての手続きが必要です。
       </p>

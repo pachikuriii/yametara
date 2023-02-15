@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
+import { IconContext } from 'react-icons/';
+import { AiOutlineReload } from 'react-icons/ai';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import Modal from '../components/atoms/modal';
-import Footer from '../components/organisms/question/footer';
+import Footer from '../components/organisms/index/footer';
 import Header from '../components/organisms/question/header';
 import DataInput from '../components/organisms/result/data-input';
 import EmploymentInsurance from '../components/organisms/result/employment-insurance';
@@ -39,18 +42,42 @@ export default function Home() {
           </Modal>
 
           <Header>シミュレーション結果</Header>
-          <Todo></Todo>
-          <div>
-            <h3>手続き内容の詳細</h3>
-            <HealthlInsurance></HealthlInsurance>
-            <Pension></Pension>
-            <EmploymentInsurance></EmploymentInsurance>
-            <Tax></Tax>
+          <div className='mx-auto w-11/12'>
+            <div className='mx-auto w-11/12'>
+              <Todo></Todo>
+              <h3 className='text-center font-extrabold text-2xl'>
+                手続き内容の詳細
+              </h3>
+              <HealthlInsurance></HealthlInsurance>
+              <Pension></Pension>
+              <EmploymentInsurance></EmploymentInsurance>
+              <Tax></Tax>
+            </div>
+          </div>
+          <div className='flex justify-evenly pt-10 pb-20'>
             <Link href='questions/8'>
-              <p>もどる</p>
+              <button className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'>
+                <IconContext.Provider
+                  value={{ className: 'global-class-name', size: '1.2em' }}
+                >
+                  <span className='pr-1'>
+                    <IoMdArrowRoundBack />
+                  </span>
+                </IconContext.Provider>
+                戻る
+              </button>
             </Link>
             <Link href='questions/1'>
-              <p>もう1度シミュレーションする</p>
+              <button className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'>
+                <IconContext.Provider
+                  value={{ className: 'global-class-name', size: '1.2em' }}
+                >
+                  <span className='pr-1'>
+                    <AiOutlineReload />
+                  </span>
+                </IconContext.Provider>
+                もう1度シミュレーションする
+              </button>
             </Link>
           </div>
           <Footer></Footer>
