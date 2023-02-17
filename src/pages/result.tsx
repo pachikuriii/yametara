@@ -46,7 +46,7 @@ export default function Home() {
             <div className='mx-auto w-11/12'>
               <Todo></Todo>
               <h3 className='text-center font-extrabold text-2xl'>
-                手続き内容の詳細
+                あなたの手続き内容の詳細
               </h3>
               <HealthlInsurance></HealthlInsurance>
               <Pension></Pension>
