@@ -8,6 +8,7 @@ import {
   retirementDateState,
 } from '../../../session-stroage';
 import CheckedTodoPlate from '../../molecules/checked-todo-plate';
+import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 
 const Todo = () => {
   const [retirementDate] = useRecoilState(retirementDateState);
@@ -16,30 +17,17 @@ const Todo = () => {
   const [storedEmpInsLastTwoYears] = useRecoilState(empInsLastTwoYearsState);
   const [storedRetirementReason] = useRecoilState(retirementReasonState);
   const [tax, setTax] = useState(0);
-  const [empInsLastTwoYears, setEmpInsLastTwoYears] = useState(0);
-  const [retirementReason, setRetirementReason] = useState(0);
+  const [empInsQualification] = useEmpInsQualification();
 
   useEffect(() => {
     setTax(storedTax);
-    setEmpInsLastTwoYears(storedEmpInsLastTwoYears);
     setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年M月DD日'));
-    setRetirementReason(storedRetirementReason);
   }, [
     storedTax,
     storedEmpInsLastTwoYears,
     storedRetirementReason,
     retirementDate,
   ]);
-
-  // 雇用保険
-  const RETIRED_WITH_UNINTENTIONAL_REASON_AND_INSURANCE =
-    retirementReason === 3 && empInsLastTwoYears !== 1;
-
-  const RETIRED_WITH_CONPANY_REASON_AND_INSURANCE =
-    retirementReason === 2 && empInsLastTwoYears !== 1;
-
-  const RETIRED_WITH_OWN_REASON_AND_INSURANCE =
-    retirementReason === 1 && empInsLastTwoYears === 3;
 
   return (
     <>
@@ -52,13 +40,7 @@ const Todo = () => {
           <CheckedTodoPlate>健康保険</CheckedTodoPlate>
           <CheckedTodoPlate>年金</CheckedTodoPlate>
           <CheckedTodoPlate
-            additionalClassName={
-              RETIRED_WITH_UNINTENTIONAL_REASON_AND_INSURANCE ||
-              RETIRED_WITH_CONPANY_REASON_AND_INSURANCE ||
-              RETIRED_WITH_OWN_REASON_AND_INSURANCE
-                ? ''
-                : ' hidden'
-            }
+            additionalClassName={empInsQualification ? '' : ' hidden'}
           >
             雇用保険
           </CheckedTodoPlate>
