@@ -1,8 +1,12 @@
-import styles from './Footer.module.css';
 export default function Footer() {
   return (
-    <footer className={styles.box}>
-      <p>©︎ Saya</p>
+    <footer className='footer footer-center p-2 bg-primary text-white'>
+      <div>
+        <p>
+          <span>©︎2023 </span>
+          <a href='https://twitter.com/saya__takahashi'>pachikuriii</a>
+        </p>
+      </div>
     </footer>
   );
 }

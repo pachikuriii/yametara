@@ -1,42 +1,44 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { postcodeState, ageState } from '../../../local-stroage';
-import Button from '../../atoms/button';
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-interface formInput {
-  age: number;
-  postcode: number;
-}
+import { postcodeState, ageState } from '../../../session-stroage';
+import { formInput } from '../../../types/type';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 export default function Q3(props: any) {
+  const [storedAge, setStoredAge] = useRecoilState(ageState);
+  const [storedPostcode, setStoredPostcode] = useRecoilState(postcodeState);
+
   const {
     handleSubmit,
     setValue,
     control,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const [age, setAge] = useRecoilState(ageState);
-  const [post_code, setPostcode] = useRecoilState(postcodeState);
-
-  const submitForm: SubmitHandler<formInput> = (data) => {
-    setAge(data.age);
-    setPostcode(data.postcode);
-    router.push('/questions/5');
-  };
+  } = useForm<formInput>({
+    defaultValues: {
+      age: storedAge,
+      postcode: storedPostcode,
+    },
+  });
 
   const router = useRouter();
+  const nextPage = useNextPage();
+  const submitContent: SubmitHandler<formInput> = (data) => {
+    setStoredAge(data.age);
+    setStoredPostcode(data.postcode);
+    router.push(nextPage);
+  };
 
   return (
     <form>
+      <label htmlFor='age'>退職予定日における年齢</label>
+
       <div>
         <input
           {...register('age', { required: '選択してください' })}
@@ -44,7 +46,7 @@ export default function Q3(props: any) {
         />
         <Swiper
           slidesPerView={3}
-          spaceBetween={100}
+          spaceBetween={40}
           className='mySwiper'
           navigation={true}
           modules={[Navigation]}
@@ -60,15 +62,12 @@ export default function Q3(props: any) {
             index += 1;
             return (
               <SwiperSlide key={index}>
-                <button
+                <AnswerSelectButton
                   type='button'
                   onClick={() => setValue('age', index)}
-                  className={
-                    'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                  }
                 >
                   {value}
-                </button>
+                </AnswerSelectButton>
               </SwiperSlide>
             );
           })}
@@ -76,7 +75,7 @@ export default function Q3(props: any) {
         {errors.age && <p>{errors.age.message}</p>}
       </div>
 
-      <label htmlFor='postcode'>郵便番号</label>
+      <label htmlFor='postcode'>お住まいの住所の郵便番号</label>
       <Controller
         control={control}
         rules={{
@@ -92,6 +91,7 @@ export default function Q3(props: any) {
             format='###-####'
             placeholder='123-4567'
             onChange={onChange}
+            className='border-2  border-primary input input-bordered input-lg w-full '
             {...rest}
             {...props}
           />
@@ -99,10 +99,7 @@ export default function Q3(props: any) {
       />
       {errors.postcode && <p>{errors.postcode.message}</p>}
 
-      <Link href='/questions/4'>
-        <Button>戻る</Button>
-      </Link>
-      <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+      <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
     </form>
   );
 }

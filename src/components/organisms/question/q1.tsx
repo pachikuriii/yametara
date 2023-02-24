@@ -1,74 +1,48 @@
 import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { usePatternFormat, NumberFormatBase } from 'react-number-format';
+import { NumberFormatBase } from 'react-number-format';
 import { useRecoilState } from 'recoil';
+import dayjs from '../../../day-js';
+import { useRetirementDateInputHelper } from '../../../hooks/use-retirement-date-input-helper';
 import {
   retirementDateState,
   retirementReasonState,
-} from '../../../local-stroage';
-import Button from '../../atoms/button';
-import Modal from '../../molecules/modal';
-
-interface formInput {
-  retirementDate: string;
-  retirementReason: number;
-}
+} from '../../../session-stroage';
+import { formInput } from '../../../types/type';
+import Alert from '../../atoms/alert';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 export default function Q1(props: any) {
+  const [storedRetirementDate, setStoredRetirementDate] =
+    useRecoilState(retirementDateState);
+  const [storedRetirementReason, setStoredRetirementReason] = useRecoilState(
+    retirementReasonState,
+  );
   const {
     handleSubmit,
     control,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const [retirementDate, setRetirementDate] =
-    useRecoilState(retirementDateState);
-  const [retirementReason, setRetirementReason] = useRecoilState(
-    retirementReasonState,
-  );
-
-  const submitForm: SubmitHandler<formInput> = (data) => {
-    setRetirementDate(data.retirementDate);
-    setRetirementReason(data.retirementReason);
-    router.push('/questions/2');
-  };
-
-  const router = useRouter();
-
-  const { format } = usePatternFormat({
-    ...props,
-    format: '####/##/##',
+  } = useForm<formInput>({
+    defaultValues: {
+      retirementDate: storedRetirementDate,
+      retirementReason: storedRetirementReason,
+    },
   });
 
-  const _format = (value: string) => {
-    const year = value.substring(0, 4);
-    let month = value.substring(4, 6);
-    let day = value.substring(6, 8);
+  const router = useRouter();
+  const nextPage = useNextPage();
 
-    if (month.length === 1 && Number(month[0]) > 1) {
-      month = `0${month[0]}`;
-    } else if (month.length === 2) {
-      if (Number(month) === 0) {
-        month = `01`;
-      } else if (Number(month) > 12) {
-        month = '12';
-      }
-    }
-
-    if (day.length === 1 && Number(day[0]) > 3) {
-      day = `0${day[0]}`;
-    } else if (day.length === 2) {
-      if (Number(day) === 0) {
-        day = `01`;
-      } else if (Number(day) > 31) {
-        day = '31';
-      }
-    }
-
-    return format(`${year}${month}${day}`);
+  const submitContent: SubmitHandler<formInput> = (data) => {
+    setStoredRetirementDate(data.retirementDate);
+    setStoredRetirementReason(data.retirementReason);
+    router.push(nextPage);
   };
+
+  const formattedValue = useRetirementDateInputHelper(props);
 
   return (
     <div>
@@ -79,17 +53,17 @@ export default function Q1(props: any) {
           rules={{
             required: '退職予定日を入力してください',
             pattern: {
-              value:
-                /^(20[0-9]{2})\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])+$/,
+              value: /^(20[0-9]{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])+$/,
               message: '有効な日付を入力してください',
             },
           }}
           name='retirementDate'
           render={({ field: { onChange, ref, ...rest } }) => (
             <NumberFormatBase
+              className='border-2  border-primary input input-bordered input-lg w-full '
               onChange={onChange}
-              placeholder='2022-02-22'
-              format={_format}
+              placeholder={dayjs().format('YYYY-MM-DD')}
+              format={formattedValue}
               {...rest}
               {...props}
             />
@@ -98,36 +72,24 @@ export default function Q1(props: any) {
         {errors.retirementDate && <p>{errors.retirementDate.message}</p>}
 
         <label htmlFor='retirementReason'>退職事由</label>
-
         <input
           {...register('retirementReason', { required: '選択してください' })}
           type='hidden'
         />
 
-        <div>
-          {['自己都合', '会社都合', 'その他'].map((value, index) => {
-            index += 1;
-            return (
-              <button
-                type='button'
-                key={index}
-                onClick={() => setValue('retirementReason', index)}
-                className={
-                  'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                }
-              >
-                {value}
-              </button>
-            );
-          })}
-        </div>
+        <AnswerSelectButtons
+          labels={['自己都合', '会社都合', 'その他']}
+          setValue={setValue}
+          property='retirementReason'
+        ></AnswerSelectButtons>
+
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
-        <div>
-          <Modal label='退職事由について' id='retirement-reason'>
-            モーダルの内容
-          </Modal>
-        </div>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+
+        <label htmlFor='retirement-reason'>
+          <Alert>退職事由について</Alert>
+        </label>
+
+        <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
       </form>
     </div>
   );

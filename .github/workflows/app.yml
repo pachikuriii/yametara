@@ -1,0 +1,12 @@
+name: app
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: npm install
+        run: npm install
+      - name: ESLint
+        run: npm run lint

@@ -1,60 +1,71 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
-import { healthInsAfterRetirementState } from '../../../local-stroage';
-import Button from '../../atoms/button';
-
-interface formInput {
-  health_ins_after_retirement: number;
-}
+import { useRecoilState, useRecoilValue } from 'recoil';
+import {
+  healthInsAfterRetirementState,
+  familyState,
+  healthInsLastTwoMonthState,
+} from '../../../session-stroage';
+import { formInput } from '../../../types/type';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 const Q7 = () => {
   const [tab, setTab] = useState(1);
-  const [healthInsAfterRetirement, setHealthInsAfterRetirement] =
+  const [storedHealthInsAfterRetirement, setStoredHealthInsAfterRetirement] =
     useRecoilState(healthInsAfterRetirementState);
+  const storedFamilyState = useRecoilValue(familyState);
+  const storedHealthInsLastTwoMonthState = useRecoilValue(
+    healthInsLastTwoMonthState,
+  );
+  const [insuranceTypes, setInsuranceTypes] = useState(['']);
+
+  useEffect(() => {
+    const newInsuranceTypes = ['国民健康保険'];
+    if (storedHealthInsLastTwoMonthState == 1) {
+      newInsuranceTypes.push('任意継続保険');
+    }
+    if (storedFamilyState === 1) {
+      newInsuranceTypes.push('家族の健康保険');
+    }
+    setInsuranceTypes(newInsuranceTypes);
+  }, [
+    storedFamilyState,
+    setStoredHealthInsAfterRetirement,
+    storedHealthInsLastTwoMonthState,
+  ]);
+
   const {
     handleSubmit,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const submitForm: SubmitHandler<formInput> = (data) => {
-    setHealthInsAfterRetirement(data.health_ins_after_retirement);
-    router.push('/questions/8');
-  };
+  } = useForm<formInput>({
+    defaultValues: {
+      health_ins_after_retirement: storedHealthInsAfterRetirement,
+    },
+  });
 
   const router = useRouter();
+  const nextPage = useNextPage();
+  const submitContent: SubmitHandler<formInput> = (data) => {
+    setStoredHealthInsAfterRetirement(data.health_ins_after_retirement);
+    router.push(nextPage);
+  };
+
   return (
     <>
       <div className='flex flex-wrap'>
-        <div className='tabs tabs-boxed bg-primary'>
-          <div>
-            {[
-              '任意継続健康保険',
-              '国民健康保険',
-              '家族の健康保険（被扶養者）',
-            ].map((value, index) => {
-              index += 1;
-              return (
-                <a
-                  key={index}
-                  className={
-                    'tab ' +
-                    (tab === index ? 'bg-accent rounded-full text-primary' : '')
-                  }
-                  onClick={(event) => {
-                    event.preventDefault();
-                    setTab(index);
-                  }}
-                >
-                  {value}
-                </a>
-              );
-            })}
-          </div>
+        <h2 className='card-title'>加入を検討したい退職後の健康保険</h2>
+        <p>国民皆保険制度により退職後も健康保険への加入が必須です。</p>
+        <div className=' bg-white'>
+          <AnswerSelectButtons
+            labels={insuranceTypes}
+            setValue={setValue}
+            property='health_ins_after_retirement'
+          ></AnswerSelectButtons>
 
           <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded'>
             <div className='px-4 py-5 flex-auto'>
@@ -76,48 +87,20 @@ const Q7 = () => {
                     <p>
                       国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
                     </p>
-                    <button
-                      type='button'
-                      onClick={() => setValue('health_ins_after_retirement', 1)}
-                      className={
-                        'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                      }
-                    >
-                      この保険への加入を検討する
-                    </button>
                   </div>
                   <div className={tab === 2 ? 'block' : 'hidden'}>
                     <p>年金</p>
-                    <button
-                      type='button'
-                      onClick={() => setValue('health_ins_after_retirement', 2)}
-                      className={
-                        'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                      }
-                    >
-                      この保険への加入を検討する
-                    </button>
                   </div>
                   <div className={tab === 3 ? 'block' : 'hidden'}>
                     <p>雇用保険</p>
-                    <button
-                      type='button'
-                      onClick={() => setValue('health_ins_after_retirement', 3)}
-                      className={
-                        'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                      }
-                    >
-                      この保険への加入を検討する
-                    </button>
                   </div>
 
                   {errors.health_ins_after_retirement && (
                     <p>{errors.health_ins_after_retirement.message}</p>
                   )}
-                  <Link href='/questions/6'>
-                    <Button>戻る</Button>
-                  </Link>
-                  <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+                  <PagerButtons
+                    handleSubmit={handleSubmit(submitContent)}
+                  ></PagerButtons>
                 </form>
               </div>
             </div>

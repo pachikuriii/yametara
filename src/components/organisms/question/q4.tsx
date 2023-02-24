@@ -1,60 +1,53 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { familyState } from '../../../local-stroage';
-import Button from '../../atoms/button';
-
-interface formInput {
-  family: number;
-}
+import { familyState } from '../../../session-stroage';
+import { formInput } from '../../../types/type';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 export default function Q4() {
+  const [storedFamily, setStoredFamily] = useRecoilState(familyState);
+
   const {
     handleSubmit,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const [family, setFamily] = useRecoilState(familyState);
-
-  const submitForm: SubmitHandler<formInput> = (data) => {
-    setFamily(data.family);
-    router.push('/questions/5');
-  };
+  } = useForm<formInput>({
+    defaultValues: {
+      family: storedFamily,
+    },
+  });
 
   const router = useRouter();
+  const nextPage = useNextPage();
+  const submitContent: SubmitHandler<formInput> = (data) => {
+    setStoredFamily(data.family);
+    router.push(nextPage);
+  };
 
   return (
     <div>
       <form>
+        <label htmlFor='family'>
+          家計を共にしている社会保険の被保険者の家族
+        </label>
+
         <input
           {...register('family', { required: '選択してください' })}
           type='hidden'
         />
 
-        <div>
-          {['はい', 'いいえ'].map((value, index) => {
-            return (
-              <button
-                type='button'
-                key={index}
-                onClick={() => setValue('family', value === 'はい' ? 1 : 2)}
-                className={
-                  'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                }
-              >
-                {value}
-              </button>
-            );
-          })}
-        </div>
+        <AnswerSelectButtons
+          labels={['いる', 'いない']}
+          setValue={setValue}
+          property='family'
+        ></AnswerSelectButtons>
+
         {errors.family && <p>{errors.family.message}</p>}
-        <Link href='/questions/3'>
-          <Button>戻る</Button>
-        </Link>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+        <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
       </form>
     </div>
   );

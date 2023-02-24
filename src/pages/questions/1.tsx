@@ -1,10 +1,9 @@
-import { motion } from 'framer-motion';
 import Head from 'next/head';
-import Card from '../../components/atoms/card';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q1 from '../../components/organisms/question/q1';
-import styles from '../../styles/Question.module.css';
+import Modal from 'src/components/atoms/modal';
+import Question from 'src/components/template/question';
 
 export default function Home() {
   return (
@@ -14,30 +13,22 @@ export default function Home() {
           yametara | 退職後の手続きシミュレーター | 今回の退職について
         </title>
       </Head>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      >
-        <main className={styles.main}>
-          <Header>Q1.今回の退職について</Header>
 
-          <div className={styles.wrapper}>
-            <motion.div exit={{ x: '-100%' }} transition={{ duration: 0.3 }}>
-              <Card>
-                <h2 className='card-title'>
-                  退職予定日と退職事由を教えてください
-                </h2>
-                <div>
-                  <Q1></Q1>
-                </div>
-              </Card>
-            </motion.div>
-          </div>
+      <main className='flex flex-col min-h-screen'>
+        <Header>
+          <p>Q1.今回の退職について</p>
+          <p className='text-sm'>【記入/選択してください】</p>
+        </Header>
+        <Question>
+          <Q1></Q1>
+        </Question>
 
-          <Footer></Footer>
-        </main>
-      </motion.div>
+        <Modal id='retirement-reason'>
+          <p className='py-4'>質問1のモーダル</p>
+        </Modal>
+
+        <Footer></Footer>
+      </main>
     </>
   );
 }

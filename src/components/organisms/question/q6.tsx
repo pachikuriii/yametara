@@ -1,35 +1,41 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { healthInsLastTwoMonthState } from '../../../local-stroage';
-import Button from '../../atoms/button';
-interface formInput {
-  health_ins_last_two_month: number;
-}
+import { healthInsLastTwoMonthState } from '../../../session-stroage';
+import { formInput } from '../../../types/type';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 export default function Q6() {
+  const [storedHealthInsLastTwoMonth, setStoredHealthInsLastTwoMonth] =
+    useRecoilState(healthInsLastTwoMonthState);
+
   const {
     handleSubmit,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useRecoilState(
-    healthInsLastTwoMonthState,
-  );
-
-  const submitForm: SubmitHandler<formInput> = (data) => {
-    setHealthInsLastTwoMonth(data.health_ins_last_two_month);
-    router.push('/questions/7');
-  };
+  } = useForm<formInput>({
+    defaultValues: {
+      health_ins_last_two_month: storedHealthInsLastTwoMonth,
+    },
+  });
 
   const router = useRouter();
+  const nextPage = useNextPage();
+  const submitContent: SubmitHandler<formInput> = (data) => {
+    setStoredHealthInsLastTwoMonth(data.health_ins_last_two_month);
+    router.push(nextPage);
+  };
 
   return (
     <div>
       <form>
+        <label htmlFor='health_ins_last_two_mont'>
+          退職予定日までの健康保険の被保険者期間 継続して…
+        </label>
+
         <input
           {...register('health_ins_last_two_month', {
             required: '選択してください',
@@ -37,34 +43,16 @@ export default function Q6() {
           type='hidden'
         />
 
-        <div>
-          {['はい', 'いいえ'].map((value, index) => {
-            return (
-              <button
-                type='button'
-                key={index}
-                onClick={() =>
-                  setValue(
-                    'health_ins_last_two_month',
-                    value === 'はい' ? 1 : 2,
-                  )
-                }
-                className={
-                  'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                }
-              >
-                {value}
-              </button>
-            );
-          })}
-        </div>
+        <AnswerSelectButtons
+          labels={['2ヵ月以上', '2ヵ月以下']}
+          setValue={setValue}
+          property='health_ins_last_two_month'
+        ></AnswerSelectButtons>
+
         {errors.health_ins_last_two_month && (
           <p>{errors.health_ins_last_two_month.message}</p>
         )}
-        <Link href='/questions/5'>
-          <Button>戻る</Button>
-        </Link>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+        <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
       </form>
     </div>
   );

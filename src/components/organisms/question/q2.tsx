@@ -1,62 +1,51 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { reEmploymentState } from '../../../local-stroage';
-import Button from '../../atoms/button';
-
-interface formInput {
-  re_employment: number;
-}
+import { reEmploymentState } from '../../../session-stroage';
+import { formInput } from '../../../types/type';
+import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
+import PagerButtons from 'src/components/molecules/buttons-pager';
+import { useNextPage } from 'src/hooks/use-get-page';
 
 export default function Q2() {
+  const [storedReEmployment, setStoredReEmployment] =
+    useRecoilState(reEmploymentState);
+
   const {
     handleSubmit,
     setValue,
     formState: { errors },
     register,
-  } = useForm<formInput>({});
-
-  const [reEmployment, setReEmployment] = useRecoilState(reEmploymentState);
-
-  const submitForm: SubmitHandler<formInput> = (data) => {
-    setReEmployment(data.re_employment);
-    router.push('/questions/3');
-  };
+  } = useForm<formInput>({
+    defaultValues: {
+      re_employment: storedReEmployment,
+    },
+  });
 
   const router = useRouter();
+  const nextPage = useNextPage();
+  const submitContent: SubmitHandler<formInput> = (data) => {
+    setStoredReEmployment(data.re_employment);
+    router.push(nextPage);
+  };
 
   return (
     <div>
       <form>
+        <label htmlFor='re_employment'>年内の再就職の予定</label>
         <input
           {...register('re_employment', { required: '選択してください' })}
           type='hidden'
         />
+        <AnswerSelectButtons
+          labels={['あり', 'なし', '未定']}
+          setValue={setValue}
+          property='re_employment'
+        ></AnswerSelectButtons>
 
-        <div>
-          {['はい', 'いいえ'].map((value, index) => {
-            return (
-              <button
-                type='button'
-                key={index}
-                onClick={() =>
-                  setValue('re_employment', value === 'はい' ? 1 : 2)
-                }
-                className={
-                  'btn btn-outline text-accent bg-primary  border-secondary no-animation hover:bg-secondary-focus shadow-md'
-                }
-              >
-                {value}
-              </button>
-            );
-          })}
-        </div>
         {errors.re_employment && <p>{errors.re_employment.message}</p>}
-        <Link href='/questions/1'>
-          <Button>戻る</Button>
-        </Link>
-        <Button onClick={handleSubmit(submitForm)}>次へ</Button>
+        <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
       </form>
     </div>
   );

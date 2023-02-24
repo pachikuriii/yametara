@@ -1,30 +1,54 @@
-import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import Button from '../atoms/button';
+import { BaseSyntheticEvent } from 'react';
+import { useSetRecoilState } from 'recoil';
+import BackButton from '../atoms/back-button';
+import NextButton from '../atoms/next-button';
+import { usePrevPage } from 'src/hooks/use-get-page';
+import {
+  isNextButtonClicked,
+  isBackButtonClicked,
+} from 'src/motion-controller';
+type Props = {
+  handleSubmit(
+    e?: BaseSyntheticEvent<object, any, any> | undefined,
+  ): Promise<void>;
+};
 
-export default function PagerButtons() {
+const PagerButtons = ({ handleSubmit }: Props) => {
+  const prevPage = usePrevPage();
   const router = useRouter();
-  const currentQuestionNum: number = Number(
-    router.asPath.replace('/questions/', ''),
-  );
-  const NextPage: number = currentQuestionNum + 1;
-  const PrevPage: number = currentQuestionNum - 1;
-  const NextPath: string = '/questions/' + NextPage;
-  const PrevPath: string = '/questions/' + PrevPage;
+  const setNextButtonClicked = useSetRecoilState(isNextButtonClicked);
+  const setBackButtonClicked = useSetRecoilState(isBackButtonClicked);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <div>
-        <Button onClick={() => router.push(PrevPath)}>戻る</Button>
-        <Button onClick={() => router.push(NextPath)}>次へ</Button>
+    <div className='flex w-full justify-center'>
+      <div className='mr-auto'>
+        <BackButton
+          type='button'
+          onClick={() => {
+            router.push(prevPage);
+            setBackButtonClicked(true);
+            setNextButtonClicked(false);
+          }}
+        >
+          戻る
+        </BackButton>
       </div>
 
-      
-    </motion.div>
+      <div className='ml-auto'>
+        <NextButton
+          type='button'
+          onClick={() => {
+            handleSubmit();
+            setBackButtonClicked(false);
+            setNextButtonClicked(true);
+          }}
+        >
+          次へ
+        </NextButton>
+      </div>
+    </div>
   );
-}
+};
+
+export default PagerButtons;
