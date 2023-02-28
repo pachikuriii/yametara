@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { IconContext } from 'react-icons/';
+import { AiOutlineReload } from 'react-icons/ai';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import Modal from '../components/atoms/modal';
-import Footer from '../components/organisms/question/footer';
+import Footer from '../components/organisms/index/footer';
 import Header from '../components/organisms/question/header';
 import DataInput from '../components/organisms/result/data-input';
 import EmploymentInsurance from '../components/organisms/result/employment-insurance';
@@ -12,17 +13,8 @@ import HealthlInsurance from '../components/organisms/result/health-insurance';
 import Pension from '../components/organisms/result/pension';
 import Tax from '../components/organisms/result/tax';
 import Todo from '../components/organisms/result/todo';
-import dayjs from '../day-js';
-import { retirementDateState } from '../session-stroage';
 
 export default function Home() {
-  const [retirementDate] = useRecoilState(retirementDateState);
-  const [retirementDateToDisplay, setRetirementDateToDisplay] = useState('');
-
-  useEffect(() => {
-    setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年MM月DD日'));
-  }, [retirementDate]);
-
   return (
     <>
       <Head>
@@ -36,8 +28,13 @@ export default function Home() {
         transition={{ duration: 0.3 }}
       >
         <main>
-          <label htmlFor='given_choices'>
-            <p className='text-black'>入力内容を見る</p>
+          <label
+            htmlFor='given_choices'
+            className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4  border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50'
+          >
+            <p className='m-4'>
+              <span className='max-sm:block'>あなたの</span>入力内容
+            </p>
           </label>
 
           <Modal id='given_choices'>
@@ -45,22 +42,42 @@ export default function Home() {
           </Modal>
 
           <Header>シミュレーション結果</Header>
-          <p>
-            あなたが{retirementDateToDisplay}
-            に会社を辞めたら以下についての手続きが必要です。
-          </p>
-          <Todo></Todo>
-          <div>
-            <h3>手続き内容の詳細</h3>
-            <HealthlInsurance></HealthlInsurance>
-            <Pension></Pension>
-            <EmploymentInsurance></EmploymentInsurance>
-            <Tax></Tax>
+          <div className='mx-auto w-11/12'>
+            <div className='mx-auto w-11/12'>
+              <Todo></Todo>
+              <h3 className='text-center font-extrabold text-2xl'>
+                あなたの手続き内容の詳細
+              </h3>
+              <HealthlInsurance></HealthlInsurance>
+              <Pension></Pension>
+              <EmploymentInsurance></EmploymentInsurance>
+              <Tax></Tax>
+            </div>
+          </div>
+          <div className='flex justify-evenly pt-10 pb-20'>
             <Link href='questions/8'>
-              <p>もどる</p>
+              <button className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'>
+                <IconContext.Provider
+                  value={{ className: 'global-class-name', size: '1.2em' }}
+                >
+                  <span className='pr-1'>
+                    <IoMdArrowRoundBack />
+                  </span>
+                </IconContext.Provider>
+                戻る
+              </button>
             </Link>
             <Link href='questions/1'>
-              <p>もう1度シミュレーションする</p>
+              <button className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'>
+                <IconContext.Provider
+                  value={{ className: 'global-class-name', size: '1.2em' }}
+                >
+                  <span className='pr-1'>
+                    <AiOutlineReload />
+                  </span>
+                </IconContext.Provider>
+                もう1度シミュレーションする
+              </button>
             </Link>
           </div>
           <Footer></Footer>

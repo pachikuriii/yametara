@@ -37,46 +37,80 @@ export default function HealthlInsurance() {
 
   return (
     <div>
-      <CheckedTodoPlate>健康保険</CheckedTodoPlate>
+      <CheckedTodoPlate>
+        <h4>健康保険</h4>
+      </CheckedTodoPlate>
       <div className={healthInsAfterRetirement === 1 ? '' : ' hidden'}>
-        <h4 className='text-lg border-b-4 border-dotted w-fit'>
-          国民健康保険への加入手続き
-        </h4>
-        <p>どこで？：住所地の市区役所/町村役場の窓口で</p>
+        <div className='text-center'>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            なにを？
+          </p>
+          <p className='text-xl font-extrabold'>国民健康保険への加入手続き</p>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            どこで？
+          </p>
+          <p>住所地の市区役所/町村役場の窓口で</p>
 
-        <p>
-          いつまでに？退職日の翌日{DayAfterRetirementDate}から
-          {nationalInsApplyDeadline}までに
-        </p>
-        <p>持ち物</p>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            いつまでに？
+          </p>
+          <p>
+            退職日翌日の{DayAfterRetirementDate}から
+            {nationalInsApplyDeadline}までに
+          </p>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            用意するもの
+          </p>
+        </div>
       </div>
       <div className={healthInsAfterRetirement === 2 ? '' : ' hidden'}>
-        <h4 className='text-lg border-b-4 border-dotted w-fit'>
-          任意継続被保険者になるための手続き
-        </h4>
-        <p>どこで？：</p>
-        <p>
-          協会けんぽの保険証を持っている場合 住所地を管轄するの協会けんぽ支部
-        </p>
-        <p>
-          各健康保険組合(健保組合)発行の保険証を持っている場合 各健康保険組合
-        </p>
-        <p>
-          いつまでに？退職日の翌日{DayAfterRetirementDate}から
-          {optionalInsApplyDeadline}までに
-        </p>
-        <p>持ち物</p>
+        <div className='text-center'>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            なにを？
+          </p>
+          <p className='text-xl font-extrabold'>任意継続被保険者になる手続き</p>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            どこで？
+          </p>
+          <p>
+            協会けんぽの保険証を持っている場合 住所地を管轄するの協会けんぽ支部
+            各健康保険組合(健保組合)発行の保険証を持っている場合 各健康保険組合
+          </p>
+
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            いつまでに？
+          </p>
+          <p>
+            退職日翌日の{DayAfterRetirementDate}から
+            {optionalInsApplyDeadline}までに
+          </p>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            用意するもの
+          </p>
+        </div>
       </div>
       <div className={healthInsAfterRetirement === 3 ? '' : ' hidden'}>
-        <h4 className='text-lg border-b-4 border-dotted w-fit'>
-          被扶養者となるための手続き
-        </h4>
-        <p>どこで？：家族である被保険者が勤務先で</p>
-        <p>
-          いつまでに？退職日の翌日{DayAfterRetirementDate}から
-          {dependentInsApplyDeadline}までに
-        </p>
-        <p>持ち物</p>
+        <div className='text-center'>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            なにを？
+          </p>
+          <p className='text-xl font-extrabold'>被扶養者になる手続き</p>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            どこで？
+          </p>
+          <p>家族である被保険者が勤務先で</p>
+
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            いつまでに？
+          </p>
+          <p>
+            退職日翌日の{DayAfterRetirementDate}から
+            {dependentInsApplyDeadline}までに
+          </p>
+          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
+            用意するもの
+          </p>
+        </div>
       </div>
     </div>
   );

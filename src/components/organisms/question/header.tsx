@@ -19,7 +19,7 @@ const Header = ({ children }: Props) => {
           />
         </Link>
       </div>
-      <h2 className='text-white  font-extrabold text-xl pb-2'>{children}</h2>
+      <h2 className='text-white font-extrabold text-2xl pb-2'>{children}</h2>
     </header>
   );
 };
