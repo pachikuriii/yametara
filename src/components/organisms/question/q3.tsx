@@ -1,3 +1,4 @@
+import { HelloWork } from 'jp-hello-work';
 import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
@@ -17,6 +18,7 @@ export default function Q3(props: any) {
   const {
     handleSubmit,
     setValue,
+    setError,
     control,
     formState: { errors },
     register,
@@ -30,9 +32,21 @@ export default function Q3(props: any) {
   const router = useRouter();
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredAge(data.age);
-    setStoredPostcode(data.postcode);
-    router.push(nextPage);
+    try {
+      setStoredAge(data.age);
+      if (HelloWork.byZipCode(data.postcode.replace(/-/g, ''))) {
+        setStoredPostcode(data.postcode);
+      }
+      router.push(nextPage);
+    } catch (e) {
+      if (e instanceof TypeError) {
+        setError('postcode', {
+          types: {
+            invalid_postcode: '存在する郵便番号を入力してください',
+          },
+        });
+      }
+    }
   };
 
   return (
@@ -98,6 +112,9 @@ export default function Q3(props: any) {
         )}
       />
       {errors.postcode && <p>{errors.postcode.message}</p>}
+      {errors.postcode && errors.postcode.types && (
+        <p>{errors.postcode.types.invalid_postcode}</p>
+      )}
 
       <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
     </form>
