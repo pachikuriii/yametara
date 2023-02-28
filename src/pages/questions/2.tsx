@@ -2,9 +2,11 @@ import Head from 'next/head';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q2 from '../../components/organisms/question/q2';
-import Question from 'src/components/template/question';
+import Card from 'src/components/atoms/card';
+import Motion from 'src/components/atoms/motion';
+import AnswerProgressBar from 'src/components/atoms/progress-bar';
 
-export default function Home() {
+export default function Page2() {
   return (
     <>
       <Head>
@@ -17,9 +19,14 @@ export default function Home() {
           <p> Q2.退職後の予定について</p>
           <p className='text-sm'>【選択してください】</p>
         </Header>
-        <Question>
-          <Q2></Q2>
-        </Question>
+        <div className='flex-grow'>
+          <AnswerProgressBar></AnswerProgressBar>
+          <Motion>
+            <Card>
+              <Q2></Q2>
+            </Card>
+          </Motion>
+        </div>
         <Footer></Footer>
       </main>
     </>

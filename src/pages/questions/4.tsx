@@ -2,7 +2,9 @@ import Head from 'next/head';
 import Footer from '../../components/organisms/question/footer';
 import Header from '../../components/organisms/question/header';
 import Q4 from '../../components/organisms/question/q4';
-import Question from 'src/components/template/question';
+import Card from 'src/components/atoms/card';
+import Motion from 'src/components/atoms/motion';
+import AnswerProgressBar from 'src/components/atoms/progress-bar';
 
 export default function Home() {
   return (
@@ -17,9 +19,14 @@ export default function Home() {
           <p>Q4.あなたの家族について</p>
           <p className='text-sm'>【選択してください】</p>
         </Header>
-        <Question>
-          <Q4></Q4>
-        </Question>
+        <div className='flex-grow'>
+          <AnswerProgressBar></AnswerProgressBar>
+          <Motion>
+            <Card>
+              <Q4></Q4>
+            </Card>
+          </Motion>
+        </div>
         <Footer></Footer>
       </main>
     </>

@@ -5,7 +5,7 @@ import { IconContext } from 'react-icons/';
 import { AiOutlineReload } from 'react-icons/ai';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Modal from '../components/atoms/modal';
-import Footer from '../components/organisms/index/footer';
+import Footer from '../components/organisms/footer';
 import Header from '../components/organisms/question/header';
 import DataInput from '../components/organisms/result/data-input';
 import EmploymentInsurance from '../components/organisms/result/employment-insurance';
