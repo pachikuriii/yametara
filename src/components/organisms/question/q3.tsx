@@ -89,7 +89,7 @@ export default function Q3(props: any) {
         render={({ field: { onChange, ref, ...rest } }) => (
           <PatternFormat
             format='###-####'
-            placeholder='123-4567'
+            placeholder='154-0023'
             onChange={onChange}
             className='border-2  border-primary input input-bordered input-lg w-full '
             {...rest}
