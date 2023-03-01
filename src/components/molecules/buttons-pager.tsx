@@ -12,9 +12,10 @@ type Props = {
   handleSubmit(
     e?: BaseSyntheticEvent<object, any, any> | undefined,
   ): Promise<void>;
+  isValid: boolean;
 };
 
-const PagerButtons = ({ handleSubmit }: Props) => {
+const PagerButtons = ({ handleSubmit, isValid }: Props) => {
   const prevPage = usePrevPage();
   const router = useRouter();
   const setNextButtonClicked = useSetRecoilState(isNextButtonClicked);
@@ -43,6 +44,7 @@ const PagerButtons = ({ handleSubmit }: Props) => {
             setBackButtonClicked(false);
             setNextButtonClicked(true);
           }}
+          isValid={isValid}
         >
           次へ
         </NextButton>
