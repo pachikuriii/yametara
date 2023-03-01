@@ -10,7 +10,7 @@ import {
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
-import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage } from 'src/hooks/use-get-page';
 
@@ -23,14 +23,15 @@ export default function Q1(props: any) {
   const {
     handleSubmit,
     control,
-    setValue,
-    formState: { errors },
+    formState: { errors, isValid },
     register,
   } = useForm<formInput>({
     defaultValues: {
       retirementDate: storedRetirementDate,
       retirementReason: storedRetirementReason,
     },
+    mode: 'onChange',
+    criteriaMode: 'all',
   });
 
   const router = useRouter();
@@ -43,7 +44,6 @@ export default function Q1(props: any) {
   };
 
   const formattedValue = useRetirementDateInputHelper(props);
-
   return (
     <div>
       <form>
@@ -70,18 +70,27 @@ export default function Q1(props: any) {
           )}
         />
         {errors.retirementDate && <p>{errors.retirementDate.message}</p>}
-
-        <label htmlFor='retirementReason'>退職事由</label>
-        <input
-          {...register('retirementReason', { required: '選択してください' })}
-          type='hidden'
-        />
-
-        <AnswerSelectButtons
-          labels={['自己都合', '会社都合', 'その他']}
-          setValue={setValue}
-          property='retirementReason'
-        ></AnswerSelectButtons>
+        <div className='flex space-x-4 justify-center'>
+          {['自己都合', '会社都合', 'その他'].map((value, index) => {
+            index += 1;
+            return (
+              <div key={index}>
+                <label htmlFor={`${index}`}>
+                  <input
+                    {...register('retirementReason', {
+                      required: '選択してください',
+                    })}
+                    type='radio'
+                    value={`${index}`}
+                    className='form-check-input hidden peer'
+                    id={`${index}`}
+                  />
+                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                </label>
+              </div>
+            );
+          })}
+        </div>
 
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
 
@@ -89,7 +98,10 @@ export default function Q1(props: any) {
           <Alert>退職事由について</Alert>
         </label>
 
-        <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
+        <PagerButtons
+          handleSubmit={handleSubmit(submitContent)}
+          isValid={isValid}
+        ></PagerButtons>
       </form>
     </div>
   );
