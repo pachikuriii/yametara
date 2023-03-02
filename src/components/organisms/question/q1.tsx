@@ -70,6 +70,7 @@ export default function Q1(props: any) {
           )}
         />
         {errors.retirementDate && <p>{errors.retirementDate.message}</p>}
+        <label htmlFor='retirementReason'>退職事由</label>
         <div className='flex space-x-4 justify-center'>
           {['自己都合', '会社都合', 'その他'].map((value, index) => {
             index += 1;
@@ -81,7 +82,7 @@ export default function Q1(props: any) {
                       required: '選択してください',
                     })}
                     type='radio'
-                    value={`${index}`}
+                    value={index}
                     className='form-check-input hidden peer'
                     id={`${index}`}
                   />

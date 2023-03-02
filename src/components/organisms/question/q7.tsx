@@ -8,7 +8,7 @@ import {
   healthInsLastTwoMonthState,
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
-import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage } from 'src/hooks/use-get-page';
 
@@ -39,13 +39,14 @@ const Q7 = () => {
 
   const {
     handleSubmit,
-    setValue,
-    formState: { errors },
+    formState: { errors, isValid },
     register,
   } = useForm<formInput>({
     defaultValues: {
       health_ins_after_retirement: storedHealthInsAfterRetirement,
     },
+    mode: 'onChange',
+    criteriaMode: 'all',
   });
 
   const router = useRouter();
@@ -61,47 +62,64 @@ const Q7 = () => {
         <h2 className='card-title'>加入を検討したい退職後の健康保険</h2>
         <p>国民皆保険制度により退職後も健康保険への加入が必須です。</p>
         <div className=' bg-white'>
-          <AnswerSelectButtons
-            labels={insuranceTypes}
-            setValue={setValue}
-            property='health_ins_after_retirement'
-          ></AnswerSelectButtons>
+          <form>
+            <div className='flex space-x-4 justify-center'>
+              {insuranceTypes.map((value, index) => {
+                index += 1;
+                return (
+                  <div key={index}>
+                    <label htmlFor={`${index}`}>
+                      <input
+                        {...register('health_ins_after_retirement', {
+                          required: '選択してください',
+                        })}
+                        type='radio'
+                        value={index}
+                        className='form-check-input hidden peer'
+                        id={`${index}`}
+                      />
+                      <AnswerSelectButton onClick={() => setTab(index)}>
+                        {value}
+                      </AnswerSelectButton>
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+
+            {errors.health_ins_after_retirement && (
+              <p>{errors.health_ins_after_retirement.message}</p>
+            )}
+          </form>
 
           <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded'>
             <div className='px-4 py-5 flex-auto'>
               <div className='tab-content tab-space'>
-                <form>
-                  <input
-                    {...register('health_ins_after_retirement', {
-                      required: '選択してください',
-                    })}
-                    type='hidden'
-                  />
-
-                  <div className={tab === 1 ? 'block' : 'hidden'}>
-                    <div>
-                      <p className='border-b-4 border-dotted w-fit'>
-                        国民健康保険への加入
-                      </p>
-                    </div>
-                    <p>
-                      国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
+                <div className={tab === 1 ? 'block' : 'hidden'}>
+                  <div>
+                    <p className='border-b-4 border-dotted w-fit'>
+                      国民健康保険への加入
                     </p>
                   </div>
-                  <div className={tab === 2 ? 'block' : 'hidden'}>
-                    <p>年金</p>
+                  <p>
+                    国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
+                  </p>
+                </div>
+                <div className={tab === 2 ? 'block' : 'hidden'}>
+                  <div>
+                    <p className='border-b-4 border-dotted w-fit'>年金</p>
                   </div>
-                  <div className={tab === 3 ? 'block' : 'hidden'}>
-                    <p>雇用保険</p>
-                  </div>
-
-                  {errors.health_ins_after_retirement && (
-                    <p>{errors.health_ins_after_retirement.message}</p>
-                  )}
-                  <PagerButtons
-                    handleSubmit={handleSubmit(submitContent)}
-                  ></PagerButtons>
-                </form>
+                  <p>
+                    国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
+                  </p>
+                </div>
+                <div className={tab === 3 ? 'block' : 'hidden'}>
+                  <p className='border-b-4 border-dotted w-fit'>雇用保険</p>
+                </div>
+                <PagerButtons
+                  handleSubmit={handleSubmit(submitContent)}
+                  isValid={isValid}
+                ></PagerButtons>
               </div>
             </div>
           </div>

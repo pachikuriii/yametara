@@ -10,7 +10,6 @@ import {
 import { formInput } from '../../../types/type';
 import Alert from 'src/components/atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage } from 'src/hooks/use-get-page';
 
@@ -22,14 +21,15 @@ export default function Q5() {
 
   const {
     handleSubmit,
-    setValue,
-    formState: { errors },
+    formState: { errors, isValid },
     register,
   } = useForm<formInput>({
     defaultValues: {
       emp_ins_total: storedEmpInsTotal,
       emp_ins_last_two_years: storedEmpInsLastTwoYears,
     },
+    mode: 'onChange',
+    criteriaMode: 'all',
   });
 
   const router = useRouter();
@@ -42,72 +42,84 @@ export default function Q5() {
 
   return (
     <form>
+      <h2 className='card-title'>雇用保険のこれまでの被保険者期間</h2>
+      <label>
+        <Alert>期間の数え方について</Alert>
+      </label>
       <div>
-        <h2 className='card-title'>雇用保険のこれまでの被保険者期間</h2>
-
-        <label htmlFor='how-to-count-emp-period'>
-          <Alert>期間の数え方について</Alert>
-        </label>
-
         <label htmlFor='emp_ins_last_two_years'>
           退職予定日までの2年間では…
         </label>
-
-        <input
-          {...register('emp_ins_last_two_years', {
-            required: '選択してください',
-          })}
-          type='hidden'
-        />
-
-        <AnswerSelectButtons
-          labels={['半年未満', '半年以上1年未満', '1年以上']}
-          setValue={setValue}
-          property='emp_ins_last_two_years'
-        ></AnswerSelectButtons>
-      </div>
-      {errors.emp_ins_last_two_years && (
-        <p>{errors.emp_ins_last_two_years.message}</p>
-      )}
-
-      <div>
-        <label htmlFor='emp_ins_total'>退職予定日までの通算では…</label>
-        <input
-          {...register('emp_ins_total', { required: '選択してください' })}
-          type='hidden'
-        />
-        <Swiper
-          slidesPerView={3}
-          spaceBetween={40}
-          className='mySwiper'
-          navigation={true}
-          modules={[Navigation]}
-          centeredSlides={true}
-        >
-          {[
-            '1年未満',
-            '1年以上5年未満',
-            '5年以上10年未満',
-            '10年以上20年未満',
-            '20年以上',
-          ].map((value, index) => {
+        <div className='flex space-x-4 justify-center'>
+          {['半年未満', '半年以上1年未満', '1年以上'].map((value, index) => {
             index += 1;
             return (
-              <SwiperSlide key={index}>
-                <AnswerSelectButton
-                  type='button'
-                  onClick={() => setValue('emp_ins_total', index)}
-                >
-                  {value}
-                </AnswerSelectButton>
-              </SwiperSlide>
+              <div key={index}>
+                <label htmlFor={`emp_ins_last_two_years${index}`}>
+                  <input
+                    {...register('emp_ins_last_two_years', {
+                      required: '選択してください',
+                    })}
+                    type='radio'
+                    value={index}
+                    className='form-check-input hidden peer'
+                    id={`emp_ins_last_two_years${index}`}
+                  />
+                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                </label>
+              </div>
             );
           })}
-        </Swiper>
+        </div>
+        {errors.emp_ins_last_two_years && (
+          <p>{errors.emp_ins_last_two_years.message}</p>
+        )}
+      </div>
+      <div>
+        <label htmlFor='emp_ins_total'>退職予定日までの通算では…</label>
+        <div className='flex space-x-4 justify-center'>
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={40}
+            className='mySwiper'
+            navigation={true}
+            modules={[Navigation]}
+            centeredSlides={true}
+            initialSlide={storedEmpInsTotal ? Number(storedEmpInsTotal) - 1 : 0}
+          >
+            {[
+              '1年未満',
+              '1年以上5年未満',
+              '5年以上10年未満',
+              '10年以上20年未満',
+              '20年以上',
+            ].map((value, index) => {
+              index += 1;
+              return (
+                <SwiperSlide key={index}>
+                  <label htmlFor={`emp_ins_total${index}`}>
+                    <input
+                      {...register('emp_ins_total', {
+                        required: '選択してください',
+                      })}
+                      type='radio'
+                      value={index}
+                      className='form-check-input hidden peer'
+                      id={`emp_ins_total${index}`}
+                    />
+                    <AnswerSelectButton>{value}</AnswerSelectButton>
+                  </label>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
         {errors.emp_ins_total && <p>{errors.emp_ins_total.message}</p>}
       </div>
-
-      <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
+      <PagerButtons
+        handleSubmit={handleSubmit(submitContent)}
+        isValid={isValid}
+      ></PagerButtons>
     </form>
   );
 }
