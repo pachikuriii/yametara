@@ -17,7 +17,7 @@ export default function Q6() {
     register,
   } = useForm<formInput>({
     defaultValues: {
-      health_ins_last_two_month: storedHealthInsLastTwoMonth,
+      health_ins_last_two_month: String(storedHealthInsLastTwoMonth),
     },
     mode: 'onChange',
     criteriaMode: 'all',
@@ -26,7 +26,7 @@ export default function Q6() {
   const router = useRouter();
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredHealthInsLastTwoMonth(data.health_ins_last_two_month);
+    setStoredHealthInsLastTwoMonth(Number(data.health_ins_last_two_month));
     router.push(nextPage);
   };
 

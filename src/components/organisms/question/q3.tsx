@@ -23,7 +23,7 @@ export default function Q3(props: any) {
     register,
   } = useForm<formInput>({
     defaultValues: {
-      age: storedAge,
+      age: String(storedAge),
       postcode: storedPostcode,
     },
     mode: 'onChange',
@@ -34,7 +34,7 @@ export default function Q3(props: any) {
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     try {
-      setStoredAge(data.age);
+      setStoredAge(Number(data.age));
       if (HelloWork.byZipCode(data.postcode.replace(/-/g, ''))) {
         setStoredPostcode(data.postcode);
       }

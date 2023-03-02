@@ -25,8 +25,8 @@ export default function Q5() {
     register,
   } = useForm<formInput>({
     defaultValues: {
-      emp_ins_total: storedEmpInsTotal,
-      emp_ins_last_two_years: storedEmpInsLastTwoYears,
+      emp_ins_total: String(storedEmpInsTotal),
+      emp_ins_last_two_years: String(storedEmpInsLastTwoYears),
     },
     mode: 'onChange',
     criteriaMode: 'all',
@@ -35,8 +35,8 @@ export default function Q5() {
   const router = useRouter();
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredEmpInsTotal(data.emp_ins_total);
-    setStoredEmpInsLastTwoYears(data.emp_ins_last_two_years);
+    setStoredEmpInsTotal(Number(data.emp_ins_total));
+    setStoredEmpInsLastTwoYears(Number(data.emp_ins_last_two_years));
     router.push(nextPage);
   };
 

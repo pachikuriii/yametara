@@ -28,7 +28,7 @@ export default function Q1(props: any) {
   } = useForm<formInput>({
     defaultValues: {
       retirementDate: storedRetirementDate,
-      retirementReason: storedRetirementReason,
+      retirementReason: String(storedRetirementReason),
     },
     mode: 'onChange',
     criteriaMode: 'all',
@@ -39,7 +39,7 @@ export default function Q1(props: any) {
 
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredRetirementDate(data.retirementDate);
-    setStoredRetirementReason(data.retirementReason);
+    setStoredRetirementReason(Number(data.retirementReason));
     router.push(nextPage);
   };
 

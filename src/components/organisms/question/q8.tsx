@@ -47,7 +47,7 @@ export default function Q8() {
     register,
   } = useForm<formInput>({
     defaultValues: {
-      tax: storedTax,
+      tax: String(storedTax),
     },
     mode: 'onChange',
     criteriaMode: 'all',
@@ -56,7 +56,7 @@ export default function Q8() {
   const router = useRouter();
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredTax(data.tax);
+    setStoredTax(Number(data.tax));
     router.push(nextPage);
   };
 

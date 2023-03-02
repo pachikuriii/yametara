@@ -43,7 +43,7 @@ const Q7 = () => {
     register,
   } = useForm<formInput>({
     defaultValues: {
-      health_ins_after_retirement: storedHealthInsAfterRetirement,
+      health_ins_after_retirement: String(storedHealthInsAfterRetirement),
     },
     mode: 'onChange',
     criteriaMode: 'all',
@@ -52,7 +52,7 @@ const Q7 = () => {
   const router = useRouter();
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredHealthInsAfterRetirement(data.health_ins_after_retirement);
+    setStoredHealthInsAfterRetirement(Number(data.health_ins_after_retirement));
     router.push(nextPage);
   };
 

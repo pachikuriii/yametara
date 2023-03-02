@@ -16,7 +16,7 @@ export default function Q4() {
     register,
   } = useForm<formInput>({
     defaultValues: {
-      family: storedFamily,
+      family: String(storedFamily),
     },
     mode: 'onChange',
     criteriaMode: 'all',
@@ -25,7 +25,7 @@ export default function Q4() {
   const router = useRouter();
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredFamily(data.family);
+    setStoredFamily(Number(data.family));
     router.push(nextPage);
   };
 

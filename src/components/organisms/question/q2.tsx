@@ -17,7 +17,7 @@ export default function Q2() {
     register,
   } = useForm<formInput>({
     defaultValues: {
-      re_employment: storedReEmployment,
+      re_employment: String(storedReEmployment),
     },
     mode: 'onChange',
     criteriaMode: 'all',
@@ -26,7 +26,7 @@ export default function Q2() {
   const router = useRouter();
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredReEmployment(data.re_employment);
+    setStoredReEmployment(Number(data.re_employment));
     router.push(nextPage);
   };
 
