@@ -1,14 +1,18 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLayoutEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import Footer from 'src/components/organisms/footer';
+import {
+  isNextButtonClicked,
+  isBackButtonClicked,
+} from 'src/motion-controller';
 import { startedState } from 'src/session-stroage';
 
 export default function IndexMain() {
   const setStarted = useSetRecoilState(startedState);
-  useLayoutEffect(() => {}, []);
+  const setNextButtonClicked = useSetRecoilState(isNextButtonClicked);
+  const setBackButtonClicked = useSetRecoilState(isBackButtonClicked);
   return (
     <>
       <Head>
@@ -38,6 +42,8 @@ export default function IndexMain() {
                 className='max-sm:w-full md:btn-wide btn btn-outline text-accent md:text-xl bg-white rounded-full border-secondary hover:bg-secondary-focus hover:border-secondary-focus shadow-basic'
                 onClick={() => {
                   setStarted(true);
+                  setBackButtonClicked(false);
+                  setNextButtonClicked(true);
                 }}
               >
                 はじめる
