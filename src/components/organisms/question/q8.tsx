@@ -6,7 +6,7 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { taxState, retirementDateState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
-import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/buttons-pager';
 import { useNextPage } from 'src/hooks/use-get-page';
 
@@ -43,19 +43,20 @@ export default function Q8() {
 
   const {
     handleSubmit,
-    setValue,
-    formState: { errors },
+    formState: { errors, isValid },
     register,
   } = useForm<formInput>({
     defaultValues: {
-      tax: storedTax,
+      tax: String(storedTax),
     },
+    mode: 'onChange',
+    criteriaMode: 'all',
   });
 
   const router = useRouter();
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredTax(data.tax);
+    setStoredTax(Number(data.tax));
     router.push(nextPage);
   };
 
@@ -70,22 +71,32 @@ export default function Q8() {
 
       <form>
         <label htmlFor='tax'>今年度の残りの住民税の支払い方法</label>
-        <input
-          {...register('tax', { required: '選択してください' })}
-          type='hidden'
-        />
-
-        <AnswerSelectButtons
-          labels={taxPaymentTypes}
-          setValue={setValue}
-          property='tax'
-          originalStyling={
-            'btn btn-outline w-full text-accent bg-white rounded-2xl border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select'
-          }
-        ></AnswerSelectButtons>
-
+        <div className='flex space-x-4 justify-center'>
+          {taxPaymentTypes.map((value, index) => {
+            index += 1;
+            return (
+              <div key={index}>
+                <label htmlFor={`${index}`}>
+                  <input
+                    {...register('tax', {
+                      required: '選択してください',
+                    })}
+                    type='radio'
+                    value={index}
+                    className='form-check-input hidden peer'
+                    id={`${index}`}
+                  />
+                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                </label>
+              </div>
+            );
+          })}
+        </div>
         {errors.tax && <p>{errors.tax.message}</p>}
-        <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
+        <PagerButtons
+          handleSubmit={handleSubmit(submitContent)}
+          isValid={isValid}
+        ></PagerButtons>
       </form>
     </div>
   );

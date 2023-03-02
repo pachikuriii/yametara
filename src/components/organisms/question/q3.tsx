@@ -17,23 +17,24 @@ export default function Q3(props: any) {
 
   const {
     handleSubmit,
-    setValue,
     setError,
     control,
-    formState: { errors },
+    formState: { errors, isValid },
     register,
   } = useForm<formInput>({
     defaultValues: {
-      age: storedAge,
+      age: String(storedAge),
       postcode: storedPostcode,
     },
+    mode: 'onChange',
+    criteriaMode: 'all',
   });
 
   const router = useRouter();
   const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     try {
-      setStoredAge(data.age);
+      setStoredAge(Number(data.age));
       if (HelloWork.byZipCode(data.postcode.replace(/-/g, ''))) {
         setStoredPostcode(data.postcode);
       }
@@ -52,12 +53,7 @@ export default function Q3(props: any) {
   return (
     <form>
       <label htmlFor='age'>退職予定日における年齢</label>
-
-      <div>
-        <input
-          {...register('age', { required: '選択してください' })}
-          type='hidden'
-        />
+      <div className='flex space-x-4 justify-center'>
         <Swiper
           slidesPerView={3}
           spaceBetween={40}
@@ -65,6 +61,7 @@ export default function Q3(props: any) {
           navigation={true}
           modules={[Navigation]}
           centeredSlides={true}
+          initialSlide={storedAge ? Number(storedAge) - 1 : 0}
         >
           {[
             '30歳未満',
@@ -76,18 +73,24 @@ export default function Q3(props: any) {
             index += 1;
             return (
               <SwiperSlide key={index}>
-                <AnswerSelectButton
-                  type='button'
-                  onClick={() => setValue('age', index)}
-                >
-                  {value}
-                </AnswerSelectButton>
+                <label htmlFor={`${index}`}>
+                  <input
+                    {...register('age', {
+                      required: '選択してください',
+                    })}
+                    type='radio'
+                    value={index}
+                    className='form-check-input hidden peer'
+                    id={`${index}`}
+                  />
+                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                </label>
               </SwiperSlide>
             );
           })}
         </Swiper>
-        {errors.age && <p>{errors.age.message}</p>}
       </div>
+      {errors.age && <p>{errors.age.message}</p>}
 
       <label htmlFor='postcode'>お住まいの住所の郵便番号</label>
       <Controller
@@ -116,7 +119,10 @@ export default function Q3(props: any) {
         <p>{errors.postcode.types.invalid_postcode}</p>
       )}
 
-      <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
+      <PagerButtons
+        handleSubmit={handleSubmit(submitContent)}
+        isValid={isValid}
+      ></PagerButtons>
     </form>
   );
 }
