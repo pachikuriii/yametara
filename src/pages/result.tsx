@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { IconContext } from 'react-icons/';
 import { AiOutlineReload } from 'react-icons/ai';
 import { IoMdArrowRoundBack } from 'react-icons/io';
+import { useSetRecoilState } from 'recoil';
 import Modal from '../components/atoms/modal';
 import Footer from '../components/organisms/footer';
 import Header from '../components/organisms/question/header';
@@ -13,8 +14,14 @@ import HealthlInsurance from '../components/organisms/result/health-insurance';
 import Pension from '../components/organisms/result/pension';
 import Tax from '../components/organisms/result/tax';
 import Todo from '../components/organisms/result/todo';
+import {
+  isNextButtonClicked,
+  isBackButtonClicked,
+} from 'src/motion-controller';
 
 export default function Home() {
+  const setNextButtonClicked = useSetRecoilState(isNextButtonClicked);
+  const setBackButtonClicked = useSetRecoilState(isBackButtonClicked);
   return (
     <>
       <Head>
@@ -56,7 +63,13 @@ export default function Home() {
           </div>
           <div className='flex justify-evenly pt-10 pb-20'>
             <Link href='questions/8'>
-              <button className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'>
+              <button
+                className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'
+                onClick={() => {
+                  setBackButtonClicked(true);
+                  setNextButtonClicked(false);
+                }}
+              >
                 <IconContext.Provider
                   value={{ className: 'global-class-name', size: '1.2em' }}
                 >
