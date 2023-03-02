@@ -16,6 +16,7 @@ const Header = ({ children }: Props) => {
             alt='logo'
             width='150'
             height='100'
+            loading='eager'
           />
         </Link>
       </div>
