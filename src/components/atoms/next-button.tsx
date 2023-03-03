@@ -9,6 +9,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 const NextButton = ({ children, onClick, isValid, ...props }: Props) => {
   return (
     <button
+      id='next-page-button'
       className={
         isValid
           ? 'btn text-white bg-primary rounded-full  border-none hover:bg-primary-focus  font-extrabold'

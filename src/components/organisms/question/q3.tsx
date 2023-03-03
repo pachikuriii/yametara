@@ -83,7 +83,9 @@ export default function Q3(props: any) {
                     className='form-check-input hidden peer'
                     id={`${index}`}
                   />
-                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                  <AnswerSelectButton id={`age-form${index}`}>
+                    {value}
+                  </AnswerSelectButton>
                 </label>
               </SwiperSlide>
             );
@@ -105,6 +107,7 @@ export default function Q3(props: any) {
         name='postcode'
         render={({ field: { onChange, ref, ...rest } }) => (
           <PatternFormat
+            id='postcode-form'
             format='###-####'
             placeholder='154-0023'
             onChange={onChange}

@@ -65,7 +65,11 @@ export default function Q5() {
                     className='form-check-input hidden peer'
                     id={`emp_ins_last_two_years${index}`}
                   />
-                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                  <AnswerSelectButton
+                    id={`emp-ins-last-two-years-form${index}`}
+                  >
+                    {value}
+                  </AnswerSelectButton>
                 </label>
               </div>
             );
@@ -107,7 +111,9 @@ export default function Q5() {
                       className='form-check-input hidden peer'
                       id={`emp_ins_total${index}`}
                     />
-                    <AnswerSelectButton>{value}</AnswerSelectButton>
+                    <AnswerSelectButton id={`emp-ins-total-form${index}`}>
+                      {value}
+                    </AnswerSelectButton>
                   </label>
                 </SwiperSlide>
               );

@@ -50,7 +50,9 @@ export default function Q4() {
                     className='form-check-input hidden peer'
                     id={`${index}`}
                   />
-                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                  <AnswerSelectButton id={`family-form${index}`}>
+                    {value}
+                  </AnswerSelectButton>
                 </label>
               </div>
             );

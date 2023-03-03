@@ -52,7 +52,11 @@ export default function Q6() {
                       className='form-check-input hidden peer'
                       id={`${index}`}
                     />
-                    <AnswerSelectButton>{value}</AnswerSelectButton>
+                    <AnswerSelectButton
+                      id={`health-ins-last-two-month-form${index}`}
+                    >
+                      {value}
+                    </AnswerSelectButton>
                   </label>
                 </div>
               );

@@ -49,7 +49,9 @@ export default function Q2() {
                     className='form-check-input hidden peer'
                     id={`${index}`}
                   />
-                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                  <AnswerSelectButton id={`re-employment-form${index}`}>
+                    {value}
+                  </AnswerSelectButton>
                 </label>
               </div>
             );

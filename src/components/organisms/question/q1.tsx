@@ -60,6 +60,7 @@ export default function Q1(props: any) {
           name='retirementDate'
           render={({ field: { onChange, ref, ...rest } }) => (
             <NumberFormatBase
+              id='retirement-date-form'
               className='border-2  border-primary input input-bordered input-lg w-full '
               onChange={onChange}
               placeholder={dayjs().format('YYYY-MM-DD')}
@@ -86,7 +87,9 @@ export default function Q1(props: any) {
                     className='form-check-input hidden peer'
                     id={`${index}`}
                   />
-                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                  <AnswerSelectButton id={`retirement-reason-form${index}`}>
+                    {value}
+                  </AnswerSelectButton>
                 </label>
               </div>
             );
