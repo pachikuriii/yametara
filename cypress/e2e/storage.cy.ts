@@ -61,7 +61,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
   })
   
   it('Q5において回答内容がsessionStorageへ保存されること', () => {
-    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-05-06", re_employment: 3, age: 1, post_code:'655-0873' }));
+    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-05-06", re_employment: 3, age: 1, post_code:'655-0873', family: 1 }));
     cy.visit('/questions/5')
     cy.get('#emp-ins-last-two-years-form2').click()
     cy.get('#emp-ins-total-form3').click()
