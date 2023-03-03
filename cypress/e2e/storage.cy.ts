@@ -94,5 +94,16 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
       cy.wrap(storage).its("health_ins_after_retirement").should('eq', 1)
      });
   })
+
+  it('Q8において回答内容がsessionStorageへ保存されること', () => {
+    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-05-06", re_employment: 3, age: 1, post_code:'655-0873', family: 1, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1  }));
+    cy.visit('/questions/8')
+    cy.get('#tax-form1').click()
+    cy.get('#next-page-button').click()
+    cy.window().then(win => {
+      const storage = JSON.parse(win.sessionStorage.getItem('yametara') || "[]");
+      cy.wrap(storage).its("tax").should('eq', 1)
+     });
+  })
 })
 export { };
