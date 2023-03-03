@@ -35,6 +35,19 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
       cy.wrap(storage).its("re_employment").should('eq', 3)
      });
   })
-  
+
+  it('Q3において回答内容がsessionStorageへ保存されること', () => {
+    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-05-06", re_employment: 3 }));
+    cy.visit('/questions/3')
+    cy.get('#age-form1').click()
+    cy.get('#postcode-form').type('6550873')
+    cy.get('#next-page-button').click()
+    cy.window().then(win => {
+      const storage = JSON.parse(win.sessionStorage.getItem('yametara') || "[]");
+       
+      cy.wrap(storage).its("age").should('eq', 1)
+      cy.wrap(storage).its("post_code").should('eq', '655-0873')
+     }); 
+  })
 })
 export {};
