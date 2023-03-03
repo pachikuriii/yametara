@@ -107,6 +107,7 @@ export default function Q3(props: any) {
         name='postcode'
         render={({ field: { onChange, ref, ...rest } }) => (
           <PatternFormat
+            id='postcode-form'
             format='###-####'
             placeholder='154-0023'
             onChange={onChange}
