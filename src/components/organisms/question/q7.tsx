@@ -78,7 +78,10 @@ const Q7 = () => {
                         className='form-check-input hidden peer'
                         id={`${index}`}
                       />
-                      <AnswerSelectButton onClick={() => setTab(index)}>
+                      <AnswerSelectButton
+                        id={`health-ins-after-retirement-form${index}`}
+                        onClick={() => setTab(index)}
+                      >
                         {value}
                       </AnswerSelectButton>
                     </label>

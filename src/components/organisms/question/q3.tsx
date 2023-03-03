@@ -83,7 +83,9 @@ export default function Q3(props: any) {
                     className='form-check-input hidden peer'
                     id={`${index}`}
                   />
-                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                  <AnswerSelectButton id={`age-form${index}`}>
+                    {value}
+                  </AnswerSelectButton>
                 </label>
               </SwiperSlide>
             );

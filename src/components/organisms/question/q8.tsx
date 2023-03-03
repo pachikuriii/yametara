@@ -86,7 +86,9 @@ export default function Q8() {
                     className='form-check-input hidden peer'
                     id={`${index}`}
                   />
-                  <AnswerSelectButton>{value}</AnswerSelectButton>
+                  <AnswerSelectButton id={`tax-form${index}`}>
+                    {value}
+                  </AnswerSelectButton>
                 </label>
               </div>
             );

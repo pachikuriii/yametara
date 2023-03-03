@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   onClick?: () => void;
   children: ReactNode;
-  id: string;
+  id?: string;
 };
 
 const AnswerSelectButton = ({ children, onClick, id }: Props) => {
