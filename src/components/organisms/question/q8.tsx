@@ -13,33 +13,23 @@ import { useNextPage } from 'src/hooks/use-get-page';
 export default function Q8() {
   const storedRetirementDate = useRecoilValue(retirementDateState);
   const [storedTax, setStoredTax] = useRecoilState(taxState);
-  const [retiredOnBetweenJanAndJun, setretiredOnBetweenJanAndJun] =
+  const [retiredOnBetweenJanAndMay, setretiredOnBetweenJanAndMay] =
     useState(false);
-  const [taxPaymentTypes, settaxPaymentTypes] = useState(['']);
-  const [retirementMonth, setRetirementMonth] = useState(0);
+
+  const displaySwitcher = (index: number) => {
+    if (index === 2 && retiredOnBetweenJanAndMay) {
+      return 'hidden';
+    } else {
+      return '';
+    }
+  };
 
   useEffect(() => {
-    setRetirementMonth(dayjs(storedRetirementDate).month() + 1);
-    const JanToJun = [...Array(5)].map((_, i) => i + 1);
-    for (let month of JanToJun) {
-      if (month === retirementMonth) {
-        setretiredOnBetweenJanAndJun(true);
-      }
+    const retirementMonth = dayjs(storedRetirementDate).month() + 1;
+    if ([...Array(5)].map((_, i) => i + 1).includes(retirementMonth)) {
+      setretiredOnBetweenJanAndMay(true);
     }
-    const newtaxPaymentTypes = [
-      '退職時に給与/退職金から会社に翌年5月分まで天引きしてもらう（一括徴収）',
-    ];
-    if (!retiredOnBetweenJanAndJun) {
-      newtaxPaymentTypes.push(
-        '送付される納税通知書に基づいて自分で分割で納める（普通徴収）',
-      );
-    }
-    newtaxPaymentTypes.push(
-      '昨年度の収入がないため、今年度は住民税の支払いをしていない',
-    );
-
-    settaxPaymentTypes(newtaxPaymentTypes);
-  }, [storedRetirementDate, retirementMonth, retiredOnBetweenJanAndJun]);
+  }, [storedRetirementDate, retiredOnBetweenJanAndMay]);
 
   const {
     handleSubmit,
@@ -62,8 +52,8 @@ export default function Q8() {
 
   return (
     <div>
-      <p>{retiredOnBetweenJanAndJun}</p>
-      <div className={retiredOnBetweenJanAndJun === true ? '' : ' hidden'}>
+      <p>{retiredOnBetweenJanAndMay}</p>
+      <div className={retiredOnBetweenJanAndMay === true ? '' : ' hidden'}>
         <Alert>
           1月から5月に退職する場合は基本的に会社を退職する際に、最後の給与または退職金から一括で残りの住民税を天引きしてもらうこととなります。
         </Alert>
@@ -72,7 +62,11 @@ export default function Q8() {
       <form>
         <label htmlFor='tax'>今年度の残りの住民税の支払い方法</label>
         <div className='flex space-x-4 justify-center'>
-          {taxPaymentTypes.map((value, index) => {
+          {[
+            '退職時に給与/退職金から会社に翌年5月分まで天引きしてもらう（一括徴収）',
+            '送付される納税通知書に基づいて自分で分割で納める（普通徴収）',
+            '昨年度の収入がないため、今年度は住民税の支払いをしていない',
+          ].map((value, index) => {
             index += 1;
             return (
               <div key={index}>
@@ -86,7 +80,10 @@ export default function Q8() {
                     className='form-check-input hidden peer'
                     id={`${index}`}
                   />
-                  <AnswerSelectButton id={`tax-form${index}`}>
+                  <AnswerSelectButton
+                    id={`tax-form${index}`}
+                    display={displaySwitcher(index)}
+                  >
                     {value}
                   </AnswerSelectButton>
                 </label>

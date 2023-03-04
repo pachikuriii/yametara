@@ -20,22 +20,19 @@ const Q7 = () => {
   const storedHealthInsLastTwoMonthState = useRecoilValue(
     healthInsLastTwoMonthState,
   );
-  const [insuranceTypes, setInsuranceTypes] = useState(['']);
+  const [healthInsAfterRetirement, setHealthInsAfterRetirement] = useState(0);
+  const [family, setFamily] = useState(0);
 
-  useEffect(() => {
-    const newInsuranceTypes = ['国民健康保険'];
-    if (storedHealthInsLastTwoMonthState == 1) {
-      newInsuranceTypes.push('任意継続保険');
+  const displaySwitcher = (index: number) => {
+    if (
+      (index === 2 && healthInsAfterRetirement === 2) ||
+      (index === 3 && family === 2)
+    ) {
+      return 'hidden';
+    } else {
+      return '';
     }
-    if (storedFamilyState === 1) {
-      newInsuranceTypes.push('家族の健康保険');
-    }
-    setInsuranceTypes(newInsuranceTypes);
-  }, [
-    storedFamilyState,
-    setStoredHealthInsAfterRetirement,
-    storedHealthInsLastTwoMonthState,
-  ]);
+  };
 
   const {
     handleSubmit,
@@ -56,6 +53,11 @@ const Q7 = () => {
     router.push(nextPage);
   };
 
+  useEffect(() => {
+    setHealthInsAfterRetirement(storedHealthInsLastTwoMonthState);
+    setFamily(storedFamilyState);
+  }, [storedHealthInsLastTwoMonthState, storedFamilyState]);
+
   return (
     <>
       <div className='flex flex-wrap'>
@@ -64,30 +66,33 @@ const Q7 = () => {
         <div className=' bg-white'>
           <form>
             <div className='flex space-x-4 justify-center'>
-              {insuranceTypes.map((value, index) => {
-                index += 1;
-                return (
-                  <div key={index}>
-                    <label htmlFor={`${index}`}>
-                      <input
-                        {...register('health_ins_after_retirement', {
-                          required: '選択してください',
-                        })}
-                        type='radio'
-                        value={index}
-                        className='form-check-input hidden peer'
-                        id={`${index}`}
-                      />
-                      <AnswerSelectButton
-                        id={`health-ins-after-retirement-form${index}`}
-                        onClick={() => setTab(index)}
-                      >
-                        {value}
-                      </AnswerSelectButton>
-                    </label>
-                  </div>
-                );
-              })}
+              {['国民健康保険', '任意継続保険', '家族の健康保険'].map(
+                (value, index) => {
+                  index += 1;
+                  return (
+                    <div key={index}>
+                      <label htmlFor={`${index}`}>
+                        <input
+                          {...register('health_ins_after_retirement', {
+                            required: '選択してください',
+                          })}
+                          type='radio'
+                          value={index}
+                          className='form-check-input hidden peer'
+                          id={`${index}`}
+                        />
+                        <AnswerSelectButton
+                          id={`health-ins-after-retirement-form${index}`}
+                          onClick={() => setTab(index)}
+                          display={displaySwitcher(index)}
+                        >
+                          {value}
+                        </AnswerSelectButton>
+                      </label>
+                    </div>
+                  );
+                },
+              )}
             </div>
 
             {errors.health_ins_after_retirement && (
