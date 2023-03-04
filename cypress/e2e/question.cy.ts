@@ -36,5 +36,6 @@ describe('質問ページに表示される選択肢がそれまでの回答の�
         cy.get('#health-ins-after-retirement-form2').should('not.be.visible' )
         cy.get('#health-ins-after-retirement-form3').should('not.be.visible' )
   })
+
 })
 export { };
