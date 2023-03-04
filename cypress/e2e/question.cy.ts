@@ -11,7 +11,7 @@ describe('質問ページに表示される選択肢がそれまでの回答の�
     sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-05-06", re_employment: 3, age: 1, post_code:'655-0873', family: 1, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 2  }));
     cy.visit('/questions/7')
     cy.wait(200)
-    cy.get('#health-ins-after-retirement-form2').should('not.be.visible' )
+    cy.get('#health-ins-after-retirement-form2').should('not.be.visible')
   })
 
   it('家計を共にしている社会保険の被保険者の家族がいる場合、Q7の選択肢に家族の健康保険が表示される', () => {
@@ -36,6 +36,22 @@ describe('質問ページに表示される選択肢がそれまでの回答の�
         cy.get('#health-ins-after-retirement-form2').should('not.be.visible' )
         cy.get('#health-ins-after-retirement-form3').should('not.be.visible' )
   })
+
+
+      it('退職月が6-12月の場合、Q8の選択肢に普通徴収の選択肢が表示されるように', () => {
+    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-06-06", re_employment: 3, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 2, health_ins_after_retirement: 1  }));
+    cy.visit('/questions/8')
+    cy.wait(500)
+        cy.get('#tax-form2').should('be.visible')
+
+      })
+  
+      it('退職月が1-5月の場合、Q8の選択肢に普通徴収の選択肢が表示されないように', () => {
+        sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-01-06", re_employment: 3, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 2, health_ins_after_retirement: 1  }));
+        cy.visit('/questions/8')
+        cy.wait(500)
+        cy.get('#tax-form2').should('not.be.visible')
+      })
 
 })
 export { };
