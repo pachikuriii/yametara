@@ -42,7 +42,7 @@ const Todo = () => {
           {empInsQualification && (
             <TodoPlate id='todo-employment-insurance-plate'>雇用保険</TodoPlate>
           )}
-          {tax === 2 && <TodoPlate id='todo-tax-plate'>税金</TodoPlate>}
+          <TodoPlate id='todo-tax-plate'>税金</TodoPlate>
         </div>
       </div>
     </>

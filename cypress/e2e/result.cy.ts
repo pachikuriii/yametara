@@ -23,17 +23,13 @@ describe('結果ページ上部に表示される要素がシミュレーショ�
     cy.get('#todo-container').get('#todo-employment-insurance-plate').should('not.exist')
   })
 
-   it('Q8で普通徴収を選択した場合はシミュレーション結果に税金のプレートが表示される', () => {
-    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-01-06", re_employment: 3, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1, tax: 2   }));
+   it('シミュレーション結果に税金のプレートが必ず表示される', () => {
+    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-01-06", re_employment: 3, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1, tax: 1   }));
     cy.visit('/result')
     cy.get('#todo-container').get('#todo-tax-plate').should('have.text', '税金')
   })
 
-    it('Q8で普通徴収以外を選択した場合はシミュレーション結果に税金のプレートは表示されない', () => {
-    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-01-06", re_employment: 3, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1, tax: 1   }));
-    cy.visit('/result')
-    cy.get('#todo-container').get('#todo-tax-plate').should('not.exist')
-  })
+
      
   })
 export { };
