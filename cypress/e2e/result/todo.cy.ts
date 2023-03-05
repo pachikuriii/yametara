@@ -1,17 +1,17 @@
 describe('結果ページ上部に表示される要素がシミュレーションのロジックに合致することのテスト', () => {
-  it('シミュレーション結果にQ1で入力した退職予定日がページ上部に表示される', () => {
+  it('Q1で入力した退職予定日が表示される', () => {
     sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-01-06", re_employment: 3, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1, tax: 2   }));
     cy.visit('/result')
     cy.get('#todo-retirement-date').should('have.text', 'あなたが2022年1月6日に会社を辞めたら以下についての手続きが必要です。')
   })
  
-  it('シミュレーション結果に健康保険のプレートが表示される', () => {
+  it('健康保険のプレートが表示される', () => {
     sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-01-06", re_employment: 3, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1, tax: 2   }));
     cy.visit('/result')
     cy.get('#todo-container').get('#todo-health-insurance-plate').should('have.text', '健康保険')
   })
 
-    it('シミュレーション結果に年金のプレートが表示される', () => {
+    it('年金のプレートが表示される', () => {
     sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-01-06", re_employment: 3, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1, tax: 2   }));
     cy.visit('/result')
     cy.get('#todo-container').get('#todo-pension-plate').should('have.text', '年金')
@@ -29,7 +29,7 @@ describe('結果ページ上部に表示される要素がシミュレーショ�
     cy.get('#todo-container').get('#todo-employment-insurance-plate').should('not.exist')
   })
 
-   it('シミュレーション結果に税金のプレートが表示される', () => {
+   it('税金のプレートが表示される', () => {
     sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-01-06", re_employment: 3, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 2, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1, tax: 1   }));
     cy.visit('/result')
     cy.get('#todo-container').get('#todo-tax-plate').should('have.text', '税金')
