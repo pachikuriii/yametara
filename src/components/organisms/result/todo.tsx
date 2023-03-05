@@ -7,7 +7,7 @@ import {
   retirementReasonState,
   retirementDateState,
 } from '../../../session-stroage';
-import CheckedTodoPlate from '../../molecules/checked-todo-plate';
+import TodoPlate from '../../atoms/todo-plate';
 import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 
 const Todo = () => {
@@ -37,16 +37,14 @@ const Todo = () => {
       </p>
       <div className='h-[calc(100vh-8rem)] py-20'>
         <div>
-          <CheckedTodoPlate>健康保険</CheckedTodoPlate>
-          <CheckedTodoPlate>年金</CheckedTodoPlate>
-          <CheckedTodoPlate
-            additionalClassName={empInsQualification ? '' : ' hidden'}
-          >
+          <TodoPlate>健康保険</TodoPlate>
+          <TodoPlate>年金</TodoPlate>
+          <TodoPlate additionalClassName={empInsQualification ? '' : ' hidden'}>
             雇用保険
-          </CheckedTodoPlate>
-          <CheckedTodoPlate additionalClassName={tax === 2 ? '' : ' hidden'}>
+          </TodoPlate>
+          <TodoPlate additionalClassName={tax === 2 ? '' : ' hidden'}>
             税金
-          </CheckedTodoPlate>
+          </TodoPlate>
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import dayjs from '../../../day-js';
 import { retirementDateState } from '../../../session-stroage';
-import CheckedTodoPlate from '../../molecules/checked-todo-plate';
+import TodoPlate from '../../atoms/todo-plate';
 
 export default function Pension() {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -20,7 +20,7 @@ export default function Pension() {
 
   return (
     <div>
-      <CheckedTodoPlate>年金</CheckedTodoPlate>
+      <TodoPlate>年金</TodoPlate>
       <div className='text-center'>
         <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
           なにを？
