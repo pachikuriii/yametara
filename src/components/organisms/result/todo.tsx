@@ -37,12 +37,18 @@ const Todo = () => {
       </p>
       <div className='h-[calc(100vh-8rem)] py-20'>
         <div>
-          <TodoPlate>健康保険</TodoPlate>
-          <TodoPlate>年金</TodoPlate>
-          <TodoPlate additionalClassName={empInsQualification ? '' : ' hidden'}>
+          <TodoPlate id='todo-health-insurance-plate'>健康保険</TodoPlate>
+          <TodoPlate id='todo-pension-plate'>年金</TodoPlate>
+          <TodoPlate
+            id='todo-employment-insurance-plate'
+            additionalClassName={empInsQualification ? '' : ' hidden'}
+          >
             雇用保険
           </TodoPlate>
-          <TodoPlate additionalClassName={tax === 2 ? '' : ' hidden'}>
+          <TodoPlate
+            id='todo-tax-plate'
+            additionalClassName={tax === 2 ? '' : ' hidden'}
+          >
             税金
           </TodoPlate>
         </div>
