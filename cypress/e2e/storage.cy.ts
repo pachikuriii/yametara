@@ -39,7 +39,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
   it('Q3において回答内容がsessionStorageへ保存されること', () => {
     sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-05-06", retirement_reason: 1, re_employment: 3 }));
     cy.visit('/questions/3')
-    cy.get('#age-form1').click()
+    cy.get('#swiper').get('#age-form1').click()
     cy.get('#postcode-form').type('6550873')
     cy.get('#next-page-button').click()
     cy.window().then(win => {
@@ -64,7 +64,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-05-06", retirement_reason: 1, re_employment: 3, age: 1, post_code:'655-0873', family: 1 }));
     cy.visit('/questions/5')
     cy.get('#emp-ins-last-two-years-form2').click()
-    cy.get('#emp-ins-total-form3').click()
+    cy.get('#swiper').get('#emp-ins-total-form3').click()
     cy.get('#next-page-button').click()
     cy.window().then(win => {
       const storage = JSON.parse(win.sessionStorage.getItem('yametara') || "[]");
