@@ -8,7 +8,6 @@ import {
   retirementReasonState,
 } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
-import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 
 type helloWorkName = string[];
 
@@ -21,7 +20,6 @@ export default function EmploymentInsurance() {
   const [empInsTotal, setEmpInsTotal] = useState(0);
   const [retirementReason, setRetirementReason] = useState(0);
   const [empInspaidDays, setEmpInsPaidDays] = useState(0);
-  const [employmentInsranceQualification] = useEmpInsQualification();
 
   const [age, setAge] = useState(0);
 
@@ -99,7 +97,7 @@ export default function EmploymentInsurance() {
   ]);
 
   return (
-    <div className={employmentInsranceQualification ? '' : ' hidden'}>
+    <div id='employment-insurance'>
       <TodoPlate>雇用保険</TodoPlate>
       <div>
         <div className='text-center'>

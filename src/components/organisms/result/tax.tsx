@@ -27,7 +27,7 @@ export default function Tax() {
   }, [storedRetirementDate, storedTax, storedReEmployment, retirementMonth]);
 
   return (
-    <div className={tax === 2 || reEmployment !== 1 ? '' : ' hidden'}>
+    <div id='tax'>
       <TodoPlate>税金</TodoPlate>
       <div className={tax === 2 ? '' : ' hidden'}>
         <div className='text-center'>

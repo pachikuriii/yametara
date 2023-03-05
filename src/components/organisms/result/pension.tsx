@@ -19,7 +19,7 @@ export default function Pension() {
   }, [storedRetirementDate]);
 
   return (
-    <div>
+    <div id='pension'>
       <TodoPlate>年金</TodoPlate>
       <div className='text-center'>
         <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
