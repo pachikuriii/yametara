@@ -8,7 +8,7 @@ import {
   retirementReasonState,
 } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
-
+import TodoDetail from 'src/components/atoms/todo-detail';
 type helloWorkName = string[];
 
 export default function EmploymentInsurance() {
@@ -99,37 +99,23 @@ export default function EmploymentInsurance() {
   return (
     <div id='employment-insurance'>
       <TodoPlate>雇用保険</TodoPlate>
-      <div>
-        <div className='text-center'>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            なにを？
-          </p>
-          <p className='text-xl font-extrabold'>
-            雇用保険の失業給付の受給手続き
-          </p>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            どこで？
-          </p>
-          <p>以下のハローワークで手続きが可能です。</p>
-          <div>
-            {helloWork.map((value, index) => {
-              return (
-                <ul key={index}>
-                  <li>{value}</li>
-                </ul>
-              );
-            })}
-          </div>
-
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            いつまでに？
-          </p>
-          <p>なるべく早いうちに</p>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            用意するもの
-          </p>
-        </div>
-      </div>
+      <TodoDetail
+        what='雇用保険の失業給付の受給手続き'
+        where={
+          <>
+            <p>以下のハローワークで手続きが可能です。</p>
+            <div>
+              <ul>
+                {helloWork.map((value, index) => {
+                  return <li key={index}>{value}</li>;
+                })}
+              </ul>
+            </div>
+          </>
+        }
+        when='なるべく早いうちに'
+        prepare={'これ'}
+      ></TodoDetail>
     </div>
   );
 }

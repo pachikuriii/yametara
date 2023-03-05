@@ -6,6 +6,7 @@ import {
   healthInsAfterRetirementState,
 } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
+import TodoDetail from 'src/components/atoms/todo-detail';
 
 export default function HealthlInsurance() {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -40,78 +41,32 @@ export default function HealthlInsurance() {
       <TodoPlate>
         <h4>健康保険</h4>
       </TodoPlate>
-      <div className={healthInsAfterRetirement === 1 ? '' : ' hidden'}>
-        <div className='text-center'>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            なにを？
-          </p>
-          <p className='text-xl font-extrabold'>国民健康保険への加入手続き</p>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            どこで？
-          </p>
-          <p>住所地の市区役所/町村役場の窓口で</p>
-
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            いつまでに？
-          </p>
-          <p>
-            退職日翌日の{DayAfterRetirementDate}から
-            {nationalInsApplyDeadline}までに
-          </p>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            用意するもの
-          </p>
-        </div>
-      </div>
-      <div className={healthInsAfterRetirement === 2 ? '' : ' hidden'}>
-        <div className='text-center'>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            なにを？
-          </p>
-          <p className='text-xl font-extrabold'>任意継続被保険者になる手続き</p>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            どこで？
-          </p>
-          <p>
-            協会けんぽの保険証を持っている場合 住所地を管轄するの協会けんぽ支部
-            各健康保険組合(健保組合)発行の保険証を持っている場合 各健康保険組合
-          </p>
-
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            いつまでに？
-          </p>
-          <p>
-            退職日翌日の{DayAfterRetirementDate}から
-            {optionalInsApplyDeadline}までに
-          </p>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            用意するもの
-          </p>
-        </div>
-      </div>
-      <div className={healthInsAfterRetirement === 3 ? '' : ' hidden'}>
-        <div className='text-center'>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            なにを？
-          </p>
-          <p className='text-xl font-extrabold'>被扶養者になる手続き</p>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            どこで？
-          </p>
-          <p>家族である被保険者が勤務先で</p>
-
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            いつまでに？
-          </p>
-          <p>
-            退職日翌日の{DayAfterRetirementDate}から
-            {dependentInsApplyDeadline}までに
-          </p>
-          <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-            用意するもの
-          </p>
-        </div>
-      </div>
+      {healthInsAfterRetirement === 1 && (
+        <TodoDetail
+          what='国民健康保険への加入手続き'
+          where='住所地の市区役所/町村役場の窓口で'
+          when={`退職日翌日の${DayAfterRetirementDate}から
+             ${nationalInsApplyDeadline}までに`}
+          prepare={'これ'}
+        ></TodoDetail>
+      )}
+      {healthInsAfterRetirement === 2 && (
+        <TodoDetail
+          what='任意継続被保険者になる手続き'
+          where='協会けんぽの保険証を持っている場合 住所地を管轄するの協会けんぽ支部
+               各健康保険組合(健保組合)発行の保険証を持っている場合 各健康保険組合'
+          when={`退職日翌日の${DayAfterRetirementDate}から${optionalInsApplyDeadline}までに`}
+          prepare={'これ'}
+        ></TodoDetail>
+      )}
+      {healthInsAfterRetirement === 3 && (
+        <TodoDetail
+          what='被扶養者になる手続き'
+          where='家族である被保険者が勤務先で'
+          when={`退職日翌日の${DayAfterRetirementDate}から${dependentInsApplyDeadline}までに`}
+          prepare={'これ'}
+        ></TodoDetail>
+      )}
     </div>
   );
 }

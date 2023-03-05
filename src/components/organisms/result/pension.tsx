@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import dayjs from '../../../day-js';
 import { retirementDateState } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
+import TodoDetail from 'src/components/atoms/todo-detail';
 
 export default function Pension() {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -21,27 +22,12 @@ export default function Pension() {
   return (
     <div id='pension'>
       <TodoPlate>年金</TodoPlate>
-      <div className='text-center'>
-        <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-          なにを？
-        </p>
-        <p className='text-xl font-extrabold'> 国民年金への加入手続き</p>
-        <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-          どこで？
-        </p>
-        <p>住所地の市区役所/町村役場の窓口やマイナポータルなどで</p>
-
-        <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-          いつまでに？
-        </p>
-        <p>
-          退職日翌日の{DayAfterRetirementDate}から
-          {pensionApplyDeadline}までに
-        </p>
-        <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
-          用意するもの
-        </p>
-      </div>
+      <TodoDetail
+        what='国民年金への加入手続き'
+        where='住所地の市区役所/町村役場の窓口やマイナポータルなどで'
+        when={`退職日翌日の${DayAfterRetirementDate}から${pensionApplyDeadline}までに`}
+        prepare={'これ'}
+      ></TodoDetail>
     </div>
   );
 }
