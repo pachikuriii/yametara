@@ -9,6 +9,8 @@ import {
 } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
 import TodoDetail from 'src/components/atoms/todo-detail';
+import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
+
 type helloWorkName = string[];
 
 export default function EmploymentInsurance() {
@@ -20,7 +22,7 @@ export default function EmploymentInsurance() {
   const [empInsTotal, setEmpInsTotal] = useState(0);
   const [retirementReason, setRetirementReason] = useState(0);
   const [empInspaidDays, setEmpInsPaidDays] = useState(0);
-
+  const [empInsQualification] = useEmpInsQualification();
   const [age, setAge] = useState(0);
 
   useEffect(() => {
@@ -97,25 +99,29 @@ export default function EmploymentInsurance() {
   ]);
 
   return (
-    <div id='employment-insurance'>
-      <TodoPlate>雇用保険</TodoPlate>
-      <TodoDetail
-        what='雇用保険の失業給付の受給手続き'
-        where={
-          <>
-            <p>以下のハローワークで手続きが可能です。</p>
-            <div>
-              <ul>
-                {helloWork.map((value, index) => {
-                  return <li key={index}>{value}</li>;
-                })}
-              </ul>
-            </div>
-          </>
-        }
-        when='なるべく早いうちに'
-        prepare={'これ'}
-      ></TodoDetail>
+    <div>
+      {empInsQualification && (
+        <div id='employment-insurance'>
+          <TodoPlate>雇用保険</TodoPlate>
+          <TodoDetail
+            what='雇用保険の失業給付の受給手続き'
+            where={
+              <>
+                <p>以下のハローワークで手続きが可能です。</p>
+                <div>
+                  <ul>
+                    {helloWork.map((value, index) => {
+                      return <li key={index}>{value}</li>;
+                    })}
+                  </ul>
+                </div>
+              </>
+            }
+            when='なるべく早いうちに'
+            prepare={'これ'}
+          ></TodoDetail>
+        </div>
+      )}
     </div>
   );
 }

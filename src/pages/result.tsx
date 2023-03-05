@@ -13,7 +13,6 @@ import HealthlInsurance from '../components/organisms/result/health-insurance';
 import Pension from '../components/organisms/result/pension';
 import Tax from '../components/organisms/result/tax';
 import Todo from '../components/organisms/result/todo';
-import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 import {
   isNextButtonClicked,
   isBackButtonClicked,
@@ -22,7 +21,6 @@ import {
 export default function Home() {
   const setNextButtonClicked = useSetRecoilState(isNextButtonClicked);
   const setBackButtonClicked = useSetRecoilState(isBackButtonClicked);
-  const [empInsQualification] = useEmpInsQualification();
   return (
     <>
       <Head>
@@ -54,7 +52,7 @@ export default function Home() {
             </h3>
             <HealthlInsurance></HealthlInsurance>
             <Pension></Pension>
-            {empInsQualification && <EmploymentInsurance></EmploymentInsurance>}
+            <EmploymentInsurance></EmploymentInsurance>
             <Tax></Tax>
           </div>
         </div>
