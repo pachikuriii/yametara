@@ -21,7 +21,7 @@ const Todo = () => {
 
   useEffect(() => {
     setTax(storedTax);
-    setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年M月DD日'));
+    setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年M月D日'));
   }, [
     storedTax,
     storedEmpInsLastTwoYears,
@@ -39,18 +39,10 @@ const Todo = () => {
         <div>
           <TodoPlate id='todo-health-insurance-plate'>健康保険</TodoPlate>
           <TodoPlate id='todo-pension-plate'>年金</TodoPlate>
-          <TodoPlate
-            id='todo-employment-insurance-plate'
-            additionalClassName={empInsQualification ? '' : ' hidden'}
-          >
-            雇用保険
-          </TodoPlate>
-          <TodoPlate
-            id='todo-tax-plate'
-            additionalClassName={tax === 2 ? '' : ' hidden'}
-          >
-            税金
-          </TodoPlate>
+          {empInsQualification && (
+            <TodoPlate id='todo-employment-insurance-plate'>雇用保険</TodoPlate>
+          )}
+          {tax === 2 && <TodoPlate id='todo-tax-plate'>税金</TodoPlate>}
         </div>
       </div>
     </>
