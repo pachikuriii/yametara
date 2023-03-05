@@ -5,7 +5,7 @@ import {
   retirementDateState,
   healthInsAfterRetirementState,
 } from '../../../session-stroage';
-import CheckedTodoPlate from '../../molecules/checked-todo-plate';
+import TodoPlate from '../../atoms/todo-plate';
 
 export default function HealthlInsurance() {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -37,9 +37,9 @@ export default function HealthlInsurance() {
 
   return (
     <div>
-      <CheckedTodoPlate>
+      <TodoPlate>
         <h4>健康保険</h4>
-      </CheckedTodoPlate>
+      </TodoPlate>
       <div className={healthInsAfterRetirement === 1 ? '' : ' hidden'}>
         <div className='text-center'>
           <p className='text-xs border-b-4 border-accent border-dotted w-fit'>

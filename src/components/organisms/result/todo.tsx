@@ -7,7 +7,7 @@ import {
   retirementReasonState,
   retirementDateState,
 } from '../../../session-stroage';
-import CheckedTodoPlate from '../../molecules/checked-todo-plate';
+import TodoPlate from '../../atoms/todo-plate';
 import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 
 const Todo = () => {
@@ -21,7 +21,7 @@ const Todo = () => {
 
   useEffect(() => {
     setTax(storedTax);
-    setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年M月DD日'));
+    setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年M月D日'));
   }, [
     storedTax,
     storedEmpInsLastTwoYears,
@@ -37,16 +37,12 @@ const Todo = () => {
       </p>
       <div className='h-[calc(100vh-8rem)] py-20'>
         <div>
-          <CheckedTodoPlate>健康保険</CheckedTodoPlate>
-          <CheckedTodoPlate>年金</CheckedTodoPlate>
-          <CheckedTodoPlate
-            additionalClassName={empInsQualification ? '' : ' hidden'}
-          >
-            雇用保険
-          </CheckedTodoPlate>
-          <CheckedTodoPlate additionalClassName={tax === 2 ? '' : ' hidden'}>
-            税金
-          </CheckedTodoPlate>
+          <TodoPlate id='todo-health-insurance-plate'>健康保険</TodoPlate>
+          <TodoPlate id='todo-pension-plate'>年金</TodoPlate>
+          {empInsQualification && (
+            <TodoPlate id='todo-employment-insurance-plate'>雇用保険</TodoPlate>
+          )}
+          <TodoPlate id='todo-tax-plate'>税金</TodoPlate>
         </div>
       </div>
     </>

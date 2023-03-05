@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import { IconContext } from 'react-icons/';
@@ -29,73 +28,68 @@ export default function Home() {
           yametara | 退職後の手続きシミュレーター | シミュレーション結果
         </title>
       </Head>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      >
-        <main>
-          <label
-            htmlFor='given_choices'
-            className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4  border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50'
-          >
-            <p className='m-4'>
-              <span className='max-sm:block'>あなたの</span>入力内容
-            </p>
-          </label>
 
-          <Modal id='given_choices'>
-            <DataInput />
-          </Modal>
+      <main>
+        <label
+          htmlFor='given_choices'
+          className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4  border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50'
+        >
+          <p className='m-4'>
+            <span className='max-sm:block'>あなたの</span>入力内容
+          </p>
+        </label>
 
-          <Header>シミュレーション結果</Header>
+        <Modal id='given_choices'>
+          <DataInput />
+        </Modal>
+
+        <Header>シミュレーション結果</Header>
+        <div className='mx-auto w-11/12' id='todo-container'>
           <div className='mx-auto w-11/12'>
-            <div className='mx-auto w-11/12'>
-              <Todo></Todo>
-              <h3 className='text-center font-extrabold text-2xl'>
-                あなたの手続き内容の詳細
-              </h3>
-              <HealthlInsurance></HealthlInsurance>
-              <Pension></Pension>
-              <EmploymentInsurance></EmploymentInsurance>
-              <Tax></Tax>
-            </div>
+            <Todo></Todo>
+            <h3 className='text-center font-extrabold text-2xl'>
+              あなたの手続き内容の詳細
+            </h3>
+            <HealthlInsurance></HealthlInsurance>
+            <Pension></Pension>
+            <EmploymentInsurance></EmploymentInsurance>
+            <Tax></Tax>
           </div>
-          <div className='flex justify-evenly pt-10 pb-20'>
-            <Link href='questions/8'>
-              <button
-                className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'
-                onClick={() => {
-                  setBackButtonClicked(true);
-                  setNextButtonClicked(false);
-                }}
+        </div>
+        <div className='flex justify-evenly pt-10 pb-20'>
+          <Link href='questions/8'>
+            <button
+              className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'
+              onClick={() => {
+                setBackButtonClicked(true);
+                setNextButtonClicked(false);
+              }}
+            >
+              <IconContext.Provider
+                value={{ className: 'global-class-name', size: '1.2em' }}
               >
-                <IconContext.Provider
-                  value={{ className: 'global-class-name', size: '1.2em' }}
-                >
-                  <span className='pr-1'>
-                    <IoMdArrowRoundBack />
-                  </span>
-                </IconContext.Provider>
-                戻る
-              </button>
-            </Link>
-            <Link href='questions/1'>
-              <button className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'>
-                <IconContext.Provider
-                  value={{ className: 'global-class-name', size: '1.2em' }}
-                >
-                  <span className='pr-1'>
-                    <AiOutlineReload />
-                  </span>
-                </IconContext.Provider>
-                もう1度シミュレーションする
-              </button>
-            </Link>
-          </div>
-          <Footer></Footer>
-        </main>
-      </motion.div>
+                <span className='pr-1'>
+                  <IoMdArrowRoundBack />
+                </span>
+              </IconContext.Provider>
+              戻る
+            </button>
+          </Link>
+          <Link href='questions/1'>
+            <button className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'>
+              <IconContext.Provider
+                value={{ className: 'global-class-name', size: '1.2em' }}
+              >
+                <span className='pr-1'>
+                  <AiOutlineReload />
+                </span>
+              </IconContext.Provider>
+              もう1度シミュレーションする
+            </button>
+          </Link>
+        </div>
+        <Footer></Footer>
+      </main>
     </>
   );
 }

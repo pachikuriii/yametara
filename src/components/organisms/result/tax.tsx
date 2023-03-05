@@ -6,7 +6,7 @@ import {
   taxState,
   reEmploymentState,
 } from '../../../session-stroage';
-import CheckedTodoPlate from '../../molecules/checked-todo-plate';
+import TodoPlate from '../../atoms/todo-plate';
 
 export default function Tax() {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -28,7 +28,7 @@ export default function Tax() {
 
   return (
     <div className={tax === 2 || reEmployment !== 1 ? '' : ' hidden'}>
-      <CheckedTodoPlate>税金</CheckedTodoPlate>
+      <TodoPlate>税金</TodoPlate>
       <div className={tax === 2 ? '' : ' hidden'}>
         <div className='text-center'>
           <p className='text-xs border-b-4 border-accent border-dotted w-fit'>

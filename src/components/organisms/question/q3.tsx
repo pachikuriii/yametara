@@ -62,6 +62,7 @@ export default function Q3(props: any) {
           modules={[Navigation]}
           centeredSlides={true}
           initialSlide={storedAge ? Number(storedAge) - 1 : 0}
+          id='swiper'
         >
           {[
             '30歳未満',

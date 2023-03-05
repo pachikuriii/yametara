@@ -7,7 +7,7 @@ import {
   empInsTotalState,
   retirementReasonState,
 } from '../../../session-stroage';
-import CheckedTodoPlate from '../../molecules/checked-todo-plate';
+import TodoPlate from '../../atoms/todo-plate';
 import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 
 type helloWorkName = string[];
@@ -100,7 +100,7 @@ export default function EmploymentInsurance() {
 
   return (
     <div className={employmentInsranceQualification ? '' : ' hidden'}>
-      <CheckedTodoPlate>雇用保険</CheckedTodoPlate>
+      <TodoPlate>雇用保険</TodoPlate>
       <div>
         <div className='text-center'>
           <p className='text-xs border-b-4 border-accent border-dotted w-fit'>

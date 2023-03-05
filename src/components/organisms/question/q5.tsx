@@ -90,6 +90,7 @@ export default function Q5() {
             modules={[Navigation]}
             centeredSlides={true}
             initialSlide={storedEmpInsTotal ? Number(storedEmpInsTotal) - 1 : 0}
+            id='swiper'
           >
             {[
               '1年未満',
