@@ -6,6 +6,7 @@ import {
   empInsLastTwoYearsState,
   retirementReasonState,
   retirementDateState,
+  reEmploymentState,
 } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
 import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
@@ -16,16 +17,20 @@ const Todo = () => {
   const [storedTax] = useRecoilState(taxState);
   const [storedEmpInsLastTwoYears] = useRecoilState(empInsLastTwoYearsState);
   const [storedRetirementReason] = useRecoilState(retirementReasonState);
+  const [storedReEmployment] = useRecoilState(reEmploymentState);
   const [tax, setTax] = useState(0);
+  const [reEmployment, setReEmployment] = useState(0);
   const [empInsQualification] = useEmpInsQualification();
 
   useEffect(() => {
     setTax(storedTax);
     setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年M月D日'));
+    setReEmployment(storedReEmployment);
   }, [
     storedTax,
     storedEmpInsLastTwoYears,
     storedRetirementReason,
+    storedReEmployment,
     retirementDate,
   ]);
 
@@ -42,7 +47,9 @@ const Todo = () => {
           {empInsQualification && (
             <TodoPlate id='todo-employment-insurance-plate'>雇用保険</TodoPlate>
           )}
-          <TodoPlate id='todo-tax-plate'>税金</TodoPlate>
+          {(reEmployment !== 1 || tax === 2) && (
+            <TodoPlate id='todo-tax-plate'>税金</TodoPlate>
+          )}
         </div>
       </div>
     </>
