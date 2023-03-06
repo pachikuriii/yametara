@@ -36,6 +36,7 @@ export default function Tax() {
               where='退職時に一括徴収しない場合は自治体から送られてくる納付書を使って口座振替（銀行、ゆうちょなど）、コンビニなどで'
               when='納付書に記載の期日までに'
               prepare={'これ'}
+              id='resident-tax'
             ></TodoDetail>
           )}
           {reEmployment !== 1 && (
@@ -45,6 +46,7 @@ export default function Tax() {
                 where='住所地を管轄する税務署やe-Taxなどで'
                 when={`${taxReturnYear}年2月16日から3月15日までに`}
                 prepare={'これ'}
+                id='income-tax'
               ></TodoDetail>
               <p>
                 年の途中で退職し、年内に再就職しない場合は年末調整を受けられません。そのため所得税を納め過ぎになる場合があります。この納め過ぎの所得税は、翌年になってから確定申告をすることで還付を受けられます。
