@@ -110,7 +110,7 @@ export default function DataInput() {
         ])}
       </p>
       <p>Q8</p>
-      <p id='#tax-after-retirement'>
+      <p id='tax-after-retirement'>
         退職後の住民税の支払い方法：
         {useDisplayGivenOption(tax, [
           '一括徴収',
