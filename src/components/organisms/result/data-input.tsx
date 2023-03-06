@@ -30,12 +30,12 @@ export default function DataInput() {
   }, [retirementDate, postcode]);
 
   return (
-    <div className='text-black'>
-      <p>あなたの入力内容</p>
+    <div className='text-black' id='input-content'>
+      <h5>あなたの入力内容</h5>
       <p>Q1</p>
-      <p>退職予定日:{displayedRetirementDate}</p>
-      <p>
-        退職事由:
+      <p id='retirement-date'>退職予定日：{displayedRetirementDate}</p>
+      <p id='retirement-reason'>
+        退職事由：
         {useDisplayGivenOption(retirementReason, [
           '自己都合',
           '会社都合',
@@ -43,8 +43,8 @@ export default function DataInput() {
         ])}
       </p>
       <p>Q2</p>
-      <p>
-        再就職の予定:
+      <p id='re-employment'>
+        再就職の予定：
         {useDisplayGivenOption(reEmployment, [
           '年内の再就職の予定あり',
           '年内の再就職の予定なし',
@@ -53,8 +53,8 @@ export default function DataInput() {
       </p>
 
       <p>Q3</p>
-      <p>
-        年齢:
+      <p id='age'>
+        年齢：
         {useDisplayGivenOption(age, [
           '30歳未満',
           '30歳以上35歳未満',
@@ -63,9 +63,9 @@ export default function DataInput() {
           '60歳以上65歳未満',
         ])}
       </p>
-      <p>郵便番号:{displayedPostcode}</p>
+      <p id='postcode'>郵便番号：{displayedPostcode}</p>
       <p>Q4</p>
-      <p>
+      <p id='family'>
         家族：
         {useDisplayGivenOption(family, [
           '社会保険の被保険者の家族がいる',
@@ -74,16 +74,16 @@ export default function DataInput() {
       </p>
       <p>Q5</p>
       <p>雇用保険</p>
-      <p>
-        過去2年:
+      <p id='emp-ins-last-two-years'>
+        過去2年：
         {useDisplayGivenOption(empInsLastTwoYears, [
           '6ヶ月未満の加入実績あり',
           '6ヶ月以上1年未満の加入実績あり',
           '1年以上の加入実績あり',
         ])}
       </p>
-      <p>
-        これまで:
+      <p id='emp-ins-total'>
+        これまで：
         {useDisplayGivenOption(empInsTotal, [
           '1年未満の加入実績あり',
           '1年以上5年未満の加入実績あり',
@@ -93,16 +93,16 @@ export default function DataInput() {
         ])}
       </p>
       <p>Q6</p>
-      <p>
-        健康保険:
+      <p id='health-ins-last-two-month'>
+        健康保険：
         {useDisplayGivenOption(healthInsLastTwoMonth, [
           '2ヶ月未満の加入実績あり',
           '2ヶ月以上の加入実績あり',
         ])}
       </p>
       <p>Q7</p>
-      <p>
-        退職後に加入を検討したい健康保険:
+      <p id='health-ins-after-retirement'>
+        退職後に加入を検討したい健康保険：
         {useDisplayGivenOption(healthInsAfterRetirement, [
           '国民健康保険',
           '任意継続被保険者になる',
@@ -110,8 +110,8 @@ export default function DataInput() {
         ])}
       </p>
       <p>Q8</p>
-      <p>
-        退職後の住民税の支払い方:
+      <p id='tax'>
+        退職後の住民税の支払い方法：
         {useDisplayGivenOption(tax, [
           '一括徴収',
           '普通徴収',

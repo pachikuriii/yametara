@@ -33,6 +33,7 @@ export default function Home() {
         <label
           htmlFor='given_choices'
           className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4  border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50'
+          id='input-confirmation-button'
         >
           <p className='m-4'>
             <span className='max-sm:block'>あなたの</span>入力内容
