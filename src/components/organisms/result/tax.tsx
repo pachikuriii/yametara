@@ -27,7 +27,7 @@ export default function Tax() {
 
   return (
     <div>
-      {(tax === 2 || reEmployment !== 1) && (
+      {(reEmployment !== 1 || tax === 2) && (
         <div id='tax'>
           <TodoPlate>税金</TodoPlate>
           {tax === 2 && (

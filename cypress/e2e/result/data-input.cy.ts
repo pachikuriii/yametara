@@ -13,7 +13,7 @@ describe('入力内容確認のモーダルが回答内容と合致するかテ�
     cy.get('#emp-ins-total').should('have.text', 'これまで：5年以上10年未満の加入実績あり')
     cy.get('#health-ins-last-two-month').should('have.text', '健康保険：2ヶ月未満の加入実績あり')
     cy.get('#health-ins-after-retirement').should('have.text', '退職後に加入を検討したい健康保険：国民健康保険')
-    cy.get('#tax').should('have.text', '退職後の住民税の支払い方法：普通徴収')
+    cy.get('#tax-after-retirement').should('have.text', '退職後の住民税の支払い方法：普通徴収')
   })
 })
 export { };
