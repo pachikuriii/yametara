@@ -16,11 +16,9 @@ export default function Q8() {
   const [retiredOnBetweenJanAndMay, setretiredOnBetweenJanAndMay] =
     useState(false);
 
-  const displaySwitcher = (index: number) => {
-    if (index === 2 && retiredOnBetweenJanAndMay) {
-      return 'hidden';
-    } else {
-      return '';
+  const searchOptions = (index: number) => {
+    if (!(index === 2 && retiredOnBetweenJanAndMay)) {
+      return true;
     }
   };
 
@@ -61,35 +59,32 @@ export default function Q8() {
 
       <form>
         <label htmlFor='tax'>今年度の残りの住民税の支払い方法</label>
-        <div className='flex space-x-4 justify-center'>
-          {[
-            '退職時に給与/退職金から会社に翌年5月分まで天引きしてもらう（一括徴収）',
-            '送付される納税通知書に基づいて自分で分割で納める（普通徴収）',
-            '昨年度の収入がないため、今年度は住民税の支払いをしていない',
-          ].map((value, index) => {
-            index += 1;
-            return (
-              <div key={index}>
-                <label htmlFor={`${index}`}>
-                  <input
-                    {...register('tax', {
-                      required: '選択してください',
-                    })}
-                    type='radio'
-                    value={index}
-                    className='form-check-input hidden peer'
-                    id={`${index}`}
-                  />
-                  <AnswerSelectButton
-                    id={`tax-form${index}`}
-                    display={displaySwitcher(index)}
-                  >
-                    {value}
-                  </AnswerSelectButton>
-                </label>
-              </div>
-            );
-          })}
+        <div className='flex space-x-4 justify-center' id='answer-options'>
+          {['一括徴収', '普通徴収', '今年度の住民税の支払いはない'].map(
+            (value, index) => {
+              index += 1;
+              return (
+                <div key={index}>
+                  <label htmlFor={`${index}`}>
+                    <input
+                      {...register('tax', {
+                        required: '選択してください',
+                      })}
+                      type='radio'
+                      value={index}
+                      className='form-check-input hidden peer'
+                      id={`${index}`}
+                    />
+                    {searchOptions(index) && (
+                      <AnswerSelectButton id={`tax-form${index}`}>
+                        {value}
+                      </AnswerSelectButton>
+                    )}
+                  </label>
+                </div>
+              );
+            },
+          )}
         </div>
         {errors.tax && <p>{errors.tax.message}</p>}
         <PagerButtons

@@ -20,20 +20,15 @@ const Q7 = () => {
   const storedHealthInsLastTwoMonthState = useRecoilValue(
     healthInsLastTwoMonthState,
   );
-  const [healthInsAfterRetirement, setHealthInsAfterRetirement] = useState(0);
+  const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useState(0);
   const [family, setFamily] = useState(0);
-
-  const displaySwitcher = (index: number) => {
-    if (
-      (index === 2 && healthInsAfterRetirement === 2) ||
-      (index === 3 && family === 2)
-    ) {
-      return 'hidden';
-    } else {
-      return '';
-    }
+  const searchOptions = (index: number) => {
+    return (
+      index === 1 ||
+      (index === 2 && healthInsLastTwoMonth === 1) ||
+      (index === 3 && family === 1)
+    );
   };
-
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -54,7 +49,7 @@ const Q7 = () => {
   };
 
   useEffect(() => {
-    setHealthInsAfterRetirement(storedHealthInsLastTwoMonthState);
+    setHealthInsLastTwoMonth(storedHealthInsLastTwoMonthState);
     setFamily(storedFamilyState);
   }, [storedHealthInsLastTwoMonthState, storedFamilyState]);
 
@@ -65,8 +60,8 @@ const Q7 = () => {
         <p>国民皆保険制度により退職後も健康保険への加入が必須です。</p>
         <div className=' bg-white'>
           <form>
-            <div className='flex space-x-4 justify-center'>
-              {['国民健康保険', '任意継続保険', '家族の健康保険'].map(
+            <div className='flex space-x-4 justify-center' id='answer-options'>
+              {['国民健康保険', '任意継続', '家族の健康保険'].map(
                 (value, index) => {
                   index += 1;
                   return (
@@ -81,13 +76,14 @@ const Q7 = () => {
                           className='form-check-input hidden peer'
                           id={`${index}`}
                         />
-                        <AnswerSelectButton
-                          id={`health-ins-after-retirement-form${index}`}
-                          onClick={() => setTab(index)}
-                          display={displaySwitcher(index)}
-                        >
-                          {value}
-                        </AnswerSelectButton>
+                        {searchOptions(index) && (
+                          <AnswerSelectButton
+                            id={`health-ins-after-retirement-form${index}`}
+                            onClick={() => setTab(index)}
+                          >
+                            {value}
+                          </AnswerSelectButton>
+                        )}
                       </label>
                     </div>
                   );
@@ -103,27 +99,38 @@ const Q7 = () => {
           <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded'>
             <div className='px-4 py-5 flex-auto'>
               <div className='tab-content tab-space'>
-                <div className={tab === 1 ? 'block' : 'hidden'}>
+                {tab === 1 && (
                   <div>
-                    <p className='border-b-4 border-dotted w-fit'>
-                      国民健康保険への加入
+                    <div>
+                      <p className='border-b-4 border-dotted w-fit'>
+                        国民健康保険への加入
+                      </p>
+                    </div>
+                    <p>
+                      国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
                     </p>
                   </div>
-                  <p>
-                    国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
-                  </p>
-                </div>
-                <div className={tab === 2 ? 'block' : 'hidden'}>
+                )}
+                {tab === 2 && (
                   <div>
-                    <p className='border-b-4 border-dotted w-fit'>年金</p>
+                    <div>
+                      <p className='border-b-4 border-dotted w-fit'>年金</p>
+                    </div>
+                    <p>
+                      国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
+                    </p>
                   </div>
-                  <p>
-                    国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
-                  </p>
-                </div>
-                <div className={tab === 3 ? 'block' : 'hidden'}>
-                  <p className='border-b-4 border-dotted w-fit'>雇用保険</p>
-                </div>
+                )}
+                {tab === 3 && (
+                  <div>
+                    <div>
+                      <p className='border-b-4 border-dotted w-fit'>雇用保険</p>
+                    </div>
+                    <p>
+                      国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
+                    </p>
+                  </div>
+                )}
                 <PagerButtons
                   handleSubmit={handleSubmit(submitContent)}
                   isValid={isValid}
