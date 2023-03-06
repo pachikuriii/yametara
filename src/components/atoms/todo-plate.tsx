@@ -4,13 +4,12 @@ import { BsCheckLg } from 'react-icons/bs';
 
 interface Props {
   children: ReactNode;
-  additionalClassName?: String;
   id?: string;
 }
 
-const TodoPlate = ({ children, additionalClassName, id }: Props) => {
+const TodoPlate = ({ children, id }: Props) => {
   return (
-    <div className={'indicator w-full my-4 ' + additionalClassName} id={id}>
+    <div className='indicator w-full my-4 ' id={id}>
       <span className='bg-secondary text-accent indicator-item indicator-start badge badge-secondary rounded-full h-9 w-9 border-4 border-secondary'>
         <IconContext.Provider
           value={{ className: 'global-class-name', size: '1.5em' }}
