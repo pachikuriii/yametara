@@ -91,7 +91,7 @@ describe('結果ページ下部の手続き詳細部分に表示される要素�
    })
 
   it('再就職の予定がなく、住民税を普通徴収以外の方法で納める場合は所得税の還付申請のみが表示される', () => {
-    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-04-06", retirement_reason: 3, re_employment: 1, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 1, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1, tax: 1 }));
+    sessionStorage.setItem('yametara', JSON.stringify({ started: true, retirement_date: "2022-04-06", retirement_reason: 3, re_employment: 2, age: 1, post_code:'655-0873', family: 2, emp_ins_last_two_years: 1, emp_ins_total: 3, health_ins_last_two_month: 1, health_ins_after_retirement: 1, tax: 1 }));
     cy.visit('/result')
     cy.get('#todo-container').find('#todo-tax-plate').should('have.text', '税金')
     cy.get('#tax').should('be.visible').find('#resident-tax').should('not.exist')
