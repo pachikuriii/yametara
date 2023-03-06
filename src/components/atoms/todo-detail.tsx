@@ -4,11 +4,12 @@ interface Props {
   where: ReactNode;
   when: ReactNode;
   prepare: ReactNode;
+  id?: string;
 }
 
-const TodoDetail = ({ what, where, when, prepare }: Props) => {
+const TodoDetail = ({ what, where, when, prepare, id }: Props) => {
   return (
-    <div className='text-center'>
+    <div className='text-center' id={id}>
       <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
         なにを？
       </p>
