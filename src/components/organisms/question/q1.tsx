@@ -98,7 +98,7 @@ export default function Q1(props: any) {
 
         {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
 
-        <label htmlFor='retirement-reason'>
+        <label htmlFor='retirement-reason' className='link'>
           <Alert>退職事由について</Alert>
         </label>
 
