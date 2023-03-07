@@ -8,9 +8,9 @@ import {
   retirementReasonState,
 } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
+import Card from 'src/components/atoms/card';
 import TodoDetail from 'src/components/atoms/todo-detail';
 import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
-
 type helloWorkName = string[];
 
 export default function EmploymentInsurance() {
@@ -103,6 +103,10 @@ export default function EmploymentInsurance() {
       {empInsQualification && (
         <div id='employment-insurance'>
           <TodoPlate>雇用保険</TodoPlate>
+          <p className='text-center'>
+            あなたには{empInspaidDays}
+            日分の失業給付（基本手当）の受給資格があります。
+          </p>
           <TodoDetail
             what='雇用保険の失業給付の受給手続き'
             where={
@@ -118,7 +122,21 @@ export default function EmploymentInsurance() {
               </>
             }
             when='なるべく早いうちに'
-            prepare={'これ'}
+            prepare={
+              <div className='flex justify-center'>
+                <Card>
+                  <ol className='list-decimal'>
+                    <li>雇用保険被保険者離職票（-1、-2）</li>
+                    <li>マイナンバーおよび身元が確認できる書類</li>
+                    <li>写真2枚</li>
+                    <p className='text-xs'>
+                      （最近の写真で本人と確認できるもの、縦3.0cm×横2.4cm）
+                    </p>
+                    <li>本人名義の預金通帳又はキャッシュカード</li>
+                  </ol>
+                </Card>
+              </div>
+            }
           ></TodoDetail>
         </div>
       )}
