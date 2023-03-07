@@ -69,16 +69,18 @@ export default function HealthlInsurance() {
                 </p>
               </div>
             }
-            when={`退職日翌日の${DayAfterRetirementDate}から
-             ${nationalInsApplyDeadline}までに`}
+            when={`退職日翌日の${DayAfterRetirementDate}から${nationalInsApplyDeadline}までに`}
             prepare={
               <div className='flex justify-center'>
                 <Card>
-                  <ol className='list-decimal'>
-                    <li>本人確認書類（運転免許証など写真つきのもの）</li>
+                  <ol className='list-decimal text-left'>
+                    <li>
+                      本人確認書類
+                      <p className='text-xs'>※写真つきのもの</p>
+                    </li>
                     <li>健康保険資格喪失証明書</li>
-                    <li>マイナンバーがわかるもの</li>
-                    <p></p>
+                    <li>マイナンバーが確認できる書類</li>
+                    <p className='text-right'>など</p>
                   </ol>
                 </Card>
               </div>
@@ -94,12 +96,15 @@ export default function HealthlInsurance() {
           prepare={
             <div className='flex justify-center'>
               <Card>
-                <ol className='list-decimal'>
+                <ol className='list-decimal text-left'>
                   <li>健康保険任意継続被保険者資格取得申請書</li>
-                  <li>組合健保/協会けんぽが独自に定める添付書類</li>
-                  <p>
-                    ※具体的な添付書類、提出方法は継続を希望する協会けんぽ/組合健保へ確認
-                  </p>
+                  <li>
+                    組合健保/協会けんぽが独自に定める添付書類
+                    <p className='text-xs'>
+                      ※具体的な添付書類、提出方法は継続を希望する協会けんぽ/組合健保へ確認
+                    </p>
+                  </li>
+                  <p className='text-right'>など</p>
                 </ol>
               </Card>
             </div>
@@ -114,14 +119,13 @@ export default function HealthlInsurance() {
           prepare={
             <div className='flex justify-center'>
               <Card>
-                <ol className='list-decimal'>
+                <ol className='list-decimal text-left'>
                   <li>健康保険被扶養者届</li>
-                  <li>
-                    被保険者である家族との続柄、収入などが確認できる添付書類
-                  </li>
-                  <p>
+                  <li>家族との続柄、収入などが確認できる添付書類</li>
+                  <p className='text-xs'>
                     ※具体的な添付書類、提出方法は被保険者である家族の勤務先の事業所を通じて確認
                   </p>
+                  <p className='text-right'>など</p>
                 </ol>
               </Card>
             </div>

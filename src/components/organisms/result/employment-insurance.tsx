@@ -125,15 +125,20 @@ export default function EmploymentInsurance() {
             prepare={
               <div className='flex justify-center'>
                 <Card>
-                  <ol className='list-decimal'>
+                  <ol className='list-decimal text-left'>
+                    <li>
+                      本人確認書類
+                      <p className='text-xs'>※写真つきのもの</p>
+                    </li>
                     <li>雇用保険被保険者離職票（-1、-2）</li>
-                    <li>マイナンバーおよび身元が確認できる書類</li>
                     <li>写真2枚</li>
                     <p className='text-xs'>
                       （最近の写真で本人と確認できるもの、縦3.0cm×横2.4cm）
                     </p>
                     <li>本人名義の預金通帳又はキャッシュカード</li>
+                    <li>マイナンバーが確認できる書類</li>
                   </ol>
+                  <p className='text-right'>など</p>
                 </Card>
               </div>
             }
