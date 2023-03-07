@@ -24,13 +24,6 @@ const Q7 = () => {
   );
   const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useState(0);
   const [family, setFamily] = useState(0);
-  const searchOptions = (index: number) => {
-    return (
-      index === 1 ||
-      (index === 2 && healthInsLastTwoMonth === 1) ||
-      (index === 3 && family === 1)
-    );
-  };
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -53,7 +46,14 @@ const Q7 = () => {
   useEffect(() => {
     setHealthInsLastTwoMonth(storedHealthInsLastTwoMonthState);
     setFamily(storedFamilyState);
-  }, [storedHealthInsLastTwoMonthState, storedFamilyState]);
+    if (storedHealthInsAfterRetirement) {
+      setTab(storedHealthInsAfterRetirement);
+    }
+  }, [
+    storedHealthInsLastTwoMonthState,
+    storedFamilyState,
+    storedHealthInsAfterRetirement,
+  ]);
 
   return (
     <>
@@ -78,7 +78,9 @@ const Q7 = () => {
                           className='form-check-input hidden peer'
                           id={`${index}`}
                         />
-                        {searchOptions(index) && (
+                        {(index === 1 ||
+                          (index === 2 && healthInsLastTwoMonth === 1) ||
+                          (index === 3 && family === 1)) && (
                           <AnswerSelectButton
                             id={`health-ins-after-retirement-form${index}`}
                             onClick={() => setTab(index)}
