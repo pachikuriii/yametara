@@ -15,8 +15,8 @@ const Modal = ({ children, id }: Props) => {
     <>
       <input type='checkbox' id={idState} className='modal-toggle' />
       <label htmlFor={idState} className='modal cursor-pointer'>
-        <label className='modal-box relative' htmlFor=''>
-          <div className='py-4'>{childrenState}</div>
+        <label className='modal-box relative py-0 px-0' htmlFor={idState}>
+          <div>{childrenState}</div>
         </label>
       </label>
     </>
