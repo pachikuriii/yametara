@@ -39,7 +39,7 @@ export default function Pension() {
         prepare={
           <div className='flex justify-center'>
             <Card>
-              <ol className='list-decimal text-left'>
+              <ol className='list-decimal text-left list-inside'>
                 <li>
                   本人確認書類
                   <p className='text-xs'>※写真つきのもの</p>

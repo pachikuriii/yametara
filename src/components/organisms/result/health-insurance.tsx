@@ -73,7 +73,7 @@ export default function HealthlInsurance() {
             prepare={
               <div className='flex justify-center'>
                 <Card>
-                  <ol className='list-decimal text-left'>
+                  <ol className='list-decimal text-left list-inside'>
                     <li>
                       本人確認書類
                       <p className='text-xs'>※写真つきのもの</p>
@@ -96,7 +96,7 @@ export default function HealthlInsurance() {
           prepare={
             <div className='flex justify-center'>
               <Card>
-                <ol className='list-decimal text-left'>
+                <ol className='list-decimal text-left list-inside'>
                   <li>健康保険任意継続被保険者資格取得申請書</li>
                   <li>
                     組合健保/協会けんぽが独自に定める添付書類
@@ -119,7 +119,7 @@ export default function HealthlInsurance() {
           prepare={
             <div className='flex justify-center'>
               <Card>
-                <ol className='list-decimal text-left'>
+                <ol className='list-decimal text-left x-2 list-inside'>
                   <li>健康保険被扶養者届</li>
                   <li>家族との続柄、収入などが確認できる添付書類</li>
                   <p className='text-xs'>

@@ -39,7 +39,7 @@ export default function Tax() {
               prepare={
                 <div className='flex justify-center'>
                   <Card>
-                    <div className=' text-left'>
+                    <div className='text-center'>
                       <p>お住まいの自治体から送られてくる納付書</p>
                     </div>
                   </Card>
@@ -57,7 +57,7 @@ export default function Tax() {
                 prepare={
                   <div className='flex justify-center'>
                     <Card>
-                      <ol className='list-decimal text-left'>
+                      <ol className='list-decimal text-left list-inside'>
                         <li>確定申告書</li>
                         <li>マイナンバーおよび身元が確認できる書類</li>
                         <li>源泉徴収票</li>
