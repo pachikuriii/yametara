@@ -65,7 +65,7 @@ const Motion = ({ children }: Props) => {
           ? {}
           : { x: `${storedExitMotion}` }
       }
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.15 }}
       className='flex justify-center mt-10 w-11/12 mx-auto'
     >
       {children}

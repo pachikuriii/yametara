@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { IconContext } from 'react-icons';
+import { RiMoneyCnyCircleFill } from 'react-icons/ri';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   healthInsAfterRetirementState,
@@ -22,13 +24,6 @@ const Q7 = () => {
   );
   const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useState(0);
   const [family, setFamily] = useState(0);
-  const searchOptions = (index: number) => {
-    return (
-      index === 1 ||
-      (index === 2 && healthInsLastTwoMonth === 1) ||
-      (index === 3 && family === 1)
-    );
-  };
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -51,13 +46,20 @@ const Q7 = () => {
   useEffect(() => {
     setHealthInsLastTwoMonth(storedHealthInsLastTwoMonthState);
     setFamily(storedFamilyState);
-  }, [storedHealthInsLastTwoMonthState, storedFamilyState]);
+    if (storedHealthInsAfterRetirement) {
+      setTab(storedHealthInsAfterRetirement);
+    }
+  }, [
+    storedHealthInsLastTwoMonthState,
+    storedFamilyState,
+    storedHealthInsAfterRetirement,
+  ]);
 
   return (
     <>
       <div className='flex flex-wrap'>
-        <h2 className='card-title'>加入を検討したい退職後の健康保険</h2>
-        <p>国民皆保険制度により退職後も健康保険への加入が必須です。</p>
+        <h2 className='card-title'>退職後に加入したい健康保険</h2>
+
         <div className=' bg-white'>
           <form>
             <div className='flex space-x-4 justify-center' id='answer-options'>
@@ -76,7 +78,9 @@ const Q7 = () => {
                           className='form-check-input hidden peer'
                           id={`${index}`}
                         />
-                        {searchOptions(index) && (
+                        {(index === 1 ||
+                          (index === 2 && healthInsLastTwoMonth === 1) ||
+                          (index === 3 && family === 1)) && (
                           <AnswerSelectButton
                             id={`health-ins-after-retirement-form${index}`}
                             onClick={() => setTab(index)}
@@ -90,7 +94,6 @@ const Q7 = () => {
                 },
               )}
             </div>
-
             {errors.health_ins_after_retirement && (
               <p>{errors.health_ins_after_retirement.message}</p>
             )}
@@ -101,36 +104,93 @@ const Q7 = () => {
               <div className='tab-content tab-space'>
                 {tab === 1 && (
                   <div>
-                    <div>
-                      <p className='border-b-4 border-dotted w-fit'>
-                        国民健康保険への加入
-                      </p>
-                    </div>
-                    <p>
-                      国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
+                    <IconContext.Provider
+                      value={{
+                        className: 'global-class-name',
+                        style: {
+                          display: 'inline',
+                        },
+                        size: '1.3em',
+                      }}
+                    >
+                      <h3 className='text-md font-extrabold'>
+                        <RiMoneyCnyCircleFill /> 国民健康保険の特徴
+                      </h3>
+                    </IconContext.Provider>
+                    <p className='text-xs pt-2'>
+                      会社員や公務員以外の全ての住民を対象とした保険
                     </p>
+                    <div className='flex justify-center'>
+                      <ul className='text-xs text-left py-2 list-disc'>
+                        <li>前年の所得や世帯人員数に応じて保険料が決まる</li>
+                        <li>保険料の減免制度が受けられる場合がある</li>
+                        <li>居住している市区町村により保険料額が異なる</li>
+                      </ul>
+                    </div>
                   </div>
                 )}
                 {tab === 2 && (
                   <div>
-                    <div>
-                      <p className='border-b-4 border-dotted w-fit'>年金</p>
-                    </div>
-                    <p>
-                      国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
+                    <IconContext.Provider
+                      value={{
+                        className: 'global-class-name',
+                        style: {
+                          display: 'inline',
+                        },
+                        size: '1.3em',
+                      }}
+                    >
+                      <h3 className='text-md font-extrabold'>
+                        <RiMoneyCnyCircleFill />
+                        任意継続制度の特徴
+                      </h3>
+                    </IconContext.Provider>
+                    <p className='text-xs pt-2 text-left'>
+                      一定条件のもとで個人の希望により、それまで加入していた健康保険に個人でさらに最長2年間継続して加入できる制度
                     </p>
+                    <div className='flex justify-center'>
+                      <ul className='text-xs text-left py-2 list-disc'>
+                        <li>
+                          在職時は事業主と折半していた保険料を全額自己負担する形となるため原則、退職時の給与から天引きされる保険料の倍額（
+                          ≒
+                          退職時の標準報酬月額×継続しようとする健康保険が定める料率）が保険料
+                        </li>
+                        <li>扶養家族の保険料はかからない</li>
+                        <li>継続期間中に保険料は原則変わらない</li>
+                      </ul>
+                    </div>
                   </div>
                 )}
                 {tab === 3 && (
                   <div>
-                    <div>
-                      <p className='border-b-4 border-dotted w-fit'>雇用保険</p>
-                    </div>
-                    <p>
-                      国民健康保険へ加入する場合、●月●日から●月●日の間に住所地の市区役所/町村役場の窓口で手続きが必要です。
+                    <IconContext.Provider
+                      value={{
+                        className: 'global-class-name',
+                        style: {
+                          display: 'inline',
+                        },
+                        size: '1.3em',
+                      }}
+                    >
+                      <h3 className='text-md font-extrabold'>
+                        <RiMoneyCnyCircleFill />
+                        家族の健康保険の特徴
+                      </h3>
+                    </IconContext.Provider>
+                    <p className='text-xs pt-2 text-left'>
+                      被保険者である家族が加入している健康保険へ被扶養者として加入することで同一の保険制度を利用できる制度
                     </p>
+                    <div className='flex justify-center'>
+                      <ul className='text-xs text-left py-2 list-disc'>
+                        <li>
+                          被扶養者として認定されるためには、家族の範囲と収入について一定の条件を満たしている必要がある
+                        </li>
+                        <li>被扶養者の保険料の負担はなし</li>
+                      </ul>
+                    </div>
                   </div>
                 )}
+
                 <PagerButtons
                   handleSubmit={handleSubmit(submitContent)}
                   isValid={isValid}
