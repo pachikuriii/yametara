@@ -123,8 +123,8 @@ export default function DataInput() {
             <p id='health-ins-last-two-month'>
               健康保険：
               {useDisplayGivenOption(healthInsLastTwoMonth, [
-                '退職予定日時点で2ヶ月未満の加入実績あり',
-                '退職予定日時点で2ヶ月以上の加入実績あり',
+                '退職予定日時点で2ヶ月未満の加入',
+                '退職予定日時点で2ヶ月以上の加入',
               ])}
             </p>
           </div>
