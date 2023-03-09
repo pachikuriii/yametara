@@ -5,6 +5,21 @@ const { persistAtom } = recoilPersist({
   storage: typeof window === 'undefined' ? undefined : window.sessionStorage,
 });
 
+export const STORAGE_KEYS = [
+  'age',
+  'emp_ins_last_two_years',
+  'emp_ins_total',
+  'family',
+  'health_ins_after_retirement',
+  'health_ins_last_two_month',
+  'post_code',
+  're_employment',
+  'retirement_date',
+  'retirement_reason',
+  'started',
+  'tax',
+];
+
 export const startedState = atom<boolean>({
   key: 'started',
   default: false,
