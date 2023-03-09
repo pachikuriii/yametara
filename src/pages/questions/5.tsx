@@ -7,7 +7,9 @@ import Card from 'src/components/atoms/card';
 import Modal from 'src/components/atoms/modal';
 import Motion from 'src/components/atoms/motion';
 import AnswerProgressBar from 'src/components/atoms/progress-bar';
-export default function Home() {
+import { useIsStarted } from 'src/hooks/use-is-started';
+export default function Page5() {
+  useIsStarted();
   return (
     <>
       <Head>

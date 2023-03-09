@@ -13,10 +13,9 @@ export const useDisplayGivenOption = (
     const givenOption = displayedOptions.find(
       (displayedOption) => displayedOption.key === recoilState,
     );
-    if (givenOption === undefined) {
-      throw Error;
+    if (givenOption) {
+      setState(givenOption.display);
     }
-    setState(givenOption.display);
   }, [displayedOptions, recoilState]);
 
   return [state];

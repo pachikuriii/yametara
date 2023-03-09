@@ -5,8 +5,9 @@ import Q4 from '../../components/organisms/question/q4';
 import Card from 'src/components/atoms/card';
 import Motion from 'src/components/atoms/motion';
 import AnswerProgressBar from 'src/components/atoms/progress-bar';
-
-export default function Home() {
+import { useIsStarted } from 'src/hooks/use-is-started';
+export default function Page4() {
+  useIsStarted();
   return (
     <>
       <Head>
