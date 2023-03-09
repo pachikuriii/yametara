@@ -5,8 +5,10 @@ import Q2 from '../../components/organisms/question/q2';
 import Card from 'src/components/atoms/card';
 import Motion from 'src/components/atoms/motion';
 import AnswerProgressBar from 'src/components/atoms/progress-bar';
+import { useIsStarted } from 'src/hooks/use-is-started';
 
 export default function Page2() {
+  useIsStarted();
   return (
     <>
       <Head>

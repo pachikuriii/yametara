@@ -48,10 +48,9 @@ export default function EmploymentInsurance() {
           empInsPeriodAndDay.empInsTotal === storedEmpInsTotal,
       );
 
-      if (empInsPeriodAndDay === undefined) {
-        throw Error;
+      if (empInsPeriodAndDay !== undefined) {
+        setEmpInsPaidDays(empInsPeriodAndDay.days);
       }
-      setEmpInsPaidDays(empInsPeriodAndDay.days);
     } else if (storedRetirementReason !== 1) {
       const empInsPeriodAndDay = [
         { empInsTotal: 1, days: 90, age: 1 },
@@ -83,10 +82,9 @@ export default function EmploymentInsurance() {
           empInsPeriodAndDay.empInsTotal === storedEmpInsTotal &&
           empInsPeriodAndDay.age === storedAge,
       );
-      if (empInsPeriodAndDay === undefined) {
-        throw Error;
+      if (empInsPeriodAndDay !== undefined) {
+        setEmpInsPaidDays(empInsPeriodAndDay.days);
       }
-      setEmpInsPaidDays(empInsPeriodAndDay.days);
     }
   }, [
     storedPostcode,
