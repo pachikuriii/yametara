@@ -12,7 +12,7 @@ export default function Terms() {
       </Head>
 
       <main className='flex flex-col min-h-screen'>
-        <Header>利用規約</Header>
+        <Header title='利用規約' />
         <div className='flex-grow text-sm'>
           <div>
             <h2 className='text-xl font-extrabold'>前提条件</h2>

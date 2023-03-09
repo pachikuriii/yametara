@@ -43,7 +43,7 @@ export default function Home() {
         </title>
       </Head>
       <main>
-        <Header>シミュレーション結果</Header>
+        <Header title='シミュレーション結果' />
         {completed ? (
           <div>
             <label
