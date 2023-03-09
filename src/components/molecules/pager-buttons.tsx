@@ -3,7 +3,7 @@ import { BaseSyntheticEvent } from 'react';
 import { useSetRecoilState } from 'recoil';
 import BackButton from '../atoms/back-button';
 import NextButton from '../atoms/next-button';
-import { usePrevPage } from 'src/hooks/use-get-page';
+import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
 import {
   isNextButtonClicked,
   isBackButtonClicked,
@@ -17,6 +17,7 @@ type Props = {
 
 const PagerButtons = ({ handleSubmit, isValid }: Props) => {
   const prevPage = usePrevPage();
+  const nextPage = useNextPage();
   const router = useRouter();
   const setNextButtonClicked = useSetRecoilState(isNextButtonClicked);
   const setBackButtonClicked = useSetRecoilState(isBackButtonClicked);
@@ -43,6 +44,9 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
             handleSubmit();
             setBackButtonClicked(false);
             setNextButtonClicked(true);
+            {
+              isValid && router.push(nextPage);
+            }
           }}
           isValid={isValid}
         >

@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IconContext } from 'react-icons';
@@ -8,8 +7,7 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { taxState, retirementDateState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
+import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q8() {
   const [tab, setTab] = useState(1);
@@ -40,11 +38,8 @@ export default function Q8() {
     criteriaMode: 'all',
   });
 
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredTax(Number(data.tax));
-    router.push(nextPage);
   };
 
   return (

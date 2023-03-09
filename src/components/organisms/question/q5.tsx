@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
@@ -10,15 +9,13 @@ import {
 import { formInput } from '../../../types/type';
 import Alert from 'src/components/atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
+import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q5() {
   const [storedEmpInsTotal, setStoredEmpInsTotal] =
     useRecoilState(empInsTotalState);
   const [storedEmpInsLastTwoYears, setStoredEmpInsLastTwoYears] =
     useRecoilState(empInsLastTwoYearsState);
-
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -31,13 +28,9 @@ export default function Q5() {
     mode: 'onChange',
     criteriaMode: 'all',
   });
-
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredEmpInsTotal(Number(data.emp_ins_total));
     setStoredEmpInsLastTwoYears(Number(data.emp_ins_last_two_years));
-    router.push(nextPage);
   };
 
   return (

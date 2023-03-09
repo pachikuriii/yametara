@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IconContext } from 'react-icons';
@@ -11,8 +10,7 @@ import {
 } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
+import PagerButtons from 'src/components/molecules/pager-buttons';
 
 const Q7 = () => {
   const [tab, setTab] = useState(1);
@@ -35,12 +33,8 @@ const Q7 = () => {
     mode: 'onChange',
     criteriaMode: 'all',
   });
-
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredHealthInsAfterRetirement(Number(data.health_ins_after_retirement));
-    router.push(nextPage);
   };
 
   useEffect(() => {

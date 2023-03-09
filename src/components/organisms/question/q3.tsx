@@ -1,5 +1,4 @@
 import { HelloWork } from 'jp-hello-work';
-import { useRouter } from 'next/router';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 import { useRecoilState } from 'recoil';
@@ -8,9 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { postcodeState, ageState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
-
+import PagerButtons from 'src/components/molecules/pager-buttons';
 export default function Q3(props: any) {
   const [storedAge, setStoredAge] = useRecoilState(ageState);
   const [storedPostcode, setStoredPostcode] = useRecoilState(postcodeState);
@@ -29,16 +26,12 @@ export default function Q3(props: any) {
     mode: 'onChange',
     criteriaMode: 'all',
   });
-
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     try {
       setStoredAge(Number(data.age));
       if (HelloWork.byZipCode(data.postcode.replace(/-/g, ''))) {
         setStoredPostcode(data.postcode);
       }
-      router.push(nextPage);
     } catch (e) {
       if (e instanceof TypeError) {
         setError('postcode', {
