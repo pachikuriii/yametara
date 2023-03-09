@@ -1,5 +1,5 @@
 import Q5 from '../../components/organisms/question/q5';
-import EmploymentInsurance from 'src/components/organisms/modal/employment-insurance';
+import EmploymentInsuranceReference from 'src/components/organisms/modal/employment-insurance-reference';
 import ModalTemplate from 'src/components/template/modal-template';
 import QuestionTemplate from 'src/components/template/question-template';
 export default function Page5() {
@@ -16,7 +16,7 @@ export default function Page5() {
         id='how-to-count-emp-period'
         title='被保険者期間の数え方について'
       >
-        <EmploymentInsurance />
+        <EmploymentInsuranceReference />
       </ModalTemplate>
     </>
   );

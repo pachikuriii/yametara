@@ -1,5 +1,5 @@
 import Image from 'next/image';
-export default function EmploymentInsurance() {
+export default function EmploymentInsuranceReference() {
   return (
     <div className='text-center'>
       <p className='pb-4'>
