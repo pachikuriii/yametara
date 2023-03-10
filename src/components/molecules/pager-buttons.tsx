@@ -3,7 +3,7 @@ import { BaseSyntheticEvent } from 'react';
 import { useSetRecoilState } from 'recoil';
 import BackButton from '../atoms/back-button';
 import NextButton from '../atoms/next-button';
-import { useNextPage, usePrevPage } from 'src/hooks/use-get-page';
+import { useNextPage, usePrevPage } from 'src/hooks/use-require-path';
 import {
   isNextButtonClicked,
   isBackButtonClicked,
