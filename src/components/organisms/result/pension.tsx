@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import dayjs from '../../../day-js';
 import { retirementDateState } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
