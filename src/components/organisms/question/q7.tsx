@@ -38,7 +38,6 @@ const Q7 = () => {
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredHealthInsAfterRetirement(Number(data.health_ins_after_retirement));
   };
-
   useEffect(() => {
     setHealthInsLastTwoMonth(storedHealthInsLastTwoMonthState);
     setFamily(storedFamilyState);

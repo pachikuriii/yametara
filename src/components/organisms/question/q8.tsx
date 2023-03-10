@@ -16,7 +16,6 @@ export default function Q8() {
   const [storedTax, setStoredTax] = useRecoilState(taxState);
   const [retiredOnBetweenJanAndMay, setretiredOnBetweenJanAndMay] =
     useState(false);
-
   useEffect(() => {
     const retirementMonth = dayjs(storedRetirementDate).month() + 1;
     if ([...Array(5)].map((_, i) => i + 1).includes(retirementMonth)) {
@@ -26,7 +25,6 @@ export default function Q8() {
       setTab(storedTax);
     }
   }, [storedRetirementDate, retiredOnBetweenJanAndMay, storedTax]);
-
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -38,7 +36,6 @@ export default function Q8() {
     mode: 'onChange',
     criteriaMode: 'all',
   });
-
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredTax(Number(data.tax));
   };
