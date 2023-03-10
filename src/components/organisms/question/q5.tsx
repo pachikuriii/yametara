@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
@@ -10,15 +9,13 @@ import {
 import { formInput } from '../../../types/type';
 import Alert from 'src/components/atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
+import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q5() {
   const [storedEmpInsTotal, setStoredEmpInsTotal] =
     useRecoilState(empInsTotalState);
   const [storedEmpInsLastTwoYears, setStoredEmpInsLastTwoYears] =
     useRecoilState(empInsLastTwoYearsState);
-
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -31,13 +28,9 @@ export default function Q5() {
     mode: 'onChange',
     criteriaMode: 'all',
   });
-
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredEmpInsTotal(Number(data.emp_ins_total));
     setStoredEmpInsLastTwoYears(Number(data.emp_ins_last_two_years));
-    router.push(nextPage);
   };
 
   return (
@@ -76,6 +69,7 @@ export default function Q5() {
           <p>{errors.emp_ins_last_two_years.message}</p>
         )}
       </div>
+
       <div>
         <label htmlFor='emp_ins_total'>退職予定日までの通算では…</label>
         <div className='flex space-x-4 justify-center'>
@@ -120,9 +114,11 @@ export default function Q5() {
         </div>
         {errors.emp_ins_total && <p>{errors.emp_ins_total.message}</p>}
       </div>
+
       <label htmlFor='how-to-count-emp-period' className='link'>
         <Alert>被保険者期間の数え方について</Alert>
       </label>
+
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}

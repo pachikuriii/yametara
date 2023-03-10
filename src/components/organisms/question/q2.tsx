@@ -1,16 +1,13 @@
-import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { reEmploymentState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
+import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q2() {
   const [storedReEmployment, setStoredReEmployment] =
     useRecoilState(reEmploymentState);
-
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -22,12 +19,8 @@ export default function Q2() {
     mode: 'onChange',
     criteriaMode: 'all',
   });
-
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredReEmployment(Number(data.re_employment));
-    router.push(nextPage);
   };
 
   return (
@@ -58,11 +51,12 @@ export default function Q2() {
           })}
         </div>
         {errors.re_employment && <p>{errors.re_employment.message}</p>}
-        <PagerButtons
-          handleSubmit={handleSubmit(submitContent)}
-          isValid={isValid}
-        ></PagerButtons>
       </form>
+
+      <PagerButtons
+        handleSubmit={handleSubmit(submitContent)}
+        isValid={isValid}
+      ></PagerButtons>
     </div>
   );
 }

@@ -7,7 +7,7 @@ interface Props {
   id?: string;
 }
 
-const TodoDetail = ({ what, where, when, prepare, id }: Props) => {
+const TodoDetailTemplate = ({ what, where, when, prepare, id }: Props) => {
   return (
     <div className='text-center' id={id}>
       <p className='text-xs border-b-4 border-accent border-dotted w-fit'>
@@ -30,4 +30,4 @@ const TodoDetail = ({ what, where, when, prepare, id }: Props) => {
   );
 };
 
-export default TodoDetail;
+export default TodoDetailTemplate;

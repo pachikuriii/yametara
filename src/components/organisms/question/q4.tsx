@@ -1,15 +1,12 @@
-import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { familyState } from '../../../session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
+import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q4() {
   const [storedFamily, setStoredFamily] = useRecoilState(familyState);
-
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -21,12 +18,8 @@ export default function Q4() {
     mode: 'onChange',
     criteriaMode: 'all',
   });
-
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredFamily(Number(data.family));
-    router.push(nextPage);
   };
 
   return (
@@ -58,13 +51,13 @@ export default function Q4() {
             );
           })}
         </div>
-
         {errors.family && <p>{errors.family.message}</p>}
-        <PagerButtons
-          handleSubmit={handleSubmit(submitContent)}
-          isValid={isValid}
-        ></PagerButtons>
       </form>
+
+      <PagerButtons
+        handleSubmit={handleSubmit(submitContent)}
+        isValid={isValid}
+      ></PagerButtons>
     </div>
   );
 }
