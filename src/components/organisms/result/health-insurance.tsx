@@ -9,7 +9,7 @@ import {
 } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
 import Card from 'src/components/atoms/card';
-import TodoDetail from 'src/components/atoms/todo-detail';
+import TodoDetailTemplate from 'src/components/template/todo-detail-template';
 
 export default function HealthlInsurance() {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -59,7 +59,7 @@ export default function HealthlInsurance() {
       </TodoPlate>
       {healthInsAfterRetirement === 1 && (
         <div>
-          <TodoDetail
+          <TodoDetailTemplate
             what='国民健康保険への加入手続き'
             where={
               <div>
@@ -85,11 +85,11 @@ export default function HealthlInsurance() {
                 </Card>
               </div>
             }
-          ></TodoDetail>
+          ></TodoDetailTemplate>
         </div>
       )}
       {healthInsLastTwoMonth === 1 && healthInsAfterRetirement === 2 && (
-        <TodoDetail
+        <TodoDetailTemplate
           what='任意継続被保険者になる手続き'
           where='協会けんぽ支部や各健康保険組合で'
           when={`退職日翌日の${DayAfterRetirementDate}から${optionalInsApplyDeadline}までに`}
@@ -109,10 +109,10 @@ export default function HealthlInsurance() {
               </Card>
             </div>
           }
-        ></TodoDetail>
+        ></TodoDetailTemplate>
       )}
       {family === 1 && healthInsAfterRetirement === 3 && (
-        <TodoDetail
+        <TodoDetailTemplate
           what='被扶養者になる手続き'
           where='家族である被保険者が勤務先で'
           when={`退職日翌日の${DayAfterRetirementDate}から${dependentInsApplyDeadline}までに`}
@@ -130,7 +130,7 @@ export default function HealthlInsurance() {
               </Card>
             </div>
           }
-        ></TodoDetail>
+        ></TodoDetailTemplate>
       )}
     </div>
   );

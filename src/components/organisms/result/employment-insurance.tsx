@@ -9,7 +9,7 @@ import {
 } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
 import Card from 'src/components/atoms/card';
-import TodoDetail from 'src/components/atoms/todo-detail';
+import TodoDetailTemplate from 'src/components/template/todo-detail-template';
 import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 type helloWorkName = string[];
 
@@ -105,7 +105,7 @@ export default function EmploymentInsurance() {
             あなたには{empInspaidDays}
             日分の失業給付（基本手当）の受給資格があります。
           </p>
-          <TodoDetail
+          <TodoDetailTemplate
             what='雇用保険の失業給付の受給手続き'
             where={
               <>
@@ -140,7 +140,7 @@ export default function EmploymentInsurance() {
                 </Card>
               </div>
             }
-          ></TodoDetail>
+          ></TodoDetailTemplate>
         </div>
       )}
     </div>

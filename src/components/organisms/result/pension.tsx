@@ -6,7 +6,7 @@ import dayjs from '../../../day-js';
 import { retirementDateState } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
 import Card from 'src/components/atoms/card';
-import TodoDetail from 'src/components/atoms/todo-detail';
+import TodoDetailTemplate from 'src/components/template/todo-detail-template';
 
 export default function Pension() {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -25,7 +25,7 @@ export default function Pension() {
   return (
     <div id='pension'>
       <TodoPlate>年金</TodoPlate>
-      <TodoDetail
+      <TodoDetailTemplate
         what='国民年金への加入手続き'
         where={
           <div>
@@ -62,7 +62,7 @@ export default function Pension() {
             </Card>
           </div>
         }
-      ></TodoDetail>
+      ></TodoDetailTemplate>
     </div>
   );
 }

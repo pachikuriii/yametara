@@ -8,7 +8,7 @@ import {
 } from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
 import Card from 'src/components/atoms/card';
-import TodoDetail from 'src/components/atoms/todo-detail';
+import TodoDetailTemplate from 'src/components/template/todo-detail-template';
 
 export default function Tax() {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -32,7 +32,7 @@ export default function Tax() {
         <div id='tax'>
           <TodoPlate>税金</TodoPlate>
           {tax === 2 && (
-            <TodoDetail
+            <TodoDetailTemplate
               what='住民税の支払い'
               where='口座振替/コンビニなどで'
               when='納付書に記載の期日までに'
@@ -46,11 +46,11 @@ export default function Tax() {
                 </div>
               }
               id='resident-tax'
-            ></TodoDetail>
+            ></TodoDetailTemplate>
           )}
           {reEmployment !== 1 && (
             <div>
-              <TodoDetail
+              <TodoDetailTemplate
                 what='所得税の還付申請'
                 where='住所地を管轄する税務署やe-Taxなどで'
                 when={`${taxReturnYear}年2月16日から3月15日までに`}
@@ -73,7 +73,7 @@ export default function Tax() {
                   </div>
                 }
                 id='income-tax'
-              ></TodoDetail>
+              ></TodoDetailTemplate>
               <p>
                 年の途中で退職し、年内に再就職しない場合は年末調整を受けられません。そのため所得税を納め過ぎになる場合があります。この納め過ぎの所得税は、翌年になってから確定申告をすることで還付を受けられます。
               </p>
