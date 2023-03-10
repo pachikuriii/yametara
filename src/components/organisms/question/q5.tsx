@@ -69,6 +69,7 @@ export default function Q5() {
           <p>{errors.emp_ins_last_two_years.message}</p>
         )}
       </div>
+
       <div>
         <label htmlFor='emp_ins_total'>退職予定日までの通算では…</label>
         <div className='flex space-x-4 justify-center'>
@@ -113,9 +114,11 @@ export default function Q5() {
         </div>
         {errors.emp_ins_total && <p>{errors.emp_ins_total.message}</p>}
       </div>
+
       <label htmlFor='how-to-count-emp-period' className='link'>
         <Alert>被保険者期間の数え方について</Alert>
       </label>
+
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
