@@ -1,35 +1,13 @@
-import { HelloWork } from 'jp-hello-work';
-import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import {
-  postcodeState,
-  ageState,
-  empInsTotalState,
-  retirementReasonState,
-} from '../../../session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
 import Card from 'src/components/atoms/card';
 import TodoDetailTemplate from 'src/components/template/todo-detail-template';
 import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 import { useEmpInsPaymentPeriod } from 'src/hooks/use-employment-insurance-payment-period';
-type helloWorkName = string[];
-
+import { useRequireHellowork } from 'src/hooks/use-require-hellowork';
 export default function EmploymentInsurance() {
-  const [storedPostcode] = useRecoilState(postcodeState);
-  const [storedRetirementReason] = useRecoilState(retirementReasonState);
-  const [storedAge] = useRecoilState(ageState);
-  const [storedEmpInsTotal] = useRecoilState(empInsTotalState);
-  const [helloWork, setHelloWork] = useState<helloWorkName>([]);
+  const [helloWork] = useRequireHellowork();
   const [empInsQualification] = useEmpInsQualification();
   const [empInsPaymentDays] = useEmpInsPaymentPeriod();
-  useEffect(() => {
-    const helloWork = HelloWork.byZipCode(storedPostcode.replace(/-/g, ''));
-    setHelloWork(
-      helloWork.name.map((name) => {
-        return `ハローワーク${name}`;
-      }),
-    );
-  }, [storedAge, storedEmpInsTotal, storedPostcode, storedRetirementReason]);
 
   return (
     <div>
