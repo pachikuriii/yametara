@@ -14,14 +14,14 @@ export default function EmploymentInsuranceReference() {
           </div>
           <Image
             src='/employment-insurance/not-count-over-year.svg'
-            alt='logo'
+            alt='雇用保険の被保険者期間のカウントの説明画像'
             width='400'
             height='100'
             className='mx-auto pb-4'
           />
           <Image
             src='/employment-insurance/count.svg'
-            alt='logo'
+            alt='雇用保険の被保険者期間のカウントの説明画像'
             width='400'
             height='100'
             className='mx-auto'
@@ -36,7 +36,7 @@ export default function EmploymentInsuranceReference() {
           </div>
           <Image
             src='/employment-insurance/not-count-paid.svg'
-            alt='logo'
+            alt='雇用保険の被保険者期間のカウントの説明画像'
             width='400'
             height='100'
             className='mx-auto'

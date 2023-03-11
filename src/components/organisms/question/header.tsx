@@ -12,7 +12,7 @@ const Header = ({ title, todo }: Props) => {
         <Link href='/'>
           <Image
             src='/yametara-logo-white.svg'
-            alt='logo'
+            alt='yametaraのロゴ'
             width='150'
             height='100'
             loading='eager'

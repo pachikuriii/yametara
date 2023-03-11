@@ -17,12 +17,16 @@ export default function IndexMain() {
     <>
       <Head>
         <title>yametara | 退職後の手続きシミュレーター</title>
+        <meta
+          name='description'
+          content='yametaraは会社を辞めた後、すぐに就職しない選択をはじめてする方におすすめの退職後の手続きシミュレーターです。いくつかの質問に答えるだけで会社を辞めた後に必要な手続きを一括で把握することができます。'
+        />
       </Head>
       <main className='text-center flex flex-col min-h-screen'>
         <div className='mx-auto max-w-md pt-20 pb-10 w-11/12 flex-grow'>
           <Image
             src='/yametara-logo.svg'
-            alt='logo'
+            alt='yametaraのロゴ'
             width='600'
             height='100'
             className='mx-auto'

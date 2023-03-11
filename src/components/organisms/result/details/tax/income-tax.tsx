@@ -15,6 +15,9 @@ export default function IncomeTaxDetail() {
 
   return (
     <div>
+      <p className='pb-4'>
+        年の途中で退職し、年内に再就職しない場合は年末調整を受けられません。そのため所得税を納め過ぎになる場合があります。この納め過ぎの所得税は、翌年になってから確定申告をすることで還付を受けられます。
+      </p>
       <TodoDetailTemplate
         what='所得税の還付申請'
         where='住所地を管轄する税務署やe-Taxなどで'
@@ -37,9 +40,6 @@ export default function IncomeTaxDetail() {
         }
         id='income-tax'
       ></TodoDetailTemplate>
-      <p className='text-xs'>
-        ※年の途中で退職し、年内に再就職しない場合は年末調整を受けられません。そのため所得税を納め過ぎになる場合があります。この納め過ぎの所得税は、翌年になってから確定申告をすることで還付を受けられます。
-      </p>
     </div>
   );
 }

@@ -19,6 +19,10 @@ const QuestionTemplate = ({ pageTitle, title, todo, children }: Props) => {
     <>
       <Head>
         <title>{pageTitle}</title>
+        <meta
+          name='description'
+          content='yametaraは会社を辞めた後、すぐに就職しない選択をはじめてする方におすすめの退職後の手続きシミュレーターです。会社を辞めた後に必要な手続きを把握するために、いくつかの質問に答えてみましょう。'
+        />
       </Head>
       <main className='flex flex-col min-h-screen'>
         <Header title={title} todo={todo} />
