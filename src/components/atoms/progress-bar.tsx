@@ -15,13 +15,14 @@ const AnswerProgressBar = () => {
   return (
     <ProgressBar
       completed={state}
-      bgColor='#f4d4d9'
+      bgColor='#ffccd5'
+      baseBgColor='#E8E8E8'
       height='1.5rem'
       isLabelVisible={false}
       transitionDuration='0.2s'
       transitionTimingFunction='ease-out'
       maxCompleted={8}
-      className='max-sm:w-11/12 md:w-96  mx-auto py-6'
+      className='w-full mx-auto py-6'
     />
   );
 };

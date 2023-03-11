@@ -1,59 +1,71 @@
-import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { healthInsLastTwoMonthState } from '../../../session-stroage';
+import { healthInsLastTwoMonthState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
-import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
+import QuestionTitle from 'src/components/atoms/question-title';
+import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q6() {
   const [storedHealthInsLastTwoMonth, setStoredHealthInsLastTwoMonth] =
     useRecoilState(healthInsLastTwoMonthState);
-
   const {
     handleSubmit,
-    setValue,
-    formState: { errors },
+    formState: { errors, isValid },
     register,
   } = useForm<formInput>({
     defaultValues: {
-      health_ins_last_two_month: storedHealthInsLastTwoMonth,
+      health_ins_last_two_month: String(storedHealthInsLastTwoMonth),
     },
+    mode: 'onChange',
+    criteriaMode: 'all',
   });
-
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredHealthInsLastTwoMonth(data.health_ins_last_two_month);
-    router.push(nextPage);
+    setStoredHealthInsLastTwoMonth(Number(data.health_ins_last_two_month));
   };
 
   return (
-    <div>
-      <form>
-        <label htmlFor='health_ins_last_two_mont'>
-          退職予定日までの健康保険の被保険者期間 継続して…
+    <div className='flex flex-col justify-center'>
+      <form className='pb-4'>
+        <QuestionTitle>退職予定日における被保険者期間</QuestionTitle>
+        <label className='pb-1' htmlFor='health_ins_last_two_month'>
+          継続して…
         </label>
-
-        <input
-          {...register('health_ins_last_two_month', {
-            required: '選択してください',
+        <div className='flex space-x-2 justify-center pb-2'>
+          {['2ヵ月以上', '2ヵ月以下'].map((value, index) => {
+            index += 1;
+            return (
+              <div key={index}>
+                <label htmlFor={`${index}`}>
+                  <input
+                    {...register('health_ins_last_two_month', {
+                      required: '選択してください',
+                    })}
+                    type='radio'
+                    value={`${index}`}
+                    className='form-check-input hidden peer'
+                    id={`${index}`}
+                  />
+                  <AnswerSelectButton
+                    id={`health-ins-last-two-month-form${index}`}
+                  >
+                    {value}
+                  </AnswerSelectButton>
+                </label>
+              </div>
+            );
           })}
-          type='hidden'
-        />
-
-        <AnswerSelectButtons
-          labels={['2ヵ月以上', '2ヵ月以下']}
-          setValue={setValue}
-          property='health_ins_last_two_month'
-        ></AnswerSelectButtons>
-
+        </div>
         {errors.health_ins_last_two_month && (
-          <p>{errors.health_ins_last_two_month.message}</p>
+          <Error>{errors.health_ins_last_two_month.message}</Error>
         )}
-        <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
       </form>
+
+      <PagerButtons
+        handleSubmit={handleSubmit(submitContent)}
+        isValid={isValid}
+      ></PagerButtons>
     </div>
   );
 }

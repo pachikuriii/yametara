@@ -5,7 +5,7 @@ interface Props {
 
 const Alert = ({ children }: Props) => {
   return (
-    <div className='flex justify-center alert bg-white'>
+    <div className='flex justify-center alert bg-white p-0'>
       <div>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -20,7 +20,7 @@ const Alert = ({ children }: Props) => {
             d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
           ></path>
         </svg>
-        <a className='link'>{children}</a>
+        <p>{children}</p>
       </div>
     </div>
   );

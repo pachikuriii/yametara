@@ -1,10 +1,13 @@
-import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { IconContext } from 'react-icons/';
+import { AiOutlineReload } from 'react-icons/ai';
+import { FaRegSadTear } from 'react-icons/fa';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import { useSetRecoilState } from 'recoil';
 import Modal from '../components/atoms/modal';
-import Footer from '../components/organisms/question/footer';
+import Footer from '../components/organisms/footer';
 import Header from '../components/organisms/question/header';
 import DataInput from '../components/organisms/result/data-input';
 import EmploymentInsurance from '../components/organisms/result/employment-insurance';
@@ -12,16 +15,26 @@ import HealthlInsurance from '../components/organisms/result/health-insurance';
 import Pension from '../components/organisms/result/pension';
 import Tax from '../components/organisms/result/tax';
 import Todo from '../components/organisms/result/todo';
-import dayjs from '../day-js';
-import { retirementDateState } from '../session-stroage';
+import Button from 'src/components/atoms/button';
+import {
+  isNextButtonClicked,
+  isBackButtonClicked,
+} from 'src/storage/motion-controller';
+import { STORAGE_KEYS } from 'src/storage/session-stroage';
 
 export default function Home() {
-  const [retirementDate] = useRecoilState(retirementDateState);
-  const [retirementDateToDisplay, setRetirementDateToDisplay] = useState('');
-
+  const [completed, setCompleted] = useState(false);
+  const setNextButtonClicked = useSetRecoilState(isNextButtonClicked);
+  const setBackButtonClicked = useSetRecoilState(isBackButtonClicked);
   useEffect(() => {
-    setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年MM月DD日'));
-  }, [retirementDate]);
+    const storage = JSON.parse(sessionStorage.getItem('yametara') || '[]');
+    for (let key of STORAGE_KEYS) {
+      if (!Object.keys(storage).includes(key)) {
+        break;
+      }
+      setCompleted(true);
+    }
+  }, []);
 
   return (
     <>
@@ -29,43 +42,97 @@ export default function Home() {
         <title>
           yametara | 退職後の手続きシミュレーター | シミュレーション結果
         </title>
+        <meta
+          name='description'
+          content='yametaraは会社を辞めた後、すぐに就職しない選択をはじめてする方におすすめの退職後の手続きシミュレーターです。シミュレーション結果を参考に退職後のスケジュールを考えてみましょう。'
+        />
       </Head>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      >
-        <main>
-          <label htmlFor='given_choices'>
-            <p className='text-black'>入力内容を見る</p>
-          </label>
-
-          <Modal id='given_choices'>
-            <DataInput />
-          </Modal>
-
-          <Header>シミュレーション結果</Header>
-          <p>
-            あなたが{retirementDateToDisplay}
-            に会社を辞めたら以下についての手続きが必要です。
-          </p>
-          <Todo></Todo>
+      <main>
+        <Header title='シミュレーション結果' />
+        {completed ? (
+          <div className='mx-auto max-w-md'>
+            <label
+              htmlFor='given_choices'
+              className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4 border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50 cursor-pointer'
+              id='input-confirmation-button'
+            >
+              <p className='m-4'>
+                <span className='max-sm:block'>あなたの</span>入力内容
+              </p>
+            </label>
+            <Modal id='given_choices'>
+              <DataInput />
+            </Modal>
+            <div className='mx-auto w-11/12' id='todo-container'>
+              <div className='mx-auto w-11/12'>
+                <Todo></Todo>
+                <h3 className='text-center font-extrabold text-2xl'>
+                  手続き内容の詳細
+                </h3>
+                <HealthlInsurance></HealthlInsurance>
+                <Pension></Pension>
+                <EmploymentInsurance></EmploymentInsurance>
+                <Tax></Tax>
+              </div>
+            </div>
+            <div className='flex justify-evenly pt-10 pb-20'>
+              <Link href='questions/8'>
+                <Button
+                  onClick={() => {
+                    setBackButtonClicked(true);
+                    setNextButtonClicked(false);
+                  }}
+                >
+                  <IconContext.Provider
+                    value={{ className: 'global-class-name', size: '1.2em' }}
+                  >
+                    <span className='pr-1'>
+                      <IoMdArrowRoundBack />
+                    </span>
+                  </IconContext.Provider>
+                  戻る
+                </Button>
+              </Link>
+              <Link href='questions/1'>
+                <Button>
+                  <IconContext.Provider
+                    value={{ className: 'global-class-name', size: '1.2em' }}
+                  >
+                    <span className='pr-1'>
+                      <AiOutlineReload />
+                    </span>
+                  </IconContext.Provider>
+                  もう1度シミュレーションする
+                </Button>
+              </Link>
+            </div>
+          </div>
+        ) : (
           <div>
-            <h3>手続き内容の詳細</h3>
-            <HealthlInsurance></HealthlInsurance>
-            <Pension></Pension>
-            <EmploymentInsurance></EmploymentInsurance>
-            <Tax></Tax>
-            <Link href='questions/8'>
-              <p>もどる</p>
-            </Link>
+            <p>全ての質問に回答していないようです。</p>
+            <IconContext.Provider
+              value={{ className: 'global-class-name', size: '5em' }}
+            >
+              <span className='pr-1'>
+                <FaRegSadTear />
+              </span>
+            </IconContext.Provider>
             <Link href='questions/1'>
-              <p>もう1度シミュレーションする</p>
+              <Button>
+                <IconContext.Provider
+                  value={{ className: 'global-class-name', size: '1.2em' }}
+                >
+                  <span className='pr-1'>
+                    <AiOutlineReload />
+                  </span>
+                </IconContext.Provider>
+                もう1度シミュレーションする
+              </Button>
             </Link>
           </div>
-          <Footer></Footer>
-        </main>
-      </motion.div>
+        )}
+        <Footer></Footer>
+      </main>
     </>
   );
 }

@@ -1,92 +1,99 @@
-import dayjs from 'dayjs';
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { taxState, retirementDateState } from '../../../session-stroage';
+import dayjs from '../../../day-js';
+import {
+  taxState,
+  retirementDateState,
+} from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
-import Alert from '../../atoms/alert';
-import AnswerSelectButtons from 'src/components/molecules/answer-buttons';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
-
+import AtOnceTaxCollection from './tabs/tax/at-once-tax-collection';
+import NoTax from './tabs/tax/no-tax';
+import OrdinallyTaxCollection from './tabs/tax/ordinally-tax-collection';
+import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
+import QuestionTitle from 'src/components/atoms/question-title';
+import PagerButtons from 'src/components/molecules/pager-buttons';
+import TabTemplate from 'src/components/template/tab-template';
 export default function Q8() {
+  const [tab, setTab] = useState(1);
   const storedRetirementDate = useRecoilValue(retirementDateState);
   const [storedTax, setStoredTax] = useRecoilState(taxState);
-  const [retiredOnBetweenJanAndJun, setretiredOnBetweenJanAndJun] =
+  const [retiredOnBetweenJanAndMay, setretiredOnBetweenJanAndMay] =
     useState(false);
-  const [taxPaymentTypes, settaxPaymentTypes] = useState(['']);
-  const [retirementMonth, setRetirementMonth] = useState(0);
-
   useEffect(() => {
-    setRetirementMonth(dayjs(storedRetirementDate).month() + 1);
-    const JanToJun = [...Array(5)].map((_, i) => i + 1);
-    for (let month of JanToJun) {
-      if (month === retirementMonth) {
-        setretiredOnBetweenJanAndJun(true);
-      }
+    const retirementMonth = dayjs(storedRetirementDate).month() + 1;
+    if ([...Array(5)].map((_, i) => i + 1).includes(retirementMonth)) {
+      setretiredOnBetweenJanAndMay(true);
     }
-    const newtaxPaymentTypes = [
-      '退職時に給与/退職金から会社に翌年5月分まで天引きしてもらう（一括徴収）',
-    ];
-    if (!retiredOnBetweenJanAndJun) {
-      newtaxPaymentTypes.push(
-        '送付される納税通知書に基づいて自分で分割で納める（普通徴収）',
-      );
+    if (storedTax) {
+      setTab(storedTax);
     }
-    newtaxPaymentTypes.push(
-      '昨年度の収入がないため、今年度は住民税の支払いをしていない',
-    );
-
-    settaxPaymentTypes(newtaxPaymentTypes);
-  }, [storedRetirementDate, retirementMonth, retiredOnBetweenJanAndJun]);
-
+  }, [storedRetirementDate, retiredOnBetweenJanAndMay, storedTax]);
   const {
     handleSubmit,
-    setValue,
-    formState: { errors },
+    formState: { errors, isValid },
     register,
   } = useForm<formInput>({
     defaultValues: {
-      tax: storedTax,
+      tax: String(storedTax),
     },
+    mode: 'onChange',
+    criteriaMode: 'all',
   });
-
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredTax(data.tax);
-    router.push(nextPage);
+    setStoredTax(Number(data.tax));
   };
 
   return (
     <div>
-      <p>{retiredOnBetweenJanAndJun}</p>
-      <div className={retiredOnBetweenJanAndJun === true ? '' : ' hidden'}>
-        <Alert>
-          1月から5月に退職する場合は基本的に会社を退職する際に、最後の給与または退職金から一括で残りの住民税を天引きしてもらうこととなります。
-        </Alert>
+      <form className='pb-6'>
+        <QuestionTitle>今年度の残りの住民税の支払い方法</QuestionTitle>
+        <div className='flex space-x-2 justify-center pb-2' id='answer-options'>
+          {['一括徴収', '普通徴収', '今年度は支払いなし'].map(
+            (value, index) => {
+              index += 1;
+              return (
+                <div key={index}>
+                  <label htmlFor={`${index}`}>
+                    <input
+                      {...register('tax', {
+                        required: '選択してください',
+                      })}
+                      type='radio'
+                      value={index}
+                      className='form-check-input hidden peer'
+                      id={`${index}`}
+                    />
+                    {!(index === 2 && retiredOnBetweenJanAndMay) && (
+                      <AnswerSelectButton
+                        id={`tax-form${index}`}
+                        onClick={() => setTab(index)}
+                      >
+                        {value}
+                      </AnswerSelectButton>
+                    )}
+                  </label>
+                </div>
+              );
+            },
+          )}
+        </div>
+        {errors.tax && <Error>{errors.tax.message}</Error>}
+      </form>
+
+      <div className='pb-4'>
+        <TabTemplate>
+          {tab === 1 && <AtOnceTaxCollection />}
+          {tab === 2 && <OrdinallyTaxCollection />}
+          {tab === 3 && <NoTax />}
+        </TabTemplate>
       </div>
 
-      <form>
-        <label htmlFor='tax'>今年度の残りの住民税の支払い方法</label>
-        <input
-          {...register('tax', { required: '選択してください' })}
-          type='hidden'
-        />
-
-        <AnswerSelectButtons
-          labels={taxPaymentTypes}
-          setValue={setValue}
-          property='tax'
-          originalStyling={
-            'btn btn-outline w-full text-accent bg-white rounded-2xl border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select'
-          }
-        ></AnswerSelectButtons>
-
-        {errors.tax && <p>{errors.tax.message}</p>}
-        <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
-      </form>
+      <PagerButtons
+        handleSubmit={handleSubmit(submitContent)}
+        isValid={isValid}
+      ></PagerButtons>
     </div>
   );
 }

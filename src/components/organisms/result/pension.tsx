@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import dayjs from '../../../day-js';
-import { retirementDateState } from '../../../session-stroage';
-import CheckedTodoPlate from '../../molecules/checked-todo-plate';
+import { retirementDateState } from '../../../storage/session-stroage';
+import TodoPlate from '../../atoms/todo-plate';
+import Card from 'src/components/atoms/card';
+import TodoDetailTemplate from 'src/components/template/todo-detail-template';
 
 export default function Pension() {
   const [storedRetirementDate] = useRecoilState(retirementDateState);
@@ -19,39 +21,46 @@ export default function Pension() {
   }, [storedRetirementDate]);
 
   return (
-    <div>
-      <CheckedTodoPlate>年金</CheckedTodoPlate>
-      <div>
-        <h4 className='text-lg border-b-4 border-dotted w-fit'>
-          国民年金への加入手続き
-        </h4>
-        <p>どこで？：住所地の市区役所/町村役場の窓口やマイナポータルなどで</p>
-
-        <p>
-          いつまでに？退職日の翌日{DayAfterRetirementDate}から
-          {pensionApplyDeadline}までに
-        </p>
-        <p>持ち物</p>
-      </div>
+    <div id='pension'>
+      <TodoPlate>年金</TodoPlate>
+      <TodoDetailTemplate
+        what='国民年金への加入手続き'
+        where={
+          <div>
+            <p>住所地の市区役所/町村役場の窓口で</p>
+            <p className='text-xs'>
+              ※住所地の市区役所/町村役場によっては郵送やマイナポータルから手続きできる場合があります。
+            </p>
+          </div>
+        }
+        when={`退職日翌日の${DayAfterRetirementDate}から${pensionApplyDeadline}までに`}
+        prepare={
+          <div className='flex justify-center'>
+            <Card>
+              <ol className='list-decimal text-left list-inside'>
+                <li>
+                  本人確認書類
+                  <p className='text-xs'>※写真つきのもの</p>
+                </li>
+                <li>
+                  基礎年金番号が確認できる書類
+                  <p className='text-xs'>
+                    ※基礎年金番号通知書または年金手帳など
+                  </p>
+                </li>
+                <li>
+                  健康/厚生年金保険の資格喪失日や離職日が記載されている書類
+                  <p className='text-xs'>
+                    ※健康保険・厚生年金保険資格喪失証明書、離職票など
+                  </p>
+                </li>
+                <li>マイナンバーが確認できる書類</li>
+              </ol>
+              <p className='text-right'>など</p>
+            </Card>
+          </div>
+        }
+      ></TodoDetailTemplate>
     </div>
   );
 }
-
-//         <div>
-//           <CheckedTodoPlate>税金</CheckedTodoPlate>
-//           <div>
-//             <p className='text-lg border-b-4 border-dotted w-fit'>住民税</p>
-//             <p>
-//               職時に一括徴収しない場合は自治体から送られてくる納付書で支払いが必要です。
-//               退職時に一括徴収しているため今年度の支払いはありません。
-//             </p>
-//           </div>
-//           <div>
-//             <p className='text-lg border-b-4 border-dotted w-fit'>所得税</p>
-//             <p>
-//               年の途中で退職し、年内に再就職しない場合は年末調整を受けられません。そのため所得税を納め過ぎになる場合があります。この納め過ぎの所得税は、翌年になってから確定申告をすることで還付を受けられます。
-//               確定申告するには●月●日〜●月●日までの間に管轄の税務署で手続きが必要です。
-//             </p>
-//           </div>
-//         </div>
-//       </div>

@@ -1,105 +1,137 @@
-import { useRouter } from 'next/router';
+import { HelloWork } from 'jp-hello-work';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { postcodeState, ageState } from '../../../session-stroage';
+import { postcodeState, ageState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
-import PagerButtons from 'src/components/molecules/buttons-pager';
-import { useNextPage } from 'src/hooks/use-get-page';
+import Error from 'src/components/atoms/error';
+import QuestionTitle from 'src/components/atoms/question-title';
+import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q3(props: any) {
   const [storedAge, setStoredAge] = useRecoilState(ageState);
   const [storedPostcode, setStoredPostcode] = useRecoilState(postcodeState);
-
   const {
     handleSubmit,
-    setValue,
+    setError,
     control,
-    formState: { errors },
+    formState: { errors, isValid },
     register,
   } = useForm<formInput>({
     defaultValues: {
-      age: storedAge,
+      age: String(storedAge),
       postcode: storedPostcode,
     },
+    mode: 'onChange',
+    criteriaMode: 'all',
   });
-
-  const router = useRouter();
-  const nextPage = useNextPage();
   const submitContent: SubmitHandler<formInput> = (data) => {
-    setStoredAge(data.age);
-    setStoredPostcode(data.postcode);
-    router.push(nextPage);
+    try {
+      setStoredAge(Number(data.age));
+      if (HelloWork.byZipCode(data.postcode.replace(/-/g, ''))) {
+        setStoredPostcode(data.postcode);
+      }
+    } catch (error) {
+      if (error instanceof TypeError) {
+        setError('postcode', {
+          types: {
+            invalid_postcode: '存在する郵便番号を入力してください',
+          },
+        });
+      }
+    }
   };
 
   return (
-    <form>
-      <label htmlFor='age'>退職予定日における年齢</label>
+    <div>
+      <form>
+        <div className='pb-4'>
+          <QuestionTitle>
+            <label htmlFor='age'>退職予定日における年齢</label>
+          </QuestionTitle>
+          <div>
+            <Swiper
+              slidesPerView={1}
+              className='mySwiper'
+              navigation={true}
+              modules={[Navigation]}
+              centeredSlides={true}
+              initialSlide={storedAge ? Number(storedAge) - 1 : 0}
+              id='swiper'
+              style={{ width: '15rem' }}
+            >
+              {[
+                '30歳未満',
+                '30歳以上35歳未満',
+                '35歳以上45歳未満',
+                '45歳以上60歳未満',
+                '60歳以上65歳未満',
+              ].map((value, index) => {
+                index += 1;
+                return (
+                  <SwiperSlide key={index} style={{ height: '6.5rem' }}>
+                    <label htmlFor={`${index}`}>
+                      <input
+                        {...register('age', {
+                          required: '選択してください',
+                        })}
+                        type='radio'
+                        value={index}
+                        className='form-check-input hidden peer'
+                        id={`${index}`}
+                      />
+                      <AnswerSelectButton id={`age-form${index}`}>
+                        {value}
+                      </AnswerSelectButton>
+                    </label>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
+          {errors.age && <Error>{errors.age.message}</Error>}
+        </div>
 
-      <div>
-        <input
-          {...register('age', { required: '選択してください' })}
-          type='hidden'
-        />
-        <Swiper
-          slidesPerView={3}
-          spaceBetween={40}
-          className='mySwiper'
-          navigation={true}
-          modules={[Navigation]}
-          centeredSlides={true}
-        >
-          {[
-            '30歳未満',
-            '30歳以上35歳未満',
-            '35歳以上45歳未満',
-            '45歳以上60歳未満',
-            '60歳以上65歳未満',
-          ].map((value, index) => {
-            index += 1;
-            return (
-              <SwiperSlide key={index}>
-                <AnswerSelectButton
-                  type='button'
-                  onClick={() => setValue('age', index)}
-                >
-                  {value}
-                </AnswerSelectButton>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-        {errors.age && <p>{errors.age.message}</p>}
-      </div>
-
-      <label htmlFor='postcode'>お住まいの住所の郵便番号</label>
-      <Controller
-        control={control}
-        rules={{
-          required: '郵便番号を入力してください',
-          pattern: {
-            value: /^[0-9]{3}-[0-9]{4}$/,
-            message: '有効な郵便番号を入力してください',
-          },
-        }}
-        name='postcode'
-        render={({ field: { onChange, ref, ...rest } }) => (
-          <PatternFormat
-            format='###-####'
-            placeholder='123-4567'
-            onChange={onChange}
-            className='border-2  border-primary input input-bordered input-lg w-full '
-            {...rest}
-            {...props}
+        <div className='pb-4'>
+          <QuestionTitle>
+            <label htmlFor='postcode'>お住まいの住所の郵便番号</label>
+          </QuestionTitle>
+          <Controller
+            control={control}
+            rules={{
+              required: '入力してください',
+              pattern: {
+                value: /^[0-9]{3}-[0-9]{4}$/,
+                message: '有効な郵便番号を入力してください',
+              },
+            }}
+            name='postcode'
+            render={({ field: { onChange, ref, ...rest } }) => (
+              <PatternFormat
+                id='postcode-form'
+                format='###-####'
+                placeholder='154-0023'
+                onChange={onChange}
+                className='text-center border-2  border-primary input input-bordered input-lg w-full'
+                {...rest}
+                {...props}
+              />
+            )}
           />
-        )}
-      />
-      {errors.postcode && <p>{errors.postcode.message}</p>}
+          {errors.postcode && <Error>{errors.postcode.message}</Error>}
+          {errors.postcode && errors.postcode.types && (
+            <Error>{errors.postcode.types.invalid_postcode}</Error>
+          )}
+        </div>
+      </form>
 
-      <PagerButtons handleSubmit={handleSubmit(submitContent)}></PagerButtons>
-    </form>
+      <PagerButtons
+        handleSubmit={handleSubmit(submitContent)}
+        isValid={isValid}
+      ></PagerButtons>
+    </div>
   );
 }

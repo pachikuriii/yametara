@@ -1,57 +1,64 @@
 import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import dayjs from '../../../day-js';
 import {
   taxState,
   empInsLastTwoYearsState,
   retirementReasonState,
-} from '../../../session-stroage';
-import CheckedTodoPlate from '../../molecules/checked-todo-plate';
+  retirementDateState,
+  reEmploymentState,
+} from '../../../storage/session-stroage';
+import TodoPlate from '../../atoms/todo-plate';
+import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 
 const Todo = () => {
+  const [retirementDate] = useRecoilState(retirementDateState);
+  const [retirementDateToDisplay, setRetirementDateToDisplay] = useState('');
   const [storedTax] = useRecoilState(taxState);
   const [storedEmpInsLastTwoYears] = useRecoilState(empInsLastTwoYearsState);
   const [storedRetirementReason] = useRecoilState(retirementReasonState);
+  const [storedReEmployment] = useRecoilState(reEmploymentState);
   const [tax, setTax] = useState(0);
-  const [empInsLastTwoYears, setEmpInsLastTwoYears] = useState(0);
-  const [retirementReason, setRetirementReason] = useState(0);
+  const [reEmployment, setReEmployment] = useState(0);
+  const [empInsQualification] = useEmpInsQualification();
 
   useEffect(() => {
     setTax(storedTax);
-    setEmpInsLastTwoYears(storedEmpInsLastTwoYears);
-    setRetirementReason(storedRetirementReason);
-  }, [storedTax, storedEmpInsLastTwoYears, storedRetirementReason]);
-
-  // 雇用保険
-  const RETIRED_WITH_UNINTENTIONAL_REASON_AND_INSURANCE =
-    retirementReason === 3 && empInsLastTwoYears !== 1;
-
-  const RETIRED_WITH_CONPANY_REASON_AND_INSURANCE =
-    retirementReason === 2 && empInsLastTwoYears !== 1;
-
-  const RETIRED_WITH_OWN_REASON_AND_INSURANCE =
-    retirementReason === 1 && empInsLastTwoYears === 3;
+    setRetirementDateToDisplay(dayjs(retirementDate).format('YYYY年M月D日'));
+    setReEmployment(storedReEmployment);
+  }, [
+    storedTax,
+    storedEmpInsLastTwoYears,
+    storedRetirementReason,
+    storedReEmployment,
+    retirementDate,
+  ]);
 
   return (
-    <>
-      <div className='flex flex-col w-1/3 '>
-        <CheckedTodoPlate>健康保険</CheckedTodoPlate>
-        <CheckedTodoPlate>年金</CheckedTodoPlate>
-        <CheckedTodoPlate
-          className={
-            RETIRED_WITH_UNINTENTIONAL_REASON_AND_INSURANCE ||
-            RETIRED_WITH_CONPANY_REASON_AND_INSURANCE ||
-            RETIRED_WITH_OWN_REASON_AND_INSURANCE
-              ? ''
-              : ' hidden'
-          }
-        >
-          雇用保険
-        </CheckedTodoPlate>
-        <CheckedTodoPlate className={tax === 2 ? '' : ' hidden'}>
-          税金
-        </CheckedTodoPlate>
+    <div className='text-center'>
+      <div className='pt-2' id='todo-retirement-date'>
+        <p>
+          <span className='font-semibold text-accent'>
+            {retirementDateToDisplay}
+          </span>
+          に会社を辞めたら
+        </p>
+        <p>以下についての手続きが必要です。</p>
       </div>
-    </>
+
+      <div className='pt-10 pb-20'>
+        <div>
+          <TodoPlate id='todo-health-insurance-plate'>健康保険</TodoPlate>
+          <TodoPlate id='todo-pension-plate'>年金</TodoPlate>
+          {empInsQualification && (
+            <TodoPlate id='todo-employment-insurance-plate'>雇用保険</TodoPlate>
+          )}
+          {(reEmployment !== 1 || tax === 2) && (
+            <TodoPlate id='todo-tax-plate'>税金</TodoPlate>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 

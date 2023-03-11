@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 import { ReactNode, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import {
@@ -6,7 +7,7 @@ import {
   isBackButtonClicked,
   nextMotionState,
   backMotionState,
-} from 'src/motion-controller';
+} from 'src/storage/motion-controller';
 
 interface Props {
   children: ReactNode;
@@ -19,6 +20,8 @@ const Motion = ({ children }: Props) => {
     useRecoilState(nextMotionState);
   const [storedExitMotion, setStoredExitMotion] =
     useRecoilState(backMotionState);
+  const router = useRouter();
+  const currentPage = Number(router.asPath.replace('/questions/', ''));
 
   useEffect(() => {
     if (storedNextButtonClicked && !storedBackButtonClicked) {
@@ -40,11 +43,29 @@ const Motion = ({ children }: Props) => {
 
   return (
     <motion.div
-      initial={{ x: `${storedInitialMotion}` }}
-      animate={{ x: 0 }}
-      exit={{ x: `${storedExitMotion}` }}
-      transition={{ duration: 0.3 }}
-      className='flex justify-center mt-10 w-11/12 mx-auto'
+      initial={
+        (currentPage === 8 && storedBackButtonClicked) ||
+        (currentPage === 1 && storedNextButtonClicked)
+          ? {}
+          : { x: `${storedInitialMotion}` }
+      }
+      animate={
+        (currentPage === 8 && storedBackButtonClicked) ||
+        (currentPage === 1 && storedNextButtonClicked)
+          ? {}
+          : { x: 0 }
+      }
+      exit={
+        (router.asPath === '/result' &&
+          !storedBackButtonClicked &&
+          storedNextButtonClicked) ||
+        (router.asPath === '/' &&
+          storedBackButtonClicked &&
+          !storedNextButtonClicked)
+          ? {}
+          : { x: `${storedExitMotion}` }
+      }
+      transition={{ duration: 0.15 }}
     >
       {children}
     </motion.div>
