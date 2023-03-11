@@ -36,8 +36,8 @@ const Todo = () => {
 
   return (
     <div className='text-center'>
-      <div className='pt-2'>
-        <p id='todo-retirement-date'>
+      <div className='pt-2' id='todo-retirement-date'>
+        <p>
           <span className='font-semibold text-accent'>
             {retirementDateToDisplay}
           </span>
