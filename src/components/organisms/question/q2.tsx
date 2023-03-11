@@ -3,8 +3,8 @@ import { useRecoilState } from 'recoil';
 import { reEmploymentState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
+import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
-
 export default function Q2() {
   const [storedReEmployment, setStoredReEmployment] =
     useRecoilState(reEmploymentState);
@@ -25,9 +25,11 @@ export default function Q2() {
 
   return (
     <div>
-      <form>
-        <label htmlFor='re_employment'>年内の再就職の予定</label>
-        <div className='flex space-x-4 justify-center'>
+      <form className='pb-4'>
+        <QuestionTitle>
+          <label htmlFor='re_employment'>年内の再就職の予定</label>
+        </QuestionTitle>
+        <div className='flex space-x-2 justify-center'>
           {['あり', 'なし', '未定'].map((value, index) => {
             index += 1;
             return (
