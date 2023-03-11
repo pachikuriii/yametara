@@ -45,7 +45,7 @@ export default function Home() {
       <main>
         <Header title='シミュレーション結果' />
         {completed ? (
-          <div>
+          <div className='w-11/12 mx-auto max-w-md'>
             <label
               htmlFor='given_choices'
               className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4  border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50'
@@ -62,7 +62,7 @@ export default function Home() {
               <div className='mx-auto w-11/12'>
                 <Todo></Todo>
                 <h3 className='text-center font-extrabold text-2xl'>
-                  あなたの手続き内容の詳細
+                  手続き内容の詳細
                 </h3>
                 <HealthlInsurance></HealthlInsurance>
                 <Pension></Pension>
@@ -102,7 +102,6 @@ export default function Home() {
                 </button>
               </Link>
             </div>
-            <Footer></Footer>
           </div>
         ) : (
           <div>
@@ -128,6 +127,7 @@ export default function Home() {
             </Link>
           </div>
         )}
+        <Footer></Footer>
       </main>
     </>
   );

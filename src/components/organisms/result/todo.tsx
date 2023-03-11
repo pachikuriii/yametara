@@ -35,12 +35,18 @@ const Todo = () => {
   ]);
 
   return (
-    <div>
-      <p className='text-center' id='todo-retirement-date'>
-        あなたが{retirementDateToDisplay}
-        に会社を辞めたら以下についての手続きが必要です。
-      </p>
-      <div className='h-[calc(100vh-8rem)] py-20'>
+    <div className='text-center'>
+      <div className='pt-2'>
+        <p id='todo-retirement-date'>
+          <span className='font-semibold text-accent'>
+            {retirementDateToDisplay}
+          </span>
+          に会社を辞めたら
+        </p>
+        <p>以下についての手続きが必要です。</p>
+      </div>
+
+      <div className='pt-10 pb-20'>
         <div>
           <TodoPlate id='todo-health-insurance-plate'>健康保険</TodoPlate>
           <TodoPlate id='todo-pension-plate'>年金</TodoPlate>
