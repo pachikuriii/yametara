@@ -66,6 +66,7 @@ export default function Q1(props: any) {
                 format={formattedValue}
                 {...rest}
                 {...props}
+                inputmode='numeric'
               />
             )}
           />
