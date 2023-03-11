@@ -26,7 +26,7 @@ export default function IndexMain() {
         <div className='mx-auto max-w-md pt-20 pb-10 w-11/12 flex-grow'>
           <Image
             src='/yametara-logo.svg'
-            alt='logo'
+            alt='yametaraのロゴ'
             width='600'
             height='100'
             className='mx-auto'
