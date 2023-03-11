@@ -42,6 +42,10 @@ export default function Home() {
         <title>
           yametara | 退職後の手続きシミュレーター | シミュレーション結果
         </title>
+        <meta
+          name='description'
+          content='yametaraは会社を辞めた後、すぐに就職しない選択をはじめてする方におすすめの退職後の手続きシミュレーターです。シミュレーション結果を参考に退職後のスケジュールを考えてみましょう。'
+        />
       </Head>
       <main>
         <Header title='シミュレーション結果' />
