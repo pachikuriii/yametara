@@ -1,5 +1,5 @@
 import Q5 from '../../components/organisms/question/q5';
-import EmploymentInsuranceReference from 'src/components/organisms/modal/employment-insurance-reference';
+import EmploymentInsuranceReference from 'src/components/organisms/question/modal/employment-insurance-reference';
 import ModalTemplate from 'src/components/template/modal-template';
 import QuestionTemplate from 'src/components/template/question-template';
 export default function Page5() {

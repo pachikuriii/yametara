@@ -6,7 +6,7 @@ import { useRetirementDateInputHelper } from '../../../hooks/use-retirement-date
 import {
   retirementDateState,
   retirementReasonState,
-} from '../../../session-stroage';
+} from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';

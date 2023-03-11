@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import dayjs from '../../../day-js';
 import { useDisplayGivenOption } from '../../../hooks/use-display-given-option';
-import * as storage from '../../../session-stroage';
+import * as storage from '../../../storage/session-stroage';
 
 export default function DataInput() {
   const [retirementReason] = useRecoilState(storage.retirementReasonState);

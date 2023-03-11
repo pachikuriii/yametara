@@ -4,7 +4,7 @@ import {
   ageState,
   empInsTotalState,
   retirementReasonState,
-} from '../session-stroage';
+} from '../storage/session-stroage';
 
 export const useEmpInsPaymentPeriod = () => {
   const [storedRetirementReason] = useRecoilState(retirementReasonState);

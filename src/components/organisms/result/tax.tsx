@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { taxState, reEmploymentState } from '../../../session-stroage';
+import { taxState, reEmploymentState } from '../../../storage/session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
 import IncomeTaxDetail from './details/tax/income-tax';
 import ResidentTaxDetail from './details/tax/resident-tax';

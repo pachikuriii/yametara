@@ -7,7 +7,7 @@ import { useNextPage, usePrevPage } from 'src/hooks/use-require-path';
 import {
   isNextButtonClicked,
   isBackButtonClicked,
-} from 'src/motion-controller';
+} from 'src/storage/motion-controller';
 type Props = {
   handleSubmit(
     e?: BaseSyntheticEvent<object, any, any> | undefined,

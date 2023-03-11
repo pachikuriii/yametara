@@ -18,8 +18,8 @@ import Todo from '../components/organisms/result/todo';
 import {
   isNextButtonClicked,
   isBackButtonClicked,
-} from 'src/motion-controller';
-import { STORAGE_KEYS } from 'src/session-stroage';
+} from 'src/storage/motion-controller';
+import { STORAGE_KEYS } from 'src/storage/session-stroage';
 
 export default function Home() {
   const [completed, setCompleted] = useState(false);

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   empInsTotalState,
   empInsLastTwoYearsState,
-} from '../../../session-stroage';
+} from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import Alert from 'src/components/atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';

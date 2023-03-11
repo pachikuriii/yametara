@@ -4,7 +4,7 @@ import { PatternFormat } from 'react-number-format';
 import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { postcodeState, ageState } from '../../../session-stroage';
+import { postcodeState, ageState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/pager-buttons';

@@ -5,7 +5,7 @@ import {
   healthInsAfterRetirementState,
   familyState,
   healthInsLastTwoMonthState,
-} from '../../../session-stroage';
+} from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import DependentInsurance from './tabs/health-insurance-after-retirement/dependent-insurance';
 import NationalInsurance from './tabs/health-insurance-after-retirement/national-insurance';

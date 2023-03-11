@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import dayjs from '../../../day-js';
-import { taxState, retirementDateState } from '../../../session-stroage';
+import {
+  taxState,
+  retirementDateState,
+} from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AtOnceTaxCollection from './tabs/tax/at-once-tax-collection';
 import OrdinallyTaxCollection from './tabs/tax/ordinally-tax-collection';

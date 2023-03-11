@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { healthInsLastTwoMonthState } from '../../../session-stroage';
+import { healthInsLastTwoMonthState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
 import PagerButtons from 'src/components/molecules/pager-buttons';
