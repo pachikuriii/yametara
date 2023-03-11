@@ -1,7 +1,7 @@
 import { HelloWork } from 'jp-hello-work';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { postcodeState } from '../session-stroage';
+import { postcodeState } from '../storage/session-stroage';
 type helloWorkName = string[];
 
 export const useRequireHellowork = () => {

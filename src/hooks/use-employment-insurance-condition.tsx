@@ -4,7 +4,7 @@ import {
   empInsLastTwoYearsState,
   empInsTotalState,
   retirementReasonState,
-} from '../session-stroage';
+} from '../storage/session-stroage';
 
 export const useEmpInsQualification = () => {
   const [storedEmpInsLastTwoYears] = useRecoilState(empInsLastTwoYearsState);

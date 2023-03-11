@@ -7,7 +7,7 @@ import {
   isBackButtonClicked,
   nextMotionState,
   backMotionState,
-} from 'src/motion-controller';
+} from 'src/storage/motion-controller';
 
 interface Props {
   children: ReactNode;

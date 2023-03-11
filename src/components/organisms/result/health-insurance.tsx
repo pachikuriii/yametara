@@ -4,7 +4,7 @@ import {
   healthInsAfterRetirementState,
   familyState,
   healthInsLastTwoMonthState,
-} from '../../../session-stroage';
+} from '../../../storage/session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
 import DependentInsuranceDetail from './details/health-insurance/dependent-insurance';
 import NationalInsuranceDetail from './details/health-insurance/national-insurance';

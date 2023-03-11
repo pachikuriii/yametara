@@ -6,8 +6,8 @@ import Footer from 'src/components/organisms/footer';
 import {
   isNextButtonClicked,
   isBackButtonClicked,
-} from 'src/motion-controller';
-import { startedState } from 'src/session-stroage';
+} from 'src/storage/motion-controller';
+import { startedState } from 'src/storage/session-stroage';
 
 export default function IndexMain() {
   const setStarted = useSetRecoilState(startedState);
