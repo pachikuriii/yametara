@@ -1,5 +1,5 @@
 import Q1 from '../../components/organisms/question/q1';
-import RetirementReasonReference from 'src/components/organisms/modal/retirement-reason-reference';
+import RetirementReasonReference from 'src/components/organisms/question/modal/retirement-reason-reference';
 import ModalTemplate from 'src/components/template/modal-template';
 import QuestionTemplate from 'src/components/template/question-template';
 export default function Page1() {
