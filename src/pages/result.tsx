@@ -15,6 +15,7 @@ import HealthlInsurance from '../components/organisms/result/health-insurance';
 import Pension from '../components/organisms/result/pension';
 import Tax from '../components/organisms/result/tax';
 import Todo from '../components/organisms/result/todo';
+import Button from 'src/components/atoms/button';
 import {
   isNextButtonClicked,
   isBackButtonClicked,
@@ -45,10 +46,10 @@ export default function Home() {
       <main>
         <Header title='シミュレーション結果' />
         {completed ? (
-          <div>
+          <div className='mx-auto max-w-md'>
             <label
               htmlFor='given_choices'
-              className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4  border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50'
+              className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4 border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50 cursor-pointer'
               id='input-confirmation-button'
             >
               <p className='m-4'>
@@ -62,7 +63,7 @@ export default function Home() {
               <div className='mx-auto w-11/12'>
                 <Todo></Todo>
                 <h3 className='text-center font-extrabold text-2xl'>
-                  あなたの手続き内容の詳細
+                  手続き内容の詳細
                 </h3>
                 <HealthlInsurance></HealthlInsurance>
                 <Pension></Pension>
@@ -72,8 +73,7 @@ export default function Home() {
             </div>
             <div className='flex justify-evenly pt-10 pb-20'>
               <Link href='questions/8'>
-                <button
-                  className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'
+                <Button
                   onClick={() => {
                     setBackButtonClicked(true);
                     setNextButtonClicked(false);
@@ -87,10 +87,10 @@ export default function Home() {
                     </span>
                   </IconContext.Provider>
                   戻る
-                </button>
+                </Button>
               </Link>
               <Link href='questions/1'>
-                <button className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'>
+                <Button>
                   <IconContext.Provider
                     value={{ className: 'global-class-name', size: '1.2em' }}
                   >
@@ -99,10 +99,9 @@ export default function Home() {
                     </span>
                   </IconContext.Provider>
                   もう1度シミュレーションする
-                </button>
+                </Button>
               </Link>
             </div>
-            <Footer></Footer>
           </div>
         ) : (
           <div>
@@ -115,7 +114,7 @@ export default function Home() {
               </span>
             </IconContext.Provider>
             <Link href='questions/1'>
-              <button className='btn text-accent bg-white rounded-full  border-primary border-2  font-extrabold shadow-select no-animation hover:border-primary-focus hover:bg-primary-focus'>
+              <Button>
                 <IconContext.Provider
                   value={{ className: 'global-class-name', size: '1.2em' }}
                 >
@@ -124,10 +123,11 @@ export default function Home() {
                   </span>
                 </IconContext.Provider>
                 もう1度シミュレーションする
-              </button>
+              </Button>
             </Link>
           </div>
         )}
+        <Footer></Footer>
       </main>
     </>
   );

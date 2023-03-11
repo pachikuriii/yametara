@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { postcodeState, ageState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
+import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q3(props: any) {
@@ -46,18 +48,20 @@ export default function Q3(props: any) {
   return (
     <div>
       <form>
-        <div>
-          <label htmlFor='age'>退職予定日における年齢</label>
-          <div className='flex space-x-4 justify-center'>
+        <div className='pb-4'>
+          <QuestionTitle>
+            <label htmlFor='age'>退職予定日における年齢</label>
+          </QuestionTitle>
+          <div>
             <Swiper
-              slidesPerView={3}
-              spaceBetween={40}
+              slidesPerView={1}
               className='mySwiper'
               navigation={true}
               modules={[Navigation]}
               centeredSlides={true}
               initialSlide={storedAge ? Number(storedAge) - 1 : 0}
               id='swiper'
+              style={{ width: '15rem' }}
             >
               {[
                 '30歳未満',
@@ -68,7 +72,7 @@ export default function Q3(props: any) {
               ].map((value, index) => {
                 index += 1;
                 return (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide key={index} style={{ height: '6.5rem' }}>
                     <label htmlFor={`${index}`}>
                       <input
                         {...register('age', {
@@ -88,15 +92,17 @@ export default function Q3(props: any) {
               })}
             </Swiper>
           </div>
-          {errors.age && <p>{errors.age.message}</p>}
+          {errors.age && <Error>{errors.age.message}</Error>}
         </div>
 
-        <div>
-          <label htmlFor='postcode'>お住まいの住所の郵便番号</label>
+        <div className='pb-4'>
+          <QuestionTitle>
+            <label htmlFor='postcode'>お住まいの住所の郵便番号</label>
+          </QuestionTitle>
           <Controller
             control={control}
             rules={{
-              required: '郵便番号を入力してください',
+              required: '入力してください',
               pattern: {
                 value: /^[0-9]{3}-[0-9]{4}$/,
                 message: '有効な郵便番号を入力してください',
@@ -109,15 +115,15 @@ export default function Q3(props: any) {
                 format='###-####'
                 placeholder='154-0023'
                 onChange={onChange}
-                className='border-2  border-primary input input-bordered input-lg w-full '
+                className='text-center border-2  border-primary input input-bordered input-lg w-full'
                 {...rest}
                 {...props}
               />
             )}
           />
-          {errors.postcode && <p>{errors.postcode.message}</p>}
+          {errors.postcode && <Error>{errors.postcode.message}</Error>}
           {errors.postcode && errors.postcode.types && (
-            <p>{errors.postcode.types.invalid_postcode}</p>
+            <Error>{errors.postcode.types.invalid_postcode}</Error>
           )}
         </div>
       </form>

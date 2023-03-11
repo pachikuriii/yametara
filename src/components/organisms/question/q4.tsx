@@ -3,6 +3,8 @@ import { useRecoilState } from 'recoil';
 import { familyState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
+import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q4() {
@@ -24,11 +26,12 @@ export default function Q4() {
 
   return (
     <div>
-      <form>
-        <label htmlFor='family'>
-          家計を共にしている社会保険の被保険者の家族
-        </label>
-        <div className='flex space-x-4 justify-center'>
+      <form className='pb-4'>
+        <QuestionTitle>
+          <label htmlFor='family'>生活を共にする被保険者である家族</label>
+        </QuestionTitle>
+
+        <div className='flex space-x-2 justify-center pb-2'>
           {['いる', 'いない'].map((value, index) => {
             index += 1;
             return (
@@ -51,7 +54,7 @@ export default function Q4() {
             );
           })}
         </div>
-        {errors.family && <p>{errors.family.message}</p>}
+        {errors.family && <Error>{errors.family.message}</Error>}
       </form>
 
       <PagerButtons

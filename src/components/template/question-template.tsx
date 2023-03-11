@@ -22,7 +22,7 @@ const QuestionTemplate = ({ pageTitle, title, todo, children }: Props) => {
       </Head>
       <main className='flex flex-col min-h-screen'>
         <Header title={title} todo={todo} />
-        <div className='flex-grow'>
+        <div className='flex-grow w-11/12 mx-auto max-w-md'>
           <AnswerProgressBar></AnswerProgressBar>
           <Motion>
             <Card>{children}</Card>

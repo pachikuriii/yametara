@@ -3,7 +3,7 @@ import { IconContext } from 'react-icons';
 import { RiMoneyCnyCircleFill } from 'react-icons/ri';
 interface Props {
   title: string;
-  explanation: string;
+  explanation?: string;
   children: ReactNode;
 }
 
@@ -19,7 +19,7 @@ const Tab = ({ title, explanation, children }: Props) => {
           size: '1.3em',
         }}
       >
-        <h3 className='text-md font-extrabold'>
+        <h3>
           <RiMoneyCnyCircleFill /> {title}
         </h3>
       </IconContext.Provider>

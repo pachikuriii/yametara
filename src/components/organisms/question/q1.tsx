@@ -10,6 +10,8 @@ import {
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
+import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q1(props: any) {
@@ -40,12 +42,14 @@ export default function Q1(props: any) {
   return (
     <div>
       <form>
-        <div>
-          <label htmlFor='retirementDate'>退職予定日</label>
+        <div className='pb-4'>
+          <QuestionTitle>
+            <label htmlFor='retirementDate'>退職予定日</label>
+          </QuestionTitle>
           <Controller
             control={control}
             rules={{
-              required: '退職予定日を入力してください',
+              required: '入力してください',
               pattern: {
                 value:
                   /^(20[0-9]{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])+$/,
@@ -56,21 +60,27 @@ export default function Q1(props: any) {
             render={({ field: { onChange, ref, ...rest } }) => (
               <NumberFormatBase
                 id='retirement-date-form'
-                className='border-2  border-primary input input-bordered input-lg w-full '
+                className='border-2 border-primary input input-bordered input-lg w-full text-center'
                 onChange={onChange}
                 placeholder={dayjs().format('YYYY-MM-DD')}
                 format={formattedValue}
                 {...rest}
                 {...props}
+                inputmode='numeric'
               />
             )}
           />
-          {errors.retirementDate && <p>{errors.retirementDate.message}</p>}
+          {errors.retirementDate && (
+            <Error>{errors.retirementDate.message}</Error>
+          )}
         </div>
 
-        <div>
-          <label htmlFor='retirementReason'>退職事由</label>
-          <div className='flex space-x-4 justify-center'>
+        <div className='pb-4'>
+          <h2 className='text-lg pb-1'>
+            <label htmlFor='retirementReason'>退職事由</label>
+          </h2>
+
+          <div className='flex space-x-2 justify-center pb-2'>
             {['自己都合', '会社都合', 'その他'].map((value, index) => {
               index += 1;
               return (
@@ -93,15 +103,16 @@ export default function Q1(props: any) {
               );
             })}
           </div>
-          {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
+          {errors.retirementReason && (
+            <Error>{errors.retirementReason.message}</Error>
+          )}
+          <div className='pt-2'>
+            <label htmlFor='retirement-reason' className='link'>
+              <Alert>退職事由について</Alert>
+            </label>
+          </div>
         </div>
       </form>
-
-      <div>
-        <label htmlFor='retirement-reason' className='link'>
-          <Alert>退職事由について</Alert>
-        </label>
-      </div>
 
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}

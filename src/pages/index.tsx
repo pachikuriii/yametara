@@ -18,8 +18,8 @@ export default function IndexMain() {
       <Head>
         <title>yametara | 退職後の手続きシミュレーター</title>
       </Head>
-      <main className='text-center leading-relax tracking-wide'>
-        <div className='pt-20 w-11/12 mx-auto'>
+      <main className='text-center flex flex-col min-h-screen'>
+        <div className='mx-auto max-w-md pt-20 pb-10 w-11/12 flex-grow'>
           <Image
             src='/yametara-logo.svg'
             alt='logo'
@@ -40,7 +40,7 @@ export default function IndexMain() {
             <Link href='/questions/1'>
               <button
                 id='index-start-button'
-                className='max-sm:w-full md:btn-wide btn btn-outline text-accent md:text-xl bg-white rounded-full border-secondary hover:bg-secondary-focus hover:border-secondary-focus shadow-basic'
+                className='btn-wide btn btn-outline text-xl text-accent bg-white rounded-full border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select'
                 onClick={() => {
                   setStarted(true);
                   setBackButtonClicked(false);
