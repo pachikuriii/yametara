@@ -23,7 +23,7 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
   const setBackButtonClicked = useSetRecoilState(isBackButtonClicked);
 
   return (
-    <div className='flex w-full justify-center'>
+    <div className='flex justify-center'>
       <div className='mr-auto'>
         <BackButton
           type='button'
