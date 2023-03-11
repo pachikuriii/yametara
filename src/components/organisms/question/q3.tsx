@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { postcodeState, ageState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
@@ -71,7 +72,7 @@ export default function Q3(props: any) {
               ].map((value, index) => {
                 index += 1;
                 return (
-                  <SwiperSlide key={index} style={{ height: '7rem' }}>
+                  <SwiperSlide key={index} style={{ height: '6.5rem' }}>
                     <label htmlFor={`${index}`}>
                       <input
                         {...register('age', {
@@ -91,7 +92,7 @@ export default function Q3(props: any) {
               })}
             </Swiper>
           </div>
-          {errors.age && <p>{errors.age.message}</p>}
+          {errors.age && <Error>{errors.age.message}</Error>}
         </div>
 
         <div className='pb-4'>
@@ -101,7 +102,7 @@ export default function Q3(props: any) {
           <Controller
             control={control}
             rules={{
-              required: '郵便番号を入力してください',
+              required: '入力してください',
               pattern: {
                 value: /^[0-9]{3}-[0-9]{4}$/,
                 message: '有効な郵便番号を入力してください',
@@ -120,9 +121,9 @@ export default function Q3(props: any) {
               />
             )}
           />
-          {errors.postcode && <p>{errors.postcode.message}</p>}
+          {errors.postcode && <Error>{errors.postcode.message}</Error>}
           {errors.postcode && errors.postcode.types && (
-            <p>{errors.postcode.types.invalid_postcode}</p>
+            <Error>{errors.postcode.types.invalid_postcode}</Error>
           )}
         </div>
       </form>

@@ -9,6 +9,7 @@ import {
 import { formInput } from '../../../types/type';
 import Alert from 'src/components/atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
@@ -41,7 +42,7 @@ export default function Q5() {
         <label className='pb-1' htmlFor='emp_ins_last_two_years'>
           退職予定日までの2年間では…
         </label>
-        <div className='flex space-x-2 justify-center'>
+        <div className='flex space-x-2 justify-center pb-2'>
           {['半年未満', '半年以上1年未満', '1年以上'].map((value, index) => {
             index += 1;
             return (
@@ -67,7 +68,7 @@ export default function Q5() {
           })}
         </div>
         {errors.emp_ins_last_two_years && (
-          <p>{errors.emp_ins_last_two_years.message}</p>
+          <Error>{errors.emp_ins_last_two_years.message}</Error>
         )}
       </div>
 
@@ -95,7 +96,7 @@ export default function Q5() {
             ].map((value, index) => {
               index += 1;
               return (
-                <SwiperSlide key={index} style={{ height: '7rem' }}>
+                <SwiperSlide key={index} style={{ height: '6.5rem' }}>
                   <label htmlFor={`emp_ins_total${index}`}>
                     <input
                       {...register('emp_ins_total', {
@@ -115,7 +116,7 @@ export default function Q5() {
             })}
           </Swiper>
         </div>
-        {errors.emp_ins_total && <p>{errors.emp_ins_total.message}</p>}
+        {errors.emp_ins_total && <Error>{errors.emp_ins_total.message}</Error>}
         <label htmlFor='how-to-count-emp-period' className='link'>
           <Alert>数え方について</Alert>
         </label>

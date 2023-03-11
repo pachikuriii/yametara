@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
@@ -31,7 +32,7 @@ export default function Q6() {
         <label className='pb-1' htmlFor='health_ins_last_two_month'>
           継続して…
         </label>
-        <div className='flex space-x-2 justify-center'>
+        <div className='flex space-x-2 justify-center pb-2'>
           {['2ヵ月以上', '2ヵ月以下'].map((value, index) => {
             index += 1;
             return (
@@ -57,7 +58,7 @@ export default function Q6() {
           })}
         </div>
         {errors.health_ins_last_two_month && (
-          <p>{errors.health_ins_last_two_month.message}</p>
+          <Error>{errors.health_ins_last_two_month.message}</Error>
         )}
       </form>
 

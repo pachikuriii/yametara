@@ -10,6 +10,7 @@ import { formInput } from '../../../types/type';
 import AtOnceTaxCollection from './tabs/tax/at-once-tax-collection';
 import OrdinallyTaxCollection from './tabs/tax/ordinally-tax-collection';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 import TabTemplate from 'src/components/template/tab-template';
@@ -47,7 +48,7 @@ export default function Q8() {
     <div>
       <form className='pb-6'>
         <QuestionTitle>今年度の残りの住民税の支払い方法</QuestionTitle>
-        <div className='flex space-x-2 justify-center' id='answer-options'>
+        <div className='flex space-x-2 justify-center pb-2' id='answer-options'>
           {['一括徴収', '普通徴収', '今年度の住民税の支払いはない'].map(
             (value, index) => {
               index += 1;
@@ -77,7 +78,7 @@ export default function Q8() {
             },
           )}
         </div>
-        {errors.tax && <p>{errors.tax.message}</p>}
+        {errors.tax && <Error>{errors.tax.message}</Error>}
       </form>
 
       <div className='pb-4'>

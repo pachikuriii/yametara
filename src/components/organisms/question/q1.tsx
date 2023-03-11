@@ -10,6 +10,7 @@ import {
 import { formInput } from '../../../types/type';
 import Alert from '../../atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
+import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
@@ -48,7 +49,7 @@ export default function Q1(props: any) {
           <Controller
             control={control}
             rules={{
-              required: '退職予定日を入力してください',
+              required: '入力してください',
               pattern: {
                 value:
                   /^(20[0-9]{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])+$/,
@@ -68,7 +69,9 @@ export default function Q1(props: any) {
               />
             )}
           />
-          {errors.retirementDate && <p>{errors.retirementDate.message}</p>}
+          {errors.retirementDate && (
+            <Error>{errors.retirementDate.message}</Error>
+          )}
         </div>
 
         <div className='pb-4'>
@@ -76,7 +79,7 @@ export default function Q1(props: any) {
             <label htmlFor='retirementReason'>退職事由</label>
           </h2>
 
-          <div className='flex space-x-2 justify-center'>
+          <div className='flex space-x-2 justify-center pb-2'>
             {['自己都合', '会社都合', 'その他'].map((value, index) => {
               index += 1;
               return (
@@ -99,8 +102,10 @@ export default function Q1(props: any) {
               );
             })}
           </div>
-          {errors.retirementReason && <p>{errors.retirementReason.message}</p>}
-          <div className='pt-4'>
+          {errors.retirementReason && (
+            <Error>{errors.retirementReason.message}</Error>
+          )}
+          <div className='pt-2'>
             <label htmlFor='retirement-reason' className='link'>
               <Alert>退職事由について</Alert>
             </label>
