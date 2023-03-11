@@ -19,7 +19,7 @@ const Tab = ({ title, explanation, children }: Props) => {
           size: '1.3em',
         }}
       >
-        <h3 className='text-md font-extrabold'>
+        <h3>
           <RiMoneyCnyCircleFill /> {title}
         </h3>
       </IconContext.Provider>
