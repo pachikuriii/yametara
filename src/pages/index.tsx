@@ -18,8 +18,8 @@ export default function IndexMain() {
       <Head>
         <title>yametara | 退職後の手続きシミュレーター</title>
       </Head>
-      <main className='text-center'>
-        <div className='mx-auto max-w-md pt-20 pb-10 w-11/12'>
+      <main className='text-center flex flex-col min-h-screen'>
+        <div className='mx-auto max-w-md pt-20 pb-10 w-11/12 flex-grow'>
           <Image
             src='/yametara-logo.svg'
             alt='logo'
