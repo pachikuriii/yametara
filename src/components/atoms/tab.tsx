@@ -3,7 +3,7 @@ import { IconContext } from 'react-icons';
 import { RiMoneyCnyCircleFill } from 'react-icons/ri';
 interface Props {
   title: string;
-  explanation: string;
+  explanation?: string;
   children: ReactNode;
 }
 

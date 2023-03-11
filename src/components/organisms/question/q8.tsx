@@ -8,6 +8,7 @@ import {
 } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
 import AtOnceTaxCollection from './tabs/tax/at-once-tax-collection';
+import NoTax from './tabs/tax/no-tax';
 import OrdinallyTaxCollection from './tabs/tax/ordinally-tax-collection';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
 import Error from 'src/components/atoms/error';
@@ -49,7 +50,7 @@ export default function Q8() {
       <form className='pb-6'>
         <QuestionTitle>今年度の残りの住民税の支払い方法</QuestionTitle>
         <div className='flex space-x-2 justify-center pb-2' id='answer-options'>
-          {['一括徴収', '普通徴収', '今年度の住民税の支払いはない'].map(
+          {['一括徴収', '普通徴収', '今年度は支払いなし'].map(
             (value, index) => {
               index += 1;
               return (
@@ -85,6 +86,7 @@ export default function Q8() {
         <TabTemplate>
           {tab === 1 && <AtOnceTaxCollection />}
           {tab === 2 && <OrdinallyTaxCollection />}
+          {tab === 3 && <NoTax />}
         </TabTemplate>
       </div>
 
