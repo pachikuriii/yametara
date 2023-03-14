@@ -21,10 +21,10 @@ export default function Document() {
           sizes='16x16'
           href='/favicon/favicon-16x16.png'
         />
-        <link rel='manifest' href='/public/favicon/site.webmanifest' />
+        <link rel='manifest' href='/favicon/manifest.json' />
         <link
           rel='mask-icon'
-          href='/public/favicon/safari-pinned-tab.svg'
+          href='/favicon/safari-pinned-tab.svg'
           color='#34d399'
         />
         <meta name='msapplication-TileColor' content='#da532c' />
