@@ -30,9 +30,6 @@ const Motion = ({ children }: Props) => {
     } else if (!storedNextButtonClicked && storedBackButtonClicked) {
       setStoredInitialMotion('-100%');
       setStoredExitMotion('100%');
-    } else {
-      setStoredInitialMotion('0%');
-      setStoredExitMotion('0%');
     }
   }, [
     storedNextButtonClicked,
@@ -46,15 +43,10 @@ const Motion = ({ children }: Props) => {
       initial={
         (currentPage === 8 && storedBackButtonClicked) ||
         (currentPage === 1 && storedNextButtonClicked)
-          ? {}
+          ? { x: '0%' }
           : { x: `${storedInitialMotion}` }
       }
-      animate={
-        (currentPage === 8 && storedBackButtonClicked) ||
-        (currentPage === 1 && storedNextButtonClicked)
-          ? {}
-          : { x: 0 }
-      }
+      animate={{ x: 0 }}
       exit={
         (router.asPath === '/result' &&
           !storedBackButtonClicked &&
@@ -62,7 +54,7 @@ const Motion = ({ children }: Props) => {
         (router.asPath === '/' &&
           storedBackButtonClicked &&
           !storedNextButtonClicked)
-          ? {}
+          ? { x: '0%' }
           : { x: `${storedExitMotion}` }
       }
       transition={{ duration: 0.15 }}
