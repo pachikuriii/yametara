@@ -1,12 +1,14 @@
 import { useRouter } from 'next/router';
-import { BaseSyntheticEvent } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { BaseSyntheticEvent, useEffect } from 'react';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import BackButton from '../atoms/back-button';
 import NextButton from '../atoms/next-button';
 import { useNextPage, usePrevPage } from 'src/hooks/use-require-path';
 import {
   isNextButtonClicked,
   isBackButtonClicked,
+  nextMotionState,
+  backMotionState,
 } from 'src/storage/motion-controller';
 type Props = {
   handleSubmit(
@@ -19,8 +21,27 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
   const prevPage = usePrevPage();
   const nextPage = useNextPage();
   const router = useRouter();
-  const setNextButtonClicked = useSetRecoilState(isNextButtonClicked);
-  const setBackButtonClicked = useSetRecoilState(isBackButtonClicked);
+  const [storedNextButtonClicked, setStoredNextButtonClicked] =
+    useRecoilState(isNextButtonClicked);
+  const [storedBackButtonClicked, setStoredBackButtonClicked] =
+    useRecoilState(isBackButtonClicked);
+  const setStoredInitialMotion = useSetRecoilState(nextMotionState);
+  const setStoredExitMotion = useSetRecoilState(backMotionState);
+
+  useEffect(() => {
+    if (storedNextButtonClicked && !storedBackButtonClicked) {
+      setStoredInitialMotion('100%');
+      setStoredExitMotion('-100%');
+    } else if (!storedNextButtonClicked && storedBackButtonClicked) {
+      setStoredInitialMotion('-100%');
+      setStoredExitMotion('100%');
+    }
+  }, [
+    setStoredExitMotion,
+    setStoredInitialMotion,
+    storedBackButtonClicked,
+    storedNextButtonClicked,
+  ]);
 
   return (
     <div className='flex justify-center'>
@@ -29,8 +50,8 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
           type='button'
           onClick={() => {
             router.push(prevPage);
-            setBackButtonClicked(true);
-            setNextButtonClicked(false);
+            setStoredBackButtonClicked(true);
+            setStoredNextButtonClicked(false);
           }}
         >
           戻る
@@ -42,8 +63,8 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
           type='button'
           onClick={() => {
             handleSubmit();
-            setBackButtonClicked(false);
-            setNextButtonClicked(true);
+            setStoredBackButtonClicked(false);
+            setStoredNextButtonClicked(true);
             {
               isValid && router.push(nextPage);
             }
