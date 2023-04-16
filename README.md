@@ -55,5 +55,5 @@ $ npm run format
 ```
 $ npm run build
 $ npm run start
-$ npm run cypress
+$ npm run cypress:run
 ```
