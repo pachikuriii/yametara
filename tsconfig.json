@@ -16,6 +16,12 @@
     "incremental": true,
     "baseUrl": "./"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "node_modules/cypress/types/*.ts",
+    "cypress/*/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
