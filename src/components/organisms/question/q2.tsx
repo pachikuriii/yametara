@@ -30,7 +30,7 @@ export default function Q2() {
           <label htmlFor='re_employment'>年内の再就職の予定</label>
         </QuestionTitle>
         <AnswerSelectButtons
-          choices={['あり', 'なし', '未定']}
+          options={['あり', 'なし', '未定']}
           name='re_employment'
           register={register}
           errors={errors.re_employment}
