@@ -30,7 +30,7 @@ export default function Q8() {
       setTab(storedTax);
     }
     const defaultOptions = ['一括徴収', '今年度は支払いなし'];
-    if (retiredOnBetweenJanAndMay) {
+    if (retiredOnBetweenJanAndMay === false) {
       defaultOptions[1] = '普通徴収';
       defaultOptions[2] = '今年度は支払いなし';
       setOptions(defaultOptions);
@@ -52,7 +52,7 @@ export default function Q8() {
   };
 
   return (
-    <div id='answer-options'>
+    <div>
       <form className='pb-6'>
         <QuestionTitle>今年度の残りの住民税の支払い方法</QuestionTitle>
         <AnswerSelectButtons

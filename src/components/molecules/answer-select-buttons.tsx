@@ -20,7 +20,7 @@ const AnswerSelectButtons = ({
 }: Props) => {
   return (
     <div>
-      <div className='flex space-x-2 justify-center pb-2'>
+      <div className='flex space-x-2 justify-center pb-2' id='answer-options'>
         {options.map((value, index) => {
           index += 1;
           return (
