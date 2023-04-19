@@ -44,7 +44,7 @@ export default function Q5() {
           退職予定日までの2年間では…
         </label>
         <AnswerSelectButtons
-          choices={['半年未満', '半年以上1年未満', '1年以上']}
+          options={['半年未満', '半年以上1年未満', '1年以上']}
           name='emp_ins_last_two_years'
           register={register}
           errors={errors.emp_ins_last_two_years}

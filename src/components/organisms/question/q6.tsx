@@ -32,7 +32,7 @@ export default function Q6() {
           継続して…
         </label>
         <AnswerSelectButtons
-          choices={['2ヵ月以上', '2ヵ月以下']}
+          options={['2ヵ月以上', '2ヵ月以下']}
           name='health_ins_last_two_month'
           register={register}
           errors={errors.health_ins_last_two_month}

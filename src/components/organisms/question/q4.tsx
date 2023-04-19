@@ -30,7 +30,7 @@ export default function Q4() {
           <label htmlFor='family'>生活を共にする被保険者である家族</label>
         </QuestionTitle>
         <AnswerSelectButtons
-          choices={['いる', 'いない']}
+          options={['いる', 'いない']}
           name='family'
           register={register}
           errors={errors.family}

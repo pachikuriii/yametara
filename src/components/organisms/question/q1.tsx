@@ -56,7 +56,7 @@ export default function Q1(props: any) {
             <label htmlFor='retirementReason'>退職事由</label>
           </QuestionTitle>
           <AnswerSelectButtons
-            choices={['自己都合', '会社都合', 'その他']}
+            options={['自己都合', '会社都合', 'その他']}
             name='retirementReason'
             register={register}
             errors={errors.retirementReason}

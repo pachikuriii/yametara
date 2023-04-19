@@ -2,7 +2,7 @@ import { FieldError } from 'react-hook-form';
 import AnswerSelectButton from '../atoms/answer-button';
 import Error from '../atoms/error';
 interface Props {
-  choices: string[];
+  options: string[];
   register: any;
   name: string;
   errors: FieldError | undefined;
@@ -10,17 +10,16 @@ interface Props {
   condition?: any;
 }
 const AnswerSelectButtons = ({
-  choices,
+  options,
   register,
   name,
   errors,
   idPrefix,
-  condition,
 }: Props) => {
   return (
     <div>
       <div className='flex space-x-2 justify-center pb-2'>
-        {choices.map((value, index) => {
+        {options.map((value, index) => {
           index += 1;
           return (
             <div key={index}>
