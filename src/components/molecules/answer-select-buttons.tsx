@@ -7,6 +7,7 @@ interface Props {
   name: string;
   errors: FieldError | undefined;
   idPrefix: string;
+  condition?: any;
 }
 const AnswerSelectButtons = ({
   choices,
@@ -14,6 +15,7 @@ const AnswerSelectButtons = ({
   name,
   errors,
   idPrefix,
+  condition,
 }: Props) => {
   return (
     <div>
