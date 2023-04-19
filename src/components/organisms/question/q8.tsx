@@ -52,7 +52,7 @@ export default function Q8() {
   };
 
   return (
-    <div>
+    <div id='answer-options'>
       <form className='pb-6'>
         <QuestionTitle>今年度の残りの住民税の支払い方法</QuestionTitle>
         <AnswerSelectButtons
