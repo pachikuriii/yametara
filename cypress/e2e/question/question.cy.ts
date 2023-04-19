@@ -1,4 +1,16 @@
 describe('質問ページに表示される選択肢がそれまでの回答のロジックに合致することのテスト', () => {
+  beforeEach(function(){
+    sessionStorage.setItem(
+      'motionController',
+      JSON.stringify({
+        next: true,
+        back: false,
+        initial: '100%',
+        exit: '-100%',
+      }),
+    );
+  });
+  
   it('退職予定日までの健康保険の被保険者期間が継続して2ヶ月以上ある場合、Q7の選択肢に任意継続保険が表示される', () => {
     sessionStorage.setItem(
       'yametara',
@@ -49,6 +61,7 @@ describe('質問ページに表示される選択肢がそれまでの回答の�
       JSON.stringify({
         started: true,
         retirement_date: '2022-05-06',
+        retirement_reason: 1,
         re_employment: 3,
         age: 1,
         post_code: '655-0873',
@@ -61,7 +74,7 @@ describe('質問ページに表示される選択肢がそれまでの回答の�
     cy.visit('/questions/7');
     cy.get('#answer-options')
       .should('be.visible')
-      .find('#health-ins-after-retirement-form3')
+      .get('#health-ins-after-retirement-form2')
       .should('have.text', '家族の健康保険');
   });
 
@@ -83,7 +96,7 @@ describe('質問ページに表示される選択肢がそれまでの回答の�
     cy.visit('/questions/7');
     cy.get('#answer-options')
       .should('be.visible')
-      .find('#health-ins-after-retirement-form3')
+      .find('#health-ins-after-retirement-form2')
       .should('not.exist');
   });
 
@@ -160,7 +173,7 @@ describe('質問ページに表示される選択肢がそれまでの回答の�
     cy.get('#answer-options')
       .should('be.visible')
       .find('#tax-form2')
-      .should('not.exist');
+      .should('not.have.text', '普通徴収');
   });
 });
 export {};

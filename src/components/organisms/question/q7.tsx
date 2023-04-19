@@ -10,9 +10,8 @@ import { formInput } from '../../../types/type';
 import DependentInsurance from './tabs/health-insurance-after-retirement/dependent-insurance';
 import NationalInsurance from './tabs/health-insurance-after-retirement/national-insurance';
 import OptionalInsurance from './tabs/health-insurance-after-retirement/optional-insurance';
-import AnswerSelectButton from 'src/components/atoms/answer-button';
-import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
+import AnswerSelectButtons from 'src/components/molecules/answer-select-buttons';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 import TabTemplate from 'src/components/template/tab-template';
 
@@ -26,6 +25,7 @@ const Q7 = () => {
   );
   const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useState(0);
   const [family, setFamily] = useState(0);
+  const [options, setOptions] = useState(['国民健康保険']);
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -40,58 +40,44 @@ const Q7 = () => {
   const submitContent: SubmitHandler<formInput> = (data) => {
     setStoredHealthInsAfterRetirement(Number(data.health_ins_after_retirement));
   };
+
   useEffect(() => {
     setHealthInsLastTwoMonth(storedHealthInsLastTwoMonthState);
     setFamily(storedFamilyState);
     if (storedHealthInsAfterRetirement) {
       setTab(storedHealthInsAfterRetirement);
     }
+    const defaultOptions = ['国民健康保険'];
+    if (healthInsLastTwoMonth === 1) {
+      defaultOptions.push('任意継続');
+      setOptions(defaultOptions);
+    }
+    if (family === 1) {
+      defaultOptions.push('家族の健康保険');
+      setOptions(defaultOptions);
+    }
   }, [
     storedHealthInsLastTwoMonthState,
     storedFamilyState,
     storedHealthInsAfterRetirement,
+    healthInsLastTwoMonth,
+    family,
   ]);
 
   return (
     <div className='flex flex-col justify-center'>
       <QuestionTitle>退職後に加入したい健康保険</QuestionTitle>
       <form className='pb-4'>
-        <div className='flex space-x-2 justify-center pb-2' id='answer-options'>
-          {['国民健康保険', '任意継続', '家族の健康保険'].map(
-            (value, index) => {
-              index += 1;
-              return (
-                <div key={index}>
-                  <label htmlFor={`${index}`}>
-                    <input
-                      {...register('health_ins_after_retirement', {
-                        required: '選択してください',
-                      })}
-                      type='radio'
-                      value={index}
-                      className='form-check-input hidden peer'
-                      id={`${index}`}
-                    />
-                    {(index === 1 ||
-                      (index === 2 && healthInsLastTwoMonth === 1) ||
-                      (index === 3 && family === 1)) && (
-                      <AnswerSelectButton
-                        id={`health-ins-after-retirement-form${index}`}
-                        onClick={() => setTab(index)}
-                      >
-                        {value}
-                      </AnswerSelectButton>
-                    )}
-                  </label>
-                </div>
-              );
-            },
-          )}
-        </div>
-        {errors.health_ins_after_retirement && (
-          <Error>{errors.health_ins_after_retirement.message}</Error>
-        )}
+        <AnswerSelectButtons
+          options={options}
+          name='health_ins_after_retirement'
+          register={register}
+          errors={errors.health_ins_after_retirement}
+          idPrefix={'health-ins-after-retirement-form'}
+          setTab={setTab}
+        ></AnswerSelectButtons>
       </form>
+
       <div className='pb-4'>
         <TabTemplate>
           {tab === 1 && <NationalInsurance />}
