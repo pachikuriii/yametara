@@ -74,6 +74,7 @@ const Q7 = () => {
           register={register}
           errors={errors.health_ins_after_retirement}
           idPrefix={'health-ins-after-retirement-form'}
+          setTab={setTab}
         ></AnswerSelectButtons>
       </form>
 

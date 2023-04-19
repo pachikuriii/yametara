@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { FieldError } from 'react-hook-form';
 import AnswerSelectButton from '../atoms/answer-button';
 import Error from '../atoms/error';
@@ -7,7 +8,7 @@ interface Props {
   name: string;
   errors: FieldError | undefined;
   idPrefix: string;
-  condition?: any;
+  setTab?: Dispatch<SetStateAction<number>>;
 }
 const AnswerSelectButtons = ({
   options,
@@ -15,6 +16,7 @@ const AnswerSelectButtons = ({
   name,
   errors,
   idPrefix,
+  setTab,
 }: Props) => {
   return (
     <div>
@@ -33,7 +35,10 @@ const AnswerSelectButtons = ({
                   className='form-check-input hidden peer'
                   id={`${index}`}
                 />
-                <AnswerSelectButton id={`${idPrefix}${index}`}>
+                <AnswerSelectButton
+                  id={`${idPrefix}${index}`}
+                  onClick={() => setTab?.(index)}
+                >
                   {value}
                 </AnswerSelectButton>
               </label>
