@@ -1,6 +1,4 @@
-import { HelloWork } from 'jp-hello-work';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { PatternFormat } from 'react-number-format';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,13 +8,14 @@ import AnswerSelectButton from 'src/components/atoms/answer-button';
 import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
 import PagerButtons from 'src/components/molecules/pager-buttons';
+import PostcodeForm from 'src/components/molecules/postcode-form';
 
 export default function Q3(props: any) {
   const [storedAge, setStoredAge] = useRecoilState(ageState);
   const [storedPostcode, setStoredPostcode] = useRecoilState(postcodeState);
+
   const {
     handleSubmit,
-    setError,
     control,
     formState: { errors, isValid },
     register,
@@ -29,20 +28,8 @@ export default function Q3(props: any) {
     criteriaMode: 'all',
   });
   const submitContent: SubmitHandler<formInput> = (data) => {
-    try {
-      setStoredAge(Number(data.age));
-      if (HelloWork.byZipCode(data.postcode.replace(/-/g, ''))) {
-        setStoredPostcode(data.postcode);
-      }
-    } catch (error) {
-      if (error instanceof TypeError) {
-        setError('postcode', {
-          types: {
-            invalid_postcode: '存在する郵便番号を入力してください',
-          },
-        });
-      }
-    }
+    setStoredAge(Number(data.age));
+    setStoredPostcode(data.postcode);
   };
 
   return (
@@ -99,32 +86,11 @@ export default function Q3(props: any) {
           <QuestionTitle>
             <label htmlFor='postcode'>お住まいの住所の郵便番号</label>
           </QuestionTitle>
-          <Controller
+          <PostcodeForm
+            props={props}
             control={control}
-            rules={{
-              required: '入力してください',
-              pattern: {
-                value: /^[0-9]{3}-[0-9]{4}$/,
-                message: '有効な郵便番号を入力してください',
-              },
-            }}
-            name='postcode'
-            render={({ field: { onChange, ref, ...rest } }) => (
-              <PatternFormat
-                id='postcode-form'
-                format='###-####'
-                placeholder='154-0023'
-                onChange={onChange}
-                className='text-center border-2  border-primary input input-bordered input-lg w-full'
-                {...rest}
-                {...props}
-              />
-            )}
+            errors={errors.postcode}
           />
-          {errors.postcode && <Error>{errors.postcode.message}</Error>}
-          {errors.postcode && errors.postcode.types && (
-            <Error>{errors.postcode.types.invalid_postcode}</Error>
-          )}
         </div>
       </form>
 
