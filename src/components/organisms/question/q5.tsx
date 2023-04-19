@@ -11,6 +11,7 @@ import Alert from 'src/components/atoms/alert';
 import AnswerSelectButton from 'src/components/atoms/answer-button';
 import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
+import AnswerSelectButtons from 'src/components/molecules/answer-select-buttons';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q5() {
@@ -42,34 +43,13 @@ export default function Q5() {
         <label className='pb-1' htmlFor='emp_ins_last_two_years'>
           退職予定日までの2年間では…
         </label>
-        <div className='flex space-x-2 justify-center pb-2'>
-          {['半年未満', '半年以上1年未満', '1年以上'].map((value, index) => {
-            index += 1;
-            return (
-              <div key={index}>
-                <label htmlFor={`emp_ins_last_two_years${index}`}>
-                  <input
-                    {...register('emp_ins_last_two_years', {
-                      required: '選択してください',
-                    })}
-                    type='radio'
-                    value={index}
-                    className='form-check-input hidden peer'
-                    id={`emp_ins_last_two_years${index}`}
-                  />
-                  <AnswerSelectButton
-                    id={`emp-ins-last-two-years-form${index}`}
-                  >
-                    {value}
-                  </AnswerSelectButton>
-                </label>
-              </div>
-            );
-          })}
-        </div>
-        {errors.emp_ins_last_two_years && (
-          <Error>{errors.emp_ins_last_two_years.message}</Error>
-        )}
+        <AnswerSelectButtons
+          choices={['半年未満', '半年以上1年未満', '1年以上']}
+          name='emp_ins_last_two_years'
+          register={register}
+          errors={errors.emp_ins_last_two_years}
+          idPrefix={'emp-ins-last-two-years-form'}
+        ></AnswerSelectButtons>
       </div>
 
       <div>
