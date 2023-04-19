@@ -2,9 +2,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { healthInsLastTwoMonthState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
-import AnswerSelectButton from 'src/components/atoms/answer-button';
-import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
+import AnswerSelectButtons from 'src/components/molecules/answer-select-buttons';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q6() {
@@ -32,34 +31,13 @@ export default function Q6() {
         <label className='pb-1' htmlFor='health_ins_last_two_month'>
           継続して…
         </label>
-        <div className='flex space-x-2 justify-center pb-2'>
-          {['2ヵ月以上', '2ヵ月以下'].map((value, index) => {
-            index += 1;
-            return (
-              <div key={index}>
-                <label htmlFor={`${index}`}>
-                  <input
-                    {...register('health_ins_last_two_month', {
-                      required: '選択してください',
-                    })}
-                    type='radio'
-                    value={`${index}`}
-                    className='form-check-input hidden peer'
-                    id={`${index}`}
-                  />
-                  <AnswerSelectButton
-                    id={`health-ins-last-two-month-form${index}`}
-                  >
-                    {value}
-                  </AnswerSelectButton>
-                </label>
-              </div>
-            );
-          })}
-        </div>
-        {errors.health_ins_last_two_month && (
-          <Error>{errors.health_ins_last_two_month.message}</Error>
-        )}
+        <AnswerSelectButtons
+          choices={['2ヵ月以上', '2ヵ月以下']}
+          name='health_ins_last_two_month'
+          register={register}
+          errors={errors.health_ins_last_two_month}
+          idPrefix={'health-ins-last-two-month-form'}
+        ></AnswerSelectButtons>
       </form>
 
       <PagerButtons
