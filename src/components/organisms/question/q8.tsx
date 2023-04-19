@@ -19,23 +19,19 @@ export default function Q8() {
   const [tab, setTab] = useState(1);
   const storedRetirementDate = useRecoilValue(retirementDateState);
   const [storedTax, setStoredTax] = useRecoilState(taxState);
-  const [retiredOnBetweenJanAndMay, setretiredOnBetweenJanAndMay] =
-    useState(false);
+
   useEffect(() => {
     const retirementMonth = dayjs(storedRetirementDate).month() + 1;
-    if ([...Array(5)].map((_, i) => i + 1).includes(retirementMonth)) {
-      setretiredOnBetweenJanAndMay(true);
-    }
-    if (storedTax) {
-      setTab(storedTax);
-    }
     const defaultOptions = ['一括徴収', '今年度は支払いなし'];
-    if (retiredOnBetweenJanAndMay === false) {
+    if (![...Array(5)].map((_, i) => i + 1).includes(retirementMonth)) {
       defaultOptions[1] = '普通徴収';
       defaultOptions[2] = '今年度は支払いなし';
       setOptions(defaultOptions);
     }
-  }, [storedRetirementDate, retiredOnBetweenJanAndMay, storedTax, setOptions]);
+    if (storedTax) {
+      setTab(storedTax);
+    }
+  }, [storedRetirementDate, storedTax, setOptions]);
   const {
     handleSubmit,
     formState: { errors, isValid },
