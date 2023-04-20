@@ -28,7 +28,10 @@ const AnswerSelectBox = ({ options, register, name, errors }: Props) => {
             );
           })}
         </select>
-        <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2'>
+        <div
+          id='down-arrow'
+          className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2'
+        >
           <svg
             className='fill-current h-8 w-8'
             xmlns='http://www.w3.org/2000/svg'
