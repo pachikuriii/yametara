@@ -3,8 +3,6 @@ import { Noto_Sans_JP } from '@next/font/google';
 import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import 'swiper/css';
-import 'swiper/css/navigation';
 
 const NotoSansJP = Noto_Sans_JP({
   weight: '400',

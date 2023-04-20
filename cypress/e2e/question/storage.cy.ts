@@ -95,7 +95,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
       }),
     );
     cy.visit('/questions/3');
-    cy.get('#swiper').get('#age-form1').click();
+    cy.get('select').select('30歳未満')
     cy.get('#postcode-form').type('6550873');
     cy.get('#next-page-button').click();
     cy.window().then((win) => {
@@ -163,7 +163,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     );
     cy.visit('/questions/5');
     cy.get('#emp-ins-last-two-years-form2').click();
-    cy.get('#swiper').get('#emp-ins-total-form3').click();
+    cy.get('select').select('5年以上10年未満')
     cy.get('#next-page-button').click();
     cy.window().then((win) => {
       const storage = JSON.parse(
@@ -281,5 +281,5 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
       cy.wrap(storage).its('tax').should('eq', 1);
     });
   });
-});
+ });
 export {};
