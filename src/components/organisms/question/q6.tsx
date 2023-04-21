@@ -37,13 +37,13 @@ export default function Q6() {
           register={register}
           errors={errors.health_ins_last_two_month}
           idPrefix={'health-ins-last-two-month-form'}
-        ></AnswerSelectButtons>
+        />
       </form>
 
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 }

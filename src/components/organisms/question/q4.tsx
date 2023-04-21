@@ -35,13 +35,13 @@ export default function Q4() {
           register={register}
           errors={errors.family}
           idPrefix={'family-form'}
-        ></AnswerSelectButtons>
+        />
       </form>
 
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 }

@@ -35,13 +35,13 @@ export default function Q2() {
           register={register}
           errors={errors.re_employment}
           idPrefix={'re-employment-form'}
-        ></AnswerSelectButtons>
+        />
       </form>
 
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 }

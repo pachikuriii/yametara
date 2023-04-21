@@ -58,21 +58,22 @@ export default function Q8() {
           errors={errors.tax}
           idPrefix={'tax-form'}
           setTab={setTab}
-        ></AnswerSelectButtons>
+        />
       </form>
 
       <div className='pb-4'>
         <TabTemplate>
           {tab === 1 && <AtOnceTaxCollection />}
-          {tab === 2 && <OrdinallyTaxCollection />}
-          {tab === 3 && <NoTax />}
+          {tab === 2 && options[1] === '普通徴収' && <OrdinallyTaxCollection />}
+          {tab === 2 && options[1] === '今年度は支払いなし' && <NoTax />}
+          {tab === 3 && options[2] === '今年度は支払いなし' && <NoTax />}
         </TabTemplate>
       </div>
 
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 }

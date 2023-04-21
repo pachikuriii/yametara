@@ -8,10 +8,9 @@ interface Props {
   props: any;
   storedRetirementDate: string;
   control: Control<formInput>;
-  name: 'retirementDate';
   errors: Partial<FieldErrorsImpl<formInput>>;
 }
-const RetirementDateForm = ({ props, control, name, errors }: Props) => {
+const RetirementDateForm = ({ props, control, errors }: Props) => {
   const formattedValue = useRetirementDateInputHelper(props);
   return (
     <div>
@@ -24,7 +23,7 @@ const RetirementDateForm = ({ props, control, name, errors }: Props) => {
             message: '有効な日付を入力してください',
           },
         }}
-        name={name}
+        name='retirementDate'
         render={({ field: { onChange, ref, ...rest } }) => (
           <NumberFormatBase
             id='retirement-date-form'
