@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className='footer footer-center p-2 bg-primary text-white'>
+    <footer className='footer footer-center p-2 bg-primary text-secondary'>
       <div>
         <p>
           <span>©︎2023 </span>

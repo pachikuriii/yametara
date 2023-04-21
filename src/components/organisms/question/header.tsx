@@ -7,11 +7,11 @@ interface Props {
 
 const Header = ({ title, todo }: Props) => {
   return (
-    <header className='pb-2 bg-primary text-center text-white font-extrabold text-sm'>
-      <div className='py-1.5 flex justify-center'>
+    <header className='pt-2 pb-4 bg-primary text-center text-secondary font-extrabold text-sm'>
+      <div className='pb-4 flex justify-center'>
         <Link href='/'>
           <Image
-            src='/yametara-logo-white.svg'
+            src='/yametara-logo-question.svg'
             alt='yametaraのロゴ'
             width='150'
             height='100'
@@ -19,7 +19,7 @@ const Header = ({ title, todo }: Props) => {
           />
         </Link>
       </div>
-      <h1 className='text-2xl'>{title}</h1>
+      <h1 className='text-2xl mb-2'>{title}</h1>
       {todo && <p>{todo}</p>}
     </header>
   );
