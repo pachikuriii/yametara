@@ -4,7 +4,7 @@ export default function Footer() {
       <div>
         <p>
           <span>©︎2023 </span>
-          <a href='https://twitter.com/saya__takahashi'>pachikuriii</a>
+          <a href='https://twitter.com/pachikuriiii'>pachikuriii</a>
         </p>
       </div>
     </footer>
