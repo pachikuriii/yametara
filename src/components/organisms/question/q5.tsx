@@ -22,7 +22,7 @@ export default function Q5() {
     register,
   } = useForm<formInput>({
     defaultValues: {
-      emp_ins_total: String(storedEmpInsTotal),
+      emp_ins_total: storedEmpInsTotal ? String(storedEmpInsTotal) : '',
       emp_ins_last_two_years: String(storedEmpInsLastTwoYears),
     },
     mode: 'onChange',

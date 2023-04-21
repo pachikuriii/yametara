@@ -16,7 +16,7 @@ const AnswerSelectBox = ({ options, register, name, errors }: Props) => {
             required: '選択してください',
           })}
         >
-          <option value='0' disabled>
+          <option value='' disabled>
             選択してください
           </option>
           {options.map((value, index) => {

@@ -18,7 +18,7 @@ export default function Q3(props: any) {
     register,
   } = useForm<formInput>({
     defaultValues: {
-      age: storedAge ? String(storedAge) : '0',
+      age: storedAge ? String(storedAge) : '',
       postcode: storedPostcode,
     },
     mode: 'onChange',
