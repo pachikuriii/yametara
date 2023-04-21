@@ -47,7 +47,7 @@ export default function Q1(props: any) {
             storedRetirementDate={storedRetirementDate}
             control={control}
             errors={errors}
-          ></RetirementDateForm>
+          />
         </div>
 
         <div className='pb-4'>
@@ -60,7 +60,7 @@ export default function Q1(props: any) {
             register={register}
             errors={errors.retirementReason}
             idPrefix={'retirement-reason-form'}
-          ></AnswerSelectButtons>
+          />
 
           <div className='pt-2'>
             <label htmlFor='retirement-reason' className='link'>
@@ -73,7 +73,7 @@ export default function Q1(props: any) {
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 }

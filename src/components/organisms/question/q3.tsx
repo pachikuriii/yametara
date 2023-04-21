@@ -47,7 +47,7 @@ export default function Q3(props: any) {
             register={register}
             name='age'
             errors={errors.age}
-          ></AnswerSelectBox>
+          />
         </div>
 
         <div className='pb-4'>
@@ -65,7 +65,7 @@ export default function Q3(props: any) {
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 }

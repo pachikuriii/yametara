@@ -75,7 +75,7 @@ const Q7 = () => {
           errors={errors.health_ins_after_retirement}
           idPrefix={'health-ins-after-retirement-form'}
           setTab={setTab}
-        ></AnswerSelectButtons>
+        />
       </form>
 
       <div className='pb-4'>
@@ -92,7 +92,7 @@ const Q7 = () => {
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 };

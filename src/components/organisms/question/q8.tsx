@@ -58,7 +58,7 @@ export default function Q8() {
           errors={errors.tax}
           idPrefix={'tax-form'}
           setTab={setTab}
-        ></AnswerSelectButtons>
+        />
       </form>
 
       <div className='pb-4'>
@@ -73,7 +73,7 @@ export default function Q8() {
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 }

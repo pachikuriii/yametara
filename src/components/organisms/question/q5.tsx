@@ -46,7 +46,7 @@ export default function Q5() {
           register={register}
           errors={errors.emp_ins_last_two_years}
           idPrefix={'emp-ins-last-two-years-form'}
-        ></AnswerSelectButtons>
+        />
       </div>
 
       <div>
@@ -64,7 +64,7 @@ export default function Q5() {
           register={register}
           name='emp_ins_total'
           errors={errors.emp_ins_total}
-        ></AnswerSelectBox>
+        />
         <label htmlFor='how-to-count-emp-period' className='link'>
           <Alert>数え方について</Alert>
         </label>
@@ -73,7 +73,7 @@ export default function Q5() {
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </form>
   );
 }
