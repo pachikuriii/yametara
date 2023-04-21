@@ -2,8 +2,20 @@ import Link from 'next/link';
 export default function IndexFooter() {
   return (
     <footer className='footer footer-center p-10 bg-primary text-secondary rounded'>
+      <div className='grid grid-flow-col gap-4'>
+        <Link className='link' href='/terms'>
+          利用規約
+        </Link>
+      </div>
       <div>
         <div className='grid grid-flow-col gap-4'>
+          <div>
+            <p>
+              <span>©︎2023 </span>
+              <a href='https://twitter.com/saya__takahashi'>pachikuriii</a>
+            </p>
+          </div>
+
           <a
             target='_blank'
             href='http://twitter.com/share?url=https://www.yametara.com/&text=yametaraはいくつかの質問に答えるだけで会社を辞めた後に必要な手続きを一括で把握することができるシミュレーターです。&hashtags=yametara,退職後の手続きシミュレーター'
@@ -36,17 +48,6 @@ export default function IndexFooter() {
             </svg>
           </a>
         </div>
-      </div>
-      <div className='grid grid-flow-col gap-4'>
-        <Link className='link' href='/terms'>
-          利用規約
-        </Link>
-      </div>
-      <div>
-        <p>
-          <span>©︎2023 </span>
-          <a href='https://twitter.com/saya__takahashi'>pachikuriii</a>
-        </p>
       </div>
     </footer>
   );
