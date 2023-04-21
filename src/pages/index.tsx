@@ -41,18 +41,17 @@ export default function IndexMain() {
           </div>
 
           <div>
-            <Link href='/questions/1'>
-              <button
-                id='index-start-button'
-                className='btn-wide btn btn-outline text-xl text-accent bg-white rounded-full border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select'
-                onClick={() => {
-                  setStarted(true);
-                  setBackButtonClicked(false);
-                  setNextButtonClicked(true);
-                }}
-              >
-                はじめる
-              </button>
+            <Link
+              href='/questions/1'
+              id='index-start-button'
+              className='btn-wide btn btn-outline text-xl text-white bg-accent rounded-full no-animation hover:bg-accent-focus  hover:border-primary-focus font-extrabold'
+              onClick={() => {
+                setStarted(true);
+                setBackButtonClicked(false);
+                setNextButtonClicked(true);
+              }}
+            >
+              はじめる
             </Link>
           </div>
 

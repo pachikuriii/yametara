@@ -1,7 +1,7 @@
 import Link from 'next/link';
 export default function IndexFooter() {
   return (
-    <footer className='footer footer-center p-10 bg-primary text-white rounded'>
+    <footer className='footer footer-center p-10 bg-primary text-secondary rounded'>
       <div>
         <div className='grid grid-flow-col gap-4'>
           <a
