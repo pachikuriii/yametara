@@ -81,7 +81,10 @@ const Q7 = () => {
       <div className='pb-4'>
         <TabTemplate>
           {tab === 1 && <NationalInsurance />}
-          {tab === 2 && <OptionalInsurance />}
+          {tab === 2 && options[1] === '任意継続' && <OptionalInsurance />}
+          {tab === 2 && options[1] === '家族の健康保険' && (
+            <DependentInsurance />
+          )}
           {tab === 3 && <DependentInsurance />}
         </TabTemplate>
       </div>
