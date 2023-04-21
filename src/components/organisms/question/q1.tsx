@@ -46,7 +46,6 @@ export default function Q1(props: any) {
             props={props}
             storedRetirementDate={storedRetirementDate}
             control={control}
-            name='retirementDate'
             errors={errors}
           ></RetirementDateForm>
         </div>
