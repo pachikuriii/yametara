@@ -8,12 +8,12 @@ interface Props {
 const Header = ({ title, todo }: Props) => {
   return (
     <header className='pt-2 pb-4 bg-primary text-center text-secondary font-extrabold text-sm'>
-      <div className='pb-4 flex justify-center'>
+      <div className='pb-2 flex justify-center'>
         <Link href='/'>
           <Image
             src='/yametara-logo-question.svg'
             alt='yametaraのロゴ'
-            width='150'
+            width='130'
             height='100'
             loading='eager'
           />
