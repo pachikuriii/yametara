@@ -27,7 +27,7 @@ const RetirementDateForm = ({ props, control, errors }: Props) => {
         render={({ field: { onChange, ref, ...rest } }) => (
           <NumberFormatBase
             id='retirement-date-form'
-            className='border-2 border-primary input input-bordered input-lg w-full text-center'
+            className='border-2 border-primary input input-bordered input-lg w-full text-left'
             onChange={onChange}
             placeholder={dayjs().format('YYYY-MM-DD')}
             format={formattedValue}
