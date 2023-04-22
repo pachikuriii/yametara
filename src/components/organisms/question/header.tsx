@@ -26,7 +26,7 @@ const Header = ({ title, todo }: Props) => {
       <div className='flex justify-center items-center'>
         {!Number.isNaN(currentPage) && (
           <div className='inline-block p-1 bg-secondary rounded-full mr-4'>
-            <p className='mx-1.5 my-2 text-lg text-white'>Q.{currentPage}</p>
+            <p className='mx-2 my-2 text-lg text-white'>Q.{currentPage}</p>
           </div>
         )}
         <h1 className='text-2xl'>{title}</h1>
