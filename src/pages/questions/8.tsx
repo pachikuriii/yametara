@@ -5,7 +5,7 @@ export default function Page8() {
     <>
       <QuestionTemplate
         pageTitle='yametara | 退職後の手続きシミュレーター | 住民税について'
-        title='Q8.住民税について'
+        title='住民税について'
         todo='【選択してください】'
       >
         <Q8></Q8>

@@ -5,7 +5,7 @@ export default function Page6() {
     <>
       <QuestionTemplate
         pageTitle='yametara | 退職後の手続きシミュレーター | 健康保険について'
-        title='Q6.健康保険について'
+        title='健康保険について'
         todo='【選択してください】'
       >
         <Q6></Q6>
