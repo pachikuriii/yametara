@@ -40,7 +40,7 @@ export default function Q1(props: any) {
       <form>
         <div className='pb-4'>
           <QuestionTitle>
-            <label htmlFor='retirementDate'>退職予定日</label>
+            <label htmlFor='retirementDate'>退職予定日はいつですか？</label>
           </QuestionTitle>
           <RetirementDateForm
             props={props}
@@ -52,7 +52,7 @@ export default function Q1(props: any) {
 
         <div className='pb-4'>
           <QuestionTitle>
-            <label htmlFor='retirementReason'>退職事由</label>
+            <label htmlFor='retirementReason'>退職事由を一つ選択してください。</label>
           </QuestionTitle>
           <AnswerSelectButtons
             options={['自己都合', '会社都合', 'その他']}
