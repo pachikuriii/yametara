@@ -12,7 +12,7 @@ const AnswerSelectButton = ({ children, onClick, id }: Props) => {
       id={id}
       onClick={onClick}
       className={
-        'h-24 w-24 btn btn-outline text-accent bg-white rounded-2xl border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus font-extrabold shadow-select peer-checked:bg-primary-focus peer-checked:text-white '
+        'text-lg btn btn-outline w-full text-left focus:outline-none rounded-md border-2 border-primary hover:bg-primary-focus  hover:border-primary-focus font-extrabold focus:border-neutral-focus peer-checked:bg-primary-focus peer-checked:text-white'
       }
     >
       {children}
