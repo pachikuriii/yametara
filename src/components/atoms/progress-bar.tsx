@@ -17,12 +17,12 @@ const AnswerProgressBar = () => {
       completed={state}
       bgColor='#CF597D'
       baseBgColor='#E8E8E8'
-      height='1rem'
+      height='0.6rem'
       isLabelVisible={false}
       transitionDuration='0.2s'
       transitionTimingFunction='ease-out'
       maxCompleted={8}
-      className='w-full mx-auto py-6'
+      className='w-full mx-auto pt-5 pb-1'
     />
   );
 };
