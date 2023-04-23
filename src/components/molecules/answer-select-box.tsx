@@ -11,7 +11,7 @@ const AnswerSelectBox = ({ options, register, name, errors }: Props) => {
     <div>
       <div className='relative'>
         <select
-          className='block appearance-none w-full text-center border-2 border-primary input input-bordered input-lg focus:outline-none focus:border-gray-500'
+          className='block appearance-none w-full text-left border-2 border-primary-focus input input-bordered input-lg focus:outline-none focus:border-neutral-focus'
           {...register(name, {
             required: '選択してください',
           })}

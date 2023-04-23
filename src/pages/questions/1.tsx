@@ -6,8 +6,8 @@ export default function Page1() {
   return (
     <>
       <QuestionTemplate
-        pageTitle=' yametara | 退職後の手続きシミュレーター | 今回の退職について'
-        title='Q1.今回の退職について'
+        pageTitle='yametara | 退職後の手続きシミュレーター | 今回の退職について'
+        title='今回の退職について'
         todo={'【記入/選択してください】'}
       >
         <Q1></Q1>

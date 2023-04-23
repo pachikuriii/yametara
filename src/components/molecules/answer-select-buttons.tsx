@@ -20,7 +20,10 @@ const AnswerSelectButtons = ({
 }: Props) => {
   return (
     <div>
-      <div className='flex space-x-2 justify-center pb-2' id='answer-options'>
+      <div
+        className='flex space-y-2 flex-col justify-center pb-2'
+        id='answer-options'
+      >
         {options.map((value, index) => {
           index += 1;
           return (
@@ -32,7 +35,7 @@ const AnswerSelectButtons = ({
                   })}
                   type='radio'
                   value={index}
-                  className='form-check-input hidden peer'
+                  className='form-check-input peer radio mt-3 ml-6 absolute z-10 '
                   id={`${index}`}
                 />
                 <AnswerSelectButton

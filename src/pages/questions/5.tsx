@@ -7,7 +7,7 @@ export default function Page5() {
     <>
       <QuestionTemplate
         pageTitle='yametara | 退職後の手続きシミュレーター | 雇用保険について'
-        title='Q5.雇用保険について'
+        title='雇用保険について'
         todo='【選択してください】'
       >
         <Q5></Q5>

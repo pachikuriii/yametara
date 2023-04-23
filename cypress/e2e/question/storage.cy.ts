@@ -19,7 +19,6 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
       cy.wrap(motionController).its('next').should('eq', true);
       cy.wrap(motionController).its('back').should('eq', false);
     });
-    cy.get('#next-page-button').click();
   });
 
   it('Q1において回答内容がsessionStorageへ保存されること', () => {
