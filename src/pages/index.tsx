@@ -44,7 +44,7 @@ export default function IndexMain() {
             <Link
               href='/questions/1'
               id='index-start-button'
-              className='btn-wide btn btn-outline text-xl text-white bg-accent rounded-full no-animation hover:bg-accent-focus  hover:border-primary-focus font-extrabold'
+              className='btn-wide btn btn-outline text-xl text-white bg-accent rounded-full  hover:bg-accent-focus  hover:border-primary-focus font-extrabold'
               onClick={() => {
                 setStarted(true);
                 setBackButtonClicked(false);
