@@ -40,7 +40,7 @@ const PostcodeForm = ({ props, control, errors }: Props) => {
             format='###-####'
             placeholder='154-0023'
             onChange={onChange}
-            className='block appearance-none w-full text-left border-2 border-primary input input-bordered input-lg focus:outline-none focus:border-neutral-focus'
+            className='block appearance-none w-full text-left border-2 border-primary-focus input input-bordered input-lg focus:outline-none focus:border-neutral-focus'
             {...rest}
             {...props}
           />

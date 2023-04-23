@@ -8,7 +8,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 const BackButton = ({ children, onClick, ...props }: Props) => {
   return (
     <button
-      className='btn btn-active border-2 text-white bg-gray-400 rounded-full border-none  hover:bg-primary-focus font-extrabold'
+      className='btn border-2 border-primary-focus text-secondary rounded-xl bg-transparent hover:bg-primary hover:text-white hover:border-primary font-extrabold'
       onClick={onClick}
       {...props}
     >

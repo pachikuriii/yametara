@@ -16,7 +16,7 @@ const AnswerProgressBar = () => {
     <ProgressBar
       completed={state}
       bgColor='#CF597D'
-      baseBgColor='#E8E8E8'
+      baseBgColor='#D4E3E1'
       height='0.6rem'
       isLabelVisible={false}
       transitionDuration='0.2s'
