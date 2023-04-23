@@ -1,4 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { IconContext } from 'react-icons';
+import { IoIosArrowForward } from 'react-icons/io';
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   onClick?: () => void;
@@ -18,7 +20,19 @@ const NextButton = ({ children, onClick, isValid, ...props }: Props) => {
       onClick={onClick}
       {...props}
     >
-      {children}
+      <div className='flex flex-row items-center'>
+        {children}
+        <IconContext.Provider
+          value={{
+            className: 'global-class-name relative left-1',
+            size: '1.2em',
+          }}
+        >
+          <span>
+            <IoIosArrowForward />
+          </span>
+        </IconContext.Provider>
+      </div>
     </button>
   );
 };
