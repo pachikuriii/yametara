@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 interface Props {
-  title: string;
+  title?: string;
   todo?: string;
 }
 
