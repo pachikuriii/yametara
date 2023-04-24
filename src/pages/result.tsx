@@ -121,11 +121,11 @@ export default function Home() {
               <h2 className='text-xl'>全ての質問に回答していないようです</h2>
               <div className='text-left m-4'>
                 <p>
-                  質問への回答が完了していないため、結果を表示することが出来ません。
-                  恐れ入りますが、改めて質問への回答をお願いいたします。
+                  何らかの理由で質問への回答が完了していないため、結果を表示することが出来ません。
+                  恐れ入りますがTOPページの「はじめる」のボタンを押して、全ての質問への回答をお願いいたします。
                 </p>
               </div>
-              <Link href='questions/1'>
+              <Link href='/'>
                 <Button>
                   <IconContext.Provider
                     value={{ className: 'global-class-name', size: '1.2em' }}
@@ -134,7 +134,7 @@ export default function Home() {
                       <AiOutlineReload />
                     </span>
                   </IconContext.Provider>
-                  はじめから質問へ回答する
+                  TOPページへ
                 </Button>
               </Link>
             </div>
