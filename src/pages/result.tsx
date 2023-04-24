@@ -47,10 +47,10 @@ export default function Home() {
           content='yametaraは会社を辞めた後、すぐに就職しない選択をはじめてする方におすすめの退職後の手続きシミュレーターです。シミュレーション結果を参考に退職後のスケジュールを考えてみましょう。'
         />
       </Head>
-      <main>
+      <main className='flex flex-col min-h-screen'>
         <Header title='シミュレーション結果' />
         {completed ? (
-          <div className='mx-auto max-w-md'>
+          <div className='mx-auto max-w-md flex-grow'>
             <label
               htmlFor='given_choices'
               className='md:w-50 md:p-4 border-r-0 max-sm:text-sm text-accent bg-white border-4 border-primary fixed right-0 md:top-10 max-sm:bottom-6 font-extrabold rounded-l-full z-50 cursor-pointer'
@@ -108,27 +108,36 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          <div>
-            <p>全ての質問に回答していないようです。</p>
+          <div className='text-center mx-auto max-w-md flex-grow my-10'>
             <IconContext.Provider
-              value={{ className: 'global-class-name', size: '5em' }}
+              value={{
+                className: 'global-class-name mx-auto mb-10',
+                size: '8em',
+              }}
             >
-              <span className='pr-1'>
-                <FaRegSadTear />
-              </span>
+              <FaRegSadTear />
             </IconContext.Provider>
-            <Link href='questions/1'>
-              <Button>
-                <IconContext.Provider
-                  value={{ className: 'global-class-name', size: '1.2em' }}
-                >
-                  <span className='pr-1'>
-                    <AiOutlineReload />
-                  </span>
-                </IconContext.Provider>
-                もう1度シミュレーションする
-              </Button>
-            </Link>
+            <div>
+              <h2 className='text-xl'>全ての質問に回答していないようです</h2>
+              <div className='text-left m-4'>
+                <p>
+                  質問への回答が完了していないため、結果を表示することが出来ません。
+                  恐れ入りますが、改めて質問への回答をお願いいたします。
+                </p>
+              </div>
+              <Link href='questions/1'>
+                <Button>
+                  <IconContext.Provider
+                    value={{ className: 'global-class-name', size: '1.2em' }}
+                  >
+                    <span className='pr-1'>
+                      <AiOutlineReload />
+                    </span>
+                  </IconContext.Provider>
+                  はじめから質問へ回答する
+                </Button>
+              </Link>
+            </div>
           </div>
         )}
         <Footer></Footer>
