@@ -28,10 +28,13 @@ export default function Q3(props: any) {
     setStoredAge(Number(data.age));
     setStoredPostcode(data.postcode);
   };
+  const checkKeyDown = (e: any) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
 
   return (
     <div>
-      <form>
+      <form onKeyDown={(e) => checkKeyDown(e)}>
         <div className='pb-4'>
           <QuestionTitle>
             <label htmlFor='age'>退職予定日における年齢</label>

@@ -34,10 +34,13 @@ export default function Q1(props: any) {
     setStoredRetirementDate(data.retirementDate);
     setStoredRetirementReason(Number(data.retirementReason));
   };
+  const checkKeyDown = (e: any) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
 
   return (
     <div>
-      <form>
+      <form onKeyDown={(e) => checkKeyDown(e)}>
         <div className='pb-4'>
           <QuestionTitle>
             <label htmlFor='retirementDate'>退職予定日はいつですか？</label>
@@ -52,7 +55,9 @@ export default function Q1(props: any) {
 
         <div className='pb-4'>
           <QuestionTitle>
-            <label htmlFor='retirementReason'>退職事由を一つ選択してください。</label>
+            <label htmlFor='retirementReason'>
+              退職事由を一つ選択してください。
+            </label>
           </QuestionTitle>
           <AnswerSelectButtons
             options={['自己都合', '会社都合', 'その他']}
