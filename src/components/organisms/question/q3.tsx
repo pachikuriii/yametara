@@ -1,3 +1,4 @@
+import { KeyboardEvent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { postcodeState, ageState } from '../../../storage/session-stroage';
@@ -28,10 +29,13 @@ export default function Q3(props: any) {
     setStoredAge(Number(data.age));
     setStoredPostcode(data.postcode);
   };
+  const checkKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') event.preventDefault();
+  };
 
   return (
     <div>
-      <form>
+      <form onKeyDown={(event) => checkKeyDown(event)}>
         <div className='pb-4'>
           <QuestionTitle>
             <label htmlFor='age'>退職予定日における年齢</label>

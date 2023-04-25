@@ -1,3 +1,4 @@
+import { KeyboardEvent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import {
@@ -34,10 +35,13 @@ export default function Q1(props: any) {
     setStoredRetirementDate(data.retirementDate);
     setStoredRetirementReason(Number(data.retirementReason));
   };
+  const checkKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') event.preventDefault();
+  };
 
   return (
     <div>
-      <form>
+      <form onKeyDown={(event) => checkKeyDown(event)}>
         <div className='pb-4'>
           <QuestionTitle>
             <label htmlFor='retirementDate'>退職予定日はいつですか？</label>
@@ -52,7 +56,9 @@ export default function Q1(props: any) {
 
         <div className='pb-4'>
           <QuestionTitle>
-            <label htmlFor='retirementReason'>退職事由を一つ選択してください。</label>
+            <label htmlFor='retirementReason'>
+              退職事由を一つ選択してください。
+            </label>
           </QuestionTitle>
           <AnswerSelectButtons
             options={['自己都合', '会社都合', 'その他']}
