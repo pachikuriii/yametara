@@ -75,9 +75,10 @@ export default function Home() {
                 <Tax></Tax>
               </div>
             </div>
-            <div className='flex justify-evenly pt-10 pb-20'>
+            <div className='mx-auto w-9/12 flex flex-col space-y-4 pt-10 pb-20'>
               <Link href='questions/8'>
-                <Button
+                <button
+                  className='btn border-2 border-primary-focus text-secondary rounded-full w-full bg-transparent hover:bg-secondary hover:text-white hover:border-secondary font-extrabold'
                   onClick={() => {
                     setBackButtonClicked(true);
                     setNextButtonClicked(false);
@@ -90,8 +91,8 @@ export default function Home() {
                       <IoMdArrowRoundBack />
                     </span>
                   </IconContext.Provider>
-                  戻る
-                </Button>
+                  1つ前の質問へ戻る
+                </button>
               </Link>
               <Link href='questions/1'>
                 <Button>
@@ -126,16 +127,7 @@ export default function Home() {
                 </p>
               </div>
               <Link href='/'>
-                <Button>
-                  <IconContext.Provider
-                    value={{ className: 'global-class-name', size: '1.2em' }}
-                  >
-                    <span className='pr-1'>
-                      <AiOutlineReload />
-                    </span>
-                  </IconContext.Provider>
-                  TOPページへ
-                </Button>
+                <Button>TOPページへ</Button>
               </Link>
             </div>
           </div>
