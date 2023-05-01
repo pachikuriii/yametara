@@ -9,17 +9,16 @@ interface Props {
 
 const TodoPlate = ({ children, id }: Props) => {
   return (
-    <div className='indicator w-full my-4 ' id={id}>
-      <span className='bg-secondary text-accent indicator-item indicator-start badge badge-secondary rounded-full h-9 w-9 border-4 border-secondary'>
+    <div className='indicator w-full' id={id}>
+      <div className='flex flex-row justify-center border-secondary border-2 text-secondary font-extrabold text-2xl w-full h-14 rounded-box bg-white place-items-center'>
         <IconContext.Provider
-          value={{ className: 'global-class-name', size: '1.5em' }}
+          value={{
+            className: 'global-class-name  absolute left-4',
+            size: '1.2em',
+          }}
         >
-          <span>
-            <BsCheckLg />
-          </span>
+          <BsCheckLg />
         </IconContext.Provider>
-      </span>
-      <div className='text-white font-extrabold text-2xl grid w-full h-14 rounded-box bg-primary place-items-center'>
         {children}
       </div>
     </div>
