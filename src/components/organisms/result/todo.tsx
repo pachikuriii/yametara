@@ -8,7 +8,6 @@ import {
   retirementDateState,
   reEmploymentState,
 } from '../../../storage/session-stroage';
-import TodoPlate from '../../atoms/todo-plate';
 import CheckedIcon from 'src/components/atoms/checkedIcon';
 import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 
@@ -81,18 +80,6 @@ const Todo = () => {
           </tbody>
         </table>
       </div>
-      {/* <div className='pt-10 pb-20'>
-        <div>
-          <TodoPlate id='todo-health-insurance-plate'>健康保険</TodoPlate>
-          <TodoPlate id='todo-pension-plate'>年金</TodoPlate>
-          {empInsQualification && (
-            <TodoPlate id='todo-employment-insurance-plate'>雇用保険</TodoPlate>
-          )}
-          {(reEmployment !== 1 || tax === 2) && (
-            <TodoPlate id='todo-tax-plate'>税金</TodoPlate>
-          )}
-        </div>
-      </div> */}
     </div>
   );
 };
