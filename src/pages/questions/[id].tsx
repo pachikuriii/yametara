@@ -12,6 +12,11 @@ import QuestionTemplate from 'src/components/template/question-template';
 interface Props {
   id: string | string[] | undefined;
 }
+
+interface pageTitles {
+  [key: string]: { title: string; todo: string };
+}
+
 const Content = ({ id }: Props) => {
   return (
     <>
@@ -34,12 +39,45 @@ export default function Page() {
   if (id == null) {
     return <h1>Loading...</h1>;
   }
+  const pageTitle: pageTitles = {
+    '1': {
+      title: '今回の退職について',
+      todo: '【記入/選択してください】',
+    },
+    '2': {
+      title: '退職後の予定について',
+      todo: '【選択してください】',
+    },
+    '3': {
+      title: 'あなたについて',
+      todo: '【記入/選択してください】',
+    },
+    '4': {
+      title: 'あなたの家族について',
+      todo: '【選択してください】',
+    },
+    '5': {
+      title: '雇用保険について',
+      todo: '【選択してください】',
+    },
+    '6': {
+      title: '健康保険について',
+      todo: '【選択してください】',
+    },
+    '7': {
+      title: '健康保険について',
+      todo: '【選択してください】',
+    },
+    '8': {
+      title: '住民税について',
+      todo: '【選択してください】',
+    },
+  };
   return (
     <>
       <QuestionTemplate
-        pageTitle='yametara | 退職後の手続きシミュレーター | 今回の退職について'
-        title='今回の退職について'
-        todo={'【記入/選択してください】'}
+        title={pageTitle[`${id}`].title}
+        todo={pageTitle[`${id}`].todo}
       >
         <Content id={id} />
       </QuestionTemplate>
