@@ -21,6 +21,7 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
   const prevPage = usePrevPage();
   const nextPage = useNextPage();
   const router = useRouter();
+  const id = router.query.id;
   const [storedNextButtonClicked, setStoredNextButtonClicked] =
     useRecoilState(isNextButtonClicked);
   const [storedBackButtonClicked, setStoredBackButtonClicked] =
@@ -71,7 +72,7 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
           }}
           isValid={isValid}
         >
-          次へ
+          {id === '8' ? '結果へ' : '次へ'}
         </NextButton>
       </div>
     </div>
