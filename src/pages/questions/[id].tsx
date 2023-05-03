@@ -100,6 +100,9 @@ const pageTitle: { [key: string]: { title: string; todo: string } } = {
 export default function Question() {
   const router = useRouter();
   const id = router.query.id;
+  if (id == null) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <>
       <QuestionTemplate
