@@ -9,6 +9,7 @@ import {
   reEmploymentState,
 } from '../../../storage/session-stroage';
 import TodoPlate from '../../atoms/todo-plate';
+import CheckedIcon from 'src/components/atoms/checkedIcon';
 import { useEmpInsQualification } from 'src/hooks/use-employment-insurance-condition';
 
 const Todo = () => {
@@ -46,7 +47,41 @@ const Todo = () => {
         <p>以下についての手続きが必要です。</p>
       </div>
 
-      <div className='pt-10 pb-20'>
+      <div className='overflow-x-auto pt-10 pb-20'>
+        <table className='table w-full'>
+          <tbody>
+            <tr id='todo-health-insurance-plate'>
+              <td className='text-center flex flex-row justify-center text-secondary font-extrabold text-2xl w-full h-16 bg-white place-items-center'>
+                <CheckedIcon />
+                健康保険
+              </td>
+            </tr>
+            <tr id='todo-pension-plate'>
+              <td className='text-center flex flex-row justify-center text-secondary font-extrabold text-2xl w-full h-16  bg-white place-items-center'>
+                <CheckedIcon />
+                年金
+              </td>
+            </tr>
+            {empInsQualification && (
+              <tr id='todo-employment-insurance-plate'>
+                <td className='text-center flex flex-row justify-center text-secondary font-extrabold text-2xl w-full h-16  bg-white place-items-center'>
+                  <CheckedIcon />
+                  雇用保険
+                </td>
+              </tr>
+            )}
+            {(reEmployment !== 1 || tax === 2) && (
+              <tr id='todo-tax-plate'>
+                <td className='text-center flex flex-row justify-center text-secondary font-extrabold text-2xl w-full h-16  bg-white place-items-center'>
+                  <CheckedIcon />
+                  税金
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+      {/* <div className='pt-10 pb-20'>
         <div>
           <TodoPlate id='todo-health-insurance-plate'>健康保険</TodoPlate>
           <TodoPlate id='todo-pension-plate'>年金</TodoPlate>
@@ -57,7 +92,7 @@ const Todo = () => {
             <TodoPlate id='todo-tax-plate'>税金</TodoPlate>
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
