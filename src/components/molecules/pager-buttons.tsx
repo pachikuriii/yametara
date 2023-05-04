@@ -55,7 +55,7 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
             setStoredNextButtonClicked(false);
           }}
         >
-          戻る
+          {id === '1' ? 'TOPヘ' : '戻る'}
         </BackButton>
       </div>
 
