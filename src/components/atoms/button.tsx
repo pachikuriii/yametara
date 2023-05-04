@@ -8,7 +8,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 const Button = ({ children, onClick, ...props }: Props) => {
   return (
     <button
-      className='btn btn-outline text-accent bg-white rounded-full border-2  border-primary no-animation hover:bg-primary-focus  hover:border-primary-focus  peer-checked:bg-primary-focus peer-checked:text-white shadow-select'
+      className='btn btn-outline w-full text-white bg-accent rounded-full  hover:bg-accent-focus  hover:border-primary-focus font-extrabold'
       onClick={onClick}
       {...props}
     >

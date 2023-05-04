@@ -49,7 +49,7 @@ export default function Document() {
         <meta name='twitter:site' content='pachikuriii'></meta>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
-      <body className='text-gray-800 bg-emerald-50 leading-relaxed tracking-wide'>
+      <body className='text-gray-800 bg-base-100 leading-relaxed tracking-wide'>
         <Main />
         <NextScript />
       </body>

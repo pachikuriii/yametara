@@ -2,9 +2,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { familyState } from '../../../storage/session-stroage';
 import { formInput } from '../../../types/type';
-import AnswerSelectButton from 'src/components/atoms/answer-button';
-import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
+import AnswerSelectButtons from 'src/components/molecules/answer-select-buttons';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 
 export default function Q4() {
@@ -30,37 +29,19 @@ export default function Q4() {
         <QuestionTitle>
           <label htmlFor='family'>生活を共にする被保険者である家族</label>
         </QuestionTitle>
-
-        <div className='flex space-x-2 justify-center pb-2'>
-          {['いる', 'いない'].map((value, index) => {
-            index += 1;
-            return (
-              <div key={index}>
-                <label htmlFor={`${index}`}>
-                  <input
-                    {...register('family', {
-                      required: '選択してください',
-                    })}
-                    type='radio'
-                    value={index}
-                    className='form-check-input hidden peer'
-                    id={`${index}`}
-                  />
-                  <AnswerSelectButton id={`family-form${index}`}>
-                    {value}
-                  </AnswerSelectButton>
-                </label>
-              </div>
-            );
-          })}
-        </div>
-        {errors.family && <Error>{errors.family.message}</Error>}
+        <AnswerSelectButtons
+          options={['いる', 'いない']}
+          name='family'
+          register={register}
+          errors={errors.family}
+          idPrefix={'family-form'}
+        />
       </form>
 
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 }

@@ -4,25 +4,26 @@ import { useState, useMemo } from 'react';
 
 const AnswerProgressBar = () => {
   const router = useRouter();
-  const [state, setState] = useState(0);
+  const id = router.query.id;
+  const [state, setState] = useState(Number(id));
 
   useMemo(() => {
     if (state < 8) {
-      setState(Number(router.pathname.replace(/^\/questions\//, '')));
+      setState(Number(id));
     }
-  }, [router.pathname, state]);
+  }, [id, state]);
 
   return (
     <ProgressBar
       completed={state}
-      bgColor='#ffccd5'
-      baseBgColor='#E8E8E8'
-      height='1.5rem'
+      bgColor='#CF597D'
+      baseBgColor='#D4E3E1'
+      height='0.6rem'
       isLabelVisible={false}
       transitionDuration='0.2s'
       transitionTimingFunction='ease-out'
       maxCompleted={8}
-      className='w-full mx-auto py-6'
+      className='w-full mx-auto pt-5 pb-1'
     />
   );
 };

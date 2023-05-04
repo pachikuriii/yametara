@@ -10,26 +10,28 @@ import { formInput } from '../../../types/type';
 import AtOnceTaxCollection from './tabs/tax/at-once-tax-collection';
 import NoTax from './tabs/tax/no-tax';
 import OrdinallyTaxCollection from './tabs/tax/ordinally-tax-collection';
-import AnswerSelectButton from 'src/components/atoms/answer-button';
-import Error from 'src/components/atoms/error';
 import QuestionTitle from 'src/components/atoms/question-title';
+import AnswerSelectButtons from 'src/components/molecules/answer-select-buttons';
 import PagerButtons from 'src/components/molecules/pager-buttons';
 import TabTemplate from 'src/components/template/tab-template';
 export default function Q8() {
+  const [options, setOptions] = useState(['一括徴収', '今年度は支払いなし']);
   const [tab, setTab] = useState(1);
   const storedRetirementDate = useRecoilValue(retirementDateState);
   const [storedTax, setStoredTax] = useRecoilState(taxState);
-  const [retiredOnBetweenJanAndMay, setretiredOnBetweenJanAndMay] =
-    useState(false);
+
   useEffect(() => {
     const retirementMonth = dayjs(storedRetirementDate).month() + 1;
-    if ([...Array(5)].map((_, i) => i + 1).includes(retirementMonth)) {
-      setretiredOnBetweenJanAndMay(true);
+    const defaultOptions = ['一括徴収', '今年度は支払いなし'];
+    if (![...Array(5)].map((_, i) => i + 1).includes(retirementMonth)) {
+      defaultOptions[1] = '普通徴収';
+      defaultOptions[2] = '今年度は支払いなし';
+      setOptions(defaultOptions);
     }
     if (storedTax) {
       setTab(storedTax);
     }
-  }, [storedRetirementDate, retiredOnBetweenJanAndMay, storedTax]);
+  }, [storedRetirementDate, storedTax, setOptions]);
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -49,51 +51,29 @@ export default function Q8() {
     <div>
       <form className='pb-6'>
         <QuestionTitle>今年度の残りの住民税の支払い方法</QuestionTitle>
-        <div className='flex space-x-2 justify-center pb-2' id='answer-options'>
-          {['一括徴収', '普通徴収', '今年度は支払いなし'].map(
-            (value, index) => {
-              index += 1;
-              return (
-                <div key={index}>
-                  <label htmlFor={`${index}`}>
-                    <input
-                      {...register('tax', {
-                        required: '選択してください',
-                      })}
-                      type='radio'
-                      value={index}
-                      className='form-check-input hidden peer'
-                      id={`${index}`}
-                    />
-                    {!(index === 2 && retiredOnBetweenJanAndMay) && (
-                      <AnswerSelectButton
-                        id={`tax-form${index}`}
-                        onClick={() => setTab(index)}
-                      >
-                        {value}
-                      </AnswerSelectButton>
-                    )}
-                  </label>
-                </div>
-              );
-            },
-          )}
-        </div>
-        {errors.tax && <Error>{errors.tax.message}</Error>}
+        <AnswerSelectButtons
+          options={options}
+          name='tax'
+          register={register}
+          errors={errors.tax}
+          idPrefix={'tax-form'}
+          setTab={setTab}
+        />
       </form>
 
       <div className='pb-4'>
         <TabTemplate>
           {tab === 1 && <AtOnceTaxCollection />}
-          {tab === 2 && <OrdinallyTaxCollection />}
-          {tab === 3 && <NoTax />}
+          {tab === 2 && options[1] === '普通徴収' && <OrdinallyTaxCollection />}
+          {tab === 2 && options[1] === '今年度は支払いなし' && <NoTax />}
+          {tab === 3 && options[2] === '今年度は支払いなし' && <NoTax />}
         </TabTemplate>
       </div>
 
       <PagerButtons
         handleSubmit={handleSubmit(submitContent)}
         isValid={isValid}
-      ></PagerButtons>
+      />
     </div>
   );
 }

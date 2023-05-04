@@ -16,20 +16,20 @@ export const useEmpInsQualification = () => {
   const [empInsTotal, setEmpInsTotal] = useState(0);
 
   useEffect(() => {
-    const RETIRED_WITH_OWN_REASON_AND_INSURANCE =
+    const retiredWithOwnReasonAndInsurance =
       retirementReason === 1 && empInsLastTwoYears === 3 && empInsTotal !== 1;
-    const RETIRED_WITH_CONPANY_REASON_AND_INSURANCE =
+    const retiredWithCompanyReasonAndInsurance =
       retirementReason === 2 && empInsLastTwoYears !== 1;
-    const RETIRED_WITH_UNINTENTIONAL_REASON_AND_INSURANCE =
+    const retiredWithUnintentionalReasonAndInsurance =
       retirementReason === 3 && empInsLastTwoYears !== 1;
 
     setEmpInsLastTwoYears(storedEmpInsLastTwoYears);
     setRetirementReason(storedRetirementReason);
     setEmpInsTotal(storedEmpInsTotal);
     if (
-      RETIRED_WITH_UNINTENTIONAL_REASON_AND_INSURANCE ||
-      RETIRED_WITH_CONPANY_REASON_AND_INSURANCE ||
-      RETIRED_WITH_OWN_REASON_AND_INSURANCE
+      retiredWithOwnReasonAndInsurance ||
+      retiredWithCompanyReasonAndInsurance ||
+      retiredWithUnintentionalReasonAndInsurance
     ) {
       setEmpInsQualification(true);
     }

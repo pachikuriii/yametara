@@ -5,13 +5,13 @@ interface Props {
 
 const Alert = ({ children }: Props) => {
   return (
-    <div className='flex justify-center alert bg-white p-0'>
-      <div>
+    <div className='bg-white p-0'>
+      <div className='flex items-center justify-center'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
           viewBox='0 0 24 24'
-          className='stroke-accent flex-shrink-0 w-5 h-5'
+          className='stroke-accent flex-shrink-0 w-5 h-5 mr-0.5'
         >
           <path
             strokeLinecap='round'

@@ -2,14 +2,14 @@ import { useRouter } from 'next/router';
 
 export const useNextPage = () => {
   const router = useRouter();
-  const currentPage = Number(router.asPath.replace('/questions/', ''));
-  const NextPath: string = '/questions/' + `${currentPage + 1}`;
-  return currentPage === 8 ? '/result' : NextPath;
+  const id = router.query.id;
+  const nextPath: string = '/questions/' + `${Number(id) + 1}`;
+  return Number(id) === 8 ? '/result' : nextPath;
 };
 
 export const usePrevPage = () => {
   const router = useRouter();
-  const currentPage = Number(router.asPath.replace('/questions/', ''));
-  const prevPath: string = '/questions/' + `${currentPage - 1}`;
-  return currentPage === 1 ? '/' : prevPath;
+  const id = router.query.id;
+  const prevPath: string = '/questions/' + `${Number(id) - 1}`;
+  return Number(id) === 1 ? '/' : prevPath;
 };
