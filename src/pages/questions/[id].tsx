@@ -7,25 +7,32 @@ const Q1 = dynamic(() => import('src/components/organisms/question/q1'), {
   ssr: false,
 });
 const Q2 = dynamic(() => import('src/components/organisms/question/q2'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
+  ssr: false,
 });
 const Q3 = dynamic(() => import('src/components/organisms/question/q3'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
+  ssr: false,
 });
 const Q4 = dynamic(() => import('src/components/organisms/question/q4'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
+  ssr: false,
 });
 const Q5 = dynamic(() => import('src/components/organisms/question/q5'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
+  ssr: false,
 });
 const Q6 = dynamic(() => import('src/components/organisms/question/q6'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
+  ssr: false,
 });
 const Q7 = dynamic(() => import('src/components/organisms/question/q7'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
+  ssr: false,
 });
 const Q8 = dynamic(() => import('src/components/organisms/question/q8'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
+  ssr: false,
 });
 const EmploymentInsuranceReference = dynamic(
   () =>
@@ -57,12 +64,14 @@ const Content = ({ id }: { id: string | string[] | undefined }) => {
       {id === '6' && <Q6></Q6>}
       {id === '7' && <Q7></Q7>}
       {id === '8' && <Q8></Q8>}
-      {!id && <h1>Loading...</h1>}
+      {!id && <Loading />}
     </div>
   );
 };
 
-const pageTitle: { [key: string]: { title: string; todo: string } } = {
+const pageTitle: {
+  [key: string]: { title: string; todo: string };
+} = {
   '1': {
     title: '今回の退職について',
     todo: '【記入/選択してください】',
@@ -101,7 +110,11 @@ export default function Question() {
   const router = useRouter();
   const id = router.query.id;
   if (id == null) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className='h-screen w-screen flex justify-center items-center'>
+        <Loading />
+      </div>
+    );
   }
   return (
     <>
