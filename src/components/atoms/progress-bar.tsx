@@ -4,13 +4,14 @@ import { useState, useMemo } from 'react';
 
 const AnswerProgressBar = () => {
   const router = useRouter();
-  const [state, setState] = useState(0);
+  const id = router.query.id;
+  const [state, setState] = useState(Number(id));
 
   useMemo(() => {
     if (state < 8) {
-      setState(Number(router.pathname.replace(/^\/questions\//, '')));
+      setState(Number(id));
     }
-  }, [router.pathname, state]);
+  }, [id, state]);
 
   return (
     <ProgressBar

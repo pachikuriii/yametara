@@ -36,6 +36,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     cy.get('#retirement-date-form').type('2022-5-6');
     cy.get('#retirement-reason-form1').click();
     cy.get('#next-page-button').click();
+    cy.get('h1').should('have.text', '退職後の予定について');
     cy.window().then((win) => {
       const storage = JSON.parse(
         win.sessionStorage.getItem('yametara') || '[]',
@@ -66,6 +67,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     cy.visit('/questions/2');
     cy.get('#re-employment-form3').click();
     cy.get('#next-page-button').click();
+    cy.get('h1').should('have.text', 'あなたについて');
     cy.window().then((win) => {
       const storage = JSON.parse(
         win.sessionStorage.getItem('yametara') || '[]',
@@ -97,6 +99,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     cy.get('select').select('30歳未満')
     cy.get('#postcode-form').type('6550873');
     cy.get('#next-page-button').click();
+    cy.get('h1').should('have.text', 'あなたの家族について');
     cy.window().then((win) => {
       const storage = JSON.parse(
         win.sessionStorage.getItem('yametara') || '[]',
@@ -130,6 +133,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     cy.visit('/questions/4');
     cy.get('#family-form1').click();
     cy.get('#next-page-button').click();
+    cy.get('h1').should('have.text', '雇用保険について');
     cy.window().then((win) => {
       const storage = JSON.parse(
         win.sessionStorage.getItem('yametara') || '[]',
@@ -164,6 +168,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     cy.get('#emp-ins-last-two-years-form2').click();
     cy.get('select').select('5年以上10年未満')
     cy.get('#next-page-button').click();
+    cy.get('h1').should('have.text', '健康保険について');
     cy.window().then((win) => {
       const storage = JSON.parse(
         win.sessionStorage.getItem('yametara') || '[]',
@@ -200,6 +205,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     cy.visit('/questions/6');
     cy.get('#health-ins-last-two-month-form1').click();
     cy.get('#next-page-button').click();
+    cy.get('h1').should('have.text', '健康保険について');
     cy.window().then((win) => {
       const storage = JSON.parse(
         win.sessionStorage.getItem('yametara') || '[]',
@@ -236,6 +242,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     cy.visit('/questions/7');
     cy.get('#health-ins-after-retirement-form1').click();
     cy.get('#next-page-button').click();
+     cy.get('h1').should('have.text', '住民税について');
     cy.window().then((win) => {
       const storage = JSON.parse(
         win.sessionStorage.getItem('yametara') || '[]',
@@ -273,6 +280,7 @@ describe('sessionStorageへ値が保存されることのテスト', () => {
     cy.visit('/questions/8');
     cy.get('#tax-form1').click();
     cy.get('#next-page-button').click();
+    cy.get('h1').should('have.text', 'シミュレーション結果');
     cy.window().then((win) => {
       const storage = JSON.parse(
         win.sessionStorage.getItem('yametara') || '[]',

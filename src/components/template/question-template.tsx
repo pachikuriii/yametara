@@ -7,18 +7,19 @@ import Motion from 'src/components/atoms/motion';
 import AnswerProgressBar from 'src/components/atoms/progress-bar';
 import { useIsStarted } from 'src/hooks/use-is-started';
 interface Props {
-  pageTitle: string;
   title: string;
   todo: string;
   children: ReactNode;
 }
 
-const QuestionTemplate = ({ pageTitle, title, todo, children }: Props) => {
+const QuestionTemplate = ({ title, todo, children }: Props) => {
   useIsStarted();
   return (
     <>
       <Head>
-        <title>{pageTitle}</title>
+        <title>
+          {'yametara | 退職後の手続きシミュレーター | ' + `${title}`}
+        </title>
         <meta
           name='description'
           content='yametaraは会社を辞めた後、すぐに就職しない選択をはじめてする方におすすめの退職後の手続きシミュレーターです。会社を辞めた後に必要な手続きを把握するために、いくつかの質問に答えてみましょう。'
