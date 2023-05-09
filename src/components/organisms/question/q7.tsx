@@ -70,7 +70,7 @@ const Q7 = () => {
       <QuestionTitle>退職後に加入したい健康保険</QuestionTitle>
       <form className='pb-4'>
         <AnswerSelectButtons
-          options={['国民健康保険', '任意保険', '家族の健康保険']}
+          options={['国民健康保険', '任意継続', '家族の健康保険']}
           name='health_ins_after_retirement'
           register={register}
           errors={errors.health_ins_after_retirement}
