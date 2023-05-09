@@ -25,7 +25,7 @@ const Q7 = () => {
   );
   const [healthInsLastTwoMonth, setHealthInsLastTwoMonth] = useState(0);
   const [family, setFamily] = useState(0);
-  const [options, setOptions] = useState(['国民健康保険']);
+  const [validOptions, setValidOptions] = useState<number[]>([]);
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -47,14 +47,14 @@ const Q7 = () => {
     if (storedHealthInsAfterRetirement) {
       setTab(storedHealthInsAfterRetirement);
     }
-    const defaultOptions = ['国民健康保険'];
+    const validOptions = [1];
     if (healthInsLastTwoMonth === 1) {
-      defaultOptions.push('任意継続');
-      setOptions(defaultOptions);
+      validOptions.push(2);
+      setValidOptions(validOptions);
     }
     if (family === 1) {
-      defaultOptions.push('家族の健康保険');
-      setOptions(defaultOptions);
+      validOptions.push(3);
+      setValidOptions(validOptions);
     }
   }, [
     storedHealthInsLastTwoMonthState,
@@ -69,22 +69,21 @@ const Q7 = () => {
       <QuestionTitle>退職後に加入したい健康保険</QuestionTitle>
       <form className='pb-4'>
         <AnswerSelectButtons
-          options={options}
+          options={['国民健康保険', '任意保険', '家族の健康保険']}
           name='health_ins_after_retirement'
           register={register}
           errors={errors.health_ins_after_retirement}
           idPrefix={'health-ins-after-retirement-form'}
           setTab={setTab}
+          validOptions={validOptions}
         />
       </form>
 
       <div className='pb-4'>
         <TabTemplate>
           {tab === 1 && <NationalInsurance />}
-          {tab === 2 && options[1] === '任意継続' && <OptionalInsurance />}
-          {tab === 2 && options[1] === '家族の健康保険' && (
-            <DependentInsurance />
-          )}
+          {tab === 2 && validOptions[1] === 2 && <OptionalInsurance />}
+          {tab === 2 && validOptions[1] === 3 && <DependentInsurance />}
           {tab === 3 && <DependentInsurance />}
         </TabTemplate>
       </div>

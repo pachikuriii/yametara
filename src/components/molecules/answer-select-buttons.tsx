@@ -9,6 +9,7 @@ interface Props {
   errors: FieldError | undefined;
   idPrefix: string;
   setTab?: Dispatch<SetStateAction<number>>;
+  validOptions?: number[];
 }
 const AnswerSelectButtons = ({
   options,
@@ -17,6 +18,7 @@ const AnswerSelectButtons = ({
   errors,
   idPrefix,
   setTab,
+  validOptions,
 }: Props) => {
   return (
     <div>
@@ -26,7 +28,31 @@ const AnswerSelectButtons = ({
       >
         {options.map((value, index) => {
           index += 1;
-          return (
+          return validOptions ? (
+            validOptions?.includes(index) && (
+              <div key={index}>
+                <label htmlFor={`${index}`}>
+                  <input
+                    {...register(name, {
+                      required: '選択してください',
+                    })}
+                    type='radio'
+                    value={index}
+                    className={
+                      'form-check-input no-animation peer radio mt-3 ml-6 absolute z-10'
+                    }
+                    id={`${index}`}
+                  />
+                  <AnswerSelectButton
+                    id={`${idPrefix}${index}`}
+                    onClick={() => setTab?.(index)}
+                  >
+                    {value}
+                  </AnswerSelectButton>
+                </label>
+              </div>
+            )
+          ) : (
             <div key={index}>
               <label htmlFor={`${index}`}>
                 <input
@@ -35,7 +61,9 @@ const AnswerSelectButtons = ({
                   })}
                   type='radio'
                   value={index}
-                  className='form-check-input peer radio mt-3 ml-6 absolute z-10'
+                  className={
+                    'form-check-input no-animation peer radio mt-3 ml-6 absolute z-10'
+                  }
                   id={`${index}`}
                 />
                 <AnswerSelectButton

@@ -50,7 +50,7 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
         <BackButton
           type='button'
           onClick={() => {
-            router.push(prevPage);
+            router.push(prevPage, undefined, { shallow: true });
             setStoredBackButtonClicked(true);
             setStoredNextButtonClicked(false);
           }}
@@ -67,7 +67,7 @@ const PagerButtons = ({ handleSubmit, isValid }: Props) => {
             setStoredBackButtonClicked(false);
             setStoredNextButtonClicked(true);
             {
-              isValid && router.push(nextPage);
+              isValid && router.push(nextPage, undefined, { shallow: true });
             }
           }}
           isValid={isValid}
