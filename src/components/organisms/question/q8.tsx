@@ -15,23 +15,24 @@ import AnswerSelectButtons from 'src/components/molecules/answer-select-buttons'
 import PagerButtons from 'src/components/molecules/pager-buttons';
 import TabTemplate from 'src/components/template/tab-template';
 export default function Q8() {
-  const [options, setOptions] = useState(['一括徴収', '今年度は支払いなし']);
   const [tab, setTab] = useState(1);
   const storedRetirementDate = useRecoilValue(retirementDateState);
   const [storedTax, setStoredTax] = useRecoilState(taxState);
+  const [validOptions, setValidOptions] = useState([1]);
 
   useEffect(() => {
     const retirementMonth = dayjs(storedRetirementDate).month() + 1;
-    const defaultOptions = ['一括徴収', '今年度は支払いなし'];
+    const validOptions = [1];
     if (![...Array(5)].map((_, i) => i + 1).includes(retirementMonth)) {
-      defaultOptions[1] = '普通徴収';
-      defaultOptions[2] = '今年度は支払いなし';
-      setOptions(defaultOptions);
+      validOptions.push(2, 3);
+    } else {
+      validOptions.push(3);
     }
+    setValidOptions(validOptions);
     if (storedTax) {
       setTab(storedTax);
     }
-  }, [storedRetirementDate, storedTax, setOptions]);
+  }, [storedRetirementDate, storedTax]);
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -52,21 +53,22 @@ export default function Q8() {
       <form className='pb-6'>
         <QuestionTitle>今年度の残りの住民税の支払い方法</QuestionTitle>
         <AnswerSelectButtons
-          options={options}
+          options={['一括徴収', '普通徴収', '今年度は支払いなし']}
           name='tax'
           register={register}
           errors={errors.tax}
           idPrefix={'tax-form'}
           setTab={setTab}
+          validOptions={validOptions}
         />
       </form>
 
       <div className='pb-4'>
         <TabTemplate>
           {tab === 1 && <AtOnceTaxCollection />}
-          {tab === 2 && options[1] === '普通徴収' && <OrdinallyTaxCollection />}
-          {tab === 2 && options[1] === '今年度は支払いなし' && <NoTax />}
-          {tab === 3 && options[2] === '今年度は支払いなし' && <NoTax />}
+          {tab === 2 && validOptions[1] === 2 && <OrdinallyTaxCollection />}
+          {tab === 3 && validOptions[2] === 3 && <NoTax />}
+          {tab === 3 && validOptions[1] === 3 && <NoTax />}
         </TabTemplate>
       </div>
 
