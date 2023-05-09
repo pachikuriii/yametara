@@ -35,7 +35,7 @@ const AnswerSelectButtons = ({
                   })}
                   type='radio'
                   value={index}
-                  className='form-check-input peer radio mt-3 ml-6 absolute z-10'
+                  className='form-check-input no-animation peer radio mt-3 ml-6 absolute z-10'
                   id={`${index}`}
                 />
                 <AnswerSelectButton
