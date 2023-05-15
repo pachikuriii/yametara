@@ -74,7 +74,7 @@ describe('質問ページに表示される選択肢がそれまでの回答の�
     cy.visit('/questions/7');
     cy.get('#answer-options')
       .should('be.visible')
-      .get('#health-ins-after-retirement-form2')
+      .find('#health-ins-after-retirement-form2')
       .should('have.text', '家族の健康保険');
   });
 
@@ -96,7 +96,7 @@ describe('質問ページに表示される選択肢がそれまでの回答の�
     cy.visit('/questions/7');
     cy.get('#answer-options')
       .should('be.visible')
-      .find('#health-ins-after-retirement-form2')
+      .find('#health-ins-after-retirement-form3')
       .should('not.exist');
   });
 
